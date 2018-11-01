@@ -132,10 +132,13 @@ void UPlatformerGameInstance::CreateSession() {
 			}
 		}
 
+		if (MenuWidget != nullptr && MenuWidget->LockSessionBox != nullptr) {
+			Settings.Set(SESSION_SETTINGS_Locked, (MenuWidget->LockSessionBox->CheckedState == ECheckBoxState::Checked), EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+		}
+
 		Settings.bUsesPresence = true;
 		UE_LOG(LogTemp, Warning, TEXT("Attempting to host server"));
 		Settings.Set(SESSION_SETTINGS_KEY, DesiredServerName, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
-		Settings.Set(SESSION_SETTINGS_Locked, true, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 		SessionInterface->CreateSession(0, SESSION_NAME, Settings);
 	}
 }

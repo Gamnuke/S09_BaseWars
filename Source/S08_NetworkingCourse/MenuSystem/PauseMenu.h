@@ -6,7 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/WidgetSwitcher.h"
 #include "Components/ScrollBox.h"
-#include "Components/EditableText.h"
+#include "Components/EditableTextBox.h"
 #include "MenuInterface.h"
 #include "PauseMenu.generated.h"
 
@@ -54,7 +54,7 @@ private:
 		UScrollBox *PlayerBox;
 
 	UPROPERTY(meta = (BindWidget))
-		UEditableText *ReasonBox;
+		UEditableTextBox *ReasonBox;
 
 	////-----------------
 	UPROPERTY(meta = (BindWidget))

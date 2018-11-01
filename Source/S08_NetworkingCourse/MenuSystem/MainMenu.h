@@ -11,6 +11,7 @@
 #include "Components/EditableTextBox.h"
 #include "Components/TextBlock.h"
 #include "Components/ScrollBox.h"
+#include "Components/CheckBox.h"
 
 #include "Public/OnlineSubsystem.h"
 #include "Interfaces/OnlineSessionInterface.h"
@@ -56,6 +57,9 @@ public:
 
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, VisibleAnywhere)
 		class UTextBlock *PlayerCounter;
+
+	UPROPERTY(meta = (BindWidget))
+		class UCheckBox *LockSessionBox;
 
 	bool PlayerIsHost = false;
 
