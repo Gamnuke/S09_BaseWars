@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/WidgetSwitcher.h"
+#include "Components/ScrollBox.h"
+#include "Components/EditableText.h"
 #include "MenuInterface.h"
 #include "PauseMenu.generated.h"
 
@@ -37,6 +39,24 @@ private:
 	UPROPERTY(meta = (BindWidget))
 		UButton *NoButton;
 
+	/// Vote kick menu
+
+	UPROPERTY(meta = (BindWidget))
+		UButton *VoteKickMenuButton;
+
+	UPROPERTY(meta = (BindWidget))
+		UButton *VoteKickButton;
+
+	UPROPERTY(meta = (BindWidget))
+		UWidget *VoteKickMenu;
+
+	UPROPERTY(meta = (BindWidget))
+		UScrollBox *PlayerBox;
+
+	UPROPERTY(meta = (BindWidget))
+		UEditableText *ReasonBox;
+
+	////-----------------
 	UPROPERTY(meta = (BindWidget))
 		UWidget *PauseMenu;
 
