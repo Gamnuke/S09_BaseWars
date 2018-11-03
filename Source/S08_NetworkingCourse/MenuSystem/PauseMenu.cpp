@@ -5,6 +5,18 @@
 #include "Components/WidgetSwitcher.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Engine/World.h"
+#include "ConstructorHelpers.h"
+
+UPauseMenu::UPauseMenu(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+{
+	static ConstructorHelpers::FClassFinder<UUserWidget> PlayerTab(TEXT("/Game/UI/VoteKickMenu_WBP"));
+	if (PlayerTab.Class != NULL)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *PlayerTab.Class->GetName());
+		PlayerTabClass = PlayerTab.Class;
+	}
+
+}
 
 bool UPauseMenu::Initialize() {
 	bool Success = Super::Initialize();
@@ -22,6 +34,8 @@ bool UPauseMenu::Initialize() {
 	QuitGameButton->OnClicked.AddDynamic(this, &UPauseMenu::OpenConfirmQuit);
 	YesButton->OnClicked.AddDynamic(this, &UPauseMenu::QuitGame);
 	NoButton->OnClicked.AddDynamic(this, &UPauseMenu::OpenPauseMenu);
+	VoteKickMenuButton->OnClicked.AddDynamic(this, &UPauseMenu::OpenVoteKickMenu);
+
 
 	return true;
 }
@@ -81,5 +95,11 @@ void UPauseMenu::SetMenuInterface(IMenuInterface *NewMenuInterface) {
 	MenuInterface = NewMenuInterface;
 }
 
+void UPauseMenu::OpenVoteKickMenu() {
+	if (WidgetSwitcher == nullptr) { return; }
+	if (VoteKickMenu == nullptr) { return; }
+
+	WidgetSwitcher->SetActiveWidget(VoteKickMenu);
+}
 
 

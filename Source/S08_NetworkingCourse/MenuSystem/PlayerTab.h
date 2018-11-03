@@ -21,4 +21,5 @@ public:
 	
 	UPROPERTY(meta = (BindWidget))
 		UTextBlock *PlayerNameBlock;
+
 };

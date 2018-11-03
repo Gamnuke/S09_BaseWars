@@ -19,10 +19,13 @@ class S08_NETWORKINGCOURSE_API UPauseMenu : public UUserWidget
 {
 	GENERATED_BODY()
 
+	UPauseMenu(const FObjectInitializer& ObjectInitializer);
 protected:
 	virtual bool Initialize();
 
 private:
+	TSubclassOf<class UUserWidget> PlayerTabClass;
+
 	//Widgets//
 	UPROPERTY(meta = (BindWidget))
 		UButton *ReturnToGameButton;
@@ -90,6 +93,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void ClosePauseMenu();
+
+	UFUNCTION()
+		void OpenVoteKickMenu();
 
 	void SetMenuInterface(IMenuInterface *NewMenuInterface);
 };
