@@ -3,7 +3,8 @@
 #include "VoteKickPopup.h"
 
 void UVoteKickPopup::RecievePlayerInput(bool Input) {
-
+	this->RemoveFromViewport();
+	this->Destruct();
 }
 
 void UVoteKickPopup::SetInformation(FKickInformation Info) {

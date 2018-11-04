@@ -13,6 +13,8 @@ class AS08_NetworkingCourseGameMode : public AGameModeBase
 
 public:
 	AS08_NetworkingCourseGameMode();
+
+	void KickPlayerCall(int32 KickingPlayerID);
 };
 
 

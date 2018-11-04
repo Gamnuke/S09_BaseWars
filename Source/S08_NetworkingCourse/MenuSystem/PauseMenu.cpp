@@ -5,11 +5,17 @@
 #include "Components/WidgetSwitcher.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Engine/World.h"
+#include "GameFramework/GameState.h"
+#include "GameFramework/PlayerState.h"
+#include "PlatformerGameInstance.h"
+#include "MenuSystem/PlayerTab.h"
 #include "ConstructorHelpers.h"
+#include "S08_NetworkingCourseGameMode.h"
+#include "Engine/Engine.h"
 
 UPauseMenu::UPauseMenu(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
-	static ConstructorHelpers::FClassFinder<UUserWidget> PlayerTab(TEXT("/Game/UI/VoteKickMenu_WBP"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> PlayerTab(TEXT("/Game/UI/PlayerTab_WBP"));
 	if (PlayerTab.Class != NULL)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *PlayerTab.Class->GetName());
@@ -28,6 +34,9 @@ bool UPauseMenu::Initialize() {
 	if (QuitGameButton == nullptr) { return false; }
 	if (YesButton == nullptr) { return false; }
 	if (NoButton == nullptr) { return false; }
+	if (VoteKickMenuButton == nullptr) { return false; }
+	if (VoteKickButton == nullptr) { return false; }
+	if (BackButton == nullptr) { return false; }
 
 	ReturnToGameButton->OnClicked.AddDynamic(this, &UPauseMenu::Teardown);
 	MenuButton->OnClicked.AddDynamic(this, &UPauseMenu::OpenMainMenu);
@@ -35,6 +44,8 @@ bool UPauseMenu::Initialize() {
 	YesButton->OnClicked.AddDynamic(this, &UPauseMenu::QuitGame);
 	NoButton->OnClicked.AddDynamic(this, &UPauseMenu::OpenPauseMenu);
 	VoteKickMenuButton->OnClicked.AddDynamic(this, &UPauseMenu::OpenVoteKickMenu);
+	BackButton->OnClicked.AddDynamic(this, &UPauseMenu::OpenPauseMenu);
+	VoteKickButton->OnClicked.AddDynamic(this, &UPauseMenu::CallVoteKick);
 
 
 	return true;
@@ -100,6 +111,60 @@ void UPauseMenu::OpenVoteKickMenu() {
 	if (VoteKickMenu == nullptr) { return; }
 
 	WidgetSwitcher->SetActiveWidget(VoteKickMenu);
+	UpdatePlayerTabs();
+}
+
+void UPauseMenu::UpdatePlayerTabs() {
+	if (PlayerBox != nullptr) {
+		PlayerBox->ClearChildren();
+	}
+	Tabs.Empty();
+	SelectedIndex = NULL;
+
+	if (PlayerTabClass != nullptr&&GetWorld()!=nullptr) {
+		TArray<APlayerState*> Players = GetWorld()->GetGameState()->PlayerArray;
+		int32 i = 0;
+		for (APlayerState *State : Players) {
+			UPlayerTab *Tab = CreateWidget<UPlayerTab>(this, PlayerTabClass, *(FString("PlayerTab") + FString::FromInt(i)));
+			Tab->UpdateName(State->GetPlayerName());
+			Tab->ParentPauseMenu = this;
+			Tab->ThisIndex = i;
+			Tabs.Add(Tab);
+			States.Add(State);
+			PlayerBox->AddChild(Tab);
+			i++;
+		}
+	}
+}
+
+void UPauseMenu::SetSelectedPlayerIndex(int32 Index, UPlayerTab *OwningTab) {
+	for (UPlayerTab *Tab : Tabs) {
+		Tab->UpdateColour(false);
+	}
+	OwningTab->UpdateColour(true);
+	SelectedIndex = Index;
+}
+
+void UPauseMenu::CallVoteKick() {
+	if (GetWorld()->GetAuthGameMode() == nullptr) {
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Red, FString(TEXT("GAMEMODE IS NULL LMAO")));
+	}
+
+
+	if (SelectedIndex.IsSet()) {
+		APlayerState* SelectedState = States[SelectedIndex.GetValue()];
+		if (GetGameInstance() != nullptr) {
+			UPlatformerGameInstance *GM = Cast<UPlatformerGameInstance>(GetGameInstance());
+			if (GM->Gamemode == nullptr) {
+				GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Gamemode is null ecks dee")));
+			}
+			if (GM != nullptr && GM->Gamemode != nullptr) {
+				GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("YEE")));
+
+				GM->Gamemode->KickPlayerCall(SelectedState->PlayerId);
+			}
+		}
+	}
 }
 
 

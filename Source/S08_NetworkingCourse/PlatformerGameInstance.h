@@ -48,6 +48,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void OpenPauseMenu();
 
+	void UpdateSessionSettings();
+
 	UPROPERTY()
 	UMainMenu *MenuWidget;
 
@@ -69,7 +71,7 @@ public:
 	void SetServerName(FString NewServerName);
 
 	float FindSessionStartTime;
-
+	class AS08_NetworkingCourseGameMode *Gamemode;
 private:
 	TSubclassOf<class UUserWidget> MenuClass;
 	TSubclassOf<class UUserWidget> PauseMenuClass;
@@ -79,5 +81,7 @@ private:
 	TSharedPtr<class FOnlineSessionSearch> SessionSearch;
 
 	FString DesiredServerName;
+
+	FOnlineSessionSettings Settings;
 
 };

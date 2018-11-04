@@ -17,6 +17,7 @@
 #include "MenuSystem/SessionTab.h"
 
 #include "GamePlayerController.h"
+#include "PlatformerGameInstance.h"
 
 #include "ConstructorHelpers.h"
 
@@ -168,18 +169,16 @@ void UMainMenu::UpdateSessionTabs(TSharedPtr<FOnlineSessionSearch> SearchResult)
 	if (SessionTabClass != nullptr && ServerList != nullptr && ServerList != nullptr) {
 		int32 i = 0;
 		for (FOnlineSessionSearchResult Element : SearchResult->SearchResults) {
-			USessionTab *Tab = CreateWidget<USessionTab>(this, SessionTabClass, FName("SessionTab"));
+			USessionTab *Tab = CreateWidget<USessionTab>(this, SessionTabClass, *(FString("SessionTab") + FString::FromInt(i)));
 			FServerData Data;
 			Data.MaxPlayers = Element.Session.SessionSettings.NumPublicConnections;
 			Data.CurrentPlayers = Data.MaxPlayers - Element.Session.NumOpenPublicConnections;
 			Data.InstantaneousPing = Element.PingInMs;
 			Data.HostName = Element.Session.OwningUserId.ToSharedRef().Get().ToString();
-
 			FString ServerName;
 			if (Element.Session.SessionSettings.Get(TEXT("ServerName"), ServerName)) {
 				Data.ServerName = ServerName;
 			}
-
 			bool ServerLocked;
 			if (Element.Session.SessionSettings.Get(TEXT("ServerLocked"), ServerLocked)) {
 				Data.ServerLocked = ServerLocked;
@@ -249,6 +248,10 @@ void UMainMenu::ToServerStatus_Host() {
 
 void UMainMenu::StartGame() {
 	if (GetWorld() != nullptr) {
+		UPlatformerGameInstance* GameInstance = Cast<UPlatformerGameInstance>(GetGameInstance());
+		if (GameInstance != nullptr) {
+			GameInstance->UpdateSessionSettings();
+		}
 		GetWorld()->ServerTravel("/Game/Levels/GameMap?listen");
 	}
 }

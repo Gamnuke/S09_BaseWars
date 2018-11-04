@@ -13,6 +13,9 @@
 #include "Public/OnlineSubsystem.h"
 #include "Interfaces/OnlineSessionInterface.h"
 #include "OnlineSessionSettings.h"
+#include "GameFramework/OnlineSession.h"
+#include "GameFramework/GameSession.h"
+#include "S08_NetworkingCourseGameMode.h"
 
 const static FName SESSION_NAME = NAME_GameSession;
 const static FName SESSION_SETTINGS_KEY = TEXT("ServerName");
@@ -56,7 +59,6 @@ void UPlatformerGameInstance::Init() {
 }
 
 void UPlatformerGameInstance::LoadMenuWidget() {
-
 	if (MenuClass == nullptr) { return; }
 	MenuWidget = CreateWidget<UMainMenu>(this, MenuClass, FName("Menu Widget"));
 	if (MenuWidget != nullptr) {
@@ -81,7 +83,6 @@ void UPlatformerGameInstance::JoinServer(int32 Index) {
 
 void UPlatformerGameInstance::OnJoinSessionComplete(FName SessionName, EOnJoinSessionCompleteResult::Type Result) {
 	if (!SessionInterface.IsValid()) { return; }
-
 	FString Address; // Reference to the string of address
 	if (!SessionInterface->GetResolvedConnectString(SessionName, Address)) {
 		UE_LOG(LogTemp, Warning, TEXT("Couldnt get connect string"));
@@ -116,8 +117,6 @@ void UPlatformerGameInstance::HostServer(FText ServerName) {
 
 void UPlatformerGameInstance::CreateSession() {
 	if (SessionInterface.IsValid()) {
-		FOnlineSessionSettings Settings;
-
 		if (IOnlineSubsystem::Get()->GetSubsystemName() == "NULL") {
 			Settings.bIsLANMatch = true;
 		}
@@ -132,14 +131,21 @@ void UPlatformerGameInstance::CreateSession() {
 			}
 		}
 
-		if (MenuWidget != nullptr && MenuWidget->LockSessionBox != nullptr) {
-			Settings.Set(SESSION_SETTINGS_Locked, (MenuWidget->LockSessionBox->CheckedState == ECheckBoxState::Checked), EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
-		}
+		Settings.Set(SESSION_SETTINGS_Locked, false, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 
 		Settings.bUsesPresence = true;
 		UE_LOG(LogTemp, Warning, TEXT("Attempting to host server"));
 		Settings.Set(SESSION_SETTINGS_KEY, DesiredServerName, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 		SessionInterface->CreateSession(0, SESSION_NAME, Settings);
+	}
+}
+
+void UPlatformerGameInstance::UpdateSessionSettings() {
+	if (SessionInterface.IsValid()) {
+		if (MenuWidget != nullptr && MenuWidget->LockSessionBox != nullptr) {
+			Settings.Set(SESSION_SETTINGS_Locked, (MenuWidget->LockSessionBox->CheckedState == ECheckBoxState::Checked), EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+			SessionInterface.Get()->UpdateSession(SESSION_NAME, Settings, true);
+		}
 	}
 }
 
@@ -210,6 +216,3 @@ void UPlatformerGameInstance::CreateTab() {
 void UPlatformerGameInstance::SetServerName(FString NewServerName) {
 	DesiredServerName = NewServerName;
 }
-
-
-
