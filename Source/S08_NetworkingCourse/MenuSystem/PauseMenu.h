@@ -115,4 +115,6 @@ public:
 
 	UFUNCTION()
 	void CallVoteKick();
+
+	bool IsHost = false;
 };

@@ -11,6 +11,9 @@
 /**
  * 
  */
+
+class UKickedNote;
+
 UCLASS()
 class S08_NETWORKINGCOURSE_API AGamePlayerController : public APlayerController
 {
@@ -21,4 +24,6 @@ class S08_NETWORKINGCOURSE_API AGamePlayerController : public APlayerController
 public:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	UMainMenu *MainMenuWidget;
+
+	void AddWidgetToViewport(UKickedNote *WidgetToAdd);
 };

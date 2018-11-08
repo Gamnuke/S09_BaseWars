@@ -72,6 +72,10 @@ void UPlatformerGameInstance::SetupGame() {
 	if (MenuWidget != nullptr) {
 		MenuWidget->TearDown();
 	}
+
+	if (PauseMenuWidget != nullptr) {
+		PauseMenuWidget->Teardown();
+	}
 }
 
 void UPlatformerGameInstance::JoinServer(int32 Index) {
@@ -155,7 +159,6 @@ void UPlatformerGameInstance::OnCreateSessionComplete(FName SessionName, bool Su
 		return;
 	}
 	GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(SessionName.ToString().Append(TEXT("- Successfully created session"))));
-	MenuWidget->TearDown();
 	MenuWidget->PlayerIsHost = true;
 	GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Hosting Server")));
 	GetWorld()->ServerTravel("/Game/Levels/Lobby?listen");
@@ -193,6 +196,7 @@ void UPlatformerGameInstance::OpenPauseMenu() {
 	}
 	if (PauseMenuWidget != nullptr) {
 		PauseMenuWidget->SetMenuInterface(this);
+		PauseMenuWidget->IsHost = MenuWidget->PlayerIsHost;
 		PauseMenuWidget->Setup();
 	}
 }

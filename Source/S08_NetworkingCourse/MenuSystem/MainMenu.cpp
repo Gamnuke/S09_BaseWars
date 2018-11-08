@@ -252,6 +252,7 @@ void UMainMenu::StartGame() {
 		if (GameInstance != nullptr) {
 			GameInstance->UpdateSessionSettings();
 		}
+		TearDown();
 		GetWorld()->ServerTravel("/Game/Levels/GameMap?listen");
 	}
 }

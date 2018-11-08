@@ -11,6 +11,7 @@
 #include "MenuSystem/PlayerTab.h"
 #include "ConstructorHelpers.h"
 #include "S08_NetworkingCourseGameMode.h"
+#include "PlayingGameMode.h"
 #include "Engine/Engine.h"
 
 UPauseMenu::UPauseMenu(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -89,6 +90,8 @@ void UPauseMenu::ClosePauseMenu() {
 }
 
 void UPauseMenu::Setup() {
+	VoteKickButton->bIsEnabled = IsHost;
+	VoteKickMenuButton->bIsEnabled = IsHost;
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController == nullptr) { return; }
 
@@ -146,24 +149,19 @@ void UPauseMenu::SetSelectedPlayerIndex(int32 Index, UPlayerTab *OwningTab) {
 }
 
 void UPauseMenu::CallVoteKick() {
-	if (GetWorld()->GetAuthGameMode() == nullptr) {
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Red, FString(TEXT("GAMEMODE IS NULL LMAO")));
-	}
-
-
-	if (SelectedIndex.IsSet()) {
+	/*if (SelectedIndex.IsSet()) { 
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Kicking player")));
 		APlayerState* SelectedState = States[SelectedIndex.GetValue()];
-		if (GetGameInstance() != nullptr) {
-			UPlatformerGameInstance *GM = Cast<UPlatformerGameInstance>(GetGameInstance());
-			if (GM->Gamemode == nullptr) {
-				GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Gamemode is null ecks dee")));
-			}
-			if (GM != nullptr && GM->Gamemode != nullptr) {
-				GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("YEE")));
+		SelectedState->UnregisterPlayerWithSession();
+	}*/
+	if (GetWorld()->GetAuthGameMode() != nullptr) {
+		APlayerState* SelectedState = States[SelectedIndex.GetValue()];
+		if (!SelectedIndex.IsSet()) { return; }
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Gamemode Isnt Null")));
+		APlayingGameMode *GM = Cast<APlayingGameMode>(GetWorld()->GetAuthGameMode());
+		if (GM == nullptr) { return; }
 
-				GM->Gamemode->KickPlayerCall(SelectedState->PlayerId);
-			}
-		}
+		GM->KickPlayerCall(SelectedState->PlayerId);
 	}
 }
 

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Blueprint/UserWidget.h"
 #include "S08_NetworkingCourseGameMode.generated.h"
 
 UCLASS(minimalapi)
@@ -13,8 +14,12 @@ class AS08_NetworkingCourseGameMode : public AGameModeBase
 
 public:
 	AS08_NetworkingCourseGameMode();
-
 	void KickPlayerCall(int32 KickingPlayerID);
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void CreateKickNotewidget(APlayerController *OwningPlayerController);
+private:
+	TSubclassOf<class UUserWidget> DefaultKickedNoteClass;
 };
 
 
