@@ -149,20 +149,13 @@ void UPauseMenu::SetSelectedPlayerIndex(int32 Index, UPlayerTab *OwningTab) {
 }
 
 void UPauseMenu::CallVoteKick() {
-	/*if (SelectedIndex.IsSet()) { 
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Kicking player")));
-		APlayerState* SelectedState = States[SelectedIndex.GetValue()];
-		SelectedState->UnregisterPlayerWithSession();
-	}*/
-	if (GetWorld()->GetAuthGameMode() != nullptr) {
-		APlayerState* SelectedState = States[SelectedIndex.GetValue()];
-		if (!SelectedIndex.IsSet()) { return; }
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Gamemode Isnt Null")));
-		APlayingGameMode *GM = Cast<APlayingGameMode>(GetWorld()->GetAuthGameMode());
-		if (GM == nullptr) { return; }
-
-		GM->KickPlayerCall(SelectedState->PlayerId);
-	}
+	APlayerState* SelectedState = States[SelectedIndex.GetValue()];
+	if (!SelectedIndex.IsSet()) { return; }
+	if (SelectedState->GetNetOwningPlayer() == nullptr) { return; }
+	APlayerController *PlayerController = SelectedState->GetNetOwningPlayer()->PlayerController;
+	if (PlayerController == nullptr) { return; }
+	PlayerController->ClientTravel("/Game/Levels/MainMenu", ETravelType::TRAVEL_Absolute);
+	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Gamemode Isnt Null")));
 }
 
 

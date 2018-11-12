@@ -9,6 +9,7 @@
 #include "MenuSystem/MainMenu.h"
 #include "MenuSystem/PauseMenu.h"
 #include "MenuSystem/SessionTab.h"
+#include "MenuSystem/ServerStatus.h"
 
 #include "Public/OnlineSubsystem.h"
 #include "Interfaces/OnlineSessionInterface.h"
@@ -36,6 +37,13 @@ UPlatformerGameInstance::UPlatformerGameInstance(const FObjectInitializer& Objec
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *PauseMenu.Class->GetName());
 		PauseMenuClass = PauseMenu.Class;
+	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> ServerStatus(TEXT("/Game/UI/ServerStatus_WBP"));
+	if (ServerStatus.Class != NULL)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *ServerStatus.Class->GetName());
+		ServerStatusClass = ServerStatus.Class;
 	}
 }
 
@@ -211,6 +219,15 @@ void UPlatformerGameInstance::OpenMainMenu() {
 	}
 }
 
+void UPlatformerGameInstance::OpenServerStatusMenu() {
+	if (ServerStatusWidget == nullptr && ServerStatusClass != nullptr) {
+		ServerStatusWidget = CreateWidget<UServerStatus>(this, ServerStatusClass, FName("ServerStatusMenu"));
+	}
+	if (ServerStatusWidget != nullptr) {
+		ServerStatusWidget->Setup();
+	}
+}
+
 void UPlatformerGameInstance::CreateTab() {
 	if (MenuWidget != nullptr) {
 		MenuWidget->CreateTab();
@@ -220,3 +237,4 @@ void UPlatformerGameInstance::CreateTab() {
 void UPlatformerGameInstance::SetServerName(FString NewServerName) {
 	DesiredServerName = NewServerName;
 }
+

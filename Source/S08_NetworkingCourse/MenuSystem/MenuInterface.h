@@ -26,4 +26,5 @@ public:
 	virtual void JoinServer(int32 Index) = 0;
 	virtual void OpenMainMenu() = 0;
 	virtual void FindServers() = 0;
+	virtual void OpenServerStatusMenu() = 0;
 };

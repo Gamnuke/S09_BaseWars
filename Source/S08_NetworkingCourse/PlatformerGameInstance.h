@@ -5,8 +5,6 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "MenuSystem/MenuInterface.h"
-#include "MenuSystem/PauseMenu.h"
-#include "MenuSystem/SessionTab.h"
 
 #include "Public/OnlineSubsystem.h"
 #include "Interfaces/OnlineSessionInterface.h"
@@ -15,6 +13,9 @@
 #include "PlatformerGameInstance.generated.h"
 
 class UMainMenu;
+class UServerStatus;
+class USessionTab;
+class UPauseMenu;
 /**
  * 
  */
@@ -48,6 +49,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void OpenPauseMenu();
 
+	UFUNCTION(exec)
+		void OpenServerStatusMenu();
+
 	void UpdateSessionSettings();
 
 	UPROPERTY()
@@ -55,6 +59,9 @@ public:
 
 	UPROPERTY()
 	UPauseMenu *PauseMenuWidget;
+
+	UPROPERTY()
+		UServerStatus *ServerStatusWidget;
 
 	UFUNCTION(BlueprintCallable)
 	void SetupGame();
@@ -75,6 +82,7 @@ public:
 private:
 	TSubclassOf<class UUserWidget> MenuClass;
 	TSubclassOf<class UUserWidget> PauseMenuClass;
+	TSubclassOf<class UUserWidget> ServerStatusClass;
 
 	IOnlineSessionPtr SessionInterface;
 
@@ -83,5 +91,4 @@ private:
 	FString DesiredServerName;
 
 	FOnlineSessionSettings Settings;
-
 };

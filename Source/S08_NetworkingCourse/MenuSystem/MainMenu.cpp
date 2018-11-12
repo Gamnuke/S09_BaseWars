@@ -108,7 +108,6 @@ void UMainMenu::JoinServer() {
 
 void UMainMenu::Setup() {
 	this->AddToPlayerScreen();
-
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController == nullptr) { return; }
 	FInputModeUIOnly InputMode;
@@ -241,9 +240,8 @@ void UMainMenu::ToLoadingScreen(FText Message) {
 }
 
 void UMainMenu::ToServerStatus_Host() {
-	if (HostStatus == nullptr) { return; }
-	if (WidgetSwitcher == nullptr) { return; }
-	WidgetSwitcher->SetActiveWidget(HostStatus);
+	MenuInterface->OpenServerStatusMenu();
+	this->TearDown();
 }
 
 void UMainMenu::StartGame() {
@@ -260,11 +258,6 @@ void UMainMenu::StartGame() {
 void UMainMenu::ToServerStatus_Client() {
 	if (WidgetSwitcher == nullptr) { return; }
 }
-
-
-
-
-
 
 
 
