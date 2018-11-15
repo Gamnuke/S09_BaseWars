@@ -145,24 +145,6 @@ private:
 	UPROPERTY(meta = (BindWidget))
 		class UTextBlock *LoadingMenuText;
 
-//----------------------------------
-
-	//Hosting -> Host Status
-	UPROPERTY(meta = (BindWidget))
-	class UWidget *HostStatus;
-
-	UPROPERTY(meta = (BindWidget))
-		class UButton *StartGameButton;
-
-	UPROPERTY(meta = (BindWidget))
-		class UButton *ShutdownServerButton;
-
-	UPROPERTY(meta = (BindWidget))
-		class UTextBlock *PlayerDisplay;
-
-	UFUNCTION()
-		void StartGame();
-
 
 //----------------------------------
 

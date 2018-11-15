@@ -8,6 +8,7 @@
 #include "Components/Widget.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
+#include "Components/VerticalBox.h"
 #include "ServerStatus.generated.h"
 
 /**
@@ -17,10 +18,21 @@ UCLASS()
 class S08_NETWORKINGCOURSE_API UServerStatus : public UUserWidget
 {
 	GENERATED_BODY()
+	
+
+protected:
+	virtual bool Initialize();
+	UServerStatus(const FObjectInitializer& ObjectInitializer);
+
 public:
 	void Setup();
 	void TearDown();
 	void UpdatePlayers(TArray<APlayerState*> PlayerStates);
+	UFUNCTION()
+		void StartGame();
+
+	TSubclassOf<class UUserWidget> PlayerTabClass;
+
 private:
 	//Hosting -> Host Status
 	UPROPERTY(meta = (BindWidget))
@@ -33,6 +45,6 @@ private:
 		class UButton *ShutdownServerButton;
 
 	UPROPERTY(meta = (BindWidget))
-		class UTextBlock *PlayerDisplay;
+		class UVerticalBox *PlayerBox;
 
 };

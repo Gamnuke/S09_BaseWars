@@ -36,6 +36,8 @@ public:
 
 	UPauseMenu *ParentPauseMenu;
 
+	APlayerState* AssignedPlayerState;
+
 	UFUNCTION()
 	void SelectIndex();
 };

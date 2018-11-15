@@ -15,8 +15,10 @@
 #include "Interfaces/OnlineSessionInterface.h"
 #include "OnlineSessionSettings.h"
 #include "GameFramework/OnlineSession.h"
+#include "GameFramework/GameState.h"
 #include "GameFramework/GameSession.h"
 #include "S08_NetworkingCourseGameMode.h"
+#include "Engine/World.h"
 
 const static FName SESSION_NAME = NAME_GameSession;
 const static FName SESSION_SETTINGS_KEY = TEXT("ServerName");
@@ -168,6 +170,7 @@ void UPlatformerGameInstance::OnCreateSessionComplete(FName SessionName, bool Su
 	}
 	GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(SessionName.ToString().Append(TEXT("- Successfully created session"))));
 	MenuWidget->PlayerIsHost = true;
+	MenuWidget->TearDown();
 	GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Hosting Server")));
 	GetWorld()->ServerTravel("/Game/Levels/Lobby?listen");
 }
@@ -236,5 +239,10 @@ void UPlatformerGameInstance::CreateTab() {
 
 void UPlatformerGameInstance::SetServerName(FString NewServerName) {
 	DesiredServerName = NewServerName;
+}
+
+void UPlatformerGameInstance::UpdatePlayerTabs() {
+	if (ServerStatusWidget == nullptr) { return; }
+	ServerStatusWidget->UpdatePlayers(GetWorld()->GetGameState()->PlayerArray);
 }
 

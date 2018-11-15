@@ -66,9 +66,6 @@ bool UMainMenu::Initialize() {
 	if (HostServerButton == nullptr) { return false; }
 	HostServerButton->OnClicked.AddDynamic(this, &UMainMenu::HostServer);
 
-	if (StartGameButton == nullptr) { return false; }
-	StartGameButton->OnClicked.AddDynamic(this, &UMainMenu::StartGame);
-
 	AGamePlayerController *GameController =	Cast<AGamePlayerController>(GetOwningPlayer());
 	if (GameController != nullptr) {
 		GameController->MainMenuWidget = this;
@@ -120,10 +117,7 @@ void UMainMenu::Setup() {
 void UMainMenu::TearDown() {
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController == nullptr) { return; }
-	FInputModeGameOnly InputMode;
-	PlayerController->SetInputMode(InputMode);
-	PlayerController->bShowMouseCursor = false;
-	this->SetVisibility(ESlateVisibility::Collapsed);
+	this->RemoveFromViewport();
 }
 
 void UMainMenu::OpenJoinMenu() {
@@ -244,19 +238,8 @@ void UMainMenu::ToServerStatus_Host() {
 	this->TearDown();
 }
 
-void UMainMenu::StartGame() {
-	if (GetWorld() != nullptr) {
-		UPlatformerGameInstance* GameInstance = Cast<UPlatformerGameInstance>(GetGameInstance());
-		if (GameInstance != nullptr) {
-			GameInstance->UpdateSessionSettings();
-		}
-		TearDown();
-		GetWorld()->ServerTravel("/Game/Levels/GameMap?listen");
-	}
-}
-
 void UMainMenu::ToServerStatus_Client() {
-	if (WidgetSwitcher == nullptr) { return; }
+	//if (WidgetSwitcher == nullptr) { return; }
 }
 
 

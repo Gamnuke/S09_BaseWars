@@ -31,6 +31,8 @@ class S08_NETWORKINGCOURSE_API UPlatformerGameInstance : public UGameInstance, p
 public:
 	virtual void Init();
 
+	void UpdatePlayerTabs();
+
 	UFUNCTION(exec)
 		void JoinServer(int32 Index);
 	
