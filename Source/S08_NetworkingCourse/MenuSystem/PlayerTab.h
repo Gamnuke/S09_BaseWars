@@ -7,6 +7,7 @@
 #include "Components/TextBlock.h"
 #include "Components/Button.h"
 #include "MenuSystem/PauseMenu.h"
+#include "MenuSystem/VotekickMenu.h"
 #include "PlayerTab.generated.h"
 
 /**
@@ -34,7 +35,7 @@ public:
 
 	int32 ThisIndex;
 
-	UPauseMenu *ParentPauseMenu;
+	UVotekickMenu *ParentVotekickMenu;
 
 	APlayerState* AssignedPlayerState;
 

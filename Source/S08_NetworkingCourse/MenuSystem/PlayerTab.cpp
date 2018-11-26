@@ -18,8 +18,8 @@ void UPlayerTab::UpdateName(FString Name) {
 }
 
 void UPlayerTab::SelectIndex() {
-	if (ParentPauseMenu != nullptr) {
-		ParentPauseMenu->SetSelectedPlayerIndex(ThisIndex, this);
+	if (ParentVotekickMenu != nullptr) {
+		ParentVotekickMenu->SetSelectedPlayerIndex(ThisIndex, this);
 	}
 	if (AssignedPlayerState == nullptr) { return; }
 	if (AssignedPlayerState->GetNetOwningPlayer() == nullptr) { return; }
