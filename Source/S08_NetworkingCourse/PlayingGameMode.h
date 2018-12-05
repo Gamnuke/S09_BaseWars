@@ -3,14 +3,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "S08_NetworkingCourseGameMode.h"
+#include "GameFramework/GameModeBase.h"
 #include "PlayingGameMode.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class S08_NETWORKINGCOURSE_API APlayingGameMode : public AS08_NetworkingCourseGameMode
+class S08_NETWORKINGCOURSE_API APlayingGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
+		void HandleStartingNewPlayer_Implementation(APlayerController * PlayerController) override;
+
 };

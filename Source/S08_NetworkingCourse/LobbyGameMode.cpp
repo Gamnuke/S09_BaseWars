@@ -15,6 +15,8 @@ ALobbyGameMode::ALobbyGameMode(const FObjectInitializer& ObjectInitializer) {}
 void ALobbyGameMode::PostLogin(APlayerController * NewPlayer)
 {
 	Super::PostLogin(NewPlayer);
+	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 1000, FColor::Cyan, FString("A Player Has Logged In!"));
+
 	NumOfPlayers += 1;
 	Validate();
 	bUseSeamlessTravel = true;

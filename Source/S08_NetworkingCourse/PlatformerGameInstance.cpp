@@ -10,6 +10,7 @@
 #include "MenuSystem/PauseMenu.h"
 #include "MenuSystem/SessionTab.h"
 #include "MenuSystem/ServerStatus.h"
+#include "MenuSystem/InGameUI/InGameHUD.h"
 
 #include "Public/OnlineSubsystem.h"
 #include "Interfaces/OnlineSessionInterface.h"
@@ -19,6 +20,8 @@
 #include "GameFramework/GameSession.h"
 #include "S08_NetworkingCourseGameMode.h"
 #include "Engine/World.h"
+#include "Kismet/GameplayStatics.h"
+#include "GamePlayerController.h"
 
 const static FName SESSION_NAME = NAME_GameSession;
 const static FName SESSION_SETTINGS_KEY = TEXT("ServerName");
@@ -34,14 +37,21 @@ UPlatformerGameInstance::UPlatformerGameInstance(const FObjectInitializer& Objec
 		MenuClass = UserWidget.Class;
 	}
 
-	static ConstructorHelpers::FClassFinder<UUserWidget> PauseMenu(TEXT("/Game/UI/PauseMenu_WBP"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> PauseMenu(TEXT("/Game/UI/InGame/PauseMenu_WBP"));
 	if (PauseMenu.Class != NULL)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *PauseMenu.Class->GetName());
 		PauseMenuClass = PauseMenu.Class;
 	}
 
-	static ConstructorHelpers::FClassFinder<UUserWidget> ServerStatus(TEXT("/Game/UI/ServerStatus_WBP"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> InGameHUD(TEXT("/Game/UI/InGame/InGameHUD_WBP"));
+	if (InGameHUD.Class != NULL)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *InGameHUD.Class->GetName());
+		InGameHUDClass = InGameHUD.Class;
+	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> ServerStatus(TEXT("/Game/UI/Lobby/ServerStatus_WBP"));
 	if (ServerStatus.Class != NULL)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *ServerStatus.Class->GetName());
@@ -80,7 +90,7 @@ void UPlatformerGameInstance::LoadMenuWidget() {
 
 void UPlatformerGameInstance::SetupGame() {
 	if (MenuWidget != nullptr) {
-		MenuWidget->TearDown();
+		MenuWidget->TearDown(nullptr);
 	}
 
 	if (PauseMenuWidget != nullptr) {
@@ -108,7 +118,7 @@ void UPlatformerGameInstance::OnJoinSessionComplete(FName SessionName, EOnJoinSe
 	if (PlayerController == nullptr) { return; }
 
 	if (MenuWidget != nullptr) {
-		MenuWidget->TearDown();
+		MenuWidget->TearDown(false);
 	}
 	MenuWidget->PlayerIsHost = false;
 	PlayerController->ClientTravel(Address, ETravelType::TRAVEL_Absolute);
@@ -170,7 +180,7 @@ void UPlatformerGameInstance::OnCreateSessionComplete(FName SessionName, bool Su
 	}
 	GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(SessionName.ToString().Append(TEXT("- Successfully created session"))));
 	MenuWidget->PlayerIsHost = true;
-	MenuWidget->TearDown();
+	MenuWidget->TearDown(true);
 	GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Hosting Server")));
 	GetWorld()->ServerTravel("/Game/Levels/Lobby?listen");
 }
@@ -218,7 +228,7 @@ void UPlatformerGameInstance::OpenMainMenu() {
 		if (PauseMenuWidget != nullptr) {
 			PauseMenuWidget->Teardown();
 		}
-		PlayerController->ClientTravel("/Game/Levels/MainMenu", ETravelType::TRAVEL_Absolute);
+		PlayerController->ClientTravel("/Game/Levels/MainMenu", ETravelType::TRAVEL_Absolute, true);
 	}
 }
 
@@ -243,6 +253,9 @@ void UPlatformerGameInstance::SetServerName(FString NewServerName) {
 
 void UPlatformerGameInstance::UpdatePlayerTabs() {
 	if (ServerStatusWidget == nullptr) { return; }
-	ServerStatusWidget->UpdatePlayers(GetWorld()->GetGameState()->PlayerArray);
 }
+
+
+
+
 

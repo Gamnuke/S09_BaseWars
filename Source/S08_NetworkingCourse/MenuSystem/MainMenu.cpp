@@ -114,8 +114,22 @@ void UMainMenu::Setup() {
 	this->SetVisibility(ESlateVisibility::Visible);
 }
 
-void UMainMenu::TearDown() {
+void UMainMenu::TearDown(TOptional<bool> IsHost) {
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
+	
+	if (IsHost.IsSet()) {
+		if (IsHost.GetValue() == true) { //If Is a host
+			FInputModeGameAndUI InputMode;
+			PlayerController->SetInputMode(InputMode);
+			PlayerController->bShowMouseCursor = true;
+		}
+		else {
+			FInputModeGameOnly InputMode;
+			PlayerController->SetInputMode(InputMode);
+			PlayerController->bShowMouseCursor = false;
+		}
+	}
+
 	if (PlayerController == nullptr) { return; }
 	this->RemoveFromViewport();
 }
@@ -235,7 +249,7 @@ void UMainMenu::ToLoadingScreen(FText Message) {
 
 void UMainMenu::ToServerStatus_Host() {
 	MenuInterface->OpenServerStatusMenu();
-	this->TearDown();
+	this->TearDown(true);
 }
 
 void UMainMenu::ToServerStatus_Client() {

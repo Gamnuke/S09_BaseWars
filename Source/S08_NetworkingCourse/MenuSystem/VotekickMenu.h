@@ -9,9 +9,8 @@
 #include "Components/EditableTextBox.h"
 #include "VotekickMenu.generated.h"
 
-/**
- * 
- */
+class UPlayerTab;
+
 UCLASS()
 class S08_NETWORKINGCOURSE_API UVotekickMenu : public UUserWidget
 {
@@ -22,24 +21,24 @@ protected:
 	virtual bool Initialize();
 		/// Vote kick menu
 private:
-	UPROPERTY(meta = (BindWidget))
-		UButton *VoteKickMenuButton;
+	UPlayerTab *SelectedTab;
 
 	UPROPERTY(meta = (BindWidget))
-		UButton *VoteKickButton;
+	class UButton *VoteKickButton;
 
 	UPROPERTY(meta = (BindWidget))
-		UWidget *VoteKickMenu;
+	class UButton *RefreshButton;
 
 	UPROPERTY(meta = (BindWidget))
-		UScrollBox *PlayerBox;
+	class UWidget *VoteKickMenu;
 
 	UPROPERTY(meta = (BindWidget))
-		UEditableTextBox *ReasonBox;
-	
-	
-	void UpdatePlayerTabs();
+	class UScrollBox *PlayerBox;
 
+	UPROPERTY(meta = (BindWidget))
+	class UEditableTextBox *ReasonBox;
+
+	UFUNCTION()
 	void CallVoteKick();
 
 public:
@@ -49,5 +48,6 @@ public:
 	TOptional<int32> SelectedIndex = NULL;
 
 	TSubclassOf<class UUserWidget> PlayerTabClass;
-
+	UFUNCTION()
+		void UpdatePlayerTabs();
 };

@@ -11,7 +11,7 @@
  * 
  */
 UCLASS()
-class S08_NETWORKINGCOURSE_API ALobbyGameMode : public AS08_NetworkingCourseGameMode
+class S08_NETWORKINGCOURSE_API ALobbyGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 	ALobbyGameMode(const FObjectInitializer& ObjectInitializer);

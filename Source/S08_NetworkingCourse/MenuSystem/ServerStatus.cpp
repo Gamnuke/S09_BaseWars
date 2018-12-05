@@ -5,6 +5,7 @@
 #include "PlatformerGameInstance.h"
 #include "Engine/Engine.h"
 #include "MenuSystem/PlayerTab.h"
+#include "MenuSystem/VotekickMenu.h"
 
 
 UServerStatus::UServerStatus(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -34,6 +35,9 @@ void UServerStatus::Setup() {
 	PlayerController->SetInputMode(InputMode);
 	PlayerController->bShowMouseCursor = true;
 	this->SetVisibility(ESlateVisibility::Visible);
+	if (VotekickMenu != nullptr) {
+		VotekickMenu->UpdatePlayerTabs();
+	}
 }
 
 void UServerStatus::TearDown() {
@@ -41,21 +45,6 @@ void UServerStatus::TearDown() {
 	GetOwningPlayer()->bShowMouseCursor = false;
 	GetOwningPlayer()->SetInputMode(InputMode);
 	this->RemoveFromViewport();
-}
-
-void UServerStatus::UpdatePlayers(TArray<APlayerState*> PlayerStates) {
-	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 10, FColor::Cyan, FString("Updating Players!"));
-	PlayerBox->ClearChildren();
-	if (PlayerTabClass != nullptr&&GetWorld() != nullptr) {
-		int32 i = 0;
-		for (APlayerState *State : PlayerStates) {
-			UPlayerTab *Tab = CreateWidget<UPlayerTab>(this, PlayerTabClass, *(FString("PlayerTab") + FString::FromInt(i)));
-			Tab->UpdateName(State->GetPlayerName());
-			Tab->ThisIndex = i;
-			PlayerBox->AddChild(Tab);
-			i++;
-		}
-	}
 }
 
 void UServerStatus::StartGame() {

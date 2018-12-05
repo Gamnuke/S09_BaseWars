@@ -36,7 +36,6 @@ bool UPauseMenu::Initialize() {
 	if (YesButton == nullptr) { return false; }
 	if (NoButton == nullptr) { return false; }
 	if (VoteKickMenuButton == nullptr) { return false; }
-	if (VoteKickButton == nullptr) { return false; }
 	if (BackButton == nullptr) { return false; }
 
 	ReturnToGameButton->OnClicked.AddDynamic(this, &UPauseMenu::Teardown);
@@ -46,8 +45,6 @@ bool UPauseMenu::Initialize() {
 	NoButton->OnClicked.AddDynamic(this, &UPauseMenu::OpenPauseMenu);
 	VoteKickMenuButton->OnClicked.AddDynamic(this, &UPauseMenu::OpenVoteKickMenu);
 	BackButton->OnClicked.AddDynamic(this, &UPauseMenu::OpenPauseMenu);
-	VoteKickButton->OnClicked.AddDynamic(this, &UPauseMenu::CallVoteKick);
-
 
 	return true;
 }
@@ -90,7 +87,6 @@ void UPauseMenu::ClosePauseMenu() {
 }
 
 void UPauseMenu::Setup() {
-	VoteKickButton->bIsEnabled = IsHost;
 	VoteKickMenuButton->bIsEnabled = IsHost;
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController == nullptr) { return; }
@@ -111,51 +107,11 @@ void UPauseMenu::SetMenuInterface(IMenuInterface *NewMenuInterface) {
 
 void UPauseMenu::OpenVoteKickMenu() {
 	if (WidgetSwitcher == nullptr) { return; }
-	if (VoteKickMenu == nullptr) { return; }
-
-	WidgetSwitcher->SetActiveWidget(VoteKickMenu);
-	UpdatePlayerTabs();
-}
-
-void UPauseMenu::UpdatePlayerTabs() {
-	if (PlayerBox != nullptr) {
-		PlayerBox->ClearChildren();
+	if (KickMenuContainer == nullptr) { return; }
+	if (VoteKickMenu != nullptr) {
+		VoteKickMenu->UpdatePlayerTabs();
 	}
-	Tabs.Empty();
-	SelectedIndex = NULL;
-
-	if (PlayerTabClass != nullptr&&GetWorld()!=nullptr) {
-		TArray<APlayerState*> Players = GetWorld()->GetGameState()->PlayerArray;
-		int32 i = 0;
-		for (APlayerState *State : Players) {
-			UPlayerTab *Tab = CreateWidget<UPlayerTab>(this, PlayerTabClass, *(FString("PlayerTab") + FString::FromInt(i)));
-			Tab->UpdateName(State->GetPlayerName());
-			Tab->ParentPauseMenu = this;
-			Tab->ThisIndex = i;
-			Tabs.Add(Tab);
-			States.Add(State);
-			PlayerBox->AddChild(Tab);
-			i++;
-		}
-	}
-}
-
-void UPauseMenu::SetSelectedPlayerIndex(int32 Index, UPlayerTab *OwningTab) {
-	for (UPlayerTab *Tab : Tabs) {
-		Tab->UpdateColour(false);
-	}
-	OwningTab->UpdateColour(true);
-	SelectedIndex = Index;
-}
-
-void UPauseMenu::CallVoteKick() {
-	APlayerState* SelectedState = States[SelectedIndex.GetValue()];
-	if (!SelectedIndex.IsSet()) { return; }
-	if (SelectedState->GetNetOwningPlayer() == nullptr) { return; }
-	APlayerController *PlayerController = SelectedState->GetNetOwningPlayer()->PlayerController;
-	if (PlayerController == nullptr) { return; }
-	PlayerController->ClientTravel("/Game/Levels/MainMenu", ETravelType::TRAVEL_Absolute);
-	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Gamemode Isnt Null")));
+	WidgetSwitcher->SetActiveWidget(KickMenuContainer);
 }
 
 

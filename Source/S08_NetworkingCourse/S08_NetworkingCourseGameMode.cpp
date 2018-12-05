@@ -20,6 +20,12 @@ AS08_NetworkingCourseGameMode::AS08_NetworkingCourseGameMode()
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 
+	static ConstructorHelpers::FClassFinder<APlayerController> PlayerController(TEXT("/Game/Blueprints/GamePlayerController_BP"));
+	if (PlayerController.Class != NULL)
+	{
+		PlayerControllerClass = AGamePlayerController::StaticClass();
+	}
+
 	static ConstructorHelpers::FClassFinder<UUserWidget> KickedNoteClass(TEXT("/Game/UI/KickedNote_WBP"));
 	if (KickedNoteClass.Class != NULL)
 	{

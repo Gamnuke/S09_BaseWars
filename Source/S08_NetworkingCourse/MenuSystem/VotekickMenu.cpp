@@ -3,7 +3,9 @@
 #include "VotekickMenu.h"
 #include "MenuSystem/PlayerTab.h"
 #include "GameFramework/PlayerController.h"
+#include "GameFramework/GameState.h"
 #include "Engine/World.h"
+#include "Engine/Engine.h"
 #include "ConstructorHelpers.h"
 
 UVotekickMenu::UVotekickMenu(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -22,16 +24,19 @@ bool UVotekickMenu::Initialize() {
 	if (!Success) { return false; }
 	//Check if not null
 
-	VoteKickButton->OnClicked.AddDynamic(this, &UPauseMenu::CallVoteKick);
+	VoteKickButton->OnClicked.AddDynamic(this, &UVotekickMenu::CallVoteKick);
+	RefreshButton->OnClicked.AddDynamic(this, &UVotekickMenu::UpdatePlayerTabs);
 	return true;
 }
 
 void UVotekickMenu::UpdatePlayerTabs() {
+	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 5, FColor::Cyan, FString("Updating player tabs!"));
 	if (PlayerBox != nullptr) {
 		PlayerBox->ClearChildren();
 	}
 	Tabs.Empty();
 	SelectedIndex = NULL;
+	States.Empty();
 
 	if (PlayerTabClass != nullptr&&GetWorld() != nullptr) {
 		TArray<APlayerState*> Players = GetWorld()->GetGameState()->PlayerArray;
@@ -39,7 +44,7 @@ void UVotekickMenu::UpdatePlayerTabs() {
 		for (APlayerState *State : Players) {
 			UPlayerTab *Tab = CreateWidget<UPlayerTab>(this, PlayerTabClass, *(FString("PlayerTab") + FString::FromInt(i)));
 			Tab->UpdateName(State->GetPlayerName());
-			Tab->ParentPauseMenu = this;
+			Tab->ParentVotekickMenu = this;
 			Tab->ThisIndex = i;
 			Tabs.Add(Tab);
 			States.Add(State);
@@ -55,16 +60,22 @@ void UVotekickMenu::SetSelectedPlayerIndex(int32 Index, UPlayerTab *OwningTab) {
 	}
 	OwningTab->UpdateColour(true);
 	SelectedIndex = Index;
+	SelectedTab = OwningTab;
 }
 
 void UVotekickMenu::CallVoteKick() {
-	APlayerState* SelectedState = States[SelectedIndex.GetValue()];
 	if (!SelectedIndex.IsSet()) { return; }
+	APlayerState* SelectedState = States[SelectedIndex.GetValue()];
+	if (SelectedState == nullptr) { return; }
 	if (SelectedState->GetNetOwningPlayer() == nullptr) { return; }
 	APlayerController *PlayerController = SelectedState->GetNetOwningPlayer()->PlayerController;
 	if (PlayerController == nullptr) { return; }
 	PlayerController->ClientTravel("/Game/Levels/MainMenu", ETravelType::TRAVEL_Absolute);
-	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Gamemode Isnt Null")));
+	if (SelectedTab != nullptr) {
+		SelectedTab->RemoveFromViewport();
+		SelectedTab = nullptr;
+	}
+	
 }
 
 

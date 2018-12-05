@@ -43,7 +43,7 @@ class S08_NETWORKINGCOURSE_API UMainMenu : public UUserWidget
 public:
 	void SetMenuInterface(IMenuInterface* NewMenuInterface);
 	void Setup();
-	void TearDown();
+	void TearDown(TOptional<bool> IsHost);
 	void UpdateSessionTabs(TSharedPtr<FOnlineSessionSearch> SearchResult);
 	void SetIndex(USessionTab *OwningTab, int32 Index);
 

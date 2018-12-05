@@ -11,7 +11,7 @@
 /**
  * 
  */
-
+class UInGameHUD;
 class UKickedNote;
 
 UCLASS()
@@ -19,11 +19,15 @@ class S08_NETWORKINGCOURSE_API AGamePlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-	void PreClientTravel(const FString & PendingURL, ETravelType TravelType, bool bIsSeamlessTravel);
-
 public:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	UMainMenu *MainMenuWidget;
+
+	UFUNCTION(Client, Reliable, BlueprintCallable)
+	void Setup_Client();
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UInGameHUD *InGameHUDReference;
 
 	void AddWidgetToViewport(UKickedNote *WidgetToAdd);
 };

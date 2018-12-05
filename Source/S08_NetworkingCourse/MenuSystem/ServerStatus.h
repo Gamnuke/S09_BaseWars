@@ -14,6 +14,8 @@
 /**
  * 
  */
+class UVotekickMenu;
+
 UCLASS()
 class S08_NETWORKINGCOURSE_API UServerStatus : public UUserWidget
 {
@@ -27,7 +29,6 @@ protected:
 public:
 	void Setup();
 	void TearDown();
-	void UpdatePlayers(TArray<APlayerState*> PlayerStates);
 	UFUNCTION()
 		void StartGame();
 
@@ -45,6 +46,6 @@ private:
 		class UButton *ShutdownServerButton;
 
 	UPROPERTY(meta = (BindWidget))
-		class UVerticalBox *PlayerBox;
+		UVotekickMenu *VotekickMenu;
 
 };

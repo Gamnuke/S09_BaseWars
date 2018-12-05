@@ -16,6 +16,7 @@ class UMainMenu;
 class UServerStatus;
 class USessionTab;
 class UPauseMenu;
+class UInGameHUD;
 /**
  * 
  */
@@ -57,19 +58,20 @@ public:
 	void UpdateSessionSettings();
 
 	UPROPERTY()
-	UMainMenu *MenuWidget;
-
+		UMainMenu *MenuWidget;
 	UPROPERTY()
-	UPauseMenu *PauseMenuWidget;
-
+		UPauseMenu *PauseMenuWidget;
 	UPROPERTY()
 		UServerStatus *ServerStatusWidget;
+	UPROPERTY()
+		UInGameHUD *InGameHUDWidget;
 
 	UFUNCTION(BlueprintCallable)
 	void SetupGame();
 
 	UFUNCTION(exec)
 		void CreateTab();
+
 
 	void OnCreateSessionComplete(FName SessionName, bool Success);
 	void OnDestroySessionComplete(FName SessionName, bool Success);
@@ -85,6 +87,7 @@ private:
 	TSubclassOf<class UUserWidget> MenuClass;
 	TSubclassOf<class UUserWidget> PauseMenuClass;
 	TSubclassOf<class UUserWidget> ServerStatusClass;
+	TSubclassOf<class UUserWidget> InGameHUDClass;
 
 	IOnlineSessionPtr SessionInterface;
 

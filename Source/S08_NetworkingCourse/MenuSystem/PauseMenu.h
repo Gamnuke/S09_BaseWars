@@ -9,6 +9,7 @@
 #include "Components/EditableTextBox.h"
 #include "GameFramework/PlayerState.h"
 #include "MenuInterface.h"
+#include "MenuSystem/VotekickMenu.h"
 #include "PauseMenu.generated.h"
 
 class UButton;
@@ -50,19 +51,10 @@ private:
 		UButton *VoteKickMenuButton;
 
 	UPROPERTY(meta = (BindWidget))
-		UButton *VoteKickButton;
+		UVotekickMenu *VoteKickMenu;
 
 	UPROPERTY(meta = (BindWidget))
 		UButton *BackButton;
-
-	UPROPERTY(meta = (BindWidget))
-		UWidget *VoteKickMenu;
-
-	UPROPERTY(meta = (BindWidget))
-		UScrollBox *PlayerBox;
-
-	UPROPERTY(meta = (BindWidget))
-		UEditableTextBox *ReasonBox;
 
 	////-----------------
 	UPROPERTY(meta = (BindWidget))
@@ -73,6 +65,9 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 		UWidgetSwitcher *WidgetSwitcher;
+
+	UPROPERTY(meta = (BindWidget))
+		UWidget *KickMenuContainer;
 
 	IMenuInterface *MenuInterface;
 
@@ -102,19 +97,7 @@ public:
 	UFUNCTION()
 		void OpenVoteKickMenu();
 
-	UFUNCTION()
-		void UpdatePlayerTabs();
-
-	TArray<APlayerState*> States;
-	TArray<UPlayerTab*> Tabs;
-	TOptional<int32> SelectedIndex = NULL;
-
 	void SetMenuInterface(IMenuInterface *NewMenuInterface);
-
-	void SetSelectedPlayerIndex(int32 Index, UPlayerTab *OwningTab);
-
-	UFUNCTION()
-	void CallVoteKick();
 
 	bool IsHost = false;
 };
