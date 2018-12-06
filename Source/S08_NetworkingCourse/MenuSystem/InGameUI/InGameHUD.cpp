@@ -2,7 +2,7 @@
 
 #include "InGameHUD.h"
 #include "ConstructorHelpers.h"
-#include "MenuSystem/InGameUI/ChatTab.h"
+#include "MenuSystem/InGameUI/ChatSystem/ChatTab.h"
 #include "Components/VerticalBox.h"
 #include "Components/ScrollBox.h"
 #include "UnrealNetwork.h"
@@ -44,6 +44,13 @@ void UInGameHUD::CreateMessage(FText NewPlayerName, FText NewMessage) {
 	UChatTab *NewChatTab = CreateWidget<UChatTab>(this, ChatTabClass, *NewMessage.ToString());
 	//NewChatTab->Setup(NewPlayerName, NewMessage);
 	ChatBox->AddChild(NewChatTab);
+}
+
+void UInGameHUD::FormatChatBox() {
+	if (ChatBox->GetChildrenCount() > 5) {
+		ChatBox->RemoveChildAt(0);
+		ChatBox->ScrollToEnd();
+	}
 }
 
 

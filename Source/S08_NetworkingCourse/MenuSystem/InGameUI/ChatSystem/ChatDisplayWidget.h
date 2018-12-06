@@ -14,10 +14,18 @@ class S08_NETWORKINGCOURSE_API UChatDisplayWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
+protected:
+	UChatDisplayWidget(const FObjectInitializer& ObjectInitializer);
+
 public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (BindWidget))
 		class UScrollBox *ChatBox;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (BindWidget))
 		class UTextBlock *PlayerName;
 	
+private:
+	TSubclassOf<UUserWidget> ChatDisplayTabClass;
+
+public:
+	void AddChatTab(FText Message);
 };

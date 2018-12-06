@@ -20,7 +20,10 @@ protected:
 
 public:
 	UFUNCTION(BlueprintCallable)
-	void ComposeNewMessage(FText NewPlayerName, FText NewMessage);
+		void ComposeNewMessage(FText NewPlayerName, FText NewMessage);
+	UFUNCTION(BlueprintCallable)
+		void FormatChatBox();
+
 
 	void CreateMessage(FText NewPlayerName, FText NewMessage);
 

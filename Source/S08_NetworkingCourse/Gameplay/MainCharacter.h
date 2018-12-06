@@ -6,7 +6,8 @@
 #include "GameFramework/Character.h"
 
 #include "MenuSystem/InGameUI/ChatSystem/ChatDisplayWidget.h"
-
+#include "UnrealNetwork.h"
+#include "Styling/SlateColor.h"
 #include "MainCharacter.generated.h"
 
 UCLASS()
@@ -21,20 +22,39 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* CameraComponent;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+		class UWidgetComponent *WidgetComponent;
+
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Widgets)
-		UChatDisplayWidget *ChatDisplayWidget;
+	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadWrite, Category = Widgets)
+		class UChatDisplayWidget *ChatDisplayWidget;
+
+	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadWrite, Category = Widgets)
+		class UInGameHUD *InGameHUD;
+
+	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Other)
+		//FSlateColor AssignedColor;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	void GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const;
 
-private:
+public:
 	void MoveForward(float Value);
-
 	void MoveRight(float Value);
 
+	UFUNCTION(Server, WithValidation, unreliable, BlueprintCallable)
+	void Server_CreateChatDisplay(const FText &PlayerName, const FText &Message);
+
+	UFUNCTION(NetMulticast, unreliable, BlueprintCallable)
+	void Multicast_CreateChatDisplay(const FText &PlayerName, const FText &Message);
+
+private:
+	TSubclassOf<class UUserWidget> ChatDisplayWidgetClass;
+	TSubclassOf<class UUserWidget> ChatDisplayTabClass;
+	TSubclassOf<class UUserWidget> InGameHUDClass;
+	float NextDisplayUpdate;
 public:	
 	virtual void Tick(float DeltaTime) override;
 
