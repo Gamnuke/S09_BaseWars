@@ -9,6 +9,7 @@
 #include "Blueprint/UserWidget.h"
 
 #include "Components/TextBlock.h"
+#include "Components/ScrollBox.h"
 
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -26,6 +27,8 @@
 #include "Engine/Engine.h"
 #include "Engine/GameInstance.h"
 #include "Kismet/GameplayStatics.h"
+
+#include "MenuSystem/InGameUI/ChatSystem/ChatTab.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -63,13 +66,21 @@ AMainCharacter::AMainCharacter(const FObjectInitializer& ObjectInitializer) : Su
 	{
 		InGameHUDClass = HUDSearch.Class;
 	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> ChatTab(TEXT("/Game/UI/InGame/ChatUI/ChatTab_WBP"));
+	if (ChatTab.Class != NULL)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *ChatTab.Class->GetName());
+		ChatTabClass = ChatTab.Class;
+	}
 }
 
 void AMainCharacter::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME(AMainCharacter, ChatDisplayWidget)
+	DOREPLIFETIME(AMainCharacter, ChatDisplayWidget);
+	DOREPLIFETIME(AMainCharacter, InGameHUD);
 }
 
 // Called when the game starts or when spawned
@@ -78,11 +89,7 @@ void AMainCharacter::BeginPlay()
 	Super::BeginPlay();
 	//Server_CreateChatDisplay(Cast<APlayerController>(Controller));
 
-	if (InGameHUDClass == nullptr || Controller == nullptr) { return; }
-	InGameHUD = CreateWidget<UInGameHUD>(GetGameInstance(), InGameHUDClass, FName("GameHUD"));
-	InGameHUD->AddToViewport(0);
-
-	//AssignedColor = FSlateColor(FLinearColor(FMath::FRand(), FMath::FRand(), FMath::FRand()));
+	AssignedColor = FSlateColor(FLinearColor(FMath::FRand(), FMath::FRand(), FMath::FRand()));
 }
 
 // Called every frame
@@ -92,7 +99,13 @@ void AMainCharacter::Tick(float DeltaTime)
 	if (GetWorld()->GetTimeSeconds() > NextDisplayUpdate && IsActorInitialized()) {
 		NextDisplayUpdate = GetWorld()->GetTimeSeconds() + 10;
 		if (PlayerState != nullptr) {
-			Server_CreateChatDisplay(FText::FromString(PlayerState->GetName()), FText());
+			Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText());
+		}
+	}
+
+	if (Role == ROLE_Authority || ROLE_SimulatedProxy) {
+		if (Controller != nullptr && Controller->GetPawn() != nullptr) {
+			Controller->GetPawn();
 		}
 	}
 }
@@ -148,14 +161,43 @@ void AMainCharacter::Server_CreateChatDisplay_Implementation(const FText &Player
 	Multicast_CreateChatDisplay(PlayerName, Message);
 }
 void AMainCharacter::Multicast_CreateChatDisplay_Implementation(const FText &PlayerName, const FText &Message) {
-	if (ChatDisplayWidget != nullptr) { return; } //Stop execution if widget already exists
-	ChatDisplayWidget = CreateWidget<UChatDisplayWidget>(GetGameInstance(), ChatDisplayWidgetClass, FName(*FString("Chat" + PlayerState->GetUniqueID())));
-	WidgetComponent->SetWidget(ChatDisplayWidget);
 
-	if (ChatDisplayWidget != nullptr) { return; } //Stop execution if widget already exists
-	ChatDisplayWidget->PlayerName->SetText(PlayerName);
+	if (ChatDisplayWidget == nullptr) { //Stop execution if widget already exists
+		ChatDisplayWidget = CreateWidget<UChatDisplayWidget>(GetGameInstance(), ChatDisplayWidgetClass, FName(*FString("Chat" + PlayerState->GetUniqueID())));
+	}
+
+	if (InGameHUD == nullptr) {
+		InGameHUD = CreateWidget<UInGameHUD>(GetGameInstance(), InGameHUDClass, FName("GameHUD"));
+		InGameHUD->AddToViewport(0);
+	}
+
+	if (ChatDisplayWidget != nullptr) { 
+		WidgetComponent->SetWidget(ChatDisplayWidget);
+		ChatDisplayWidget->PlayerName->SetText(PlayerName);
+	}
 
 	if (Message.ToString() != FString()) {
-		ChatDisplayWidget->AddChatTab(Message);
+		ChatDisplayWidget->AddChatTab(FText(Message));
+
+		if (InGameHUD == nullptr) { return; }
+		TArray <AActor*> Characters;
+		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AMainCharacter::StaticClass(), Characters);
+
+		for (AActor *Character : Characters) {
+			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 5, FColor::Green, FString::FromInt(Characters.Num()));
+			
+			AMainCharacter *CharacterCast = Cast<AMainCharacter>(Character);
+
+			if (CharacterCast->InGameHUD == nullptr) {
+				GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 5, FColor::Green, FString("NULL!"));
+
+			}
+			if (CharacterCast != nullptr && CharacterCast->InGameHUD != nullptr) {
+
+				UChatTab *NewChatTab = CreateWidget<UChatTab>(UGameplayStatics::GetPlayerController(GetWorld(),0), ChatTabClass, *Message.ToString());
+				NewChatTab->Setup(PlayerName, Message);
+				CharacterCast->InGameHUD->ChatBox->AddChild(NewChatTab);
+			}
+		}
 	}
 }

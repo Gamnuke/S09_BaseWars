@@ -9,6 +9,11 @@
 #include "GamePlayerController.h"
 #include "NetworkGameState.h"
 
+#include "Gameplay/MainCharacter.h"
+#include "Engine/Engine.h"
+#include "Components/EditableText.h"
+#include "GameFramework/PlayerState.h"
+
 UInGameHUD::UInGameHUD(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 	static ConstructorHelpers::FClassFinder<UUserWidget> ChatTab(TEXT("/Game/UI/InGame/ChatUI/ChatTab_WBP"));
@@ -18,6 +23,12 @@ UInGameHUD::UInGameHUD(const FObjectInitializer& ObjectInitializer) : Super(Obje
 		ChatTabClass = ChatTab.Class;
 	}
 
+}
+bool UInGameHUD::Initialize() {
+	bool Success = Super::Initialize();
+	if (TextInput == nullptr) { return false; }
+	TextInput->OnTextCommitted.AddDynamic(this, &UInGameHUD::OnTextCommitted);
+	return Success;
 }
 
 void UInGameHUD::Setup() {
@@ -38,14 +49,6 @@ void UInGameHUD::ComposeNewMessage(FText NewPlayerName, FText NewMessage) {
 	}*/
 }
 
-void UInGameHUD::CreateMessage(FText NewPlayerName, FText NewMessage) {
-	if (ChatTabClass == nullptr) { return; }
-	if (ChatBox == nullptr) { return; }
-	UChatTab *NewChatTab = CreateWidget<UChatTab>(this, ChatTabClass, *NewMessage.ToString());
-	//NewChatTab->Setup(NewPlayerName, NewMessage);
-	ChatBox->AddChild(NewChatTab);
-}
-
 void UInGameHUD::FormatChatBox() {
 	if (ChatBox->GetChildrenCount() > 5) {
 		ChatBox->RemoveChildAt(0);
@@ -53,4 +56,22 @@ void UInGameHUD::FormatChatBox() {
 	}
 }
 
+void UInGameHUD::OnTextCommitted(const FText & Text, ETextCommit::Type CommitType){
+	if (CommitType == ETextCommit::OnEnter) {
+		TextInput->SetText(FText());
+
+		APlayerController *Player = GetOwningPlayer();
+		if (Player == nullptr) { return; }
+		FInputModeGameOnly InputMode;
+		Player->SetInputMode(InputMode);
+		Player->bShowMouseCursor = false;
+
+		if (Text.ToString() != FString() && GetOwningPlayerPawn() != nullptr) {
+			AMainCharacter *Character = Cast<AMainCharacter>(GetOwningPlayerPawn());
+
+			if (Character == nullptr || Player->PlayerState == nullptr) { return; }
+			Character->Server_CreateChatDisplay(FText::FromString(Player->PlayerState->GetPlayerName()), Text);//asdljasdjasd
+		}
+	}
+}
 

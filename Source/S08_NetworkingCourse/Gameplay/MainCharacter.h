@@ -32,8 +32,8 @@ public:
 	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadWrite, Category = Widgets)
 		class UInGameHUD *InGameHUD;
 
-	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Other)
-		//FSlateColor AssignedColor;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Other)
+		FSlateColor AssignedColor;
 
 protected:
 	// Called when the game starts or when spawned
@@ -53,6 +53,7 @@ public:
 private:
 	TSubclassOf<class UUserWidget> ChatDisplayWidgetClass;
 	TSubclassOf<class UUserWidget> ChatDisplayTabClass;
+	TSubclassOf<class UUserWidget> ChatTabClass;
 	TSubclassOf<class UUserWidget> InGameHUDClass;
 	float NextDisplayUpdate;
 public:	

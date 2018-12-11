@@ -5,6 +5,9 @@
 #include "Components/ScrollBox.h"
 #include "ConstructorHelpers.h"
 
+#include "Components/TextBlock.h"
+#include "Components/Border.h"
+
 UChatDisplayWidget::UChatDisplayWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 	static ConstructorHelpers::FClassFinder<UUserWidget> ChatDisplayTabSearch(TEXT("/Game/UI/InGame/ChatUI/ChatDisplayTab_WBP"));
@@ -17,10 +20,11 @@ UChatDisplayWidget::UChatDisplayWidget(const FObjectInitializer& ObjectInitializ
 void UChatDisplayWidget::AddChatTab(FText Message) {
 	if (ChatBox == nullptr) { return; }
 	UChatDisplayTab *NewTab = nullptr;
-	NewTab = CreateWidget<UChatDisplayTab>(this, ChatDisplayTabClass, *FString::FromInt(NewTab->GetUniqueID()));
+	NewTab = CreateWidget<UChatDisplayTab>(this, ChatDisplayTabClass, *Message.ToString());
 
 	if (NewTab != nullptr) {
 		ChatBox->AddChild(NewTab);
+		NewTab->Message->SetText(Message);
 	}
 }
 

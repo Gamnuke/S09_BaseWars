@@ -17,15 +17,14 @@ class S08_NETWORKINGCOURSE_API UInGameHUD : public UUserWidget
 	GENERATED_BODY()
 protected:
 	UInGameHUD(const FObjectInitializer& ObjectInitializer);
-
+	virtual bool Initialize();
 public:
 	UFUNCTION(BlueprintCallable)
 		void ComposeNewMessage(FText NewPlayerName, FText NewMessage);
 	UFUNCTION(BlueprintCallable)
 		void FormatChatBox();
-
-
-	void CreateMessage(FText NewPlayerName, FText NewMessage);
+	UFUNCTION()
+		void OnTextCommitted(const FText & Text, ETextCommit::Type CommitType);
 
 	TSubclassOf<class UUserWidget> ChatTabClass;
 
@@ -33,6 +32,8 @@ public:
 
 	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
 		UScrollBox *ChatBox;
-	
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UEditableText *TextInput;
+
 	AGamePlayerController *Owner;
 };

@@ -15,8 +15,12 @@ class S08_NETWORKINGCOURSE_API UChatDisplayTab : public UUserWidget
 	GENERATED_BODY()
 	
 public:
-	//UPROPERTY(meta = (BindWidget))
-		
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, VisibleAnywhere)
+		class UBorder *FadeBorder;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, VisibleAnywhere)
+		class UBorder *ColorBorder;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, VisibleAnywhere)
+		class UTextBlock *Message;
 	
 	
 };
