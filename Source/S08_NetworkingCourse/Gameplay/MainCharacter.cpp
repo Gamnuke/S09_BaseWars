@@ -102,12 +102,30 @@ void AMainCharacter::Tick(float DeltaTime)
 			Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText());
 		}
 	}
+	
+	/*if (GetOwner()->GetLocalRole() == ROLE_Authority || ROLE_SimulatedProxy) {
+		APawn *Pawn = UGameplayStatics::GetPlayerPawn(this->GetWorld(), 0);
+		if (Pawn != nullptr) {
+			AMainCharacter *Character = Cast<AMainCharacter>(Pawn);
+			if (Character == nullptr || InGameHUD == nullptr) { return; }
+			FHitResult OcclusionTrace;
+			GetWorld()->LineTraceSingleByChannel(
+				OcclusionTrace,
+				Character->GetActorLocation(),
+				this->GetActorLocation(),
+				ECollisionChannel::ECC_Visibility
+			);
+			float Distance = FVector::Dist(OcclusionTrace.TraceEnd, OcclusionTrace.TraceStart);
+			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, DeltaTime, FColor::Green, OcclusionTrace.bBlockingHit?FString("C++ Hit!"): FString("C++ Miss!"));
 
-	if (Role == ROLE_Authority || ROLE_SimulatedProxy) {
-		if (Controller != nullptr && Controller->GetPawn() != nullptr) {
-			Controller->GetPawn();
+			if (OcclusionTrace.bBlockingHit || OcclusionTrace.Distance > 1000) {
+				InGameHUD->SetVisibility(ESlateVisibility::Collapsed);
+			}
+			else {
+				InGameHUD->SetVisibility(ESlateVisibility::Visible);
+			}
 		}
-	}
+	}*/
 }
 
 // Movement Functionality

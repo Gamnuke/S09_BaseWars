@@ -3,15 +3,18 @@
 #include "InGameHUD.h"
 #include "ConstructorHelpers.h"
 #include "MenuSystem/InGameUI/ChatSystem/ChatTab.h"
+
 #include "Components/VerticalBox.h"
 #include "Components/ScrollBox.h"
+#include "Components/Border.h"
+#include "Components/EditableText.h"
+
 #include "UnrealNetwork.h"
 #include "GamePlayerController.h"
 #include "NetworkGameState.h"
 
 #include "Gameplay/MainCharacter.h"
 #include "Engine/Engine.h"
-#include "Components/EditableText.h"
 #include "GameFramework/PlayerState.h"
 
 UInGameHUD::UInGameHUD(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -38,6 +41,26 @@ void UInGameHUD::Setup() {
 	Owner->InGameHUDReference = this;
 }
 
+void UInGameHUD::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
+{
+	if (TextInput == nullptr) { return; }
+	if (FadeBorder == nullptr) { return; }
+	if (GetOwningPlayer()->WasInputKeyJustPressed(FKey("Y"))) {
+
+		TargetOpacity = 1;
+		TextInput->SetKeyboardFocus();
+	}
+	FLinearColor Color = FadeBorder->ContentColorAndOpacity;
+	Color.A = FMath::FInterpTo(
+		FadeBorder->ContentColorAndOpacity.A,
+		TargetOpacity,
+		DeltaTime,
+		5
+	);
+
+	FadeBorder->SetContentColorAndOpacity(Color);
+}
+
 void UInGameHUD::ComposeNewMessage(FText NewPlayerName, FText NewMessage) {
 	if (ChatTabClass == nullptr) { return; }
 	if (ChatBox == nullptr) { return; }
@@ -59,6 +82,9 @@ void UInGameHUD::FormatChatBox() {
 void UInGameHUD::OnTextCommitted(const FText & Text, ETextCommit::Type CommitType){
 	if (CommitType == ETextCommit::OnEnter) {
 		TextInput->SetText(FText());
+		ChatBox->ScrollToEnd();
+
+		TargetOpacity = 0;
 
 		APlayerController *Player = GetOwningPlayer();
 		if (Player == nullptr) { return; }

@@ -18,6 +18,11 @@ class S08_NETWORKINGCOURSE_API UInGameHUD : public UUserWidget
 protected:
 	UInGameHUD(const FObjectInitializer& ObjectInitializer);
 	virtual bool Initialize();
+	virtual void NativeTick(const FGeometry& MyGeometry, float DeltaTime) override;
+
+private:
+	float TargetOpacity;
+
 public:
 	UFUNCTION(BlueprintCallable)
 		void ComposeNewMessage(FText NewPlayerName, FText NewMessage);
@@ -34,6 +39,8 @@ public:
 		UScrollBox *ChatBox;
 	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
 		class UEditableText *TextInput;
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UBorder *FadeBorder;
 
 	AGamePlayerController *Owner;
 };

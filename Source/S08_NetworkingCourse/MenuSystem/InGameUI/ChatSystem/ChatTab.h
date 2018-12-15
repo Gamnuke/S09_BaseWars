@@ -15,10 +15,12 @@ class S08_NETWORKINGCOURSE_API UChatTab : public UUserWidget
 	
 public:
 	UFUNCTION(BlueprintCallable)
-	void Setup(FText NewPlayerName, FText NewMessage);
+	void Setup(FText NewPlayerName, FText NewMessage, FLinearColor AssignedColor);
 
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, VisibleAnywhere)
 		UTextBlock *PlayerName;
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, VisibleAnywhere)
 		UTextBlock *Message;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, VisibleAnywhere)
+		class UBorder *Colorborder;
 };
