@@ -27,5 +27,5 @@ private:
 	TSubclassOf<UUserWidget> ChatDisplayTabClass;
 
 public:
-	void AddChatTab(FText Message);
+	void AddChatTab(FText Message, FLinearColor AssignedColor);
 };

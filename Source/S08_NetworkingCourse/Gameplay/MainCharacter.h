@@ -32,8 +32,8 @@ public:
 	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadWrite, Category = Widgets)
 		class UInGameHUD *InGameHUD;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Other)
-		FSlateColor AssignedColor;
+	UPROPERTY(ReplicatedUsing=OnRep_ColorAssigned, VisibleAnywhere, BlueprintReadWrite, Category = Other)
+		FLinearColor AssignedColor;
 
 protected:
 	// Called when the game starts or when spawned
@@ -45,11 +45,13 @@ public:
 	void MoveRight(float Value);
 
 	UFUNCTION(Server, WithValidation, unreliable, BlueprintCallable)
-	void Server_CreateChatDisplay(const FText &PlayerName, const FText &Message);
+	void Server_CreateChatDisplay(const FText &PlayerName, const FText &Message, FLinearColor NewAssignedColor);
 
 	UFUNCTION(NetMulticast, unreliable, BlueprintCallable)
-	void Multicast_CreateChatDisplay(const FText &PlayerName, const FText &Message);
+	void Multicast_CreateChatDisplay(const FText &PlayerName, const FText &Message, FLinearColor NewAssignedColor);
 
+	UFUNCTION()
+		virtual void OnRep_ColorAssigned();
 private:
 	TSubclassOf<class UUserWidget> ChatDisplayWidgetClass;
 	TSubclassOf<class UUserWidget> ChatDisplayTabClass;

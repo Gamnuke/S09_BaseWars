@@ -82,7 +82,6 @@ void UInGameHUD::FormatChatBox() {
 void UInGameHUD::OnTextCommitted(const FText & Text, ETextCommit::Type CommitType){
 	if (CommitType == ETextCommit::OnEnter) {
 		TextInput->SetText(FText());
-		ChatBox->ScrollToEnd();
 
 		TargetOpacity = 0;
 
@@ -96,8 +95,10 @@ void UInGameHUD::OnTextCommitted(const FText & Text, ETextCommit::Type CommitTyp
 			AMainCharacter *Character = Cast<AMainCharacter>(GetOwningPlayerPawn());
 
 			if (Character == nullptr || Player->PlayerState == nullptr) { return; }
-			Character->Server_CreateChatDisplay(FText::FromString(Player->PlayerState->GetPlayerName()), Text);//asdljasdjasd
+			Character->Server_CreateChatDisplay(FText::FromString(Player->PlayerState->GetPlayerName()), Text, Character->AssignedColor);
 		}
+		ChatBox->ScrollToEnd();
+
 	}
 }
 

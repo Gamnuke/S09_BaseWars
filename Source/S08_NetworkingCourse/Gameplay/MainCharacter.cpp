@@ -89,7 +89,14 @@ void AMainCharacter::BeginPlay()
 	Super::BeginPlay();
 	//Server_CreateChatDisplay(Cast<APlayerController>(Controller));
 
-	AssignedColor = FSlateColor(FLinearColor(FMath::FRand(), FMath::FRand(), FMath::FRand()));
+	AssignedColor = FLinearColor(FMath::FRand(), FMath::FRand(), FMath::FRand());
+	if (PlayerState != nullptr) {
+		Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText(), AssignedColor);
+	}
+}
+
+void AMainCharacter::OnRep_ColorAssigned() {
+	Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText(), AssignedColor);
 }
 
 // Called every frame
@@ -99,7 +106,8 @@ void AMainCharacter::Tick(float DeltaTime)
 	if (GetWorld()->GetTimeSeconds() > NextDisplayUpdate && IsActorInitialized()) {
 		NextDisplayUpdate = GetWorld()->GetTimeSeconds() + 10;
 		if (PlayerState != nullptr) {
-			Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText());
+
+			Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText(), AssignedColor);
 		}
 	}
 	
@@ -172,30 +180,27 @@ void AMainCharacter::MoveRight(float Value)
 	}
 }
 
-bool AMainCharacter::Server_CreateChatDisplay_Validate(const FText &PlayerName, const FText &Message) {
+bool AMainCharacter::Server_CreateChatDisplay_Validate(const FText &PlayerName, const FText &Message, FLinearColor NewAssignedColor) {
 	return true;
 }
-void AMainCharacter::Server_CreateChatDisplay_Implementation(const FText &PlayerName, const FText &Message) {
-	Multicast_CreateChatDisplay(PlayerName, Message);
+void AMainCharacter::Server_CreateChatDisplay_Implementation(const FText &PlayerName, const FText &Message, FLinearColor NewAssignedColor) {
+	Multicast_CreateChatDisplay(PlayerName, Message, NewAssignedColor);
 }
-void AMainCharacter::Multicast_CreateChatDisplay_Implementation(const FText &PlayerName, const FText &Message) {
-
-	if (ChatDisplayWidget == nullptr) { //Stop execution if widget already exists
-		ChatDisplayWidget = CreateWidget<UChatDisplayWidget>(GetGameInstance(), ChatDisplayWidgetClass, FName(*FString("Chat" + PlayerState->GetUniqueID())));
-	}
-
+void AMainCharacter::Multicast_CreateChatDisplay_Implementation(const FText &PlayerName, const FText &Message, FLinearColor NewAssignedColor) {
 	if (InGameHUD == nullptr) {
 		InGameHUD = CreateWidget<UInGameHUD>(GetGameInstance(), InGameHUDClass, FName("GameHUD"));
 		InGameHUD->AddToViewport(0);
 	}
-
+	if (ChatDisplayWidget == nullptr) { //Stop execution if widget already exists
+		ChatDisplayWidget = CreateWidget<UChatDisplayWidget>(GetGameInstance(), ChatDisplayWidgetClass, FName(*FString("Chat" + PlayerState->GetUniqueID())));
+	}
 	if (ChatDisplayWidget != nullptr) { 
 		WidgetComponent->SetWidget(ChatDisplayWidget);
 		ChatDisplayWidget->PlayerName->SetText(PlayerName);
 	}
 
 	if (Message.ToString() != FString()) {
-		ChatDisplayWidget->AddChatTab(FText(Message));
+		ChatDisplayWidget->AddChatTab(FText(Message), NewAssignedColor);
 
 		if (InGameHUD == nullptr) { return; }
 		TArray <AActor*> Characters;
@@ -213,7 +218,7 @@ void AMainCharacter::Multicast_CreateChatDisplay_Implementation(const FText &Pla
 			if (CharacterCast != nullptr && CharacterCast->InGameHUD != nullptr) {
 
 				UChatTab *NewChatTab = CreateWidget<UChatTab>(UGameplayStatics::GetPlayerController(GetWorld(),0), ChatTabClass, *Message.ToString());
-				NewChatTab->Setup(PlayerName, Message);
+				NewChatTab->Setup(PlayerName, Message, NewAssignedColor);
 				CharacterCast->InGameHUD->ChatBox->AddChild(NewChatTab);
 			}
 		}

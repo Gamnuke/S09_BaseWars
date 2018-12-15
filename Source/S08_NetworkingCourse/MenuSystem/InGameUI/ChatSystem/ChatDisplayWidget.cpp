@@ -17,7 +17,7 @@ UChatDisplayWidget::UChatDisplayWidget(const FObjectInitializer& ObjectInitializ
 	}
 }
 
-void UChatDisplayWidget::AddChatTab(FText Message) {
+void UChatDisplayWidget::AddChatTab(FText Message, FLinearColor AssignedColor) {
 	if (ChatBox == nullptr) { return; }
 	UChatDisplayTab *NewTab = nullptr;
 	NewTab = CreateWidget<UChatDisplayTab>(this, ChatDisplayTabClass, *Message.ToString());
@@ -25,6 +25,7 @@ void UChatDisplayWidget::AddChatTab(FText Message) {
 	if (NewTab != nullptr) {
 		ChatBox->AddChild(NewTab);
 		NewTab->Message->SetText(Message);
+		NewTab->ColorBorder->SetBrushColor(AssignedColor);
 	}
 }
 

@@ -11,7 +11,7 @@ void UChatTab::Setup(FText NewPlayerName, FText NewMessage, FLinearColor Assigne
 	if (Colorborder == nullptr) { return; }
 	PlayerName->SetText(NewPlayerName);
 	Message->SetText(NewMessage);
-	Colorborder->SetContentColorAndOpacity(AssignedColor);
+	Colorborder->SetBrushColor(AssignedColor);
 
 }
 
