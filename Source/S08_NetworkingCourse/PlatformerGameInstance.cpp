@@ -255,6 +255,10 @@ void UPlatformerGameInstance::UpdatePlayerTabs() {
 	if (ServerStatusWidget == nullptr) { return; }
 }
 
+void UPlatformerGameInstance::StartGame() {
+	GetWorld()->ServerTravel(SelectedLevelURL, true);
+}
+
 
 
 

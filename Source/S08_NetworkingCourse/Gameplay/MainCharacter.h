@@ -44,6 +44,9 @@ public:
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 
+	UFUNCTION()
+	void OpenPauseMenu();
+
 	UFUNCTION(Server, WithValidation, unreliable, BlueprintCallable)
 	void Server_CreateChatDisplay(const FText &PlayerName, const FText &Message, FLinearColor NewAssignedColor);
 

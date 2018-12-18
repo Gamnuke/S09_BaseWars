@@ -19,7 +19,7 @@ void ALobbyGameMode::PostLogin(APlayerController * NewPlayer)
 
 	NumOfPlayers += 1;
 	Validate();
-	bUseSeamlessTravel = true;
+	bUseSeamlessTravel = false;
 	UE_LOG(LogTemp, Warning, TEXT("A player has joined the lobby."));
 	//if (GetNetOwningPlayer()->PlayerController->NetPlayerIndex == 0) {
 		if (GetGameInstance() == nullptr) { return; }

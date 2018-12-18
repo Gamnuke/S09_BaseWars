@@ -52,9 +52,9 @@ void UServerStatus::StartGame() {
 		UPlatformerGameInstance* GameInstance = Cast<UPlatformerGameInstance>(GetGameInstance());
 		if (GameInstance != nullptr) {
 			GameInstance->UpdateSessionSettings();
+			TearDown();
+			GameInstance->StartGame();
 		}
-		TearDown();
-		GetWorld()->ServerTravel("/Game/Levels/GameMap?listen");
 	}
 }
 

@@ -28,6 +28,8 @@
 #include "Engine/GameInstance.h"
 #include "Kismet/GameplayStatics.h"
 
+#include "PlatformerGameInstance.h"
+
 #include "MenuSystem/InGameUI/ChatSystem/ChatTab.h"
 
 // Sets default values
@@ -87,11 +89,35 @@ void AMainCharacter::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & Ou
 void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	//Server_CreateChatDisplay(Cast<APlayerController>(Controller));
 
 	AssignedColor = FLinearColor(FMath::FRand(), FMath::FRand(), FMath::FRand());
-	if (PlayerState != nullptr) {
+	/*if (PlayerState != nullptr) {
 		Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText(), AssignedColor);
+	}*/
+
+	if (GetWorld() != nullptr) {
+		if (GetWorld()->GetName() == FString("Lobby")) {
+			APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+			if (PlayerController != nullptr) {
+				FInputModeGameAndUI InputMode;
+				PlayerController->SetInputMode(InputMode);
+				PlayerController->bShowMouseCursor = true;
+			}
+		}
+		else {
+			APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+			if (PlayerController != nullptr) {
+				FInputModeGameOnly InputMode;
+				PlayerController->SetInputMode(InputMode);
+				PlayerController->bShowMouseCursor = false;
+			}
+		}
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 1000, FColor::Green, GetWorld()->GetName());
+
+
+		UPlatformerGameInstance *GameInstance = Cast<UPlatformerGameInstance>(GetWorld()->GetGameInstance());
+		if (GameInstance == nullptr) { return; }
+		GameInstance->SetupGame();
 	}
 }
 
@@ -110,6 +136,7 @@ void AMainCharacter::Tick(float DeltaTime)
 			Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText(), AssignedColor);
 		}
 	}
+
 	
 	/*if (GetOwner()->GetLocalRole() == ROLE_Authority || ROLE_SimulatedProxy) {
 		APawn *Pawn = UGameplayStatics::GetPlayerPawn(this->GetWorld(), 0);
@@ -146,6 +173,8 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &AMainCharacter::OpenPauseMenu);
+
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMainCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMainCharacter::MoveRight);
 
@@ -178,6 +207,13 @@ void AMainCharacter::MoveRight(float Value)
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
+}
+void AMainCharacter::OpenPauseMenu()
+{
+	if (GetWorld()->GetGameInstance() == nullptr) { return; }
+	UPlatformerGameInstance *GameInstance = Cast<UPlatformerGameInstance>(GetWorld()->GetGameInstance());
+	if (GameInstance == nullptr) { return; }
+	GameInstance->OpenPauseMenu();
 }
 
 bool AMainCharacter::Server_CreateChatDisplay_Validate(const FText &PlayerName, const FText &Message, FLinearColor NewAssignedColor) {

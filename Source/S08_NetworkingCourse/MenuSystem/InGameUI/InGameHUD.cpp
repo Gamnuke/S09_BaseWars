@@ -87,9 +87,17 @@ void UInGameHUD::OnTextCommitted(const FText & Text, ETextCommit::Type CommitTyp
 
 		APlayerController *Player = GetOwningPlayer();
 		if (Player == nullptr) { return; }
-		FInputModeGameOnly InputMode;
-		Player->SetInputMode(InputMode);
-		Player->bShowMouseCursor = false;
+		
+		if (GetWorld()->GetName() == FString("Lobby")) {
+			FInputModeGameAndUI InputMode;
+			Player->SetInputMode(InputMode);
+			Player->bShowMouseCursor = true;
+		}
+		else {
+			FInputModeGameOnly InputMode;
+			Player->SetInputMode(InputMode);
+			Player->bShowMouseCursor = false;
+		}
 
 		if (Text.ToString() != FString() && GetOwningPlayerPawn() != nullptr) {
 			AMainCharacter *Character = Cast<AMainCharacter>(GetOwningPlayerPawn());

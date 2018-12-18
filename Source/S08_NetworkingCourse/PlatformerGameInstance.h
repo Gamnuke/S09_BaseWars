@@ -32,6 +32,8 @@ class S08_NETWORKINGCOURSE_API UPlatformerGameInstance : public UGameInstance, p
 public:
 	virtual void Init();
 
+	FString SelectedLevelURL;
+
 	void UpdatePlayerTabs();
 
 	UFUNCTION(exec)
@@ -54,6 +56,10 @@ public:
 
 	UFUNCTION(exec)
 		void OpenServerStatusMenu();
+
+	UFUNCTION()
+		void StartGame();
+
 
 	void UpdateSessionSettings();
 

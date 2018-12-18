@@ -52,9 +52,19 @@ void UPauseMenu::Teardown() {
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController == nullptr) { return; }
 
-	FInputModeGameOnly InputMode;
-	PlayerController->SetInputMode(InputMode);
-	PlayerController->bShowMouseCursor = false;
+	if (GetWorld() != nullptr) {
+		if (GetWorld()->GetName() == FString("Lobby")) {
+			FInputModeGameAndUI InputMode;
+			PlayerController->SetInputMode(InputMode);
+			PlayerController->bShowMouseCursor = true;
+		}
+		else {
+			FInputModeGameOnly InputMode;
+			PlayerController->SetInputMode(InputMode);
+			PlayerController->bShowMouseCursor = false;
+		}
+	}
+	
 	this->RemoveFromViewport();
 }
 

@@ -63,6 +63,8 @@ public:
 
 	bool PlayerIsHost = false;
 
+	TArray<FString> MapFiles;
+
 protected:
 	virtual bool Initialize();
 
@@ -145,6 +147,17 @@ private:
 	UPROPERTY(meta = (BindWidget))
 		class UTextBlock *LoadingMenuText;
 
+//----------------------------------
+
+	//Host menu -> Map selection
+	UPROPERTY(meta = (BindWidget))
+		class USelector *MapSelector;
+	UPROPERTY(meta = (BindWidget))
+		class UVerticalBox *MapSelectionBorder;
+	UPROPERTY(meta = (BindWidget))
+		class UButton *SelectMapButton;
+	UPROPERTY(meta = (BindWidget))
+		class UButton *MapSelectorBackButton;
 
 //----------------------------------
 
@@ -164,6 +177,12 @@ private:
 	void ToHostMenu();
 
 	UFUNCTION()
+	void ToMapSelectionMenu();
+
+	UFUNCTION()
+	void ChooseMap();
+
+	UFUNCTION()
 	void OpenPendingJoinMenu();
 
 	UFUNCTION()
@@ -179,6 +198,7 @@ private:
 	bool Pending;
 
 	TSubclassOf<class UUserWidget> SessionTabClass;
+	TSubclassOf<class UUserWidget> MapTabClass;
 
 	TArray<USessionTab*> SessionTabs;
 

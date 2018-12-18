@@ -6,6 +6,8 @@
 #include "Components/WidgetSwitcher.h"
 #include "Components/TextBlock.h"
 #include "Components/EditableTextBox.h"
+#include "Components/VerticalBox.h"
+#include "MenuSystem/Selector.h"
 #include "Engine/World.h"
 #include "TimerManager.h"
 #include "Engine/Engine.h"
@@ -19,6 +21,8 @@
 #include "GamePlayerController.h"
 #include "PlatformerGameInstance.h"
 
+#include "HAL/FileManager.h"
+
 #include "ConstructorHelpers.h"
 
 UMainMenu::UMainMenu(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -28,6 +32,12 @@ UMainMenu::UMainMenu(const FObjectInitializer& ObjectInitializer) : Super(Object
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *SessionTab.Class->GetName());
 		SessionTabClass = SessionTab.Class;
+	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> MapTab(TEXT("/Game/UI/Selector/MapSelectionTab_WBP"));
+	if (MapTab.Class != NULL)
+	{
+		MapTabClass = MapTab.Class;
 	}
 
 }
@@ -64,7 +74,16 @@ bool UMainMenu::Initialize() {
 	BackToMenuButton->OnClicked.AddDynamic(this, &UMainMenu::ToStartMenu);
 
 	if (HostServerButton == nullptr) { return false; }
-	HostServerButton->OnClicked.AddDynamic(this, &UMainMenu::HostServer);
+	HostServerButton->OnClicked.AddDynamic(this, &UMainMenu::ToMapSelectionMenu);
+
+	if (SelectMapButton == nullptr) { return false; }
+	SelectMapButton->OnClicked.AddDynamic(this, &UMainMenu::ChooseMap);
+
+	if (MapSelectorBackButton == nullptr) { return false; }
+	MapSelectorBackButton->OnClicked.AddDynamic(this, &UMainMenu::ToHostMenu);
+
+	if (MapSelector == nullptr) { return false; }
+	MapSelector->SelectorTabClass = MapTabClass;
 
 	AGamePlayerController *GameController =	Cast<AGamePlayerController>(GetOwningPlayer());
 	if (GameController != nullptr) {
@@ -117,18 +136,18 @@ void UMainMenu::Setup() {
 void UMainMenu::TearDown(TOptional<bool> IsHost) {
 	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
 	
-	if (IsHost.IsSet()) {
-		if (IsHost.GetValue() == true) { //If Is a host
-			FInputModeGameAndUI InputMode;
-			PlayerController->SetInputMode(InputMode);
-			PlayerController->bShowMouseCursor = true;
-		}
-		else {
-			FInputModeGameOnly InputMode;
-			PlayerController->SetInputMode(InputMode);
-			PlayerController->bShowMouseCursor = false;
-		}
-	}
+	//if (IsHost.IsSet()) {
+	//	if (IsHost.GetValue() == true) { //If Is a host
+	//		FInputModeGameAndUI InputMode;
+	//		PlayerController->SetInputMode(InputMode);
+	//		PlayerController->bShowMouseCursor = true;
+	//	}
+	//	else {
+	//		FInputModeGameOnly InputMode;
+	//		PlayerController->SetInputMode(InputMode);
+	//		PlayerController->bShowMouseCursor = false;
+	//	}
+	//}
 
 	if (PlayerController == nullptr) { return; }
 	this->RemoveFromViewport();
@@ -151,6 +170,31 @@ void UMainMenu::ToHostMenu() {
 	if (WidgetSwitcher == nullptr) { return; }
 	if (HostMenu == nullptr) { return; }
 	WidgetSwitcher->SetActiveWidget(HostMenu);
+}
+
+void UMainMenu::ToMapSelectionMenu() {
+	if (WidgetSwitcher == nullptr) { return; }
+	if (MapSelector == nullptr) { return; }
+	WidgetSwitcher->SetActiveWidget(MapSelectionBorder);
+
+	IFileManager::Get().FindFilesRecursive(MapFiles, *FPaths::GameContentDir(), TEXT("Maps/*.umap"), true, false, false);
+	//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, FString::FromInt(MapFiles.Num()));
+	MapSelector->PopulateBox(MapFiles.Num());
+}
+
+void UMainMenu::ChooseMap() {
+	if (MapSelector == nullptr) { return; }
+	if (MapSelector->SelectedIndex.IsSet()) 
+	{
+		//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, IFileManager::Get().ConvertToRelativePath(*MapFiles[MapSelector->SelectedIndex.GetValue()]));
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, FPaths::GameContentDir());
+
+		if (GetGameInstance() == nullptr) { return; }
+		UPlatformerGameInstance *GM = Cast<UPlatformerGameInstance>(GetGameInstance());
+		if (GM == nullptr) { return; }
+		GM->SelectedLevelURL = MapFiles[MapSelector->SelectedIndex.GetValue()];
+		HostServer();
+	}
 }
 
 void UMainMenu::OpenPendingJoinMenu() {
