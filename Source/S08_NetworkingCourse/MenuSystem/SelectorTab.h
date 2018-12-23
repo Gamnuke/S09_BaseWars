@@ -4,16 +4,30 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Engine/Texture.h"
 #include "SelectorTab.generated.h"
 
 /**
  * 
  */
+USTRUCT(BlueprintType)
+struct FMapSelection {
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	FString MapName;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UTexture *MapThumbnail;
+};
+
+
 UCLASS()
 class S08_NETWORKINGCOURSE_API USelectorTab : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
 public:
 	int32 AssignedIndex;
 
@@ -32,4 +46,7 @@ public:
 
 	UFUNCTION()
 		void SelectIndex();
+
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+	FMapSelection MapData;
 };

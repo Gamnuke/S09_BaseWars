@@ -256,7 +256,8 @@ void UPlatformerGameInstance::UpdatePlayerTabs() {
 }
 
 void UPlatformerGameInstance::StartGame() {
-	GetWorld()->ServerTravel(SelectedLevelURL, true);
+	GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, FString("/Game/Levels/" + FPaths::GetBaseFilename(SelectedLevelURL)));
+	GetWorld()->ServerTravel(FString("/Game/Levels/Maps/" + FPaths::GetBaseFilename(SelectedLevelURL) + FString("?listen")), true);
 }
 
 

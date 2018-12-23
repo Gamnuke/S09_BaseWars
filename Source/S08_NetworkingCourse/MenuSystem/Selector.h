@@ -9,6 +9,9 @@
 /**
  * 
  */
+
+
+
 UCLASS()
 class S08_NETWORKINGCOURSE_API USelector : public UUserWidget
 {
@@ -16,7 +19,7 @@ class S08_NETWORKINGCOURSE_API USelector : public UUserWidget
 
 public:
 	UPROPERTY(meta = (BindWidget))
-		class UVerticalBox *List;
+		class UScrollBox *List;
 	
 public:
 	UFUNCTION()
@@ -26,7 +29,7 @@ public:
 		TSubclassOf<class UUserWidget> SelectorTabClass;
 
 	TArray<class USelectorTab*> CurrentTabs;
-	void PopulateBox(int32 Array);
+	void PopulateBox_Maps(TArray<FString> MapNames);
 
 	TOptional<int32> SelectedIndex;
 };

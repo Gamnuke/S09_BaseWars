@@ -9,6 +9,7 @@
 #include "Components/VerticalBox.h"
 #include "MenuSystem/Selector.h"
 #include "Engine/World.h"
+#include "Engine/Texture.h"
 #include "TimerManager.h"
 #include "Engine/Engine.h"
 #include "Sockets/Public/IPAddress.h"
@@ -177,9 +178,10 @@ void UMainMenu::ToMapSelectionMenu() {
 	if (MapSelector == nullptr) { return; }
 	WidgetSwitcher->SetActiveWidget(MapSelectionBorder);
 
+	MapFiles.Empty();
 	IFileManager::Get().FindFilesRecursive(MapFiles, *FPaths::GameContentDir(), TEXT("Maps/*.umap"), true, false, false);
 	//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, FString::FromInt(MapFiles.Num()));
-	MapSelector->PopulateBox(MapFiles.Num());
+	MapSelector->PopulateBox_Maps(MapFiles);
 }
 
 void UMainMenu::ChooseMap() {
@@ -187,7 +189,7 @@ void UMainMenu::ChooseMap() {
 	if (MapSelector->SelectedIndex.IsSet()) 
 	{
 		//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, IFileManager::Get().ConvertToRelativePath(*MapFiles[MapSelector->SelectedIndex.GetValue()]));
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, FPaths::GameContentDir());
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, MapFiles[MapSelector->SelectedIndex.GetValue()]);
 
 		if (GetGameInstance() == nullptr) { return; }
 		UPlatformerGameInstance *GM = Cast<UPlatformerGameInstance>(GetGameInstance());

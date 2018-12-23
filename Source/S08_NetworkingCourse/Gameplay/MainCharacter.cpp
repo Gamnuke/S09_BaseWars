@@ -6,6 +6,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/WidgetComponent.h"
+#include "Components/TextRenderComponent.h"
 #include "Blueprint/UserWidget.h"
 
 #include "Components/TextBlock.h"
@@ -27,10 +28,14 @@
 #include "Engine/Engine.h"
 #include "Engine/GameInstance.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
 
 #include "PlatformerGameInstance.h"
 
 #include "MenuSystem/InGameUI/ChatSystem/ChatTab.h"
+#include "Misc/Optional.h"
+
+#include "Gameplay/CharacterAnimInstance.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -50,6 +55,9 @@ AMainCharacter::AMainCharacter(const FObjectInitializer& ObjectInitializer) : Su
 
 	WidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("WidgetComponent"));
 	WidgetComponent->SetupAttachment(GetMesh(), FName("headSocket"));
+
+	TextComp = CreateDefaultSubobject<UTextRenderComponent>(TEXT("TextComp"));
+	TextComp->SetupAttachment(GetMesh(), FName("headSocket"));
 
 	static ConstructorHelpers::FClassFinder<UUserWidget> ChatDisplayWidgetSearch(TEXT("/Game/UI/InGame/ChatUI/ChatDisplay_WBP"));
 	if (ChatDisplayWidgetSearch.Class != NULL)
@@ -83,6 +91,7 @@ void AMainCharacter::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & Ou
 
 	DOREPLIFETIME(AMainCharacter, ChatDisplayWidget);
 	DOREPLIFETIME(AMainCharacter, InGameHUD);
+	DOREPLIFETIME(AMainCharacter, ServerState);
 }
 
 // Called when the game starts or when spawned
@@ -136,8 +145,47 @@ void AMainCharacter::Tick(float DeltaTime)
 			Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText(), AssignedColor);
 		}
 	}
+	//Falling = GetCharacterMovement()->IsFalling();
 
-	
+	if (IsLocallyControlled()) {
+		Velocity = GetVelocity().GetSafeNormal();
+		Velocity.Z = 0;
+		MeshRotation = GetMesh()->GetComponentRotation();
+		RotVelocity = GetMesh()->GetPhysicsAngularVelocity();
+		MeshRelativeRotation = GetMesh()->RelativeRotation;
+		AimPitch = UKismetMathLibrary::NormalizedDeltaRotator(GetControlRotation(), GetActorRotation()).Pitch;
+
+		FState NewState;
+		NewState.NewAiming = Aiming;
+		NewState.NewSprinting = Sprinting;
+		NewState.NewVelocity = Velocity;
+		NewState.NewRotVelocity = RotVelocity;
+		NewState.NewMeshRotation = MeshRotation;
+		NewState.MeshRelativeRotation = MeshRelativeRotation;
+		NewState.NewAimPitch = AimPitch;
+		NewState.NewFalling = Falling;
+
+		SetServerState(NewState);
+	}
+
+	if (Sprinting) {
+		FRotator TargetRotation = (Velocity.Rotation() - FRotator(0, 90, 0));
+		TargetRotation.Pitch = FMath::ClampAngle((TargetRotation - MeshRotation).Yaw, -30.0f, 30.0f);
+		GetMesh()->SetWorldRotation(FMath::RInterpTo(MeshRotation, TargetRotation, DeltaTime, 10));
+	}
+	else {
+		GetMesh()->SetRelativeRotation(FMath::RInterpTo(MeshRelativeRotation, FRotator(0, -90, 0), DeltaTime, 10) );
+	}
+
+	if (Aiming) {
+		GetCharacterMovement()->MaxWalkSpeed = AimWalkSpeed;
+	}
+	else if(Sprinting){
+		GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
+	}
+	else {
+		GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+	}
 	/*if (GetOwner()->GetLocalRole() == ROLE_Authority || ROLE_SimulatedProxy) {
 		APawn *Pawn = UGameplayStatics::GetPlayerPawn(this->GetWorld(), 0);
 		if (Pawn != nullptr) {
@@ -172,6 +220,12 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+
+	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AMainCharacter::StartSprinting);
+	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AMainCharacter::StopSprinting);
+
+	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &AMainCharacter::StartAiming);
+	PlayerInputComponent->BindAction("Aim", IE_Released, this, &AMainCharacter::StopAiming);
 
 	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &AMainCharacter::OpenPauseMenu);
 
@@ -208,6 +262,21 @@ void AMainCharacter::MoveRight(float Value)
 		AddMovementInput(Direction, Value);
 	}
 }
+void AMainCharacter::StartSprinting() { 
+	Sprinting = true;
+	Aiming = false;
+}
+void AMainCharacter::StopSprinting(){
+	Sprinting = false;
+}
+void AMainCharacter::StartAiming() {
+	Aiming = true;
+	Sprinting = false;
+}
+void AMainCharacter::StopAiming(){
+	Aiming = false;
+}
+
 void AMainCharacter::OpenPauseMenu()
 {
 	if (GetWorld()->GetGameInstance() == nullptr) { return; }
@@ -259,4 +328,24 @@ void AMainCharacter::Multicast_CreateChatDisplay_Implementation(const FText &Pla
 			}
 		}
 	}
+}
+
+
+bool AMainCharacter::SetServerState_Validate(FState NewState) { return true; }
+void AMainCharacter::SetServerState_Implementation(FState NewState) {
+	ServerState = NewState;
+	SetState(ServerState);
+}
+void AMainCharacter::OnRep_ServerState() {
+	SetState(ServerState);
+}
+void AMainCharacter::SetState(FState NewState) {
+	Aiming = NewState.NewAiming;
+	Sprinting = NewState.NewSprinting;
+	Velocity = NewState.NewVelocity;
+	MeshRotation = NewState.NewMeshRotation;
+	RotVelocity = NewState.NewRotVelocity;
+	MeshRelativeRotation = NewState.MeshRelativeRotation;
+	AimPitch = NewState.NewAimPitch;
+	Falling = NewState.NewFalling;
 }
