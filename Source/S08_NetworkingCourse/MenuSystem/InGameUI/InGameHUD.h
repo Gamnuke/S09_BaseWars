@@ -42,5 +42,17 @@ public:
 	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
 		class UBorder *FadeBorder;
 
+	//Crosshair
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UImage *LeftHair;
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UImage *RightHair;
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UImage *TopHair;
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UImage *BottomHair;
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UImage *MiddleHair;
+
 	AGamePlayerController *Owner;
 };

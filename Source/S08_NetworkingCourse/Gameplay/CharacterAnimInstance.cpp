@@ -3,24 +3,36 @@
 #include "CharacterAnimInstance.h"
 #include "Gameplay/MainCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 
 void UCharacterAnimInstance::NativeUpdateAnimation(float DeltaTimeX) {
 	Super::NativeUpdateAnimation(DeltaTimeX);
 
-	APawn *Pawn = TryGetPawnOwner();
-	if (Pawn == nullptr) { return; }
-	AMainCharacter *Character = Cast<AMainCharacter>(Pawn);
-	if (Character == nullptr) { return; }
+	if (CharacterRef == nullptr) {
+		APawn *Pawn = TryGetPawnOwner();
+		if (Pawn == nullptr) { return; }
+		CharacterRef = Cast<AMainCharacter>(Pawn);
+	}
+	if (CharacterRef == nullptr) { return; }
 	
-	Direction = CalculateDirection(Character->GetVelocity(), Character->GetActorRotation());
-	FVector PlaneVel = Character->GetVelocity();
+	Direction = CalculateDirection(CharacterRef->GetVelocity(), CharacterRef->GetMesh()->GetComponentRotation() + FRotator(0, 90, 0));
+	FVector PlaneVel = CharacterRef->GetVelocity();
 	PlaneVel.Z = 0;
 	Speed = PlaneVel.SizeSquared();
 
-	Aiming = Character->Aiming;
-	Sprinting = Character->Sprinting;
-	AimPitch = Character->AimPitch;
-	Falling = Character->GetCharacterMovement()->IsFalling();
+	Aiming = CharacterRef->Aiming;
+	Sprinting = CharacterRef->Sprinting;
+	AimPitch = CharacterRef->AimPitch;
+	Falling = CharacterRef->GetCharacterMovement()->IsFalling();
+	WeaponEquipped = CharacterRef->WeaponEquipped;
+	FiringWeapon = CharacterRef->FiringWeapon;
+
+	if (CharacterRef->Weapon == nullptr) { return; }
+	WeaponSettings = CharacterRef->Weapon->WeaponSettings;
 }
 
-
+void UCharacterAnimInstance::AnimNotify_Fire()
+{
+	if (CharacterRef == nullptr) { return; }
+	CharacterRef->AnimNotify_Fire();
+}

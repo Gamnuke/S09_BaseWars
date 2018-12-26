@@ -26,6 +26,12 @@ struct FState{
 		bool NewFalling;
 
 	UPROPERTY()
+		bool NewWeaponEquipped;
+
+	UPROPERTY()
+	bool NewFiringWeapon;
+
+	UPROPERTY()
 		float NewAimPitch;
 
 	UPROPERTY()
@@ -37,6 +43,9 @@ struct FState{
 		FRotator NewMeshRotation;
 	UPROPERTY()
 		FRotator MeshRelativeRotation;
+
+	UPROPERTY()
+		FRotator NewControlRotation;
 	
 };
 
@@ -54,9 +63,6 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UWidgetComponent *WidgetComponent;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-		class UTextRenderComponent *TextComp;
 
 public:
 	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadWrite, Category = Widgets)
@@ -79,11 +85,16 @@ public:
 	bool Aiming;
 	bool Sprinting;
 	bool Falling;
+	bool WeaponEquipped;
+	bool FiringWeapon;
 
 	float AimPitch;
 
 	FVector Velocity;
 	FVector RotVelocity;
+
+	FRotator TargetRotation;
+	FRotator ControlRotation;
 
 	FRotator MeshRotation;
 	FRotator MeshRelativeRotation;
@@ -129,6 +140,12 @@ private:
 	TSubclassOf<class UUserWidget> InGameHUDClass;
 	float NextDisplayUpdate;
 public:	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TSubclassOf<class UWeaponComponent> WeaponComponentClass;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	class UWeaponComponent* Weapon;
+
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -137,5 +154,9 @@ public:
 	void StopSprinting();
 	void StartAiming();
 	void StopAiming();
-	
+	void EquipWeapon();
+	void StartFireWeapon();
+	void StopFireWeapon();
+
+	void AnimNotify_Fire();
 };

@@ -36,6 +36,7 @@
 #include "Misc/Optional.h"
 
 #include "Gameplay/CharacterAnimInstance.h"
+#include "Gameplay/WeaponComponent.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -55,9 +56,6 @@ AMainCharacter::AMainCharacter(const FObjectInitializer& ObjectInitializer) : Su
 
 	WidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("WidgetComponent"));
 	WidgetComponent->SetupAttachment(GetMesh(), FName("headSocket"));
-
-	TextComp = CreateDefaultSubobject<UTextRenderComponent>(TEXT("TextComp"));
-	TextComp->SetupAttachment(GetMesh(), FName("headSocket"));
 
 	static ConstructorHelpers::FClassFinder<UUserWidget> ChatDisplayWidgetSearch(TEXT("/Game/UI/InGame/ChatUI/ChatDisplay_WBP"));
 	if (ChatDisplayWidgetSearch.Class != NULL)
@@ -83,6 +81,8 @@ AMainCharacter::AMainCharacter(const FObjectInitializer& ObjectInitializer) : Su
 		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *ChatTab.Class->GetName());
 		ChatTabClass = ChatTab.Class;
 	}
+
+
 }
 
 void AMainCharacter::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
@@ -103,6 +103,12 @@ void AMainCharacter::BeginPlay()
 	/*if (PlayerState != nullptr) {
 		Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText(), AssignedColor);
 	}*/
+
+	if (Weapon == nullptr && WeaponComponentClass != nullptr) {
+		Weapon = NewObject<UWeaponComponent>(this, WeaponComponentClass, FName("Weapon"));
+		Weapon->SetupAttachment(GetMesh(), FName("Handle"));
+		Weapon->RegisterComponentWithWorld(GetWorld());
+	}
 
 	if (GetWorld() != nullptr) {
 		if (GetWorld()->GetName() == FString("Lobby")) {
@@ -151,6 +157,7 @@ void AMainCharacter::Tick(float DeltaTime)
 		Velocity = GetVelocity().GetSafeNormal();
 		Velocity.Z = 0;
 		MeshRotation = GetMesh()->GetComponentRotation();
+		ControlRotation = GetControlRotation();
 		RotVelocity = GetMesh()->GetPhysicsAngularVelocity();
 		MeshRelativeRotation = GetMesh()->RelativeRotation;
 		AimPitch = UKismetMathLibrary::NormalizedDeltaRotator(GetControlRotation(), GetActorRotation()).Pitch;
@@ -164,21 +171,36 @@ void AMainCharacter::Tick(float DeltaTime)
 		NewState.MeshRelativeRotation = MeshRelativeRotation;
 		NewState.NewAimPitch = AimPitch;
 		NewState.NewFalling = Falling;
+		NewState.NewWeaponEquipped = WeaponEquipped;
+		NewState.NewFiringWeapon = FiringWeapon;
+		NewState.NewControlRotation = ControlRotation;
 
 		SetServerState(NewState);
 	}
 
-	if (Sprinting) {
-		FRotator TargetRotation = (Velocity.Rotation() - FRotator(0, 90, 0));
-		TargetRotation.Pitch = FMath::ClampAngle((TargetRotation - MeshRotation).Yaw, -30.0f, 30.0f);
-		GetMesh()->SetWorldRotation(FMath::RInterpTo(MeshRotation, TargetRotation, DeltaTime, 10));
+	if (Sprinting || !WeaponEquipped) {
+		if (GetCharacterMovement()->GetLastInputVector() == FVector::ZeroVector) {
+			TargetRotation = MeshRotation;
+			TargetRotation.Pitch = 0;
+			TargetRotation.Roll = 0; 
+		}
+		else {
+			TargetRotation = (Velocity.Rotation() - FRotator(0, 90, 0));
+		}
+		TargetRotation.Pitch = FMath::ClampAngle((TargetRotation - MeshRotation).Yaw, WeaponEquipped ? -30.0f : -15.0f, WeaponEquipped ? 30.0f : 15.0f);
+		GetMesh()->SetWorldRotation(FMath::RInterpTo(MeshRotation, TargetRotation, DeltaTime, 8));
 	}
 	else {
-		GetMesh()->SetRelativeRotation(FMath::RInterpTo(MeshRelativeRotation, FRotator(0, -90, 0), DeltaTime, 10) );
+		GetMesh()->SetWorldRotation(FMath::RInterpTo(MeshRotation, FRotator(0,ControlRotation.Yaw, 0) - FRotator(0, 90, 0), DeltaTime, 10) );
 	}
 
 	if (Aiming) {
-		GetCharacterMovement()->MaxWalkSpeed = AimWalkSpeed;
+		if (WeaponEquipped) {
+			GetCharacterMovement()->MaxWalkSpeed = AimWalkSpeed;
+		}
+		else {
+			GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+		}
 	}
 	else if(Sprinting){
 		GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
@@ -227,6 +249,11 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &AMainCharacter::StartAiming);
 	PlayerInputComponent->BindAction("Aim", IE_Released, this, &AMainCharacter::StopAiming);
 
+	PlayerInputComponent->BindAction("FireWeapon", IE_Pressed, this, &AMainCharacter::StartFireWeapon);
+	PlayerInputComponent->BindAction("FireWeapon", IE_Released, this, &AMainCharacter::StopFireWeapon);
+
+	PlayerInputComponent->BindAction("EquipWeapon", IE_Pressed, this, &AMainCharacter::EquipWeapon);
+
 	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &AMainCharacter::OpenPauseMenu);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMainCharacter::MoveForward);
@@ -274,6 +301,11 @@ void AMainCharacter::StartAiming() {
 	Sprinting = false;
 }
 void AMainCharacter::StopAiming(){
+	Aiming = false;
+}
+
+void AMainCharacter::EquipWeapon() {
+	WeaponEquipped = !WeaponEquipped;
 	Aiming = false;
 }
 
@@ -348,4 +380,18 @@ void AMainCharacter::SetState(FState NewState) {
 	MeshRelativeRotation = NewState.MeshRelativeRotation;
 	AimPitch = NewState.NewAimPitch;
 	Falling = NewState.NewFalling;
+	WeaponEquipped = NewState.NewWeaponEquipped;
+	FiringWeapon = NewState.NewFiringWeapon;
+	ControlRotation = NewState.NewControlRotation;
+}
+void AMainCharacter::StartFireWeapon() {
+	FiringWeapon = true;
+}
+void AMainCharacter::StopFireWeapon() {
+	FiringWeapon = false;
+}
+void AMainCharacter::AnimNotify_Fire() {
+	if (Weapon != nullptr) {
+		Weapon->FireWeapon();
+	}
 }
