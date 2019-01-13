@@ -38,6 +38,8 @@ public:
 		float AimPitch;
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		FWeaponSettings WeaponSettings;
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+		FVector GripLocation;
 
 public: // Weapon Variables
 	UFUNCTION(BlueprintCallable)

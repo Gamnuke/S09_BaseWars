@@ -179,8 +179,7 @@ void UMainMenu::ToMapSelectionMenu() {
 	WidgetSwitcher->SetActiveWidget(MapSelectionBorder);
 
 	MapFiles.Empty();
-	IFileManager::Get().FindFilesRecursive(MapFiles, *FPaths::GameContentDir(), TEXT("Maps/*.umap"), true, false, false);
-	//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, FString::FromInt(MapFiles.Num()));
+	IFileManager::Get().FindFilesRecursive(MapFiles, *FPaths::ProjectContentDir(), TEXT("Maps/*.umap"), true, false, false);
 	MapSelector->PopulateBox_Maps(MapFiles);
 }
 
@@ -188,9 +187,6 @@ void UMainMenu::ChooseMap() {
 	if (MapSelector == nullptr) { return; }
 	if (MapSelector->SelectedIndex.IsSet()) 
 	{
-		//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, IFileManager::Get().ConvertToRelativePath(*MapFiles[MapSelector->SelectedIndex.GetValue()]));
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, MapFiles[MapSelector->SelectedIndex.GetValue()]);
-
 		if (GetGameInstance() == nullptr) { return; }
 		UPlatformerGameInstance *GM = Cast<UPlatformerGameInstance>(GetGameInstance());
 		if (GM == nullptr) { return; }
@@ -288,9 +284,6 @@ void UMainMenu::ToLoadingScreen(FText Message) {
 	LoadingMenuText->SetText(Message);
 	this->AddToViewport(0);
 	
-	if (GetGameInstance()->GetEngine() != nullptr){
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Yellow, TEXT("YEEEEEEEEEET"));
-	}
 }
 
 void UMainMenu::ToServerStatus_Host() {

@@ -104,12 +104,6 @@ void AMainCharacter::BeginPlay()
 		Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText(), AssignedColor);
 	}*/
 
-	if (Weapon == nullptr && WeaponComponentClass != nullptr) {
-		Weapon = NewObject<UWeaponComponent>(this, WeaponComponentClass, FName("Weapon"));
-		Weapon->SetupAttachment(GetMesh(), FName("Handle"));
-		Weapon->RegisterComponentWithWorld(GetWorld());
-	}
-
 	if (GetWorld() != nullptr) {
 		if (GetWorld()->GetName() == FString("Lobby")) {
 			APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
@@ -127,17 +121,18 @@ void AMainCharacter::BeginPlay()
 				PlayerController->bShowMouseCursor = false;
 			}
 		}
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 1000, FColor::Green, GetWorld()->GetName());
 
 
 		UPlatformerGameInstance *GameInstance = Cast<UPlatformerGameInstance>(GetWorld()->GetGameInstance());
 		if (GameInstance == nullptr) { return; }
 		GameInstance->SetupGame();
 	}
+
+	SwitchWeapon();
 }
 
 void AMainCharacter::OnRep_ColorAssigned() {
-	Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText(), AssignedColor);
+	Server_CreateChatDisplay(FText::FromString(this->GetPlayerState()->GetPlayerName()), FText(), AssignedColor);
 }
 
 // Called every frame
@@ -146,21 +141,36 @@ void AMainCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (GetWorld()->GetTimeSeconds() > NextDisplayUpdate && IsActorInitialized()) {
 		NextDisplayUpdate = GetWorld()->GetTimeSeconds() + 10;
-		if (PlayerState != nullptr) {
-
-			Server_CreateChatDisplay(FText::FromString(PlayerState->GetPlayerName()), FText(), AssignedColor);
+		if (this->GetPlayerState() != nullptr) {
+			Server_CreateChatDisplay(FText::FromString(this->GetPlayerState()->GetPlayerName()), FText(), AssignedColor);
 		}
 	}
+
+	Idle = GetVelocity().Size() == 0;
 	//Falling = GetCharacterMovement()->IsFalling();
+
+	TargetCameraPitch = FMath::FInterpTo(TargetCameraPitch, 0, DeltaTime, 5);
+	CameraComponent->SetRelativeRotation(FRotator(FMath::FInterpTo(CameraComponent->RelativeRotation.Pitch, TargetCameraPitch, DeltaTime, 5),0,0));
+
+	if (Sprinting && !Idle && !Falling) {
+		TargetCameraRelativeLocation += FVector(FMath::RandRange(-10.0f, 10.0f), FMath::RandRange(-10.0f, 10.0f), FMath::RandRange(-10.0f, 10.0f));
+	}
+	TargetCameraRelativeLocation = FMath::VInterpTo(TargetCameraRelativeLocation, FVector::ZeroVector, DeltaTime, 2);
+	CameraComponent->SetRelativeLocation(FMath::VInterpTo(CameraComponent->RelativeLocation, TargetCameraRelativeLocation + FVector(0,60,0), DeltaTime, 5));
 
 	if (IsLocallyControlled()) {
 		Velocity = GetVelocity().GetSafeNormal();
 		Velocity.Z = 0;
 		MeshRotation = GetMesh()->GetComponentRotation();
 		ControlRotation = GetControlRotation();
-		RotVelocity = GetMesh()->GetPhysicsAngularVelocity();
+		RotVelocity = GetMesh()->GetPhysicsAngularVelocityInDegrees();
 		MeshRelativeRotation = GetMesh()->RelativeRotation;
 		AimPitch = UKismetMathLibrary::NormalizedDeltaRotator(GetControlRotation(), GetActorRotation()).Pitch;
+
+		if (InGameHUD != nullptr) {
+			ProjectedLocation = InGameHUD->ProjectedLocation;
+			ProjectedDirection = InGameHUD->ProjectedDirection;
+		}
 
 		FState NewState;
 		NewState.NewAiming = Aiming;
@@ -174,6 +184,8 @@ void AMainCharacter::Tick(float DeltaTime)
 		NewState.NewWeaponEquipped = WeaponEquipped;
 		NewState.NewFiringWeapon = FiringWeapon;
 		NewState.NewControlRotation = ControlRotation;
+		NewState.NewProjectedLocation = ProjectedLocation;
+		NewState.NewProjectedDirection = ProjectedDirection;
 
 		SetServerState(NewState);
 	}
@@ -208,29 +220,18 @@ void AMainCharacter::Tick(float DeltaTime)
 	else {
 		GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 	}
-	/*if (GetOwner()->GetLocalRole() == ROLE_Authority || ROLE_SimulatedProxy) {
-		APawn *Pawn = UGameplayStatics::GetPlayerPawn(this->GetWorld(), 0);
-		if (Pawn != nullptr) {
-			AMainCharacter *Character = Cast<AMainCharacter>(Pawn);
-			if (Character == nullptr || InGameHUD == nullptr) { return; }
-			FHitResult OcclusionTrace;
-			GetWorld()->LineTraceSingleByChannel(
-				OcclusionTrace,
-				Character->GetActorLocation(),
-				this->GetActorLocation(),
-				ECollisionChannel::ECC_Visibility
-			);
-			float Distance = FVector::Dist(OcclusionTrace.TraceEnd, OcclusionTrace.TraceStart);
-			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, DeltaTime, FColor::Green, OcclusionTrace.bBlockingHit?FString("C++ Hit!"): FString("C++ Miss!"));
 
-			if (OcclusionTrace.bBlockingHit || OcclusionTrace.Distance > 1000) {
-				InGameHUD->SetVisibility(ESlateVisibility::Collapsed);
-			}
-			else {
-				InGameHUD->SetVisibility(ESlateVisibility::Visible);
-			}
-		}
-	}*/
+	DefaultCameraFOV = Sprinting ? 100 : 80;
+	if (Aiming) { DefaultCameraFOV = 50; }
+
+	if (CurrentWeapon != nullptr) {
+		CameraComponent->SetFieldOfView(FMath::FInterpTo(CameraComponent->FieldOfView, DefaultCameraFOV, DeltaTime, CurrentWeapon->WeaponSettings.CameraFOVResetTime));
+	}
+
+	if (CurrentWeapon != nullptr) {
+		CurrentWeapon->AimLocation = ProjectedLocation;
+		CurrentWeapon->AimDirection = ProjectedDirection;
+	}
 }
 
 // Movement Functionality
@@ -251,6 +252,9 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAction("FireWeapon", IE_Pressed, this, &AMainCharacter::StartFireWeapon);
 	PlayerInputComponent->BindAction("FireWeapon", IE_Released, this, &AMainCharacter::StopFireWeapon);
+
+	PlayerInputComponent->BindAction("ScrollUp", IE_Pressed, this, &AMainCharacter::ScrollUp);
+	PlayerInputComponent->BindAction("ScrollDown", IE_Pressed, this, &AMainCharacter::ScrollDown);
 
 	PlayerInputComponent->BindAction("EquipWeapon", IE_Pressed, this, &AMainCharacter::EquipWeapon);
 
@@ -329,7 +333,7 @@ void AMainCharacter::Multicast_CreateChatDisplay_Implementation(const FText &Pla
 		InGameHUD->AddToViewport(0);
 	}
 	if (ChatDisplayWidget == nullptr) { //Stop execution if widget already exists
-		ChatDisplayWidget = CreateWidget<UChatDisplayWidget>(GetGameInstance(), ChatDisplayWidgetClass, FName(*FString("Chat" + PlayerState->GetUniqueID())));
+		ChatDisplayWidget = CreateWidget<UChatDisplayWidget>(GetGameInstance(), ChatDisplayWidgetClass, FName(*FString("Chat" + GetPlayerState()->GetUniqueID())));
 	}
 	if (ChatDisplayWidget != nullptr) { 
 		WidgetComponent->SetWidget(ChatDisplayWidget);
@@ -344,8 +348,6 @@ void AMainCharacter::Multicast_CreateChatDisplay_Implementation(const FText &Pla
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AMainCharacter::StaticClass(), Characters);
 
 		for (AActor *Character : Characters) {
-			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 5, FColor::Green, FString::FromInt(Characters.Num()));
-			
 			AMainCharacter *CharacterCast = Cast<AMainCharacter>(Character);
 
 			if (CharacterCast->InGameHUD == nullptr) {
@@ -383,6 +385,8 @@ void AMainCharacter::SetState(FState NewState) {
 	WeaponEquipped = NewState.NewWeaponEquipped;
 	FiringWeapon = NewState.NewFiringWeapon;
 	ControlRotation = NewState.NewControlRotation;
+	ProjectedLocation = NewState.NewProjectedLocation;
+	ProjectedDirection = NewState.NewProjectedDirection;
 }
 void AMainCharacter::StartFireWeapon() {
 	FiringWeapon = true;
@@ -391,7 +395,31 @@ void AMainCharacter::StopFireWeapon() {
 	FiringWeapon = false;
 }
 void AMainCharacter::AnimNotify_Fire() {
-	if (Weapon != nullptr) {
-		Weapon->FireWeapon();
+	if (CurrentWeapon != nullptr) {
+		CurrentWeapon->FireWeapon();
+		CameraComponent->SetFieldOfView(CameraComponent->FieldOfView + CurrentWeapon->WeaponSettings.CameraFOVIncrement);
+		TargetCameraPitch += CurrentWeapon->WeaponSettings.CameraPitchIncrement;
+	}
+}
+void AMainCharacter::ScrollUp() {
+	CurrentWeaponIndex += 1;
+	SwitchWeapon();
+}
+void AMainCharacter::ScrollDown() {
+	CurrentWeaponIndex -= 1;
+	SwitchWeapon();
+}
+
+void AMainCharacter::SwitchWeapon() {
+	CurrentWeaponIndex = FMath::Clamp(CurrentWeaponIndex, 0, Weapons.Num() - 1);
+	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 10, FColor::Red, FString::FromInt(CurrentWeaponIndex));
+	if (CurrentWeapon != nullptr) {
+		CurrentWeapon->DetachFromParent();
+		CurrentWeapon->DestroyComponent();
+	}
+	if (Weapons[CurrentWeaponIndex] != nullptr) {
+		CurrentWeapon = NewObject<UWeaponComponent>(this, Weapons[CurrentWeaponIndex], *("Weapon" + FString::FromInt(CurrentWeaponIndex)));
+		CurrentWeapon->SetupAttachment(GetMesh(), FName("Handle"));
+		CurrentWeapon->RegisterComponent();
 	}
 }

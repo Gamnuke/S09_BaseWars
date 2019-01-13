@@ -129,7 +129,7 @@ void UPlatformerGameInstance::HostServer(FText ServerName) {
 	if (SessionInterface.IsValid()) {
 		auto *ExistingSession = SessionInterface->GetNamedSession(SESSION_NAME);
 		if(ExistingSession != nullptr){
-			GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Orange, FString(ExistingSession->SessionName.ToString().Append(TEXT("- Found existing session, destroying..."))));
+			//GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Orange, FString(ExistingSession->SessionName.ToString().Append(TEXT("- Found existing session, destroying..."))));
 			SessionInterface->DestroySession(SESSION_NAME);
 		}
 		else 
@@ -175,18 +175,18 @@ void UPlatformerGameInstance::UpdateSessionSettings() {
 
 void UPlatformerGameInstance::OnCreateSessionComplete(FName SessionName, bool Success) {
 	if (!Success) {
-		GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Red, FString(SessionName.ToString().Append(TEXT("- Failed to create session"))));
+		//GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Red, FString(SessionName.ToString().Append(TEXT("- Failed to create session"))));
 		return;
 	}
-	GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(SessionName.ToString().Append(TEXT("- Successfully created session"))));
+	//GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(SessionName.ToString().Append(TEXT("- Successfully created session"))));
 	MenuWidget->PlayerIsHost = true;
 	MenuWidget->TearDown(true);
-	GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Hosting Server")));
+	//GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(TEXT("Hosting Server")));
 	GetWorld()->ServerTravel("/Game/Levels/Lobby?listen");
 }
 
 void UPlatformerGameInstance::OnDestroySessionComplete(FName SessionName, bool Success) {
-	GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(SessionName.ToString().Append(TEXT("- Successfully destroyed session"))));
+	//GetEngine()->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Green, FString(SessionName.ToString().Append(TEXT("- Successfully destroyed session"))));
 	CreateSession();
 }
 
@@ -256,7 +256,7 @@ void UPlatformerGameInstance::UpdatePlayerTabs() {
 }
 
 void UPlatformerGameInstance::StartGame() {
-	GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, FString("/Game/Levels/" + FPaths::GetBaseFilename(SelectedLevelURL)));
+	//GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, FString("/Game/Levels/" + FPaths::GetBaseFilename(SelectedLevelURL)));
 	GetWorld()->ServerTravel(FString("/Game/Levels/Maps/" + FPaths::GetBaseFilename(SelectedLevelURL) + FString("?listen")), true);
 }
 

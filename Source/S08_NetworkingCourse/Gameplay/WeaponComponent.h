@@ -17,12 +17,32 @@ USTRUCT(BlueprintType)
 		float RoundsPerSecond = 10;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool SemiAuto = false;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float HipIdleCrosshairThreshold = 100;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		float HipWalkCrosshairThreshold = 100;
+		float AimIdleCrosshairThreshold = 50;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float WalkCrosshairIncrement;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float FireCrosshairIncrement = 10;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float CameraFOVIncrement = -5;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float CameraFOVResetTime = 10;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float CameraPitchIncrement = 5;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		class UClass *ProjectileClass;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		class UParticleSystem *MuzzleFlashClass;
+
+
 };
 
 UCLASS(Blueprintable)
@@ -50,4 +70,9 @@ public:
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class UStaticMesh* Mesh;
+
+	TOptional<FVector> AimLocation;
+	TOptional<FVector> AimDirection;
+
+	class UParticleSystemComponent *MuzzleFlashSystem;
 };

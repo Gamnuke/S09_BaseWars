@@ -108,7 +108,7 @@ void UPauseMenu::Setup() {
 }
 
 void UPauseMenu::QuitGame() {
-	UKismetSystemLibrary::QuitGame(GetWorld(), GetWorld()->GetFirstPlayerController(), EQuitPreference::Quit);
+	UKismetSystemLibrary::QuitGame(GetWorld(), GetWorld()->GetFirstPlayerController(), EQuitPreference::Quit, true);
 }
 
 void UPauseMenu::SetMenuInterface(IMenuInterface *NewMenuInterface) {

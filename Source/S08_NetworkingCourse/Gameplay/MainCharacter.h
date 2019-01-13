@@ -38,11 +38,15 @@ struct FState{
 		FVector NewVelocity;
 	UPROPERTY()
 		FVector NewRotVelocity;
-	
+	UPROPERTY()
+		FVector NewProjectedLocation;
+
 	UPROPERTY()
 		FRotator NewMeshRotation;
 	UPROPERTY()
 		FRotator MeshRelativeRotation;
+	UPROPERTY()
+		FVector NewProjectedDirection;
 
 	UPROPERTY()
 		FRotator NewControlRotation;
@@ -88,10 +92,14 @@ public:
 	bool WeaponEquipped;
 	bool FiringWeapon;
 
+	bool Idle;
+
 	float AimPitch;
 
 	FVector Velocity;
 	FVector RotVelocity;
+	FVector ProjectedLocation;
+	FVector ProjectedDirection;
 
 	FRotator TargetRotation;
 	FRotator ControlRotation;
@@ -100,14 +108,23 @@ public:
 	FRotator MeshRelativeRotation;
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
-		float WalkSpeed = 400;
+		float WalkSpeed = 300;
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
-		float SprintSpeed = 800;
+		float SprintSpeed = 700;
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 		float AimWalkSpeed = 300;
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 		float CrouchSpeed = 300;
 
+	FVector WeaponGripLocation;
+
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+		float DefaultCameraFOV = 80;
+
+	float CameraTargetFOV;
+	float TargetCameraPitch;
+
+	FVector TargetCameraRelativeLocation;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -139,12 +156,13 @@ private:
 	TSubclassOf<class UUserWidget> ChatTabClass;
 	TSubclassOf<class UUserWidget> InGameHUDClass;
 	float NextDisplayUpdate;
+
 public:	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TSubclassOf<class UWeaponComponent> WeaponComponentClass;
+	TArray<TSubclassOf<class UWeaponComponent>> Weapons;
+	class UWeaponComponent* CurrentWeapon = nullptr;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UWeaponComponent* Weapon;
+	int CurrentWeaponIndex = 0;
 
 	virtual void Tick(float DeltaTime) override;
 
@@ -157,6 +175,10 @@ public:
 	void EquipWeapon();
 	void StartFireWeapon();
 	void StopFireWeapon();
+	void ScrollUp();
+	void ScrollDown();
 
 	void AnimNotify_Fire();
+
+	void SwitchWeapon();
 };

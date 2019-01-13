@@ -15,7 +15,6 @@ ALobbyGameMode::ALobbyGameMode(const FObjectInitializer& ObjectInitializer) {}
 void ALobbyGameMode::PostLogin(APlayerController * NewPlayer)
 {
 	Super::PostLogin(NewPlayer);
-	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 1000, FColor::Cyan, FString("A Player Has Logged In!"));
 
 	NumOfPlayers += 1;
 	Validate();
@@ -24,9 +23,6 @@ void ALobbyGameMode::PostLogin(APlayerController * NewPlayer)
 	//if (GetNetOwningPlayer()->PlayerController->NetPlayerIndex == 0) {
 		if (GetGameInstance() == nullptr) { return; }
 		UPlatformerGameInstance *GameInstance = Cast<UPlatformerGameInstance>(GetGameInstance());
-		if (GameInstance != nullptr) {
-			GameInstance->GetEngine()->AddOnScreenDebugMessage(0, 1000, FColor::Cyan, FString("A Player Has Logged In!"));
-		}
 		if (GameInstance != nullptr && GameInstance->MenuWidget != nullptr) {
 			GameInstance->MenuWidget->Setup();
 			if (GameInstance->MenuWidget->PlayerIsHost) {

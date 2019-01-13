@@ -30,10 +30,6 @@ void USelector::PopulateBox_Maps(TArray<FString> MapNames) {
 		NewTab->AssignedIndex = i;
 		NewTab->ParentSelector = this;
 		
-		//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 900, FColor::Green, *(FString("/Game/Levels/MapThumbnails/") + FPaths::GetBaseFilename(MapNames[i])));
-		/*if (Thumbnail != nullptr) {
-			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 15.0f, FColor::Green, TEXT("Found thumbail!"));
-		}*/
 		UTexture* Thumbnail = Cast<UTexture>(StaticLoadObject(UTexture::StaticClass(), nullptr, *(FString("/Game/Levels/MapThumbnails/") + FPaths::GetBaseFilename(MapNames[i]))));
 
 		FMapSelection NewMapData;

@@ -54,5 +54,8 @@ public:
 	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
 		class UImage *MiddleHair;
 
+	FVector ProjectedLocation;
+	FVector ProjectedDirection;
+
 	AGamePlayerController *Owner;
 };

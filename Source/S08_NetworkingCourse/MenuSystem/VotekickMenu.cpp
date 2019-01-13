@@ -30,7 +30,6 @@ bool UVotekickMenu::Initialize() {
 }
 
 void UVotekickMenu::UpdatePlayerTabs() {
-	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 5, FColor::Cyan, FString("Updating player tabs!"));
 	if (PlayerBox != nullptr) {
 		PlayerBox->ClearChildren();
 	}

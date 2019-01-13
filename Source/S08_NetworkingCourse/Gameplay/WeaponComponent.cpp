@@ -8,22 +8,66 @@
 #include "MenuSystem/InGameUI/InGameHUD.h"
 #include "Components/Image.h"
 #include "Components/CanvasPanelSlot.h"
+#include "Gameplay/Projectile.h"
+
+#include "Particles/ParticleSystemComponent.h"
+#include "Particles/ParticleSystem.h"
+
+#include "Kismet/KismetMathLibrary.h"
+#include "UObject/UObjectGlobals.h"
+#include "Kismet/GameplayStatics.h"
 
 UWeaponComponent::UWeaponComponent(const FObjectInitializer & ObjectInitializer) : Super(ObjectInitializer)
 {
 	if (Mesh != nullptr) {
 		this->SetStaticMesh(Mesh);
 	}
-	this->SetupAttachment(GetAttachmentRoot(), FName("Handle"));
 	PrimaryComponentTick.bCanEverTick = true;
+
+	
 }
 
 void UWeaponComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	CurrentThreshold = FMath::FInterpTo(CurrentThreshold, TargetThreshold, DeltaTime, 20);
+	if (Character == nullptr) { return; }
 
+	TargetThreshold = Character->Aiming ? WeaponSettings.AimIdleCrosshairThreshold : WeaponSettings.HipIdleCrosshairThreshold;
+
+	if (!Character->Idle) {
+		TargetThreshold += Character->Aiming ? WeaponSettings.WalkCrosshairIncrement : WeaponSettings.WalkCrosshairIncrement * 2;
+		if (Character->Sprinting) {
+			TargetThreshold += 200;
+		}
+	}
+
+	CurrentThreshold = FMath::FInterpTo(CurrentThreshold, TargetThreshold, DeltaTime, 5);
+
+	FHitResult AimHit;
+	GetWorld()->LineTraceSingleByChannel(
+		AimHit,
+		AimLocation.GetValue(),
+		AimLocation.GetValue() + AimDirection.GetValue() * 100000,
+		ECollisionChannel::ECC_Visibility
+	);
+	
+
+	if (Character->WeaponEquipped && !Character->Sprinting) {
+		if (AimHit.IsValidBlockingHit()) {
+			SetWorldRotation(UKismetMathLibrary::FindLookAtRotation(GetComponentLocation(), AimHit.ImpactPoint));
+		}
+		else {
+			SetWorldRotation(UKismetMathLibrary::FindLookAtRotation(GetComponentLocation(), AimHit.TraceEnd));
+		}
+	}
+	else {
+		SetRelativeRotation(FRotator::ZeroRotator);
+	}
+	
+	Character->WeaponGripLocation = GetSocketLocation("GripSocket");
 	SetCrosshairSize(CurrentThreshold);
+
+
 }
 
 void UWeaponComponent::SetCrosshairSize(float ThresholdToSet) 
@@ -47,15 +91,22 @@ void UWeaponComponent::OnRegister() {
 	Super::OnRegister();
 	if (GetOwner() == nullptr) { return; }
 	Character = Cast<AMainCharacter>(GetOwner());
-	TargetThreshold = WeaponSettings.HipIdleCrosshairThreshold;
 }
 
 void UWeaponComponent::FireWeapon() {
 	if (!DoesSocketExist("Barrel")) { return; }
 	FVector BarrelLoc = GetSocketLocation("Barrel");
-	DrawDebugLine(GetWorld(), BarrelLoc, BarrelLoc + GetSocketRotation("Barrel").Vector() * 1000, FColor::Cyan, false, 0.1f, 0,3);
-	CurrentThreshold = TargetThreshold + WeaponSettings.FireCrosshairIncrement;
+	CurrentThreshold = CurrentThreshold + WeaponSettings.FireCrosshairIncrement;
 	SetCrosshairSize(CurrentThreshold);
+
+	if (WeaponSettings.ProjectileClass != nullptr) {
+		float T = CurrentThreshold * CurrentThreshold / 5000;
+		FRotator RandomRotation = FRotator(FMath::RandRange(-T, T), FMath::RandRange(-T, T), FMath::RandRange(-T, T));
+		AProjectile *NewProjectile = GetWorld()->SpawnActor<AProjectile>(WeaponSettings.ProjectileClass, GetSocketLocation("Barrel"), GetSocketRotation("Barrel") + RandomRotation );
+	}
+
+	UParticleSystemComponent *NewParticle = UGameplayStatics::SpawnEmitterAttached(WeaponSettings.MuzzleFlashClass, this, NAME_None, GetSocketLocation("Barrel"), GetSocketRotation("Barrel"), EAttachLocation::KeepWorldPosition);
+	NewParticle->AddRelativeRotation(FRotator(0, 0, 45));
 }
 
 

@@ -8,6 +8,9 @@
 #include "Components/ScrollBox.h"
 #include "Components/Border.h"
 #include "Components/EditableText.h"
+#include "Components/Image.h"
+#include "Components/CanvasPanelSlot.h"
+#include "Camera/CameraComponent.h"
 
 #include "UnrealNetwork.h"
 #include "GamePlayerController.h"
@@ -16,6 +19,7 @@
 #include "Gameplay/MainCharacter.h"
 #include "Engine/Engine.h"
 #include "GameFramework/PlayerState.h"
+#include "DrawDebugHelpers.h"
 
 UInGameHUD::UInGameHUD(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -59,6 +63,16 @@ void UInGameHUD::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
 	);
 
 	FadeBorder->SetContentColorAndOpacity(Color);
+
+	if (MiddleHair == nullptr) { return; }
+	UCanvasPanelSlot *MiddleSlot = Cast<UCanvasPanelSlot>(MiddleHair->Slot);
+	if (MiddleSlot == nullptr) { return; }
+	if (GetOwningPlayerPawn() == nullptr) { return; }
+	AMainCharacter *Character = Cast<AMainCharacter>(GetOwningPlayerPawn());
+	if (Character == nullptr) { return; }
+	
+	const FVector2D ViewportSize = FVector2D(GEngine->GameViewport->Viewport->GetSizeXY());
+	GetOwningPlayer()->DeprojectScreenPositionToWorld(ViewportSize.X/2, ViewportSize.Y / 2, ProjectedLocation, ProjectedDirection);
 }
 
 void UInGameHUD::ComposeNewMessage(FText NewPlayerName, FText NewMessage) {

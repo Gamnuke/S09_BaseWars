@@ -26,9 +26,11 @@ void UCharacterAnimInstance::NativeUpdateAnimation(float DeltaTimeX) {
 	Falling = CharacterRef->GetCharacterMovement()->IsFalling();
 	WeaponEquipped = CharacterRef->WeaponEquipped;
 	FiringWeapon = CharacterRef->FiringWeapon;
+	GripLocation = CharacterRef->WeaponGripLocation;
 
-	if (CharacterRef->Weapon == nullptr) { return; }
-	WeaponSettings = CharacterRef->Weapon->WeaponSettings;
+	if (CharacterRef->CurrentWeapon != nullptr) {
+		WeaponSettings = CharacterRef->CurrentWeapon->WeaponSettings;
+	}
 }
 
 void UCharacterAnimInstance::AnimNotify_Fire()
