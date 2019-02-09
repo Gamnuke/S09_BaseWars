@@ -226,17 +226,17 @@ public:
 	void StartTaunting();
 	void StartReloadingWeapon();
 
-	UFUNCTION(Server, WithValidation, Reliable)
 	void DropWeapon();
-
 	UFUNCTION(NetMulticast, Reliable)
-	void MulticastDropWeapon();
+	void MulticastDropWeapon(FWeaponState CurrentWeaponState);
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerDropWeapon(FWeaponState CurrentWeaponState);
 
-	UFUNCTION(Server, WithValidation, Reliable)
-	void ReplaceWeapon();
-
+	void PickupWeapon();
 	UFUNCTION(NetMulticast, Reliable)
-		void MulticastReplaceWeapon();
+		void MulticastPickupWeapon(TSubclassOf<UWeaponComponent> PickedUpWeapon, FWeaponState PickedUpWeaponState);
+	UFUNCTION(Server, Reliable, WithValidation)
+		void ServerPickupWeapon(TSubclassOf<UWeaponComponent> PickedUpWeapon, FWeaponState PickedUpWeaponState);
 
 	void ReloadWeapon();
 
@@ -268,4 +268,6 @@ public:
 		void SetHealth(float Health, bool Heal);
 
 	class AWeapon *HoveredWeapon;
+
+
 };

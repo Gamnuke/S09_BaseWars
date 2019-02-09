@@ -147,7 +147,7 @@ void AMainCharacter::BeginPlay()
 	for (TSubclassOf<UWeaponComponent> WeaponComponent : Weapons) {
 		if (WeaponComponent != nullptr && Weapons[ii] != nullptr) {
 			UWeaponComponent *Model = NewObject<UWeaponComponent>(this, Weapons[ii], *WeaponComponent.GetDefaultObject()->GetName());
-			
+			Model->WeaponSubclass = Weapons[ii];
 			//WeaponModels.Insert(Model, ii)\;
 			if (WeaponModels.IsValidIndex(ii)) {
 				WeaponModels[ii] = Model;
@@ -369,7 +369,7 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAction("DropWeapon", IE_Pressed, this, &AMainCharacter::DropWeapon);
 
-	PlayerInputComponent->BindAction("ReplaceWeapon", IE_Pressed, this, &AMainCharacter::ReplaceWeapon);
+	PlayerInputComponent->BindAction("ReplaceWeapon", IE_Pressed, this, &AMainCharacter::PickupWeapon);
 
 	PlayerInputComponent->BindAction("Taunt", IE_Pressed, this, &AMainCharacter::StartTaunting);
 
@@ -402,56 +402,81 @@ void AMainCharacter::StartReloadingWeapon() {
 	Aiming = false;
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), CurrentWeapon->WeaponSettings.WeaponZoomOutSound, CurrentWeapon->GetComponentLocation());
 }
-void AMainCharacter::MulticastDropWeapon_Implementation() {
-	if (CurrentWeapon == nullptr || SwitchingWeapon) { return; }
-	Aiming = false;
-	WeaponModels[CurrentWeaponIndex] = nullptr;
-	AWeapon *WeaponActor = GetWorld()->SpawnActor<AWeapon>(AWeapon::StaticClass(), CurrentWeapon->GetComponentLocation(), CurrentWeapon->GetComponentRotation());
-	CurrentWeapon->AttachToComponent(WeaponActor->Mesh, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-	WeaponActor->AssignedWeaponComponent = CurrentWeapon;
-	WeaponActor->Mesh->SetStaticMesh(CurrentWeapon->GetStaticMesh());
-	CurrentWeapon->UnregisterComponent();
-	CurrentWeapon->CanShoot = false;
-	CurrentWeapon = nullptr;
-	WeaponEquipped = false;
-}
-void AMainCharacter::DropWeapon_Implementation()
-{
-	MulticastDropWeapon();
-}
-bool AMainCharacter::DropWeapon_Validate() {
-	return true;
-}
 
-void AMainCharacter::MulticastReplaceWeapon_Implementation() {
-	if (!SwitchingWeapon && HoveredWeapon != nullptr && HoveredWeapon->AssignedWeaponComponent != nullptr) {
-		for (int32 i = 0; i < 2; i++)
-		{
-			if (WeaponModels.IsValidIndex(i) && WeaponModels[i] == nullptr) {
-				WeaponModels[i] = HoveredWeapon->AssignedWeaponComponent;
-				WeaponModels[i]->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, SocketNames[i]);
-				WeaponModels[i]->RegisterComponent();
-				HoveredWeapon->Destroy();
-				return;
-			}
-		}
-		if (CurrentWeapon != nullptr) {
-			DropWeapon();
-			CurrentWeapon = HoveredWeapon->AssignedWeaponComponent;
-			CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, SocketNames[CurrentWeaponIndex]);
-			CurrentWeapon->RegisterComponent();
-		}
-		WeaponModels[CurrentWeaponIndex] = HoveredWeapon->AssignedWeaponComponent;
+void AMainCharacter::DropWeapon() {
+	if (CurrentWeapon != nullptr) {
+		ServerDropWeapon(CurrentWeapon->WeaponState);
+	}
+	if (!SwitchingWeapon && CurrentWeapon != nullptr && WeaponModels[CurrentWeaponIndex]) {
+		/*AWeapon *WeaponContainer = GetWorld()->SpawnActor<AWeapon>(AWeapon::StaticClass(), CurrentWeapon->GetComponentLocation(), CurrentWeapon->GetComponentRotation());
+		WeaponContainer->AssignedWeapon = CurrentWeapon->WeaponSubclass;
+		WeaponContainer->Mesh->SetStaticMesh(CurrentWeapon->GetStaticMesh());
+		FWeaponState WeaponState;
+		WeaponState.CurrentMagazineAmmo = CurrentWeapon->CurrentMagazineAmmo;
+		WeaponState.CurrentMaxAmmo = CurrentWeapon->CurrentMaxAmmo;
+		WeaponContainer->AssignedWeaponState = WeaponState;*/
 
-		HoveredWeapon->Destroy();
-		StartSwitchingWeapon();
+		/*CurrentWeapon->DestroyComponent();
+		WeaponModels[CurrentWeaponIndex] = nullptr;
+		CurrentWeapon = nullptr;
+		WeaponEquipped = false;*/
+
 	}
 }
-void AMainCharacter::ReplaceWeapon_Implementation()
+void AMainCharacter::ServerDropWeapon_Implementation(FWeaponState CurrentWeaponState)
 {
-	MulticastReplaceWeapon();
+	MulticastDropWeapon(CurrentWeaponState);
 }
-bool AMainCharacter::ReplaceWeapon_Validate() { return true; }
+bool AMainCharacter::ServerDropWeapon_Validate(FWeaponState CurrentWeaponState) { return true; }
+void AMainCharacter::MulticastDropWeapon_Implementation(FWeaponState CurrentWeaponState) {
+	if (!SwitchingWeapon && CurrentWeapon != nullptr && WeaponModels[CurrentWeaponIndex]) {
+		AWeapon *WeaponContainer = GetWorld()->SpawnActor<AWeapon>(AWeapon::StaticClass(), CurrentWeapon->GetComponentLocation(), CurrentWeapon->GetComponentRotation());
+		WeaponContainer->AssignedWeapon = CurrentWeapon->WeaponSubclass;
+		WeaponContainer->Mesh->SetStaticMesh(CurrentWeapon->GetStaticMesh());
+		FWeaponState WeaponState;
+		WeaponState.CurrentMagazineAmmo = CurrentWeapon->CurrentMagazineAmmo;
+		WeaponState.CurrentMaxAmmo = CurrentWeapon->CurrentMaxAmmo;
+		WeaponContainer->AssignedWeaponState = CurrentWeaponState;
+
+		CurrentWeapon->DestroyComponent();
+		WeaponModels[CurrentWeaponIndex] = nullptr;
+		CurrentWeapon = nullptr;
+		WeaponEquipped = false;
+
+	}
+}
+
+void AMainCharacter::PickupWeapon() {
+	if (HoveredWeapon != nullptr) {
+		for (int32 i = 0; i < WeaponModels.Num(); i++)
+		{
+			if (WeaponModels.IsValidIndex(0) && WeaponModels[i] == nullptr) {
+				ServerPickupWeapon(HoveredWeapon->AssignedWeapon, HoveredWeapon->AssignedWeaponState);
+			}
+		}
+	}
+}
+
+void AMainCharacter::MulticastPickupWeapon_Implementation(TSubclassOf<UWeaponComponent> PickedUpWeapon, FWeaponState PickedUpWeaponState)
+{
+
+			if (WeaponModels.IsValidIndex(0) && WeaponModels[i] == nullptr) {
+				UWeaponComponent *NewPickedUpWeapon = NewObject<UWeaponComponent>(this, PickedUpWeapon, *PickedUpWeapon.GetDefaultObject()->GetName());
+				NewPickedUpWeapon->WeaponSubclass = PickedUpWeapon;
+				NewPickedUpWeapon->SetWeaponState(PickedUpWeaponState);
+				WeaponModels[i] = NewPickedUpWeapon;
+				NewPickedUpWeapon->AttachTo(GetMesh(), SocketNames[i], EAttachLocation::SnapToTarget);
+				NewPickedUpWeapon->RegisterComponent();
+				break;
+			}
+		}
+}
+
+void AMainCharacter::ServerPickupWeapon_Implementation(TSubclassOf<UWeaponComponent> PickedUpWeapon, FWeaponState PickedUpWeaponState)
+{
+	MulticastPickupWeapon(PickedUpWeapon, PickedUpWeaponState);
+}
+bool AMainCharacter::ServerPickupWeapon_Validate(TSubclassOf<UWeaponComponent> PickedUpWeapon, FWeaponState PickedUpWeaponState) { return true; }
 
 void AMainCharacter::ReloadWeapon() {
 	if (CurrentWeapon == nullptr) { return; }
@@ -619,18 +644,22 @@ void AMainCharacter::AnimNotify_Fire() {
 	}
 }
 void AMainCharacter::ScrollUp() {
-	if (CurrentWeaponIndex + 1 > Weapons.Num() - 1 || SwitchingWeapon || WeaponModels[CurrentWeaponIndex + 1] == nullptr) { return; }
+	if (CurrentWeaponIndex + 1 > Weapons.Num() - 1 || SwitchingWeapon) { return; }
 	PreviousWeaponIndex = CurrentWeaponIndex;
 	CurrentWeaponIndex += 1;
 	CurrentWeaponIndex = FMath::Clamp(CurrentWeaponIndex, 0, Weapons.Num() - 1);
+
+	if (WeaponModels[CurrentWeaponIndex] == nullptr) { return; }
 	FiringWeapon = false;
 	StartSwitchingWeapon();
 }
 void AMainCharacter::ScrollDown() {
-	if (CurrentWeaponIndex - 1 < 0 || SwitchingWeapon || WeaponModels[CurrentWeaponIndex - 1] == nullptr) { return; }
+	if (CurrentWeaponIndex - 1 < 0 || SwitchingWeapon) { return; }
 	PreviousWeaponIndex = CurrentWeaponIndex;
 	CurrentWeaponIndex -= 1;
 	CurrentWeaponIndex = FMath::Clamp(CurrentWeaponIndex, 0, Weapons.Num() - 1);
+
+	if (WeaponModels[CurrentWeaponIndex] == nullptr) { return; }
 	FiringWeapon = false;
 	StartSwitchingWeapon();
 }
@@ -654,7 +683,6 @@ void AMainCharacter::StartSwitchingWeapon() {
 void AMainCharacter::PlacedWeapon() {
 	if (CurrentWeapon != nullptr) {
 		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, SocketNames[PreviousWeaponIndex]);
-
 	}
 }
 

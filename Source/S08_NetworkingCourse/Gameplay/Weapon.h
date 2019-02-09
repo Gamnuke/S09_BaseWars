@@ -25,5 +25,7 @@ public:
 		class UStaticMeshComponent *Mesh;
 	
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-		class UWeaponComponent *AssignedWeaponComponent;
+		TSubclassOf<class UWeaponComponent> AssignedWeapon;
+
+	FWeaponState AssignedWeaponState;
 };

@@ -91,7 +91,8 @@ void UWeaponComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, 
 		SetCrosshairSize(CurrentThreshold);
 	}
 
-
+	WeaponState.CurrentMagazineAmmo = CurrentMagazineAmmo;
+	WeaponState.CurrentMaxAmmo = CurrentMaxAmmo;
 }
 
 void UWeaponComponent::SetCrosshairSize(float ThresholdToSet) 
@@ -167,6 +168,11 @@ void UWeaponComponent::ReloadWeapon() {
 		CurrentMagazineAmmo += AmmoPendingToAdd;
 	}
 	Character->UpdateAmmoDisplay(CurrentMagazineAmmo, CurrentMaxAmmo);
+}
+
+void UWeaponComponent::SetWeaponState(FWeaponState State) {
+	CurrentMagazineAmmo = State.CurrentMagazineAmmo;
+	CurrentMaxAmmo = State.CurrentMaxAmmo;
 }
 
 

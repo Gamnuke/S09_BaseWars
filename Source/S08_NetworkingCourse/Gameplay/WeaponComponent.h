@@ -72,6 +72,17 @@ USTRUCT(BlueprintType)
 };
 
 USTRUCT(BlueprintType)
+struct FWeaponState {
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Ammo)
+		int CurrentMagazineAmmo;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Ammo)
+		int CurrentMaxAmmo;
+};
+
+USTRUCT(BlueprintType)
 struct FProjectileSettings {
 	GENERATED_USTRUCT_BODY()
 
@@ -140,4 +151,9 @@ public:
 	int CurrentMaxAmmo;
 
 	void ReloadWeapon();
+	void SetWeaponState(FWeaponState State);
+
+	TSubclassOf<class UWeaponComponent> WeaponSubclass;
+
+	FWeaponState WeaponState;
 };
