@@ -5,6 +5,14 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "DrawDebugHelpers.h"
 
+#include "Gameplay/MainCharacter.h"
+#include "Gameplay/MainPlayerState.h"
+#include "Gameplay/Droid.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/Image.h"
+#include "MenuSystem/InGameUI/InGameHUD.h"
+
 // Sets default values
 AProjectile::AProjectile()
 {
@@ -16,6 +24,9 @@ AProjectile::AProjectile()
 
 	ProjectileImpact = CreateDefaultSubobject<UParticleSystemComponent>(FName("Impact"));
 	ProjectileImpact->SetupAttachment(ProjectileTrail);
+
+	DroidImpact = CreateDefaultSubobject<UParticleSystemComponent>(FName("DroidImpact"));
+	DroidImpact->SetupAttachment(ProjectileTrail);
 }
 
 // Called when the game starts or when spawned
@@ -25,6 +36,8 @@ void AProjectile::BeginPlay()
 	
 	StartLocation = GetActorLocation();
 	Speed = ProjectileSettings.InitialSpeed;
+	CallDestructionDelay();
+
 }
 
 // Called every frame
@@ -51,18 +64,49 @@ void AProjectile::Tick(float DeltaTime)
 			CanMove = false;
 			SetActorLocation(SweepResult.ImpactPoint);
 			ProjectileTrail->Deactivate();
+
 			ProjectileImpact->SetWorldRotation(SweepResult.ImpactNormal.Rotation());
-			
-			DrawDebugLine(GetWorld(), GetActorLocation(), GetActorLocation() + SweepResult.ImpactNormal * 10, FColor::Red, false, 10);
+			ProjectileImpact->SetWorldScale3D(FVector::OneVector * ProjectileSettings.ImpactSizeScale);
 			ProjectileImpact->Activate();
 
 			if (ProjectileSettings.InstantImpact) {
 				AActor *NewTrail = GetWorld()->SpawnActor<AActor>(Trail.Get(), SweepResult.TraceStart, GetActorRotation());
-				NewTrail->SetActorScale3D(FVector(1, 1, ((GetActorLocation() - StartLocation).Size()) / 100));
+				NewTrail->SetActorScale3D(FVector(ProjectileSettings.TrailThickness, ProjectileSettings.TrailThickness, ((GetActorLocation() - StartLocation).Size()) / 100));
 				NewTrail->SetActorLocation(StartLocation + (GetActorLocation() - StartLocation) / 2);
 			}
 
-			CallDestructionDelay();
+			if (SweepResult.GetActor() == nullptr) { return; }
+			ADroid *Droid = Cast<ADroid>(SweepResult.GetActor());
+			if (Droid == nullptr) {
+				return;
+			}
+
+			Droid->LeadFlinchRotation = Droid->LeadFlinchRotation + FRotator(FMath::RandRange(-45,45), FMath::RandRange(-45, 45), FMath::RandRange(-45, 0));
+
+			if (SweepResult.BoneName == FName("head")) {
+				if (HasAuthority() && OwnedByServer) {
+					Droid->DamageDroid(ProjectileSettings.Damage * 2, SweepResult);
+				}
+					if (HudRef != nullptr) {
+						HudRef->Hitmarker->SetColorAndOpacity(FLinearColor(1, 0, 0, 1));
+						HudRef->Hitmarker->SetRenderOpacity(20);
+					}
+			}
+			else {
+				if (HasAuthority() && OwnedByServer) {
+					Droid->DamageDroid(ProjectileSettings.Damage, SweepResult);
+				}
+					if (HudRef != nullptr) {
+						HudRef->Hitmarker->SetColorAndOpacity(FLinearColor(1, 1, 1, 1));
+						HudRef->Hitmarker->SetRenderOpacity(20);
+					}
+			}
+
+			Droid->GetMesh()->AddImpulseAtLocation((SweepResult.ImpactPoint - SweepResult.TraceStart).GetSafeNormal() * 1000, SweepResult.ImpactPoint);
+			DroidImpact->SetWorldRotation(SweepResult.ImpactNormal.Rotation());
+			DroidImpact->SetWorldLocation(SweepResult.ImpactPoint);
+			DroidImpact->Activate();
+			ProjectileImpact->Deactivate();
 		}
 	}
 
@@ -70,6 +114,7 @@ void AProjectile::Tick(float DeltaTime)
 		Destroy();
 	}
 }
+
 
 void AProjectile::CallDestructionDelay_Implementation(){}
 

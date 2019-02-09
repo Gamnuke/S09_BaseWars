@@ -3,18 +3,27 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/StaticMeshComponent.h"
+#include "GameFramework/Actor.h"
+#include "Gameplay/WeaponComponent.h"
 #include "Weapon.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class S08_NETWORKINGCOURSE_API UWeapon : public UStaticMeshComponent
+class S08_NETWORKINGCOURSE_API AWeapon : public AActor
 {
 	GENERATED_BODY()
+
+AWeapon();
+
+protected:
+	virtual void BeginPlay() override;
+
+public:
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+		class UStaticMeshComponent *Mesh;
 	
-	
-	
-	
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+		class UWeaponComponent *AssignedWeaponComponent;
 };

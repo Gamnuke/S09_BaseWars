@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "LobbyGameMode.h"
 #include "MenuSystem/MainMenu.h"
+#include "PlayingGameMode.h"
 #include "GamePlayerController.generated.h"
 
 /**
@@ -19,6 +20,12 @@ class S08_NETWORKINGCOURSE_API AGamePlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
+AGamePlayerController(const FObjectInitializer& ObjectInitializer);
+
+protected:
+	virtual void Tick(float DeltaTime);
+	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const;
+
 public:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	UMainMenu *MainMenuWidget;
@@ -30,4 +37,10 @@ public:
 	UInGameHUD *InGameHUDReference;
 
 	void AddWidgetToViewport(UKickedNote *WidgetToAdd);
+
+	UPROPERTY(Replicated)
+	FRoundData RoundData;
+
+	UFUNCTION(NetMulticast, unreliable)
+		void SetRoundData(class AGamePlayerController *PC, FRoundData DataToSet);
 };

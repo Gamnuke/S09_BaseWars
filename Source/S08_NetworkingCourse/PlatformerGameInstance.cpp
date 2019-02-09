@@ -29,7 +29,6 @@ const static FName SESSION_SETTINGS_Locked = TEXT("ServerLocked");
 
 UPlatformerGameInstance::UPlatformerGameInstance(const FObjectInitializer& ObjectInitializer)
 {
-
 	static ConstructorHelpers::FClassFinder<UUserWidget> UserWidget(TEXT("/Game/UI/MainMenu_WBP"));
 	if (UserWidget.Class != NULL)
 	{
@@ -121,7 +120,7 @@ void UPlatformerGameInstance::OnJoinSessionComplete(FName SessionName, EOnJoinSe
 		MenuWidget->TearDown(false);
 	}
 	MenuWidget->PlayerIsHost = false;
-	PlayerController->ClientTravel(Address, ETravelType::TRAVEL_Absolute);
+	PlayerController->ClientTravel(Address, ETravelType::TRAVEL_Absolute, true);
 }
 
 void UPlatformerGameInstance::HostServer(FText ServerName) {
@@ -217,8 +216,10 @@ void UPlatformerGameInstance::OpenPauseMenu() {
 	}
 	if (PauseMenuWidget != nullptr) {
 		PauseMenuWidget->SetMenuInterface(this);
-		PauseMenuWidget->IsHost = MenuWidget->PlayerIsHost;
 		PauseMenuWidget->Setup();
+		if (MenuWidget != nullptr) {
+			PauseMenuWidget->IsHost = MenuWidget->PlayerIsHost;
+		}
 	}
 }
 
@@ -228,7 +229,7 @@ void UPlatformerGameInstance::OpenMainMenu() {
 		if (PauseMenuWidget != nullptr) {
 			PauseMenuWidget->Teardown();
 		}
-		PlayerController->ClientTravel("/Game/Levels/MainMenu", ETravelType::TRAVEL_Absolute, true);
+		PlayerController->ClientTravel("/Game/Levels/MainMenu", ETravelType::TRAVEL_Absolute, false);
 	}
 }
 

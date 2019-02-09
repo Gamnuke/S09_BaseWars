@@ -20,30 +20,55 @@ protected:
 	class AMainCharacter* CharacterRef;
 
 public:
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool Aiming;
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool Sprinting;
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool Falling;
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool WeaponEquipped;
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool FiringWeapon;
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		bool Taunting;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		bool ReloadingWeapon;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float Speed;
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float Direction;
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float AimPitch;
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		FWeaponSettings WeaponSettings;
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		FVector GripLocation;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		bool FireAnimPlaying;
+
+	//Changing Weapon
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		int PreviousWeaponIndex;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		int CurrentWeaponIndex;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		bool SwitchingWeapon;
 
 public: // Weapon Variables
 	UFUNCTION(BlueprintCallable)
 		void AnimNotify_Fire();
 	
-	
+	UFUNCTION(BlueprintCallable)
+	void AnimNotify_HasSwitchedWeapon();
+
+	UFUNCTION(BlueprintCallable)
+	void AnimNotify_HasFinishedSwitchingWeapon();
+
+	UFUNCTION(BlueprintCallable)
+		void AnimNotify_HasPutBackWeapon();
+
+	UFUNCTION(BlueprintCallable)
+		void AnimNotify_FinishedReloading();
+
 };

@@ -20,6 +20,7 @@ protected:
 	virtual bool Initialize();
 	virtual void NativeTick(const FGeometry& MyGeometry, float DeltaTime) override;
 
+	
 private:
 	float TargetOpacity;
 
@@ -53,9 +54,29 @@ public:
 		class UImage *BottomHair;
 	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
 		class UImage *MiddleHair;
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UImage *Hitmarker;
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UCircularThrobber *ReloadThrobber;
+
+	// Bottom Display
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UTextBlock *AmmoDisplay;
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UProgressBar *HealthBar;
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UImage *DamageVignette;
+
+	// Top display
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UTextBlock *RoundDisplay;
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly, VisibleAnywhere)
+		class UProgressBar *RoundProgress;
 
 	FVector ProjectedLocation;
 	FVector ProjectedDirection;
+
+	float VignetteTargetOpacity = 0;
 
 	AGamePlayerController *Owner;
 };

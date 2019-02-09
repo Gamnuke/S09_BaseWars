@@ -17,19 +17,63 @@
 #include "UObject/UObjectGlobals.h"
 #include "Kismet/GameplayStatics.h"
 
+#include "Gameplay/MainCharacter.h"
+#include "Camera/CameraComponent.h"
+#include "Sound/SoundBase.h"
+
 UWeaponComponent::UWeaponComponent(const FObjectInitializer & ObjectInitializer) : Super(ObjectInitializer)
 {
 	if (Mesh != nullptr) {
 		this->SetStaticMesh(Mesh);
 	}
 	PrimaryComponentTick.bCanEverTick = true;
+	SetIsReplicated(false);
+}
 
-	
+void UWeaponComponent::AimGun(bool Smooth) {
+	FHitResult AimHit;
+	GetWorld()->LineTraceSingleByChannel(
+		AimHit,
+		AimLocation,
+		AimLocation + AimDirection * 1000000,
+		ECollisionChannel::ECC_Visibility
+	);
+
+	if ((AimHit.ImpactPoint - AimHit.TraceStart).Size() < 0) {
+		AimHit.ImpactPoint = AimHit.TraceEnd;
+	}
+
+	if (Character->IsLocallyControlled() && !Character->ReloadingWeapon && !Character->Taunting && Character->WeaponEquipped && !Character->Sprinting && CanShoot) {
+		FRotator DesiredRotation = UKismetMathLibrary::FindLookAtRotation(GetSocketLocation("Barrel") - GetForwardVector() * 100, AimHit.bBlockingHit ? AimHit.ImpactPoint : AimHit.TraceEnd);
+		if (Smooth) {
+			SetWorldRotation(FMath::RInterpTo(GetComponentRotation(), DesiredRotation, CurrentDeltaTime, 5));
+		}
+		else {
+			SetWorldRotation(DesiredRotation);
+		}
+	}
+	else {
+		SetRelativeRotation(FRotator::ZeroRotator);
+	}
+	FRotator Rotation = RelativeRotation;
+	Rotation.Roll = 0;
+	SetRelativeRotation(Rotation);
 }
 
 void UWeaponComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	if (CanShoot) {
+		Character->WeaponGripLocation = GetSocketLocation("GripSocket");
+	}
+
+	CurrentDeltaTime = DeltaTime;
+
+	if (!Character->FireAnimPlaying) {
+		AimGun(true);
+	}
+
+	if (!CanShoot) { return; }
 	if (Character == nullptr) { return; }
 
 	TargetThreshold = Character->Aiming ? WeaponSettings.AimIdleCrosshairThreshold : WeaponSettings.HipIdleCrosshairThreshold;
@@ -43,29 +87,9 @@ void UWeaponComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, 
 
 	CurrentThreshold = FMath::FInterpTo(CurrentThreshold, TargetThreshold, DeltaTime, 5);
 
-	FHitResult AimHit;
-	GetWorld()->LineTraceSingleByChannel(
-		AimHit,
-		AimLocation.GetValue(),
-		AimLocation.GetValue() + AimDirection.GetValue() * 100000,
-		ECollisionChannel::ECC_Visibility
-	);
-	
-
-	if (Character->WeaponEquipped && !Character->Sprinting) {
-		if (AimHit.IsValidBlockingHit()) {
-			SetWorldRotation(UKismetMathLibrary::FindLookAtRotation(GetComponentLocation(), AimHit.ImpactPoint));
-		}
-		else {
-			SetWorldRotation(UKismetMathLibrary::FindLookAtRotation(GetComponentLocation(), AimHit.TraceEnd));
-		}
+	if (Character->IsLocallyControlled()) {
+		SetCrosshairSize(CurrentThreshold);
 	}
-	else {
-		SetRelativeRotation(FRotator::ZeroRotator);
-	}
-	
-	Character->WeaponGripLocation = GetSocketLocation("GripSocket");
-	SetCrosshairSize(CurrentThreshold);
 
 
 }
@@ -91,22 +115,61 @@ void UWeaponComponent::OnRegister() {
 	Super::OnRegister();
 	if (GetOwner() == nullptr) { return; }
 	Character = Cast<AMainCharacter>(GetOwner());
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), WeaponSettings.WeaponInitiateSound, GetComponentLocation());
 }
 
 void UWeaponComponent::FireWeapon() {
-	if (!DoesSocketExist("Barrel")) { return; }
-	FVector BarrelLoc = GetSocketLocation("Barrel");
-	CurrentThreshold = CurrentThreshold + WeaponSettings.FireCrosshairIncrement;
-	SetCrosshairSize(CurrentThreshold);
+	if (GetOwnerRole() == ROLE_AutonomousProxy || (GetOwnerRole() == ROLE_Authority && Cast<AMainCharacter>(GetOwner())->IsLocallyControlled())) {
+		if (!CanShoot) { return; }
+		if (!DoesSocketExist("Barrel")) { return; }
+		if (Character == nullptr) { return; }
+		if (CurrentMagazineAmmo <= 0) {
+			Character->FiringWeapon = false;
+			return;
+		}
 
-	if (WeaponSettings.ProjectileClass != nullptr) {
-		float T = CurrentThreshold * CurrentThreshold / 5000;
-		FRotator RandomRotation = FRotator(FMath::RandRange(-T, T), FMath::RandRange(-T, T), FMath::RandRange(-T, T));
-		AProjectile *NewProjectile = GetWorld()->SpawnActor<AProjectile>(WeaponSettings.ProjectileClass, GetSocketLocation("Barrel"), GetSocketRotation("Barrel") + RandomRotation );
+		AimGun(false);
+
+		CurrentMagazineAmmo -= 1;
+		CurrentMagazineAmmo = FMath::Clamp(CurrentMagazineAmmo, 0, WeaponSettings.MagazineCapacity);
+
+		for (int i = 0; i < WeaponSettings.ProjectilesPerShot; i++)
+		{
+			if (WeaponSettings.ProjectileClass != nullptr) {
+				float T = CurrentThreshold * CurrentThreshold / 5000;
+				FRotator RandomRotation = FRotator(FMath::RandRange(-T, T), FMath::RandRange(-T, T), FMath::RandRange(-T, T));
+				Character->SpawnProjectile(FTransform(GetSocketRotation("Barrel") + RandomRotation, GetSocketLocation("Barrel")), WeaponSettings.ProjectileClass, ProjectileSettings);
+				Character->ServerSpawnProjectile(FTransform(GetSocketRotation("Barrel") + RandomRotation, GetSocketLocation("Barrel")), WeaponSettings.ProjectileClass, ProjectileSettings);
+			}
+		}
+		Character->CameraComponent->SetFieldOfView(Character->CameraComponent->FieldOfView + WeaponSettings.CameraFOVIncrement);
+		Character->TargetCameraPitch += WeaponSettings.CameraPitchIncrement;
+		Character->UpdateAmmoDisplay(CurrentMagazineAmmo, CurrentMaxAmmo);
+
+		UParticleSystemComponent *NewParticle = UGameplayStatics::SpawnEmitterAttached(WeaponSettings.MuzzleFlashClass, this, NAME_None, GetSocketLocation("Barrel"), GetSocketRotation("Barrel"), EAttachLocation::KeepWorldPosition);
+		NewParticle->AddRelativeRotation(FRotator(0, 0, 45));
+
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), WeaponSettings.FireSound, GetSocketLocation("Barrel"), 1, WeaponSettings.BasePitch + FMath::RandRange(-0.05f, 0.05f));
+		FVector BarrelLoc = GetSocketLocation("Barrel");
+		CurrentThreshold = CurrentThreshold + WeaponSettings.FireCrosshairIncrement;
+		SetCrosshairSize(CurrentThreshold);
 	}
-
-	UParticleSystemComponent *NewParticle = UGameplayStatics::SpawnEmitterAttached(WeaponSettings.MuzzleFlashClass, this, NAME_None, GetSocketLocation("Barrel"), GetSocketRotation("Barrel"), EAttachLocation::KeepWorldPosition);
-	NewParticle->AddRelativeRotation(FRotator(0, 0, 45));
 }
+void UWeaponComponent::ReloadWeapon() {
+	int AmmoPendingToAdd = (WeaponSettings.MagazineCapacity - CurrentMagazineAmmo);
+	if ((CurrentMaxAmmo - AmmoPendingToAdd) < 0) {
+		AmmoPendingToAdd = CurrentMaxAmmo;
+		CurrentMagazineAmmo += CurrentMaxAmmo;
+		CurrentMaxAmmo = 0;
+	}
+	else {
+		CurrentMaxAmmo -= (WeaponSettings.MagazineCapacity - CurrentMagazineAmmo);
+		CurrentMagazineAmmo += AmmoPendingToAdd;
+	}
+	Character->UpdateAmmoDisplay(CurrentMagazineAmmo, CurrentMaxAmmo);
+}
+
+
+
 
 

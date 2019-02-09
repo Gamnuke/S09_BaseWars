@@ -10,6 +10,8 @@
 #include "Interfaces/OnlineSessionInterface.h"
 #include "OnlineSessionSettings.h"
 
+#include "PlayingGameMode.h"
+
 #include "PlatformerGameInstance.generated.h"
 
 class UMainMenu;
@@ -20,6 +22,7 @@ class UInGameHUD;
 /**
  * 
  */
+
 
 
 UCLASS()
@@ -102,4 +105,5 @@ private:
 	FString DesiredServerName;
 
 	FOnlineSessionSettings Settings;
+
 };

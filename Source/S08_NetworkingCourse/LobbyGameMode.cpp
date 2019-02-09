@@ -10,7 +10,9 @@
 #include "PlatformerGameInstance.h"
 #include "Engine/Engine.h"
 
-ALobbyGameMode::ALobbyGameMode(const FObjectInitializer& ObjectInitializer) {}
+ALobbyGameMode::ALobbyGameMode(const FObjectInitializer& ObjectInitializer) {
+	bUseSeamlessTravel = true;
+}
 
 void ALobbyGameMode::PostLogin(APlayerController * NewPlayer)
 {
@@ -18,7 +20,7 @@ void ALobbyGameMode::PostLogin(APlayerController * NewPlayer)
 
 	NumOfPlayers += 1;
 	Validate();
-	bUseSeamlessTravel = false;
+	bUseSeamlessTravel = true;
 	UE_LOG(LogTemp, Warning, TEXT("A player has joined the lobby."));
 	//if (GetNetOwningPlayer()->PlayerController->NetPlayerIndex == 0) {
 		if (GetGameInstance() == nullptr) { return; }

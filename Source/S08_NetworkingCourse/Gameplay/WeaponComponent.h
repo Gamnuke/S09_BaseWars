@@ -17,6 +17,10 @@ USTRUCT(BlueprintType)
 		float RoundsPerSecond = 10;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool SemiAuto = false;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		bool UseShotgunAnimation = false;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		int ProjectilesPerShot = 1;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float HipIdleCrosshairThreshold = 100;
@@ -24,6 +28,7 @@ USTRUCT(BlueprintType)
 		float AimIdleCrosshairThreshold = 50;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float WalkCrosshairIncrement;
+
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float FireCrosshairIncrement = 10;
@@ -34,6 +39,9 @@ USTRUCT(BlueprintType)
 		float CameraFOVResetTime = 10;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float CameraZoomFOV = 60;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float CameraPitchIncrement = 5;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -42,7 +50,52 @@ USTRUCT(BlueprintType)
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class UParticleSystem *MuzzleFlashClass;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Ammo)
+		int MagazineCapacity = 30;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Ammo)
+		int MaxAmmo = 240;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Ammo)
+		float ReloadTime = 1;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category=Sound)
+		class USoundBase *FireSound;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Sound)
+		float BasePitch;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Sound)
+		class USoundBase *WeaponInitiateSound;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Sound)
+		class USoundBase *WeaponZoomInSound;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Sound)
+		class USoundBase *WeaponZoomOutSound;
+};
+
+USTRUCT(BlueprintType)
+struct FProjectileSettings {
+	GENERATED_USTRUCT_BODY()
+
+		UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		bool InstantImpact = true;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = InstantImpactProjectileSettings)
+		float SpeedMultiplier = 5; //Set this to 1 for a linear speed acceleration
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = InstantImpactProjectileSettings)
+		float InitialSpeed; // The initial speed of the projectile
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		int Damage = 23;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		bool ExplosionRadius = 0; // Set this to 0 for no explosion
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float TrailThickness = 1;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float ImpactForce = 20000;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float ImpactSizeScale = 1;
 };
 
 UCLASS(Blueprintable)
@@ -61,18 +114,30 @@ protected:
 
 	float CurrentThreshold;
 	float TargetThreshold;
+
+	void AimGun(bool Smooth);
+
+	float CurrentDeltaTime;
 public:
-	UFUNCTION()
-		void FireWeapon();
+	void FireWeapon();
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		FWeaponSettings WeaponSettings;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		FProjectileSettings ProjectileSettings;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class UStaticMesh* Mesh;
 
-	TOptional<FVector> AimLocation;
-	TOptional<FVector> AimDirection;
+	FVector AimLocation;
+	FVector AimDirection;
 
 	class UParticleSystemComponent *MuzzleFlashSystem;
+
+	bool CanShoot;
+
+	int CurrentMagazineAmmo;
+	int CurrentMaxAmmo;
+
+	void ReloadWeapon();
 };

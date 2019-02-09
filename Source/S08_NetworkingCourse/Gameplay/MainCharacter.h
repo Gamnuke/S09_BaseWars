@@ -9,6 +9,8 @@
 #include "UnrealNetwork.h"
 #include "Styling/SlateColor.h"
 #include "Misc/Optional.h"
+#include "Gameplay/Projectile.h"
+
 
 #include "MainCharacter.generated.h"
 
@@ -29,10 +31,28 @@ struct FState{
 		bool NewWeaponEquipped;
 
 	UPROPERTY()
-	bool NewFiringWeapon;
+		bool Taunting;
+
+	UPROPERTY()
+		bool NewFiringWeapon;
+
+	UPROPERTY()
+		bool ReloadingWeapon;
+
+	UPROPERTY()
+		bool FireAnimPlaying;
 
 	UPROPERTY()
 		float NewAimPitch;
+
+	UPROPERTY()
+		int CurrentWeaponIndex;
+
+	UPROPERTY()
+		int PreviousWeaponIndex;
+
+	UPROPERTY()
+		bool SwitchingWeapon;
 
 	UPROPERTY()
 		FVector NewVelocity;
@@ -68,6 +88,18 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UWidgetComponent *WidgetComponent;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Weapon, meta = (AllowPrivateAccess = "true"))
+		class UStaticMeshComponent *PrimaryWeaponModel;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Weapon, meta = (AllowPrivateAccess = "true"))
+		class UStaticMeshComponent *SecondaryWeaponModel;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Weapon, meta = (AllowPrivateAccess = "true"))
+		TArray<class UWeaponComponent*> WeaponModels;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TArray<FName> SocketNames;
+
 public:
 	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadWrite, Category = Widgets)
 		class UChatDisplayWidget *ChatDisplayWidget;
@@ -87,14 +119,26 @@ public:
 	void SetState(FState NewState);
 public:
 	bool Aiming;
-	bool Sprinting;
-	bool Falling;
+
 	bool WeaponEquipped;
 	bool FiringWeapon;
+	bool SwitchingWeapon;
+	bool ReloadingWeapon;
+	bool FireAnimPlaying;
+
+	bool Falling;
+	bool Sprinting;
+	bool Taunting;
+
+	int CurrentWeaponIndex = 0;
+	int PreviousWeaponIndex = 0;
+
+	class UWeaponComponent* CurrentWeapon = nullptr;
 
 	bool Idle;
 
 	float AimPitch;
+	int CurrentHealth = 100;
 
 	FVector Velocity;
 	FVector RotVelocity;
@@ -125,12 +169,14 @@ public:
 	float TargetCameraPitch;
 
 	FVector TargetCameraRelativeLocation;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	void GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const;
 
-
+	float NextCanHealthRegenTime;
+	float NextHealthRegenTime;
 
 public:
 	void MoveForward(float Value);
@@ -150,6 +196,7 @@ public:
 
 	UFUNCTION()
 		void OnRep_ServerState();
+
 private:
 	TSubclassOf<class UUserWidget> ChatDisplayWidgetClass;
 	TSubclassOf<class UUserWidget> ChatDisplayTabClass;
@@ -160,14 +207,13 @@ private:
 public:	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<TSubclassOf<class UWeaponComponent>> Weapons;
-	class UWeaponComponent* CurrentWeapon = nullptr;
 
-	int CurrentWeaponIndex = 0;
 
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void Jump();
 	void StartSprinting();
 	void StopSprinting();
 	void StartAiming();
@@ -177,8 +223,49 @@ public:
 	void StopFireWeapon();
 	void ScrollUp();
 	void ScrollDown();
+	void StartTaunting();
+	void StartReloadingWeapon();
+
+	UFUNCTION(Server, WithValidation, Reliable)
+	void DropWeapon();
+
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastDropWeapon();
+
+	UFUNCTION(Server, WithValidation, Reliable)
+	void ReplaceWeapon();
+
+	UFUNCTION(NetMulticast, Reliable)
+		void MulticastReplaceWeapon();
+
+	void ReloadWeapon();
+
+	bool Dead;
+
+	void DamagePlayer(int Amount);
 
 	void AnimNotify_Fire();
 
+	void StartSwitchingWeapon();
+	void PlacedWeapon();
+
 	void SwitchWeapon();
+	void FinishedSwitchingWeapon();
+
+	void SetMeshMaterial(UStaticMeshComponent *Mesh, UWeaponComponent *MeshToSetMaterial);
+
+	void SpawnProjectile(FTransform Transform, TSubclassOf<class AProjectile> Projectile, struct FProjectileSettings Settings);
+
+	void UpdateAmmoDisplay(int MagazineAmmo, int MaxAmmo);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+		void ServerSpawnProjectile(FTransform Transform, TSubclassOf<class AProjectile> Projectile, struct FProjectileSettings Settings);
+
+	UFUNCTION(NetMulticast, Reliable)
+		void MulticastSpawnProjectile(FTransform Transform, TSubclassOf<class AProjectile> Projectile, struct FProjectileSettings Settings);
+
+	UFUNCTION(NetMulticast, Reliable)
+		void SetHealth(float Health, bool Heal);
+
+	class AWeapon *HoveredWeapon;
 };

@@ -10,6 +10,7 @@
 #include "Components/EditableText.h"
 #include "Components/Image.h"
 #include "Components/CanvasPanelSlot.h"
+#include "Components/ProgressBar.h"
 #include "Camera/CameraComponent.h"
 
 #include "UnrealNetwork.h"
@@ -17,9 +18,13 @@
 #include "NetworkGameState.h"
 
 #include "Gameplay/MainCharacter.h"
+#include "Gameplay/ActiveGameState.h"
 #include "Engine/Engine.h"
 #include "GameFramework/PlayerState.h"
 #include "DrawDebugHelpers.h"
+#include "PlayingGameMode.h"
+#include "Kismet/GameplayStatics.h"
+#include "PlatformerGameInstance.h"
 
 UInGameHUD::UInGameHUD(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -47,6 +52,7 @@ void UInGameHUD::Setup() {
 
 void UInGameHUD::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
 {
+	Super::NativeTick(MyGeometry, DeltaTime);
 	if (TextInput == nullptr) { return; }
 	if (FadeBorder == nullptr) { return; }
 	if (GetOwningPlayer()->WasInputKeyJustPressed(FKey("Y"))) {
@@ -62,6 +68,16 @@ void UInGameHUD::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
 		5
 	);
 
+	if (GetOwningPlayer()!=nullptr) {
+		AGamePlayerController *PC = Cast<AGamePlayerController>(GetOwningPlayer());
+		if (PC != nullptr) {
+			//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(6, 100, FColor::Emerald, FString("FOUNDNDNDUNOUDND"));
+			FRoundData RD = PC->RoundData;
+			RoundDisplay->SetText(FText::FromString(FString("Round: " + FString::FromInt(RD.CurrentRound))));
+			RoundProgress->SetPercent(1.0f - float(RD.EnemiesLeft) / float(RD.MaxEnemiesThisRound));
+		}
+	}
+
 	FadeBorder->SetContentColorAndOpacity(Color);
 
 	if (MiddleHair == nullptr) { return; }
@@ -72,7 +88,22 @@ void UInGameHUD::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
 	if (Character == nullptr) { return; }
 	
 	const FVector2D ViewportSize = FVector2D(GEngine->GameViewport->Viewport->GetSizeXY());
-	GetOwningPlayer()->DeprojectScreenPositionToWorld(ViewportSize.X/2, ViewportSize.Y / 2, ProjectedLocation, ProjectedDirection);
+	if(GetOwningPlayerPawn()->IsLocallyControlled()) {
+		GetOwningPlayer()->DeprojectScreenPositionToWorld(ViewportSize.X / 2, ViewportSize.Y / 2, ProjectedLocation, ProjectedDirection);
+	}
+	float G = FMath::FInterpTo(Hitmarker->ColorAndOpacity.G,1,DeltaTime,6);
+	Hitmarker->SetColorAndOpacity(FLinearColor(1,G,G,1));
+	Hitmarker->SetRenderOpacity(FMath::FInterpTo(Hitmarker->RenderOpacity, 0, DeltaTime, 6));
+	DamageVignette->SetRenderOpacity(FMath::FInterpTo(DamageVignette->RenderOpacity, VignetteTargetOpacity, DeltaTime, 5));
+	
+	AActiveGameState * GS = GetWorld()->GetGameState<AActiveGameState>();
+	if (GS != nullptr) {
+		FRoundData RD = GS->RoundData;
+		//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(3, 5, FColor::Orange, FString("FOUND GAME STATEEEEEEE"));
+		/*RoundDisplay->SetText(FText::FromString(FString("Round: " + FString::FromInt(RD.CurrentRound))));
+		RoundProgress->SetPercent(1.0f - float(RD.EnemiesLeft) / float(RD.MaxEnemiesThisRound));*/
+	}
+
 }
 
 void UInGameHUD::ComposeNewMessage(FText NewPlayerName, FText NewMessage) {
