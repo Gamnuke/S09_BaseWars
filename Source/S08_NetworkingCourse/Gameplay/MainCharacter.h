@@ -228,15 +228,15 @@ public:
 
 	void DropWeapon();
 	UFUNCTION(NetMulticast, Reliable)
-	void MulticastDropWeapon(FWeaponState CurrentWeaponState);
+	void MulticastDropWeapon(UWeaponComponent *WeaponComp);
 	UFUNCTION(Server, Reliable, WithValidation)
-	void ServerDropWeapon(FWeaponState CurrentWeaponState);
+	void ServerDropWeapon(UWeaponComponent *WeaponComp, FWeaponState WeaponStateToSet);
 
 	void PickupWeapon();
 	UFUNCTION(NetMulticast, Reliable)
-		void MulticastPickupWeapon(TSubclassOf<UWeaponComponent> PickedUpWeapon, FWeaponState PickedUpWeaponState);
+		void MulticastPickupWeapon(AWeapon * WeaponToPickup, TSubclassOf<UWeaponComponent> WeaponClass, FWeaponState WeaponState, int32 WeaponSlot);
 	UFUNCTION(Server, Reliable, WithValidation)
-		void ServerPickupWeapon(TSubclassOf<UWeaponComponent> PickedUpWeapon, FWeaponState PickedUpWeaponState);
+		void ServerTraceForWeapon(FVector NewProjectedLocation, FVector NewProjectedDir);
 
 	void ReloadWeapon();
 
@@ -266,8 +266,5 @@ public:
 
 	UFUNCTION(NetMulticast, Reliable)
 		void SetHealth(float Health, bool Heal);
-
-	class AWeapon *HoveredWeapon;
-
 
 };

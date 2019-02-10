@@ -325,26 +325,7 @@ void AMainCharacter::Tick(float DeltaTime)
 
 	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 5, FColor::Green, FString::FromInt(CurrentHealth));
 
-	FHitResult AimHit;
-	GetWorld()->LineTraceSingleByChannel(
-		AimHit,
-		ProjectedLocation,
-		ProjectedDirection + ProjectedDirection * 1000000,
-		ECollisionChannel::ECC_Visibility
-	);
-
-	if (AimHit.GetActor() != nullptr) {
-		AWeapon *WeaponContainer = Cast<AWeapon>(AimHit.GetActor());
-		if (WeaponContainer != nullptr) {
-			HoveredWeapon = WeaponContainer;
-		}
-		else {
-			HoveredWeapon = nullptr;
-		}
-	}
-	else {
-		HoveredWeapon = nullptr;
-	}
+	
 }
 
 
@@ -404,79 +385,77 @@ void AMainCharacter::StartReloadingWeapon() {
 }
 
 void AMainCharacter::DropWeapon() {
-	if (CurrentWeapon != nullptr) {
-		ServerDropWeapon(CurrentWeapon->WeaponState);
+	if (!SwitchingWeapon && CurrentWeapon != nullptr && WeaponModels[CurrentWeaponIndex] != nullptr && IsLocallyControlled()) {
+		ServerDropWeapon(CurrentWeapon, CurrentWeapon->WeaponState);
 	}
-	if (!SwitchingWeapon && CurrentWeapon != nullptr && WeaponModels[CurrentWeaponIndex]) {
-		/*AWeapon *WeaponContainer = GetWorld()->SpawnActor<AWeapon>(AWeapon::StaticClass(), CurrentWeapon->GetComponentLocation(), CurrentWeapon->GetComponentRotation());
-		WeaponContainer->AssignedWeapon = CurrentWeapon->WeaponSubclass;
-		WeaponContainer->Mesh->SetStaticMesh(CurrentWeapon->GetStaticMesh());
-		FWeaponState WeaponState;
-		WeaponState.CurrentMagazineAmmo = CurrentWeapon->CurrentMagazineAmmo;
-		WeaponState.CurrentMaxAmmo = CurrentWeapon->CurrentMaxAmmo;
-		WeaponContainer->AssignedWeaponState = WeaponState;*/
 
-		/*CurrentWeapon->DestroyComponent();
-		WeaponModels[CurrentWeaponIndex] = nullptr;
-		CurrentWeapon = nullptr;
-		WeaponEquipped = false;*/
-
-	}
 }
-void AMainCharacter::ServerDropWeapon_Implementation(FWeaponState CurrentWeaponState)
+void AMainCharacter::ServerDropWeapon_Implementation(UWeaponComponent *WeaponComp, FWeaponState WeaponStateToSet)
 {
-	MulticastDropWeapon(CurrentWeaponState);
+	if (CurrentWeapon == nullptr) { return; }
+	AWeapon *WeaponContainer = GetWorld()->SpawnActor<AWeapon>(AWeapon::StaticClass(), CurrentWeapon->GetComponentLocation(), CurrentWeapon->GetComponentRotation());
+	WeaponContainer->AssignedWeapon = CurrentWeapon->WeaponSubclass;
+	WeaponContainer->Mesh->SetStaticMesh(CurrentWeapon->GetStaticMesh());
+	WeaponContainer->SelfInitialize = false;
+	FWeaponState WeaponState;
+	WeaponState.CurrentMagazineAmmo = CurrentWeapon->CurrentMagazineAmmo;
+	WeaponState.CurrentMaxAmmo = CurrentWeapon->CurrentMaxAmmo;
+	WeaponContainer->AssignedWeaponState = WeaponStateToSet;
+	WeaponContainer->Mesh->SetPhysicsLinearVelocity(GetControlRotation().Vector() * 500, true);
+	MulticastDropWeapon(WeaponComp);
 }
-bool AMainCharacter::ServerDropWeapon_Validate(FWeaponState CurrentWeaponState) { return true; }
-void AMainCharacter::MulticastDropWeapon_Implementation(FWeaponState CurrentWeaponState) {
-	if (!SwitchingWeapon && CurrentWeapon != nullptr && WeaponModels[CurrentWeaponIndex]) {
-		AWeapon *WeaponContainer = GetWorld()->SpawnActor<AWeapon>(AWeapon::StaticClass(), CurrentWeapon->GetComponentLocation(), CurrentWeapon->GetComponentRotation());
-		WeaponContainer->AssignedWeapon = CurrentWeapon->WeaponSubclass;
-		WeaponContainer->Mesh->SetStaticMesh(CurrentWeapon->GetStaticMesh());
-		FWeaponState WeaponState;
-		WeaponState.CurrentMagazineAmmo = CurrentWeapon->CurrentMagazineAmmo;
-		WeaponState.CurrentMaxAmmo = CurrentWeapon->CurrentMaxAmmo;
-		WeaponContainer->AssignedWeaponState = CurrentWeaponState;
-
+bool AMainCharacter::ServerDropWeapon_Validate(UWeaponComponent *WeaponComp, FWeaponState WeaponStateToSet) { return true; }
+void AMainCharacter::MulticastDropWeapon_Implementation(UWeaponComponent *WeaponComp) {
+	if (CurrentWeapon != nullptr) {
 		CurrentWeapon->DestroyComponent();
 		WeaponModels[CurrentWeaponIndex] = nullptr;
 		CurrentWeapon = nullptr;
 		WeaponEquipped = false;
-
 	}
 }
 
 void AMainCharacter::PickupWeapon() {
-	if (HoveredWeapon != nullptr) {
-		for (int32 i = 0; i < WeaponModels.Num(); i++)
-		{
-			if (WeaponModels.IsValidIndex(0) && WeaponModels[i] == nullptr) {
-				ServerPickupWeapon(HoveredWeapon->AssignedWeapon, HoveredWeapon->AssignedWeaponState);
+	ServerTraceForWeapon(ProjectedLocation, ProjectedDirection);
+}
+bool AMainCharacter::ServerTraceForWeapon_Validate(FVector NewProjectedLocation, FVector NewProjectedDir) { return true; }
+
+void AMainCharacter::ServerTraceForWeapon_Implementation(FVector NewProjectedLocation, FVector NewProjectedDir)
+{
+	FHitResult AimHit;
+	GetWorld()->LineTraceSingleByChannel(
+		AimHit,
+		ProjectedLocation,
+		ProjectedDirection + ProjectedDirection * 1000000,
+		ECollisionChannel::ECC_Visibility
+	);
+
+	if (AimHit.GetActor() != nullptr) {
+		AWeapon *WeaponContainer = Cast<AWeapon>(AimHit.GetActor());
+		if (WeaponContainer != nullptr) {
+			for (int32 i = 0; i < WeaponModels.Num(); i++)
+			{
+				if (WeaponModels.IsValidIndex(i) && WeaponModels[i] == nullptr && WeaponContainer->AssignedWeapon != nullptr) {
+					MulticastPickupWeapon(WeaponContainer, WeaponContainer->AssignedWeapon, WeaponContainer->AssignedWeaponState, i);
+					WeaponContainer->Destroy();
+					break;
+				}
 			}
+
 		}
 	}
 }
 
-void AMainCharacter::MulticastPickupWeapon_Implementation(TSubclassOf<UWeaponComponent> PickedUpWeapon, FWeaponState PickedUpWeaponState)
+void AMainCharacter::MulticastPickupWeapon_Implementation(AWeapon * WeaponToPickup, TSubclassOf<UWeaponComponent> WeaponClass, FWeaponState WeaponState, int32 WeaponSlot)
 {
-
-			if (WeaponModels.IsValidIndex(0) && WeaponModels[i] == nullptr) {
-				UWeaponComponent *NewPickedUpWeapon = NewObject<UWeaponComponent>(this, PickedUpWeapon, *PickedUpWeapon.GetDefaultObject()->GetName());
-				NewPickedUpWeapon->WeaponSubclass = PickedUpWeapon;
-				NewPickedUpWeapon->SetWeaponState(PickedUpWeaponState);
-				WeaponModels[i] = NewPickedUpWeapon;
-				NewPickedUpWeapon->AttachTo(GetMesh(), SocketNames[i], EAttachLocation::SnapToTarget);
-				NewPickedUpWeapon->RegisterComponent();
-				break;
-			}
-		}
+	if (WeaponToPickup == nullptr) { return; }
+	UWeaponComponent *NewPickedUpWeapon = NewObject<UWeaponComponent>(this, WeaponToPickup->AssignedWeapon, FName(*(WeaponToPickup->AssignedWeapon.GetDefaultObject()->GetName() + FString::FromInt(FMath::RandRange(0,100000)))));
+	NewPickedUpWeapon->WeaponSubclass = WeaponToPickup->AssignedWeapon;
+	NewPickedUpWeapon->SetWeaponState(WeaponToPickup->AssignedWeaponState);
+	WeaponModels[WeaponSlot] = NewPickedUpWeapon;
+	NewPickedUpWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, SocketNames[WeaponSlot]);
+	NewPickedUpWeapon->RegisterComponent();
 }
 
-void AMainCharacter::ServerPickupWeapon_Implementation(TSubclassOf<UWeaponComponent> PickedUpWeapon, FWeaponState PickedUpWeaponState)
-{
-	MulticastPickupWeapon(PickedUpWeapon, PickedUpWeaponState);
-}
-bool AMainCharacter::ServerPickupWeapon_Validate(TSubclassOf<UWeaponComponent> PickedUpWeapon, FWeaponState PickedUpWeaponState) { return true; }
 
 void AMainCharacter::ReloadWeapon() {
 	if (CurrentWeapon == nullptr) { return; }

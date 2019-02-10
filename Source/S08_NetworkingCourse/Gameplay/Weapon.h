@@ -10,12 +10,29 @@
 /**
  * 
  */
+
+USTRUCT()
+struct FMovementState {
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY()
+		FVector Location;
+	UPROPERTY()
+		FVector Velocity;
+	UPROPERTY()
+		FRotator Rotation;
+};
+
 UCLASS()
 class S08_NETWORKINGCOURSE_API AWeapon : public AActor
 {
 	GENERATED_BODY()
 
 AWeapon();
+	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const;
+
+protected:
+	virtual void Tick(float DeltaTime) override;
 
 protected:
 	virtual void BeginPlay() override;
@@ -23,9 +40,13 @@ protected:
 public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class UStaticMeshComponent *Mesh;
-	
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+
+	UPROPERTY(Replicated, BlueprintReadWrite, EditAnywhere)
 		TSubclassOf<class UWeaponComponent> AssignedWeapon;
 
-	FWeaponState AssignedWeaponState;
+	UPROPERTY(Replicated, BlueprintReadWrite, EditAnywhere)
+		FWeaponState AssignedWeaponState;
+
+	UPROPERTY(Replicated, BlueprintReadWrite, EditAnywhere)
+	bool SelfInitialize = true;
 };
