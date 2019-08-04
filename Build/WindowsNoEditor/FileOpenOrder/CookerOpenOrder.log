@@ -1,510 +1,318 @@
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Material_001.uasset" 0
-"../../../Engine/Content/EngineMeshes/Humanoid.uasset" 1
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Mesh/UE4_Mannequin_Skeleton.uasset" 2
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Idle_Rifle_Ironsights.uasset" 3
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Sights/AimCenter.uasset" 4
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/NewPoseAsset.uasset" 5
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/scrollIcon.uasset" 6
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/IsDroidDead.uasset" 7
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/BruteWalking_mixamo_com1.uasset" 8
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/Injured_Walk_mixamo_com1.uasset" 9
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/Zombie_Agonizing_mixamo_com1.uasset" 10
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/Zombie_Crawl_mixamo_com1.uasset" 11
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/Zombie_Walk_mixamo_com1.uasset" 12
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/HitReactions/Zombie_Reaction_Hit_mixamo_com.uasset" 13
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/Archivo-Medium.uasset" 14
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/BAHNSCHRIFT.uasset" 15
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/BAHNSCHRIFT_Font.uasset" 16
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/Capture_it.uasset" 17
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/After_Shok.uasset" 18
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/Font.uasset" 19
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/JosefinSans-Bold.uasset" 20
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/JosefinSans-Light.uasset" 21
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/Quicksand-Light.uasset" 22
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/SF_Archery_Black.uasset" 23
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Knight/BoneMapping.uasset" 24
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Knight/Paladin_diffuse.uasset" 25
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Knight/Paladin_normal.uasset" 26
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Knight/Paladin_specular.uasset" 27
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Knight/Paladin_MAT.uasset" 28
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Knight/Gangnam_Style_with_knight_PhysicsAsset.uasset" 29
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Knight/Gangnam_Style_with_knight_Skeleton.uasset" 30
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Knight/Gangnam_Style_with_knight.uasset" 31
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/MapSelection_WBP.uasset" 32
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Density/ExponentialDensity.uasset" 33
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Gradient/RadialGradientExponential.uasset" 34
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Mat_Rain.uasset" 35
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Rain_PS.uasset" 36
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Blueprint_Texture.uasset" 37
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Meshes/CubeMaterial.uasset" 38
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Meshes/TemplateFloor.uasset" 39
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/MapThumbnails/Level2.uasset" 40
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Running_mixamo_com1.uasset" 41
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Hip/Aim_Space_Hip.uasset" 42
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Sights/Aim_Space_Ironsights.uasset" 43
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/Jump_From_Jog.uasset" 44
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/Jump_From_Stand.uasset" 45
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/Jump_From_Stand_Ironsights.uasset" 46
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Arms_Hip_Hop_Dance_Take_001.uasset" 47
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/hiphoponstart.uasset" 48
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/House_Dancing_Take_001.uasset" 49
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Northern_Soul_Floor_Combo_Take_001.uasset" 50
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Samba_Dancing_mixamo_com.uasset" 51
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Swing_Dancing_Take_001.uasset" 52
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Wave_Hip_Hop_Dance_Take_001.uasset" 53
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_Walk_Bwd_Rifle_Hip.uasset" 54
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_Walk_Fwd_Rifle_Hip.uasset" 55
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_Walk_Lt_Rifle_Hip.uasset" 56
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_Walk_Rt_Rifle_Hip.uasset" 57
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/BS_CrouchWalk.uasset" 58
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Jog_Bwd_Rifle.uasset" 59
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Jog_Fwd_Rifle.uasset" 60
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Jog_Lt_Rifle.uasset" 61
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Jog_Rt_Rifle.uasset" 62
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/BS_Jog.uasset" 63
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_to_Stand_Rifle_Hip.uasset" 64
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_to_Stand_Rifle_Ironsights.uasset" 65
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_Walk_Bwd_Rifle_Ironsights.uasset" 66
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_Walk_Lt_Rifle_Ironsights.uasset" 67
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_Walk_Rt_Rifle_Ironsights.uasset" 68
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Death_1.uasset" 69
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Death_2.uasset" 70
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Death_3.uasset" 71
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Death_Ironsights_1.uasset" 72
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Death_Ironsights_2.uasset" 73
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Equip_Rifle_Standing.uasset" 74
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Hit_React_4.uasset" 75
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Idle_Pistol.uasset" 76
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Prone_Death_1.uasset" 77
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Prone_Death_2.uasset" 78
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Prone_Fire_1.uasset" 79
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Prone_Fire_2.uasset" 80
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Prone_Idle.uasset" 81
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Prone_Reload_Rifle.uasset" 82
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Prone_Reload_Shotgun.uasset" 83
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Prone_To_Stand.uasset" 84
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Reload_Pistol.uasset" 85
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Reload_Rifle_Ironsights.uasset" 86
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Reload_Shotgun_Hip.uasset" 87
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Reload_Shotgun_Ironsights.uasset" 88
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Stand_to_Crouch_Rifle_Hip.uasset" 89
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Stand_to_Crouch_Rifle_Ironsights.uasset" 90
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Stand_To_Prone.uasset" 91
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/ThirdPersonJump_End.uasset" 92
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/ThirdPersonJump_Loop.uasset" 93
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/ThirdPersonJump_Start.uasset" 94
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/ThirdPersonRun.uasset" 95
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/ThirdPersonWalk.uasset" 96
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/ThirdPerson_Jump.uasset" 97
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BlendAngleCorrectedNormals.uasset" 98
-"../../../Engine/Content/Functions/MaterialLayerFunctions/MatLayerBlend_AO.uasset" 99
-"../../../Engine/Content/Functions/MaterialLayerFunctions/MatLayerBlend_NormalBlend.uasset" 100
-"../../../Engine/Content/Functions/MaterialLayerFunctions/MatLayerBlend_Simple.uasset" 101
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/MaterialLayers/T_ML_Rubber_Blue_01_D.uasset" 102
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/MaterialLayers/T_ML_Rubber_Blue_01_N.uasset" 103
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/MaterialLayers/ML_GlossyBlack_Latex_UE4.uasset" 104
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/MaterialLayers/ML_Plastic_Shiny_Beige.uasset" 105
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Textures/UE4_LOGO_CARD.uasset" 106
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/MaterialLayers/ML_Plastic_Shiny_Beige_LOGO.uasset" 107
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/MaterialLayers/T_ML_Aluminum01.uasset" 108
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/MaterialLayers/T_ML_Aluminum01_N.uasset" 109
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/MaterialLayers/ML_SoftMetal_UE4.uasset" 110
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Textures/UE4_Mannequin__normals.uasset" 111
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Textures/UE4_Mannequin_MAT_MASKA.uasset" 112
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Textures/UE4_Mannequin_occlusion_Mobile.uasset" 113
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/M_UE4Man_Body.uasset" 114
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Textures/UE4Man_Logo_N.uasset" 115
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/M_UE4Man_ChestLogo.uasset" 116
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Mesh/SK_Mannequin_PhysicsAsset.uasset" 117
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Mesh/SK_Mannequin.uasset" 118
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Ue4ASP_Character.uasset" 119
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/UE4_Mannequin/Materials/ManInst.uasset" 120
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Mat_ProjectileTrail.uasset" 121
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Props/CeilingLightSpark_M.uasset" 122
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Opacity/CameraDepthFade.uasset" 123
-"../../../Engine/Content/EngineMaterials/T_Default_Material_Grid_M.uasset" 124
-"../../../Engine/Content/EngineMaterials/T_Default_Material_Grid_N.uasset" 125
-"../../../Engine/Content/EngineMaterials/WorldGridMaterial.uasset" 126
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Props/Walls/Corner.uasset" 127
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/Giant_Laser.uasset" 128
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/Gunshot1.uasset" 129
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/Gunshot4.uasset" 130
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/ReloadSound1.uasset" 131
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/ReloadSound3.uasset" 132
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/ShotgunShot__2_.uasset" 133
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/FootSteps/Landing.uasset" 134
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Fonts/Quicksand-Bold.uasset" 135
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/BahnschriftFont.uasset" 136
-"../../../Engine/Content/EngineFonts/RobotoDistanceField.uasset" 137
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Math/InverseTransformMatrix.uasset" 138
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Math/MakeVectorsOrthogonal.uasset" 139
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat3Components.uasset" 140
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Math/Transform3x3Matrix.uasset" 141
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/CameraVectorWithWPOOptions.uasset" 142
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/VectorLength.uasset" 143
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/WorldPositionOffset/ComponentPivotLocation.uasset" 144
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/WorldPositionOffset/ObjectScale.uasset" 145
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/WorldPositionOffset/AlignMeshToTheCamera.uasset" 146
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/BillboardText.uasset" 147
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/Circle.uasset" 148
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/DualVignette.uasset" 149
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/ButtonSprite.uasset" 150
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/KickedNote_WBP.uasset" 151
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/LoadingScreen_WBP.uasset" 152
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/Selector/Selector_WBP.uasset" 153
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/LockImage.uasset" 154
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/SessionTab_WBP.uasset" 155
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/MainMenu_WBP.uasset" 156
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/PlayerTab_WBP.uasset" 157
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/Hitmarker.uasset" 158
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/InGame/WhiteCircle.uasset" 159
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/Vignette.uasset" 160
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/InGame/InGameHUD_WBP.uasset" 161
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/InGame/VotekickMenu_WBP.uasset" 162
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/InGame/PauseMenu_WBP.uasset" 163
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/InGame/ChatUI/ChatDisplayTab_WBP.uasset" 164
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/InGame/ChatUI/ChatDisplay_WBP.uasset" 165
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/InGame/ChatUI/ChatTab_WBP.uasset" 166
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/Lobby/LobbyHud_WBP.uasset" 167
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/Lobby/ServerStatus_WBP.uasset" 168
-"../../../Engine/Content/EditorBlueprintResources/StandardMacros.uasset" 169
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/MapThumbnails/Level1.uasset" 170
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/UI/Selector/MapSelectionTab_WBP.uasset" 171
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Body.uasset" 172
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Glow.uasset" 173
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Jetpack.uasset" 174
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Jetpack_PS.uasset" 175
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Weapon_PlasmaRifle_Glow.uasset" 176
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/TrailInstance.uasset" 177
-"../../../Engine/Content/EngineMaterials/DefaultMaterial.uasset" 178
-"../../../Engine/Content/BasicShapes/Cylinder.uasset" 179
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/ProjectileTrail.uasset" 180
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/ParticleSystems/DroidImpact_M.uasset" 181
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/ParticleSystems/ProjectileDroidImpact_PS.uasset" 182
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Projectile_PS.uasset" 183
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/ProjectileImpact_PS.uasset" 184
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Projectile_BP.uasset" 185
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/Rifle.uasset" 186
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/RobotMoving.uasset" 187
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/Zoom_In.uasset" 188
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/ZoomOut.uasset" 189
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MuzzleFlash_PS.uasset" 190
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Weapon_PlasmaRifle_Grip.uasset" 191
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Weapon_PlasmaRifle_Metal.uasset" 192
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Weapon_PrototypePlasmaRifle.uasset" 193
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Rifle.uasset" 194
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/ShotgunShot__1_.uasset" 195
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/ShotgunMuzzleFlash.uasset" 196
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Shotgun.uasset" 197
-"../../../Engine/Content/ArtTools/RenderToTexture/Meshes/S_1_Unit_Plane.uasset" 198
-"../../../Engine/Content/BasicShapes/Cone.uasset" 199
-"../../../Engine/Content/BasicShapes/Plane.uasset" 200
-"../../../Engine/Content/BasicShapes/Sphere.uasset" 201
-"../../../Engine/Content/EditorLandscapeResources/DataLayer.uasset" 202
-"../../../Engine/Content/EditorMaterials/GizmoMaterial.uasset" 203
-"../../../Engine/Content/EditorMaterials/MAT_Groups_Toggle.uasset" 204
-"../../../Engine/Content/EditorMaterials/MAT_Groups_Visibility.uasset" 205
-"../../../Engine/Content/EditorMaterials/PreviewShadowIndicator.uasset" 206
-"../../../Engine/Content/EditorMaterials/PreviewShadowIndicatorMaterial.uasset" 207
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_ColorTrack.uasset" 208
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Anim.uasset" 209
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_AudioMaster.uasset" 210
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Director.uasset" 211
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Event.uasset" 212
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Fade.uasset" 213
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Float.uasset" 214
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Move.uasset" 215
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Slomo.uasset" 216
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Sound.uasset" 217
-"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Vector.uasset" 218
-"../../../Engine/Content/EditorMaterials/ParticleSystems/PSysThumbnail_NoImage.uasset" 219
-"../../../Engine/Content/EditorMaterials/ParticleSystems/PSysThumbnail_OOD.uasset" 220
-"../../../Engine/Content/EditorMaterials/Camera/CineMat.uasset" 221
-"../../../Engine/Content/EditorMaterials/Camera/MI_CineMat_Rig.uasset" 222
-"../../../Engine/Content/EditorMeshes/Camera/SM_CraneRig_Arm.uasset" 223
-"../../../Engine/Content/EditorMeshes/Camera/SM_CraneRig_Base.uasset" 224
-"../../../Engine/Content/EditorMeshes/Camera/SM_CraneRig_Body.uasset" 225
-"../../../Engine/Content/EditorMeshes/Camera/SM_CraneRig_Mount.uasset" 226
-"../../../Engine/Content/EditorMeshes/Camera/SM_RailRig_Mount.uasset" 227
-"../../../Engine/Content/EditorMeshes/Camera/SM_RailRig_Track.uasset" 228
-"../../../Engine/Content/EditorResources/BSPVertex.uasset" 229
-"../../../Engine/Content/EditorResources/EmptyActor.uasset" 230
-"../../../Engine/Content/EditorResources/S_Actor.uasset" 231
-"../../../Engine/Content/EditorResources/S_Trigger.uasset" 232
-"../../../Engine/Content/EditorResources/LightIcons/S_LightError.uasset" 233
-"../../../Engine/Content/EditorResources/SequenceRecorder/Countdown.uasset" 234
-"../../../Engine/Content/EditorResources/SequenceRecorder/RecordingIndicator.uasset" 235
-"../../../Engine/Content/EditorSounds/Notifications/CompileFailed.uasset" 236
-"../../../Engine/Content/EditorSounds/Notifications/CompileFailed_Cue.uasset" 237
-"../../../Engine/Content/EditorSounds/Notifications/CompileSuccess.uasset" 238
-"../../../Engine/Content/EditorSounds/Notifications/CompileStart_Cue.uasset" 239
-"../../../Engine/Content/EditorSounds/Notifications/CompileSuccess_Cue.uasset" 240
-"../../../Engine/Content/EngineDamageTypes/DmgTypeBP_Environmental.uasset" 241
-"../../../Engine/Content/EngineDebugMaterials/HeatmapGradient.uasset" 242
-"../../../Engine/Content/EngineDebugMaterials/BoneWeightMaterial.uasset" 243
-"../../../Engine/Content/EngineDebugMaterials/ClothMaterial.uasset" 244
-"../../../Engine/Content/EngineDebugMaterials/ClothMaterial_WF.uasset" 245
-"../../../Engine/Content/EngineDebugMaterials/DebugEditorMaterial.uasset" 246
-"../../../Engine/Content/EngineDebugMaterials/DebugMeshMaterial.uasset" 247
-"../../../Engine/Content/EngineDebugMaterials/GeomMaterial.uasset" 248
-"../../../Engine/Content/EngineDebugMaterials/M_SimpleTranslucent.uasset" 249
-"../../../Engine/Content/EngineFonts/Faces/RobotoBold.uasset" 250
-"../../../Engine/Content/EngineFonts/Faces/RobotoBoldItalic.uasset" 251
-"../../../Engine/Content/EngineFonts/Faces/RobotoItalic.uasset" 252
-"../../../Engine/Content/EngineFonts/Faces/RobotoLight.uasset" 253
-"../../../Engine/Content/EngineFonts/Faces/RobotoRegular.uasset" 254
-"../../../Engine/Content/EngineFonts/Roboto.uasset" 255
-"../../../Engine/Content/EngineFonts/Faces/RobotoTiny.uasset" 256
-"../../../Engine/Content/EngineFonts/RobotoTiny.uasset" 257
-"../../../Engine/Content/EngineMaterials/BaseFlattenDiffuseMap.uasset" 258
-"../../../Engine/Content/EngineMaterials/BaseFlattenEmissiveMap.uasset" 259
-"../../../Engine/Content/EngineMaterials/BaseFlattenGrayscaleMap.uasset" 260
-"../../../Engine/Content/EngineMaterials/BaseFlattenNormalMap.uasset" 261
-"../../../Engine/Content/EngineMaterials/BaseFlattenMaterial.uasset" 262
-"../../../Engine/Content/EngineMaterials/DefaultBloomKernel.uasset" 263
-"../../../Engine/Content/EngineMaterials/DefaultBokeh.uasset" 264
-"../../../Engine/Content/EngineMaterials/DefaultDiffuse.uasset" 265
-"../../../Engine/Content/EngineMaterials/DefaultDeferredDecalMaterial.uasset" 266
-"../../../Engine/Content/EngineMaterials/DefaultLightFunctionMaterial.uasset" 267
-"../../../Engine/Content/EngineMaterials/DefaultPhysicalMaterial.uasset" 268
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat2Components.uasset" 269
-"../../../Engine/Content/EngineMaterials/DefaultPostProcessMaterial.uasset" 270
-"../../../Engine/Content/EngineMaterials/DefaultTextMaterialOpaque.uasset" 271
-"../../../Engine/Content/EngineMaterials/DefaultWhiteGrid.uasset" 272
-"../../../Engine/Content/EngineMaterials/EditorBrushMaterial.uasset" 273
-"../../../Engine/Content/EngineMaterials/Good64x64TilingNoiseHighFreq.uasset" 274
-"../../../Engine/Content/EngineMaterials/MiniFont.uasset" 275
-"../../../Engine/Content/EngineMaterials/InvalidLightmapSettings.uasset" 276
-"../../../Engine/Content/EngineMaterials/M_InvalidLightmapSettings.uasset" 277
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/WorldPositionOffset/CameraOffset.uasset" 278
-"../../../Engine/Content/EngineMaterials/PhAT_JointLimitMaterial.uasset" 279
-"../../../Engine/Content/EngineMaterials/PreintegratedSkinBRDF.uasset" 280
-"../../../Engine/Content/EngineMaterials/RemoveSurfaceMaterial.uasset" 281
-"../../../Engine/Content/EngineMaterials/WeightMapPlaceholderTexture.uasset" 282
-"../../../Engine/Content/EngineResources/WhiteSquareTexture.uasset" 283
-"../../../Engine/Content/EngineMaterials/Widget3DPassThrough.uasset" 284
-"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Masked.uasset" 285
-"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Opaque.uasset" 286
-"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Masked_OneSided.uasset" 287
-"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Opaque_OneSided.uasset" 288
-"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Translucent.uasset" 289
-"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Translucent_OneSided.uasset" 290
-"../../../Engine/Content/EngineMeshes/Cylinder.uasset" 291
-"../../../Engine/Content/EngineMeshes/Sphere.uasset" 292
-"../../../Engine/Content/EngineResources/Black.uasset" 293
-"../../../Engine/Content/EngineResources/DefaultTexture.uasset" 294
-"../../../Engine/Content/EngineResources/DefaultTextureCube.uasset" 295
-"../../../Engine/Content/EngineResources/DefaultVolumeTexture2D.uasset" 296
-"../../../Engine/Content/EngineResources/DefaultVolumeTexture.uasset" 297
-"../../../Engine/Content/EngineResources/GradientTexture0.uasset" 298
-"../../../Engine/Content/EngineSounds/Master.uasset" 299
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Shading/ConvertFromDiffSpec.uasset" 300
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Shading/PowerToRoughness.uasset" 301
-"../../../Engine/Content/Maps/Templates/Thumbnails/Default.uasset" 302
-"../../../Engine/Content/Maps/Templates/Thumbnails/VR-Basic.uasset" 303
-"../../../Engine/Content/MobileResources/T_MobileControls_texture.uasset" 304
-"../../../Engine/Content/MobileResources/T_MobileMenu2.uasset" 305
-"../../../Engine/Content/MobileResources/HUD/AnalogHat.uasset" 306
-"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Background.uasset" 307
-"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Thumb.uasset" 308
-"../../../Engine/Content/MobileResources/HUD/DefaultVirtualJoysticks.uasset" 309
-"../../../Engine/Content/MobileResources/HUD/LeftVirtualJoystickOnly.uasset" 310
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_off.uasset" 311
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_on.uasset" 312
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_off.uasset" 313
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_on.uasset" 314
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton3.uasset" 315
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButtonFire.uasset" 316
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad.uasset" 317
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad2.uasset" 318
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad3.uasset" 319
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionStick.uasset" 320
-"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickInner.uasset" 321
-"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickOutter.uasset" 322
-"../../../Engine/Content/Tutorial/ContentIntroCurve.uasset" 323
-"../../../Engine/Content/VREditor/LaserPointer/VR_LaserPower_01.uasset" 324
-"../../../Engine/Content/VREditor/TransformGizmo/TransformGizmoMaterial.uasset" 325
-"../../../Engine/Content/VREditor/TransformGizmo/TranslucentTransformGizmoMaterial.uasset" 326
-"../../../Engine/Content/VREditor/TransformGizmo/BoundingBoxCorner.uasset" 327
-"../../../Engine/Content/VREditor/TransformGizmo/BoundingBoxEdge.uasset" 328
-"../../../Engine/Content/VREditor/TransformGizmo/PlaneTranslationHandle.uasset" 329
-"../../../Engine/Content/VREditor/TransformGizmo/Main.uasset" 330
-"../../../Engine/Content/VREditor/TransformGizmo/Xray.uasset" 331
-"../../../Engine/Content/VREditor/TransformGizmo/SM_Sequencer_Key.uasset" 332
-"../../../Engine/Content/VREditor/TransformGizmo/SM_Sequencer_Node.uasset" 333
-"../../Plugins/2D/Paper2D/Content/PlaceholderTextures/DummySpriteTexture.uasset" 334
-"../../Plugins/2D/Paper2D/Content/DummySprite.uasset" 335
-"../../Plugins/2D/Paper2D/Content/DefaultPaperTerrainMaterial.uasset" 336
-"../../Plugins/2D/Paper2D/Content/DefaultSpriteMaterial.uasset" 337
-"../../Plugins/2D/Paper2D/Content/MaskedUnlitSpriteMaterial.uasset" 338
-"../../Plugins/2D/Paper2D/Content/OpaqueUnlitSpriteMaterial.uasset" 339
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/PokeAHoleMaterial.uasset" 340
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_AO.uasset" 341
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Color.uasset" 342
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Normal.uasset" 343
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/GearVRControllerMaterial.uasset" 344
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/GearVrController.uasset" 345
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/touchController_albedo.uasset" 346
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/touchController_controlmap.uasset" 347
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/touchController_mat.uasset" 348
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/LeftTouchController.uasset" 349
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/RiftHMD.uasset" 350
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/RightTouchController.uasset" 351
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Blueprints/GamePlayerController_BP.uasset" 352
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Idle_Rifle_Hip.uasset" 353
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Hip/HipCenter.uasset" 354
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Hip/HipDown.uasset" 355
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Hip/HipUp.uasset" 356
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Hip/HipAimOffset.uasset" 357
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Sights/AimDown.uasset" 358
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Sights/AimUp.uasset" 359
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Sights_Offset.uasset" 360
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/FallEnd.uasset" 361
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/FallStart.uasset" 362
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/FallingComposite.uasset" 363
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Falling_Idle_mixamo_com1.uasset" 364
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Two_Cycle_Sprint_mixamo_com.uasset" 365
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Walking_mixamo_com1.uasset" 366
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/Falling2/Falling_Idle_mixamo_com1.uasset" 367
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/Falling2/Falling_To_Landing_mixamo_com1.uasset" 368
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/Falling2/Idle_mixamo_com1.uasset" 369
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/Falling2/Jump_mixamo_com1.uasset" 370
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/JumpStart.uasset" 371
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/FallingAnimation/Land.uasset" 372
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Brooklyn_Uprock_mixamo_com.uasset" 373
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Dances/Arms_Hip_Hop_Dance_mixamo_com1.uasset" 374
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Dances/House_Dancing_mixamo_com1.uasset" 375
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Dances/Northern_Soul_Floor_Combo_mixamo_com1.uasset" 376
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Dances/Swing_Dancing_mixamo_com1.uasset" 377
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Dances/Wave_Hip_Hop_Dance_mixamo_com1.uasset" 378
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/GrabFromBack.uasset" 379
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/GrabFromWaist.uasset" 380
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Hip_Hop_Dancing_mixamo_com1.uasset" 381
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Macarena_Dance_mixamo_com.uasset" 382
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/PutBackToBack.uasset" 383
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/PutBackToWaist.uasset" 384
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/NewAnimations/Snake_Hip_Hop_Dance_mixamo_com.uasset" 385
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Fire_Rifle_Hip.uasset" 386
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Fire_Rifle_Ironsights.uasset" 387
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Fire_Shotgun_Hip.uasset" 388
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Fire_Shotgun_Ironsights.uasset" 389
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Gangnam_Style_with_knight_Anim_mixamo_com2.uasset" 390
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/ReloadSound2.uasset" 391
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/ReloadSound__1_.uasset" 392
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/ReloadSound__2_.uasset" 393
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Reload_Rifle_Hip.uasset" 394
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Sprint_Fwd_Rifle.uasset" 395
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/ThirdPersonIdle.uasset" 396
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Hip_Move.uasset" 397
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Walk_Bwd_Rifle_Ironsights.uasset" 398
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Walk_Fwd_Rifle_Ironsights.uasset" 399
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Walk_Lt_Rifle_Ironsights.uasset" 400
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Walk_Rt_Rifle_Ironsights.uasset" 401
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/AimSpaces/Sights_Move.uasset" 402
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/FootSteps/FootStep__1_.uasset" 403
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/FootSteps/FootStep__2_.uasset" 404
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/FootSteps/FootStep__3_.uasset" 405
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/FootSteps/FootStep__4_.uasset" 406
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/FootSteps/FootStep__5_.uasset" 407
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/FootSteps/FootStep__6_.uasset" 408
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/MainCharacterAnimBlueprint.uasset" 409
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MinecraftBow/Color_C16.uasset" 410
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/Gunshot3.uasset" 411
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MinecraftBow/Color_003.uasset" 412
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MinecraftBow/Color_005.uasset" 413
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MinecraftBow/Color_006.uasset" 414
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MinecraftBow/Color_B25.uasset" 415
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MinecraftBow/Color_C12.uasset" 416
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MinecraftBow/Color_C13.uasset" 417
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MinecraftBow/material.uasset" 418
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MinecraftBow/MinecraftBow.uasset" 419
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/MinecraftBow/MinecraftBow_BP.uasset" 420
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Eye_Color.uasset" 421
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Hull.uasset" 422
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/Pew.uasset" 423
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/RailgunSound.uasset" 424
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Imprint.uasset" 425
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Neon.uasset" 426
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/FuturisticPistol.uasset" 427
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Weapon/Pistol.uasset" 428
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Blueprints/MainCharacter_BP.uasset" 429
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Blueprints/LobbyGameMode_BP.uasset" 430
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Lobby_BuiltData.uasset" 431
-"../../../Engine/Content/BasicShapes/BasicShapeMaterial.uasset" 432
-"../../../Engine/Content/BasicShapes/Cube.uasset" 433
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Lobby.umap" 434
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Blueprints/RotatingCamera_BP.uasset" 435
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Blueprints/MainMenuGamemode.uasset" 436
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/MainMenu_BuiltData.uasset" 437
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/MainMenu.umap" 438
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Blueprints/TransitionMapGamemode.uasset" 439
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/TransitionMap.umap" 440
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/Drunk_Run_Forward_mixamo_com1.uasset" 441
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/DrunkWalking_mixamo_com1.uasset" 442
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/HitReactions/Hit_Reaction_mixamo_com.uasset" 443
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/HitReactions/Stomach_Hit_mixamo_com.uasset" 444
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/Zombie_Attack2_mixamo_com1.uasset" 445
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/Zombie_Attack_mixamo_com1.uasset" 446
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/Zombie_Idle_mixamo_com1.uasset" 447
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Animations/Zombie_Lifeless_Walking_mixamo_com1.uasset" 448
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Droid_AnimInstance.uasset" 449
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/DroidBehaviourBlackboard.uasset" 450
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/AttackPlayer.uasset" 451
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/SetTargetLocation.uasset" 452
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/DroidBehaviour.uasset" 453
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/DroidAIController_BP.uasset" 454
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Enemy_Glow.uasset" 455
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/FleshImpact/FleshImpact__1_.uasset" 456
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Sounds/FleshImpact/FleshImpact__2_.uasset" 457
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Droid/Droid_BP.uasset" 458
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Blueprints/ActiveGameMode_BP.uasset" 459
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Meshes/1M_Cube.uasset" 460
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/MovingObject_BP.uasset" 461
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/PressurePlate_BP.uasset" 462
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Maps/Level1_BuiltData.uasset" 463
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/BlueprintSeamless.uasset" 464
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/BlueprintMaterial.uasset" 465
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/BlueprintMaterial_Inst.uasset" 466
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Orange.uasset" 467
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Connector3.uasset" 468
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Meshes/RampMaterial.uasset" 469
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Meshes/Bump_StaticMesh.uasset" 470
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Maps/Level1.umap" 471
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Maps/Level2_BuiltData.uasset" 472
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Meshes/1M_Cube_Chamfer.uasset" 473
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Meshes/LeftArm_StaticMesh.uasset" 474
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Meshes/Linear_Stair_StaticMesh.uasset" 475
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Meshes/Ramp_StaticMesh.uasset" 476
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Geometry/Meshes/RightArm_StaticMesh.uasset" 477
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Maps/Level2.umap" 478
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Props/CeilingLight.uasset" 479
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Props/BrokenCeilingLight.uasset" 480
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Props/LightSparkt_PS.uasset" 481
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Props/Light.uasset" 482
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Maps/Level3_BuiltData.uasset" 483
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Props/HallReverb.uasset" 484
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Props/Walls/RoofGrill1.uasset" 485
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/Levels/Maps/Level3.umap" 486
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_Idle_Rifle_Hip.uasset" 487
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_Idle_Rifle_Ironsights.uasset" 488
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Crouch_Walk_Fwd_Rifle_Ironsights.uasset" 489
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Equip_Pistol_Standing.uasset" 490
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Hit_React_1.uasset" 491
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Hit_React_2.uasset" 492
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Hit_React_3.uasset" 493
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Idle_Rifle_Hip_Break1.uasset" 494
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Idle_Rifle_Hip_Break2.uasset" 495
-"../../../Engine/Content/EngineSky/C_Sky_Cloud_Color.uasset" 496
-"../../../Engine/Content/EngineSky/C_Sky_Horizon_Color.uasset" 497
-"../../../Engine/Content/EngineSky/C_Sky_Zenith_Color.uasset" 498
-"../../../Engine/Content/EngineSky/T_Sky_Blue.uasset" 499
-"../../../Engine/Content/EngineSky/T_Sky_Clouds_M.uasset" 500
-"../../../Engine/Content/EngineSky/T_Sky_Stars.uasset" 501
-"../../../Engine/Content/EngineSky/M_Sky_Panning_Clouds2.uasset" 502
-"../../../Engine/Content/EngineSky/SM_SkySphere.uasset" 503
-"../../../Engine/Content/EngineSky/BP_Sky_Sphere.uasset" 504
-"../../../Engine/Content/TemplateResources/M_Template_Master.uasset" 505
-"../../../Engine/Content/TemplateResources/MI_Template_BaseGray_03_Metal.uasset" 506
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S09_BaseWars/Content/MainCharacter/Animations/Other/Showcase.umap" 507
-"../../../Engine/Content/Maps/Entry_BuiltData.uasset" 508
-"../../../Engine/Content/Maps/Entry.umap" 509
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Eye_Color.uasset" 0
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Material_001.uasset" 1
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/NewPoseAsset.uasset" 2
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/XordiaGameInstance.uasset" 3
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Archivo-Medium.uasset" 4
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/BAHNSCHRIFT.uasset" 5
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/BAHNSCHRIFT_Font.uasset" 6
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Capture_it.uasset" 7
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/After_Shok.uasset" 8
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Font.uasset" 9
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/JosefinSans-Bold.uasset" 10
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/JosefinSans-Light.uasset" 11
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Quicksand-Light.uasset" 12
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/SF_Archery_Black.uasset" 13
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Mobility/Hover/ThrusterMK1.uasset" 14
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Mobility/Hover/Thunsher.uasset" 15
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Mobility/Hover/UWULauncher.uasset" 16
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK1.uasset" 17
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK1_2.uasset" 18
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK1_3.uasset" 19
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK1_4.uasset" 20
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2.uasset" 21
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_2.uasset" 22
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_3.uasset" 23
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_4.uasset" 24
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_5.uasset" 25
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_6.uasset" 26
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_7.uasset" 27
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_8.uasset" 28
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Light/LightCubeMK1.uasset" 29
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Light/LightCubeMK2.uasset" 30
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MapSelection_WBP.uasset" 31
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Density/ExponentialDensity.uasset" 32
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Gradient/RadialGradientExponential.uasset" 33
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Mat_Rain.uasset" 34
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Rain_PS.uasset" 35
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Blueprint_Texture.uasset" 36
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/CubeMaterial.uasset" 37
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/1M_Cube.uasset" 38
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/MovingObject_BP.uasset" 39
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/PressurePlate_BP.uasset" 40
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Opacity/CameraDepthFade.uasset" 41
+"../../../Engine/Content/EngineMaterials/T_Default_Material_Grid_M.uasset" 42
+"../../../Engine/Content/EngineMaterials/T_Default_Material_Grid_N.uasset" 43
+"../../../Engine/Content/EngineMaterials/WorldGridMaterial.uasset" 44
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Sphere.uasset" 45
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/TemplateFloor.uasset" 46
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MapThumbnails/Level1.uasset" 47
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MapThumbnails/Level2.uasset" 48
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/SpeedTree/SpeedTreeColorVariation.uasset" 49
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/WorldPositionOffset/SimpleGrassWind.uasset" 50
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Math/MultiplyAdd.uasset" 51
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/MakeFloat2.uasset" 52
+"../../../Engine/Content/EngineMaterials/DefaultDiffuse.uasset" 53
+"../../../Engine/Content/EngineMaterials/DefaultNormal.uasset" 54
+"../../../Engine/Content/EngineMaterials/DefaultWhiteGrid.uasset" 55
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Atlas_MasterMaterial.uasset" 56
+"../../../Engine/Content/EngineMaterials/BlendFunc_DefBase.uasset" 57
+"../../../Engine/Content/EngineMaterials/BlendFunc_DefBlend.uasset" 58
+"../../../Engine/Content/Functions/Engine_MaterialFunctions03/Blends/Blend_Overlay.uasset" 59
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/BrushDecal_MasterMaterial.uasset" 60
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/ChannelPackingSample.uasset" 61
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Decal_MasterMaterial.uasset" 62
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Displacement_MasterMaterial.uasset" 63
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Foliage_MasterMaterial.uasset" 64
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Imperfection_MasterMaterial.uasset" 65
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/AlphaBlend/WorldAlignedBlend.uasset" 66
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Shading/FuzzyShading.uasset" 67
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/VectorLength.uasset" 68
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/noise_mask.uasset" 69
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/noise_normal.uasset" 70
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/SurfaceBlend_MasterMaterial.uasset" 71
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Quicksand-Bold.uasset" 72
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/BahnschriftFont.uasset" 73
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ButtonSprite.uasset" 74
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/LoadingScreen_WBP.uasset" 75
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Longer_Splash.uasset" 76
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Hysteris.uasset" 77
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/WhiteCircle.uasset" 78
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/MainMenu_WBP.uasset" 79
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/PlayerTab_WBP.uasset" 80
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Splash.uasset" 81
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Hitmarker.uasset" 82
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Vignette.uasset" 83
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/InGameHUD_WBP.uasset" 84
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/VotekickMenu_WBP.uasset" 85
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/PauseMenu_WBP.uasset" 86
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/ChatUI/ChatDisplayTab_WBP.uasset" 87
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/ChatUI/ChatDisplay_WBP.uasset" 88
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/ChatUI/ChatTab_WBP.uasset" 89
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/StatsMenuUI/StatsMenu_WBP.uasset" 90
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/StatsMenuUI/StatsTab_WBP.uasset" 91
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Lobby/LobbyHud_WBP.uasset" 92
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Lobby/ServerStatus_WBP.uasset" 93
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Selector/ListEntryWidget.uasset" 94
+"../../../Engine/Content/Animation/DefaultAnimCurveCompressionSettings.uasset" 95
+"../../../Engine/Content/ArtTools/RenderToTexture/Meshes/S_1_Unit_Plane.uasset" 96
+"../../../Engine/Content/EngineMaterials/DefaultMaterial.uasset" 97
+"../../../Engine/Content/BasicShapes/Cone.uasset" 98
+"../../../Engine/Content/BasicShapes/Cylinder.uasset" 99
+"../../../Engine/Content/BasicShapes/Plane.uasset" 100
+"../../../Engine/Content/BasicShapes/Sphere.uasset" 101
+"../../../Engine/Content/EditorLandscapeResources/DataLayer.uasset" 102
+"../../../Engine/Content/EditorMaterials/GizmoMaterial.uasset" 103
+"../../../Engine/Content/EditorMaterials/MAT_Groups_Toggle.uasset" 104
+"../../../Engine/Content/EditorMaterials/MAT_Groups_Visibility.uasset" 105
+"../../../Engine/Content/EditorMaterials/PreviewShadowIndicator.uasset" 106
+"../../../Engine/Content/EditorMaterials/PreviewShadowIndicatorMaterial.uasset" 107
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_ColorTrack.uasset" 108
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Anim.uasset" 109
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_AudioMaster.uasset" 110
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Director.uasset" 111
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Event.uasset" 112
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Fade.uasset" 113
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Float.uasset" 114
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Move.uasset" 115
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Slomo.uasset" 116
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Sound.uasset" 117
+"../../../Engine/Content/EditorMaterials/MatineeGroups/MAT_Groups_Vector.uasset" 118
+"../../../Engine/Content/EditorMaterials/ParticleSystems/PSysThumbnail_NoImage.uasset" 119
+"../../../Engine/Content/EditorMaterials/ParticleSystems/PSysThumbnail_OOD.uasset" 120
+"../../../Engine/Content/EditorMaterials/Camera/CineMat.uasset" 121
+"../../../Engine/Content/EditorMaterials/Camera/MI_CineMat_Rig.uasset" 122
+"../../../Engine/Content/EditorMeshes/Camera/SM_CraneRig_Arm.uasset" 123
+"../../../Engine/Content/EditorMeshes/Camera/SM_CraneRig_Base.uasset" 124
+"../../../Engine/Content/EditorMeshes/Camera/SM_CraneRig_Body.uasset" 125
+"../../../Engine/Content/EditorMeshes/Camera/SM_CraneRig_Mount.uasset" 126
+"../../../Engine/Content/EditorMeshes/Camera/SM_RailRig_Mount.uasset" 127
+"../../../Engine/Content/EditorMeshes/Camera/SM_RailRig_Track.uasset" 128
+"../../../Engine/Content/EditorResources/BSPVertex.uasset" 129
+"../../../Engine/Content/EditorResources/EmptyActor.uasset" 130
+"../../../Engine/Content/EditorResources/S_Actor.uasset" 131
+"../../../Engine/Content/EditorResources/S_Note.uasset" 132
+"../../../Engine/Content/EditorResources/S_Trigger.uasset" 133
+"../../../Engine/Content/EditorResources/LightIcons/S_LightError.uasset" 134
+"../../../Engine/Content/EditorResources/SequenceRecorder/Countdown.uasset" 135
+"../../../Engine/Content/EditorResources/SequenceRecorder/RecordingIndicator.uasset" 136
+"../../../Engine/Content/EditorSounds/Notifications/CompileFailed.uasset" 137
+"../../../Engine/Content/EditorSounds/Notifications/CompileFailed_Cue.uasset" 138
+"../../../Engine/Content/EditorSounds/Notifications/CompileSuccess.uasset" 139
+"../../../Engine/Content/EditorSounds/Notifications/CompileStart_Cue.uasset" 140
+"../../../Engine/Content/EditorSounds/Notifications/CompileSuccess_Cue.uasset" 141
+"../../../Engine/Content/EngineDamageTypes/DmgTypeBP_Environmental.uasset" 142
+"../../../Engine/Content/EngineDebugMaterials/HeatmapGradient.uasset" 143
+"../../../Engine/Content/EngineDebugMaterials/BoneWeightMaterial.uasset" 144
+"../../../Engine/Content/EngineDebugMaterials/ClothMaterial.uasset" 145
+"../../../Engine/Content/EngineDebugMaterials/ClothMaterial_WF.uasset" 146
+"../../../Engine/Content/EngineDebugMaterials/DebugEditorMaterial.uasset" 147
+"../../../Engine/Content/EngineDebugMaterials/DebugMeshMaterial.uasset" 148
+"../../../Engine/Content/EngineDebugMaterials/GeomMaterial.uasset" 149
+"../../../Engine/Content/EngineDebugMaterials/M_SimpleTranslucent.uasset" 150
+"../../../Engine/Content/EngineFonts/Faces/RobotoBold.uasset" 151
+"../../../Engine/Content/EngineFonts/Faces/RobotoBoldItalic.uasset" 152
+"../../../Engine/Content/EngineFonts/Faces/RobotoItalic.uasset" 153
+"../../../Engine/Content/EngineFonts/Faces/RobotoLight.uasset" 154
+"../../../Engine/Content/EngineFonts/Faces/RobotoRegular.uasset" 155
+"../../../Engine/Content/EngineFonts/Roboto.uasset" 156
+"../../../Engine/Content/EngineFonts/Faces/RobotoTiny.uasset" 157
+"../../../Engine/Content/EngineFonts/RobotoTiny.uasset" 158
+"../../../Engine/Content/EngineMaterials/BaseFlattenDiffuseMap.uasset" 159
+"../../../Engine/Content/EngineMaterials/BaseFlattenEmissiveMap.uasset" 160
+"../../../Engine/Content/EngineMaterials/BaseFlattenGrayscaleMap.uasset" 161
+"../../../Engine/Content/EngineMaterials/BaseFlattenNormalMap.uasset" 162
+"../../../Engine/Content/EngineMaterials/BaseFlattenMaterial.uasset" 163
+"../../../Engine/Content/EngineMaterials/DefaultBloomKernel.uasset" 164
+"../../../Engine/Content/EngineMaterials/DefaultBokeh.uasset" 165
+"../../../Engine/Content/EngineMaterials/DefaultDeferredDecalMaterial.uasset" 166
+"../../../Engine/Content/EngineMaterials/DefaultLightFunctionMaterial.uasset" 167
+"../../../Engine/Content/EngineMaterials/DefaultPhysicalMaterial.uasset" 168
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat2Components.uasset" 169
+"../../../Engine/Content/EngineMaterials/DefaultPostProcessMaterial.uasset" 170
+"../../../Engine/Content/EngineFonts/RobotoDistanceField.uasset" 171
+"../../../Engine/Content/EngineMaterials/DefaultTextMaterialOpaque.uasset" 172
+"../../../Engine/Content/EngineMaterials/EditorBrushMaterial.uasset" 173
+"../../../Engine/Content/EngineMaterials/Good64x64TilingNoiseHighFreq.uasset" 174
+"../../../Engine/Content/EngineMaterials/MiniFont.uasset" 175
+"../../../Engine/Content/EngineMaterials/InvalidLightmapSettings.uasset" 176
+"../../../Engine/Content/EngineMaterials/M_InvalidLightmapSettings.uasset" 177
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/WorldPositionOffset/CameraOffset.uasset" 178
+"../../../Engine/Content/EngineMaterials/PhAT_JointLimitMaterial.uasset" 179
+"../../../Engine/Content/EngineMaterials/PreintegratedSkinBRDF.uasset" 180
+"../../../Engine/Content/EngineMaterials/RemoveSurfaceMaterial.uasset" 181
+"../../../Engine/Content/EngineMaterials/WeightMapPlaceholderTexture.uasset" 182
+"../../../Engine/Content/EngineResources/WhiteSquareTexture.uasset" 183
+"../../../Engine/Content/EngineMaterials/Widget3DPassThrough.uasset" 184
+"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Masked.uasset" 185
+"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Opaque.uasset" 186
+"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Masked_OneSided.uasset" 187
+"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Opaque_OneSided.uasset" 188
+"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Translucent.uasset" 189
+"../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Translucent_OneSided.uasset" 190
+"../../../Engine/Content/EngineMeshes/Cylinder.uasset" 191
+"../../../Engine/Content/EngineMeshes/Sphere.uasset" 192
+"../../../Engine/Content/EngineResources/Black.uasset" 193
+"../../../Engine/Content/EngineResources/DefaultTexture.uasset" 194
+"../../../Engine/Content/EngineResources/DefaultTextureCube.uasset" 195
+"../../../Engine/Content/EngineResources/DefaultVolumeTexture2D.uasset" 196
+"../../../Engine/Content/EngineResources/DefaultVolumeTexture.uasset" 197
+"../../../Engine/Content/EngineResources/GradientTexture0.uasset" 198
+"../../../Engine/Content/EngineSounds/Master.uasset" 199
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Shading/ConvertFromDiffSpec.uasset" 200
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Shading/PowerToRoughness.uasset" 201
+"../../../Engine/Content/Maps/Templates/Thumbnails/Default.uasset" 202
+"../../../Engine/Content/Maps/Templates/Thumbnails/VR-Basic.uasset" 203
+"../../../Engine/Content/MobileResources/T_MobileControls_texture.uasset" 204
+"../../../Engine/Content/MobileResources/T_MobileMenu2.uasset" 205
+"../../../Engine/Content/MobileResources/HUD/AnalogHat.uasset" 206
+"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Background.uasset" 207
+"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Thumb.uasset" 208
+"../../../Engine/Content/MobileResources/HUD/DefaultVirtualJoysticks.uasset" 209
+"../../../Engine/Content/MobileResources/HUD/LeftVirtualJoystickOnly.uasset" 210
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_off.uasset" 211
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_on.uasset" 212
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_off.uasset" 213
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_on.uasset" 214
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton3.uasset" 215
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButtonFire.uasset" 216
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad.uasset" 217
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad2.uasset" 218
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad3.uasset" 219
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionStick.uasset" 220
+"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickInner.uasset" 221
+"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickOutter.uasset" 222
+"../../../Engine/Content/Tutorial/ContentIntroCurve.uasset" 223
+"../../../Engine/Content/Tutorial/Basics/LevelEditorAttract.uasset" 224
+"../../../Engine/Content/VREditor/LaserPointer/VR_LaserPower_01.uasset" 225
+"../../../Engine/Content/VREditor/TransformGizmo/TransformGizmoMaterial.uasset" 226
+"../../../Engine/Content/VREditor/TransformGizmo/TranslucentTransformGizmoMaterial.uasset" 227
+"../../../Engine/Content/VREditor/TransformGizmo/BoundingBoxCorner.uasset" 228
+"../../../Engine/Content/VREditor/TransformGizmo/BoundingBoxEdge.uasset" 229
+"../../../Engine/Content/VREditor/TransformGizmo/PlaneTranslationHandle.uasset" 230
+"../../../Engine/Content/VREditor/TransformGizmo/Main.uasset" 231
+"../../../Engine/Content/VREditor/TransformGizmo/Xray.uasset" 232
+"../../../Engine/Content/VREditor/TransformGizmo/SM_Sequencer_Key.uasset" 233
+"../../../Engine/Content/VREditor/TransformGizmo/SM_Sequencer_Node.uasset" 234
+"../../Plugins/2D/Paper2D/Content/PlaceholderTextures/DummySpriteTexture.uasset" 235
+"../../Plugins/2D/Paper2D/Content/DummySprite.uasset" 236
+"../../Plugins/2D/Paper2D/Content/DefaultPaperTerrainMaterial.uasset" 237
+"../../Plugins/2D/Paper2D/Content/DummySpriteTexture.uasset" 238
+"../../Plugins/2D/Paper2D/Content/DefaultSpriteMaterial.uasset" 239
+"../../Plugins/2D/Paper2D/Content/MaskedUnlitSpriteMaterial.uasset" 240
+"../../Plugins/2D/Paper2D/Content/OpaqueUnlitSpriteMaterial.uasset" 241
+"../../Plugins/Runtime/Oculus/OculusVR/Content/OculusMR_RenderTarget.uasset" 242
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat4Components.uasset" 243
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/MakeFloat3.uasset" 244
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_ChromaKey.uasset" 245
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_ChromaKey_Lit.uasset" 246
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_OpaqueColoredMaterial.uasset" 247
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_WhiteMaterial.uasset" 248
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/PokeAHoleMaterial.uasset" 249
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_AO.uasset" 250
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Color.uasset" 251
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Normal.uasset" 252
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/GearVRControllerMaterial.uasset" 253
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/GearVrController.uasset" 254
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/touchController_albedo.uasset" 255
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/touchController_controlmap.uasset" 256
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/touchController_mat.uasset" 257
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/LeftTouchController.uasset" 258
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/RiftHMD.uasset" 259
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/RightTouchController.uasset" 260
+"../../Plugins/Runtime/WebBrowserWidget/Content/WebTexture_T.uasset" 261
+"../../Plugins/Runtime/WebBrowserWidget/Content/WebTexture_M.uasset" 262
+"../../Plugins/Runtime/WebBrowserWidget/Content/WebTexture_TM.uasset" 263
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/BuilderPawn_BP.uasset" 264
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/ItemData_BP.uasset" 265
+"../../../Engine/Content/EditorBlueprintResources/StandardMacros.uasset" 266
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Tab/GlitchParticle.uasset" 267
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Selector/ItemTab_WBP.uasset" 268
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Menu_WBP.uasset" 269
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/GamePlayerController_BP.uasset" 270
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/LobbyGameMode_BP.uasset" 271
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Lobby_BuiltData.uasset" 272
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Standard_MasterMaterial.uasset" 273
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandAlbedo.uasset" 274
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandDisplacement.uasset" 275
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandNormal.uasset" 276
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandRoughness.uasset" 277
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/Sand.uasset" 278
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateAlbeda.uasset" 279
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateDisplacement.uasset" 280
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateNormal.uasset" 281
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateRoughness.uasset" 282
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/Slate.uasset" 283
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Cave.uasset" 284
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Lobby.umap" 285
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/RotatingCamera_BP.uasset" 286
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/MainMenuGamemode.uasset" 287
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MainMenu_BuiltData.uasset" 288
+"../../../Engine/Content/BasicShapes/BasicShapeMaterial.uasset" 289
+"../../../Engine/Content/BasicShapes/Cube.uasset" 290
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MainMenu.umap" 291
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/TransitionMapGamemode.uasset" 292
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/TransitionMap.umap" 293
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/ActiveGameState_BP.uasset" 294
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/ActiveGameMode_BP.uasset" 295
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/Cube.uasset" 296
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level1_BuiltData.uasset" 297
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/WorldPositionOffset/ObjectScale.uasset" 298
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/BlueprintSeamless.uasset" 299
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/BlueprintMaterial.uasset" 300
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/BlueprintMaterial_Inst.uasset" 301
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Orange.uasset" 302
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Connector3.uasset" 303
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/RampMaterial.uasset" 304
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/Bump_StaticMesh.uasset" 305
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level1.umap" 306
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level2_BuiltData.uasset" 307
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/1M_Cube_Chamfer.uasset" 308
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/LeftArm_StaticMesh.uasset" 309
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/Linear_Stair_StaticMesh.uasset" 310
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/Ramp_StaticMesh.uasset" 311
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/RightArm_StaticMesh.uasset" 312
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level2.umap" 313
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level3_BuiltData.uasset" 314
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level3.umap" 315
+"../../../Engine/Content/Maps/Entry_BuiltData.uasset" 316
+"../../../Engine/Content/Maps/Entry.umap" 317
