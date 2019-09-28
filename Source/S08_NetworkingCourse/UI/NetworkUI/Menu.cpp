@@ -56,13 +56,13 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 		GetOwningPlayer()->DeprojectMousePositionToWorld(Location, Dir);
 
 		FCollisionQueryParams Params = FCollisionQueryParams();
-		Params.bTraceComplex = false;
+		Params.bTraceComplex = true;
 
 		if (GetWorld()->LineTraceSingleByChannel(OutHit, Location, Location + Dir * 10000, ECollisionChannel::ECC_Vehicle, Params)) {
 			//DrawDebugSphere(GetWorld(), OutHit.ImpactPoint, 100, 5, FColor::Red, false, 5, 2, 10);
 			FVector RL; // Rounded Location
 
-			RL = OutHit.ImpactPoint;
+			RL = OutHit.ImpactPoint + OutHit.ImpactNormal * 50;
 			RoundVector(RL);
 
 			if (PreviousMouseLocation != RL) {
@@ -134,24 +134,6 @@ void UMenu::RoundVectorForSocket(FVector &RL)
 }
 void UMenu::RotateItem(FRotator DeltaRot) {
 	if (CurrentTool != ECurrentTool::PlaceTool) { return; }
-	//IntendedPartTransform.SetRotation((IntendedPartTransform.GetRotation().Rotator() + DeltaRot).Quaternion());
-	//FRotator R = IntendedPartTransform.GetRotation().Rotator();
-	//BuilderPawn->PartImage->GetComponentRotation();
-	////IntendedPartTransform.SetRotation()
-
-	//IntendedPartTransform.SetRotation(
-	//	FRotator(
-	//		FMath::RoundToInt((R.Pitch + DeltaRot.Pitch) / 90) * 90,
-	//		FMath::RoundToInt((R.Yaw + DeltaRot.Yaw) / 90) * 90,
-	//		FMath::RoundToInt((R.Roll + DeltaRot.Roll) / 90) * 90
-	//	).Quaternion()
-	//);
-	//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(14, 10, FColor::Cyan, FRotator(
-	//	FMath::RoundToInt((R.Pitch + DeltaRot.Pitch) / 90) * 90,
-	//	FMath::RoundToInt((R.Yaw + DeltaRot.Yaw) / 90) * 90,
-	//	FMath::RoundToInt((R.Roll + DeltaRot.Roll) / 90) * 90
-	//).ToString());
-
 	FRotator R = IntendedPartRotation;
 
 	IntendedPartRotation = FRotator(
@@ -320,6 +302,16 @@ void UMenu::SelectItem(FString ItemToPurchase) {
 
 void UMenu::SetPartPlacementImage()
 {
+	bool IsPlacingCockpit;
+	BuilderPawn->CanPlace = false;
+	CanPlaceItem = false;
+	PendingMovablePartToRoot.Reset();
+	PendingWelds.Empty();
+
+	if (SelectedPart.GetDefaultObject()->Category == ESubCategory::Cockpits) { // if we are a cockpit...
+		IsPlacingCockpit = true;
+	}
+
 	if (CurrentTool != ECurrentTool::PlaceTool) {
 		BuilderPawn->PartImage->SetVisibility(false);
 		return;
@@ -328,99 +320,53 @@ void UMenu::SetPartPlacementImage()
 		BuilderPawn->PartImage->SetVisibility(true);
 	}
 
-	FVector RL; // Rounded Location
+	FVector SnappedLoc; // Rounded Location
+	FRotator IntendedRotation = IntendedPartRotation;
 
-	FRotator R = IntendedPartRotation;
-
-	RL = OutHit.ImpactPoint;// + OutHit.ImpactNormal * 50;
+	SnappedLoc = OutHit.ImpactPoint;// + OutHit.ImpactNormal * 50;
 	if (!OutHit.IsValidBlockingHit()) {
-		RL = OutHit.TraceEnd;
+		SnappedLoc = OutHit.TraceEnd;
 	}
-	RoundVector(RL);
+	RoundVector(SnappedLoc);
 
 	BuilderPawn->PartImage->SetStaticMesh(SelectedPart.GetDefaultObject()->Mesh->GetStaticMesh());
-
 
 	//IntendedPartTransform.SetLocation(RL);
 	FVector InitialLocation = BuilderPawn->PartImage->GetComponentLocation();
 
-	//BuilderPawn->PartImage->SetWorldTransform(IntendedPartTransform);
-
-	BuilderPawn->CanPlace = false;
-	CanPlaceItem = false;
-
 	for (int32 i = 0; i < 5; i++)
 	{
-		FVector CheckCollision = RL + OutHit.ImpactNormal * i * 100;
+		FVector CheckCollision = SnappedLoc + OutHit.ImpactNormal * i * 100;
 
 		RoundVector(CheckCollision);
-		if (CheckCollision != PreviousLocation) {
 
-			BuilderPawn->PartImage->SetWorldLocation(CheckCollision);
-			BuilderPawn->PartImage->SetWorldRotation(R);
+		BuilderPawn->PartImage->SetWorldLocation(CheckCollision);
+		BuilderPawn->PartImage->SetWorldRotation(IntendedRotation);
 
-			TArray<UPrimitiveComponent*> Actors;
-			BuilderPawn->PartImage->GetOverlappingComponents(Actors);
+		TArray<UPrimitiveComponent*> Actors;
+		BuilderPawn->PartImage->GetOverlappingComponents(Actors);
 
-			if (Actors.Num() == 0) {
-				//IntendedPartTransform.SetLocation(OtherSocket);
-				BuilderPawn->PartImage->SetWorldLocation(InitialLocation);
-				IntendedPartLocation = (CheckCollision);
-				CanPlaceItem = true;
-				BuilderPawn->CanPlace = true;
-				break;
-			}
+		if (Actors.Num() == 0) {
+			//IntendedPartTransform.SetLocation(OtherSocket);
+			BuilderPawn->PartImage->SetWorldLocation(InitialLocation);
+			IntendedPartLocation = (CheckCollision);
+			CanPlaceItem = true;
+			break;
 		}
 	}
+	if (!CanPlaceItem) { return; } //If the part isn't overlapping with anything then it can continue.
 
 	BuilderPawn->PartImage->SetWorldLocation(InitialLocation);
 
-	if (!CanPlaceItem) { return; }
 
 	//Check how many sockets the placing part is joined to
 	FVector SphereCentre = IntendedPartLocation;
-	float Radius = 200.0f;
+	float Radius = 2000.0f;
 
-	TArray<FVector> FoundSocketLocations;
-	PendingWelds.Empty();
+	TArray<FVector> FoundSocketLocations; //Location of all the other sockets around this part.
 
-
-	// Instances in the instanced mesh component are in local space
-	// Create an array of the relative location of already placed parts when detecting.
-	// When the part is placed, append to a TMap<FVector, TArray<FVector>> Welds variable for
-		// the location of the part placed and the location of the parts that the placed part is welded to.
-		// also get the parts surrounding the part placed, get the location for those and loop through to
-		// append the value so it creates a weld for the selected part.
-	
-	// When deleting a part, find the key in the map that matches with the part being deleted IN RELATIVE SPACE, and delete the value for that key, being the array of fvectors.
-		// also get the parts surrounding the part placed, get the location for those and loop through to
-		// append the value so it removes the weld that matches with the location of the part being deleted.
-		// if a surrounding block ends up having 0 welds around it, make it appear red. For now, just delete it so it indicates that it works.
-	
-	// During combat, if a part is shot, get the relative location of that part, search for the Array of vectors that include
-		// the locations of the parts that that part is bonded to and scale it to 0, remove collision, mass and functionality.
-		//
-
-	// TArray<FVector> LocationsInChain;
-
-	//Delete a part
-	// get the relative locations of the parts bonded to that part.
-	// check if the location of the other part is the same as the cockpit's location.
-		// if it is, break the loop, else
-	// check if the location is found in LocationsInChain. - stores the location of the parts scanned
-	// if it isn't, 
-	// add it to LocationsInChain.
-	// repeat this loop for the surrounding parts of that part.
-	
-	// if the cockpit's location has not been found, loop through all parts in LocationsInChain and delete them.
-
-	//TMap<FVector, TArray<FVector>> E;
 	TMultiMap<FVector, FVector> SocketToPartLocation; // Surrounding part socket locations : Location of the part the socket belongs to
-	// this is for all the sockets that are detected in that sphere
-	// this is so that when a part is actually placed, we can get the socket that are to be bonded and the parts that those bonds belong to.
-	// must be done before placement.
-	// this is the first step into getting the CurrentPartLocationToBondedPartLocation TMap.
-	
+
 	for (UInstancedStaticMeshComponent *MeshComp : VehicleConstructor->InstancedMeshes) {
 		TArray<int32> CheckOverlap = MeshComp->GetInstancesOverlappingSphere(SphereCentre, Radius);
 		for (int32 Index : CheckOverlap)
@@ -439,6 +385,7 @@ void UMenu::SetPartPlacementImage()
 
 				RoundVectorForSocket(SocketLocation);
 				FoundSocketLocations.Add(SocketLocation);
+				//DrawDebugPoint(GetWorld(), SocketLocation, 10, FColor::Green, false, 0.5, 10);
 
 				SocketToPartLocation.Add(SocketLocation, RoundedLoc);
 				//DrawDebugPoint(GetWorld(), SocketLocation, 10, FColor::Cyan, false, 0.5, 10);
@@ -446,72 +393,123 @@ void UMenu::SetPartPlacementImage()
 		}
 	}
 
-	TArray<FName> SocketNames = SelectedPart.GetDefaultObject()->Mesh->GetAllSocketNames();
-	TArray<FVector> CurrentPartSocketLocations;
+	TArray<FName> SocketNames = SelectedPart.GetDefaultObject()->Mesh->GetAllSocketNames(); //Gets all the socket names for the sockets in the part that we are placing.
+	TArray<FVector> CurrentPartSocketLocations; //The locations of these sockets of the part we're placing.
+
+	TOptional <FVector> FoundRoot;
+	FoundRoot.Reset();
+	bool IsMovable = false;
 
 	for (FName SocketName : SocketNames) {
 		FVector SocketLocation = SelectedPart.GetDefaultObject()->Mesh->GetSocketLocation(SocketName);
 		SocketLocation = IntendedPartRotation.RotateVector(SocketLocation);
 		SocketLocation += IntendedPartLocation;
+		RoundVectorForSocket(SocketLocation);
 		CurrentPartSocketLocations.Add(SocketLocation);
-		//DrawDebugPoint(GetWorld(), SocketLocation, 10, FColor::Orange, false, 0.5, 10);
+
+		if (SocketName.ToString() == FString("Root")) {
+			IsMovable = true;
+			FVector *Root = SocketToPartLocation.Find(SocketLocation);
+			if(Root != nullptr){
+				FoundRoot = *Root;
+				TMap<FVector, FVector> P;
+				P.Add(IntendedPartLocation, FoundRoot.GetValue());
+				PendingMovablePartToRoot = P;
+				DrawDebugPoint(GetWorld(), FoundRoot.GetValue(), 10, FColor::Red, false, 0.5, 10);
+			}
+		}
 	}
+
+	if (IsMovable && !FoundRoot.IsSet()) { //If the part has a root socket and the socket actually attaches to another part...
+		CanPlaceItem = false;
+	}
+
+	if (IsPlacingCockpit) {
+		if (CockpitLocation.IsSet()) {
+			CanPlaceItem = false;
+		}
+	}
+	else {
+		if (!CockpitLocation.IsSet()) {
+			CanPlaceItem = false;
+		}
+	}
+
+	if (IsMovable && FoundRoot.IsSet() && PendingMovablePartToRoot.IsSet()) { //If we are placing a movable part...
+		TArray<FVector> PartsToScan;
+		TArray<FVector> ScannedParts;
+		PartsToScan.Add(FoundRoot.GetValue());
+		bool CockpitFound = false;
+
+		while (PartsToScan.Num() != 0) {
+			for (FVector ScanningPart : PartsToScan) {
+				ScannedParts.Add(ScanningPart);
+				RoundVector(ScanningPart);
+
+				TArray<FVector> SurroundingParts = WeldedParts.FindRef(ScanningPart);
+				//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(19, 1, FColor::Red, FString("Surrounding parts found: ") + FString::FromInt(i) + FString(" times"));
+
+				for (FVector SurroundIndividualPart : SurroundingParts) {
+					RoundVector(SurroundIndividualPart);
+
+					if (ScannedParts.Find(SurroundIndividualPart) == INDEX_NONE) { //If the part around the scanning part hasn't been scanned already...
+						if (SurroundIndividualPart == CockpitLocation.GetValue()) {
+							CockpitFound = true;
+						}
+						PartsToScan.Add(SurroundIndividualPart);
+					}
+				}
+
+				PartsToScan.Remove(ScanningPart);
+
+			}
+		}
+
+		if (!CockpitFound) { CanPlaceItem = false; }
+	}
+
 
 	for (UWidgetComponent *Comp : VehicleConstructor->SocketIndicators) {
 		Comp->DestroyComponent();
 	}
 	VehicleConstructor->SocketIndicators.Empty();
 
-	//TMap<FVector, TArray<FVector>> PartsToBeWelded;
-
-	PendingWelds.Empty();
 	TArray<FVector> OtherPartLocations;
 
-	// Are we not a cockpit?
-		for (FVector PartSocket : CurrentPartSocketLocations) {
-			RoundVectorForSocket(PartSocket);
+	for (FVector PartSocket : CurrentPartSocketLocations) {
+		RoundVectorForSocket(PartSocket);
 
-			for (FVector OtherSocket : FoundSocketLocations) {
-				RoundVectorForSocket(OtherSocket);
+		for (FVector OtherSocket : FoundSocketLocations) {
+			RoundVectorForSocket(OtherSocket);
 
-				if (PartSocket == OtherSocket) {
-					//PendingWelds.Add(PartSocket, OtherSocket);
-					//DrawDebugPoint(GetWorld(), PartSocket, 20, FColor::Green, false, 1, 10);
-					FVector FoundPart = SocketToPartLocation.FindRef(PartSocket);
-					if (OtherPartLocations.Find(FoundPart) == INDEX_NONE && FoundPart != FVector()) {
-						OtherPartLocations.Add(FoundPart);
-					}
-					CreateIndicator(PartSocket);
+			if (PartSocket == OtherSocket) {
+				//PendingWelds.Add(PartSocket, OtherSocket);
+				//DrawDebugPoint(GetWorld(), PartSocket, 20, FColor::Green, false, 1, 10);
+				FVector FoundPart = SocketToPartLocation.FindRef(PartSocket);
+				if (OtherPartLocations.Find(FoundPart) == INDEX_NONE && FoundPart != FVector()) {
+					OtherPartLocations.Add(FoundPart);
 				}
+				CreateIndicator(PartSocket);
 			}
 		}
+	}
 
-		if (SelectedPart.GetDefaultObject()->Category == ESubCategory::Cockpits) { // if we are a cockpit...
-			if (CockpitLocation.IsSet()) {
-				BuilderPawn->CanPlace = false;
-				CanPlaceItem = false;
-			}
-		}
-		else if (OtherPartLocations.Num() == 0) {
-			BuilderPawn->CanPlace = false;
+	if (IsPlacingCockpit) { // if we are a cockpit...
+		if (CockpitLocation.IsSet()) {
 			CanPlaceItem = false;
 		}
+	}
+	else if (OtherPartLocations.Num() == 0) {
+		CanPlaceItem = false;
+	}
 
+	BuilderPawn->CanPlace = CanPlaceItem;
 	PendingWelds.Add(IntendedPartLocation, OtherPartLocations);
+}
 
-	
-
-
-	// CHECK IF THERE ARE LIKE SOCKET LOCATIONS to ensure there is a bond and the cube is connected.
-
-	// Get all parts in a sphere
-	// for each part in that sphere, get the socket locations
-	// for each socket on the part image, find the closest socket found to one in the sphere
-	// set the part's location so both sockets share the same location
-	// check if the part is colliding with anything else
-	// repeat until there is no collision
-
-	//else set the part image's visibility to false.
+void UMenu::SetPlacability(bool &CanPlace, bool bNewPlacability) {
+	CanPlace = bNewPlacability;
+	BuilderPawn->CanPlace = bNewPlacability;
 }
 
 void UMenu::HighlightPart()

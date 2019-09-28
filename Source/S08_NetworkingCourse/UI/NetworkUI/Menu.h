@@ -46,6 +46,8 @@ public:
 	void RotateItem(FRotator DeltaRot);
 	void SetPartPlacementImage();
 
+	void SetPlacability(bool & CanPlace, bool bNewPlacability);
+
 	void HighlightPart();
 
 	UFUNCTION(BlueprintNativeEvent)
@@ -167,8 +169,11 @@ public:
 
 	int32 HighlightedItem;
 
-	TMap<FVector, TArray<FVector>> PendingWelds;
 	TMap<FVector, TArray<FVector>> WeldedParts; // Location of first part and and the other parts that are welded to this part.
 	TMap<FVector, TArray<FVector>> ParentChildHierachy;
-	TMap<FVector, FVector> MovablePartToRoot;
+	TMap<FVector, FVector> MovablePartToRoot; //
+
+	TOptional<TMap<FVector, FVector>> PendingMovablePartToRoot;
+	TMap<FVector, TArray<FVector>> PendingWelds;
+
 };
