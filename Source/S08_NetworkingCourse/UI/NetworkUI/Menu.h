@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Gameplay/PlayerCharacter/BuilderPawn.h"
+#include "Objects/Parts/VehicleConstructor.h"
 #include "Menu.generated.h"
 
 /**
@@ -56,7 +57,18 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetSubCategory(ESubCategory Category);
 	UFUNCTION()
+		void RefreshVehicles();
+
+	UFUNCTION()
 	void PurchaseItem();
+
+	void LoadVehicleData(FString Path, FVehicleData Data);
+
+	void SaveLoadData(FArchive & Ar, FVehicleData & DataToSaveLoad);
+
+	bool SaveGameDataToFile(const FString & FullFilePath, class FBufferArchive & ToBinary, FVehicleData & DataToSaveLoad);
+
+	bool LoadGameDataFromFile(const FString & FullFilePath, FVehicleData & DataToSaveLoad);
 
 	UFUNCTION(Client, reliable)
 	void PopulateCategories(ESubCategory Category);
@@ -95,21 +107,19 @@ public:
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UVerticalBox *RecoverSuccess;
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UButton *ProceedButton;
 
+	// Load Save buttons
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UButton *LoadVehiclesButton;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UButton *CreateNewVehicleButton;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UButton *SimulateButton;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UButton *OverrideSaveButton;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UScrollBox *VehiclesBox;
 
 	UFUNCTION(BlueprintCallable)
 		void SetDetails(FString ItemNameToSelect);
+	UFUNCTION()
+		void OnOverrideSave();
 
 		void SelectItem(FString ItemToPurchase);
-
-	TMap<FVector, TArray<FVector>> PendingWelds;
-	TMap<FVector, TArray<FVector>> WeldedParts; // Location of first part and and the other parts that are welded to this part.
-
-	ESubCategory CurrentCategory;
-
-	UPlatformerGameInstance *GI;
-
-	TSubclassOf<APart> SelectedPart;
-	FString SelectedPartName;
 
 	void OnLeftMouseClick();
 
@@ -121,35 +131,44 @@ public:
 
 	void FindVehicleConstructor();
 
+
+public:
+	ESubCategory CurrentCategory;
+
+	UPlatformerGameInstance *GI;
+
+	TSubclassOf<APart> SelectedPart;
+	
+	FString SelectedPartName;
+	FString LoadedVehiclePath;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere) class AVehicleConstructor *VehicleConstructor;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere) class TSubclassOf<class UUserWidget> IndicatorImage;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere) class TSubclassOf<class UUserWidget> VehicleTabClass;
+	class UInstancedStaticMeshComponent *HighlightedMesh;
+	class ABuilderPawn *BuilderPawn;
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class AVehicleConstructor *VehicleConstructor;
+		float IndicatorImageSize = 60;
 
 	FVector PreviousMouseLocation;
+	FVector IntendedPartLocation;
+	TOptional<FVector> CockpitLocation;
+	TArray<FVector> DisconnectedParts;
 
 	FRotator PartRotation;
-
+	FRotator IntendedPartRotation;
 
 	FHitResult OutHit;
 
 	bool CanPlaceItem = false;
 
-	class ABuilderPawn *BuilderPawn;
-
-	FVector IntendedPartLocation;
-	FRotator IntendedPartRotation;
-
-	TOptional<FVector> CockpitLocation;
-
 	ECurrentTool CurrentTool;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		class TSubclassOf<class UUserWidget> IndicatorImage;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		float IndicatorImageSize = 60;
-
-	class UInstancedStaticMeshComponent *HighlightedMesh;
 	int32 HighlightedItem;
 
-	TArray<FVector> DisconnectedParts;
+	TMap<FVector, TArray<FVector>> PendingWelds;
+	TMap<FVector, TArray<FVector>> WeldedParts; // Location of first part and and the other parts that are welded to this part.
+	TMap<FVector, TArray<FVector>> ParentChildHierachy;
+	TMap<FVector, FVector> MovablePartToRoot;
 };

@@ -19,6 +19,10 @@
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "Gameplay/PlayerCharacter/BuilderPawn.h"
+#include "HAL/FileManager.h"
+#include "Misc/FileHelper.h"
+#include "Serialization/MemoryReader.h"
+#include "UI/InGameUI/StatsSystem/VehicleTab.h"
 
 void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 {
@@ -167,11 +171,57 @@ void UMenu::SetSubCategory(ESubCategory Category) {
 bool UMenu::Initialize() {
 	bool Success = Super::Initialize();
 	ProceedButton->OnClicked.AddDynamic(this, &UMenu::PurchaseItem);
+	LoadVehiclesButton->OnClicked.AddDynamic(this, &UMenu::RefreshVehicles);
+	OverrideSaveButton->OnClicked.AddDynamic(this, &UMenu::OnOverrideSave);
 
 	return true;
 }
 
+void UMenu::OnOverrideSave() {
+	if (LoadedVehiclePath != FString()) {
+		FVehicleData Data;
+		Data.MovablePartToRoot = MovablePartToRoot;
+		//SaveGameDataToFile(LoadedVehiclePath, FBufferArchive())
+	}
+}
 
+void UMenu::RefreshVehicles() {
+	//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(643, 100, FColor::Red, FPaths::AutomationDir());
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), FPlatformProcess::UserSettingsDir());
+
+	//FString FileSearch = FString(FPlatformProcess::UserDir()).LeftChop(10) + FString("Documents/My Games/Xordia/Vehicles/_Hello_There_") + FString(".txt");
+	////if (!FPaths::FileExists(FileSearch)) {
+	//FString FileContent = FString();
+	//FFileHelper::SaveStringToFile(FileContent, *FileSearch, FFileHelper::EEncodingOptions::AutoDetect, &IFileManager::Get(), EFileWrite::FILEWRITE_None);
+
+		//FBufferArchive BufferArchive;
+		//FPlayerData newPlayerData = FPlayerData();
+		//newPlayerData.Items = Items;
+		//SaveGameDataToFile(FileSearch, BufferArchive, newPlayerData);
+	/*FindFiles
+	(
+		TArray< FString >& FoundFiles,
+		const TCHAR* Directory,
+		const TCHAR* FileExtension
+	)*/
+	TArray<FString> FoundFiles;
+	IFileManager *F = &IFileManager::Get();
+	F->FindFiles(FoundFiles, *(FString(FPlatformProcess::UserDir()).LeftChop(10) + FString("Documents/My Games/Xordia/Vehicles")), *FString(".txt"));
+	VehiclesBox->ClearChildren();
+
+	int32 l=0;
+	if (VehicleTabClass != nullptr) {
+		for (FString f : FoundFiles) {
+			l++;
+			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(l, 100, FColor::Green, f);
+			UVehicleTab *NewTab = CreateWidget<UVehicleTab>(this, VehicleTabClass, *FString::FromInt(l));
+			NewTab->AddToViewport();
+			VehiclesBox->AddChild(NewTab);
+			NewTab->ParentMenu = this;
+			NewTab->FilePath = FString(FPlatformProcess::UserDir()).LeftChop(10) + FString("Documents/My Games/Xordia/Vehicles/") + f;
+		}
+	}
+}
 
 void UMenu::PopulateCategories_Implementation(ESubCategory Category) {
 	ItemList->ClearListItems();
@@ -365,7 +415,7 @@ void UMenu::SetPartPlacementImage()
 	// if the cockpit's location has not been found, loop through all parts in LocationsInChain and delete them.
 
 	//TMap<FVector, TArray<FVector>> E;
-	TMap<FVector, FVector> SocketToPartLocation; // Surrounding part socket locations : Location of the part the socket belongs to
+	TMultiMap<FVector, FVector> SocketToPartLocation; // Surrounding part socket locations : Location of the part the socket belongs to
 	// this is for all the sockets that are detected in that sphere
 	// this is so that when a part is actually placed, we can get the socket that are to be bonded and the parts that those bonds belong to.
 	// must be done before placement.
@@ -738,4 +788,97 @@ void UMenu::GetStringFromEnum_Implementation(ESubCategory Enum, FString & String
 }
 
 void UMenu::ConstructDataObject_Implementation(const FString &ItemName, bool Locked, UPlatformerGameInstance *GI, TSubclassOf<APart> AssignedPart, const class UMenu* ParentSelector){
+}
+
+void UMenu::LoadVehicleData(FString Path, FVehicleData Data) {
+	LoadGameDataFromFile(Path, Data);
+	LoadedVehiclePath = Path;
+	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(15, 5, FColor::Yellow, FString("Loading Vehicle..."));
+	WeldedParts = Data.WeldedParts;
+	MovablePartToRoot = Data.MovablePartToRoot;
+	ParentChildHierachy = Data.ParentChildHierachy;
+}
+
+//-----Data save and load functionality-----//
+void UMenu::SaveLoadData(FArchive& Ar, FVehicleData& DataToSaveLoad)
+{
+	Ar << DataToSaveLoad.WeldedParts;
+	Ar << DataToSaveLoad.PartData;
+	Ar << DataToSaveLoad.MovablePartToRoot;
+	Ar << DataToSaveLoad.ParentChildHierachy;
+}
+
+bool UMenu::SaveGameDataToFile(const FString& FullFilePath, FBufferArchive& ToBinary, FVehicleData& DataToSaveLoad)
+{
+	//note that the supplied FString must be the entire Filepath
+	// 	if writing it out yourself in C++ make sure to use the \\
+	// 	for example:
+
+	// 	FString SavePath = "C:\\MyProject\\MySaveDir\\mysavefile.save";
+
+	//Step 1: Variable Data -> Binary
+
+	//following along from above examples
+	SaveLoadData(ToBinary, DataToSaveLoad);
+	//presumed to be global var data, 
+	//could pass in the data too if you preferred
+
+	//No Data
+	if (ToBinary.Num() <= 0) return false;
+	//~
+
+	//Step 2: Binary to Hard Disk
+	if (FFileHelper::SaveArrayToFile(ToBinary, *FullFilePath))
+	{
+		// Free Binary Array 	
+		ToBinary.FlushCache();
+		ToBinary.Empty();
+
+		return true;
+	}
+
+	// Free Binary Array 	
+	ToBinary.FlushCache();
+	ToBinary.Empty();
+
+	return false;
+}
+
+bool UMenu::LoadGameDataFromFile(
+	const FString& FullFilePath,
+	FVehicleData& DataToSaveLoad
+) {
+	//Load the data array,
+	// 	you do not need to pre-initialize this array,
+	//		UE4 C++ is awesome and fills it 
+	//		with whatever contents of file are, 
+	//		and however many bytes that is
+	TArray<uint8> TheBinaryArray;
+	if (!FFileHelper::LoadFileToArray(TheBinaryArray, *FullFilePath))
+	{
+		return false;
+		//~~
+	}
+
+	//File Load Error
+	if (TheBinaryArray.Num() <= 0) return false;
+
+	//~
+	//		  Read the Data Retrieved by GFileManager
+	//~
+
+	FMemoryReader FromBinary = FMemoryReader(TheBinaryArray, true); //true, free data after done
+	FromBinary.Seek(0);
+	SaveLoadData(FromBinary, DataToSaveLoad);
+
+	//~
+	//								Clean up 
+	//~
+	FromBinary.FlushCache();
+
+	// Empty & Close Buffer 
+	TheBinaryArray.Empty();
+	FromBinary.Close();
+
+	return true;
 }
