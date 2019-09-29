@@ -28,10 +28,27 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 {
 	FindVehicleConstructor();
 
-	for (TPair<FVector, TArray<FVector>> pair : WeldedParts) {
-		for (FVector otherPartLoc : pair.Value) {
-			DrawDebugLine(GetWorld(), pair.Key, otherPartLoc, FColor::Orange, false, DeltaTime *2, 16, 3);
-			//DrawDebugLine(GetWorld(), otherPartLoc, otherPartLoc + ( otherPartLoc - pair.Key).GetSafeNormal() * 5, FColor::MakeRandomColor(), false, DeltaTime * 2, 22, 15);
+	if (SkeletonVisibilityValue != 0) {
+		for (TPair<FVector, TArray<FVector>> pair : WeldedParts) {
+			for (FVector otherPartLoc : pair.Value) {
+				DrawDebugLine(GetWorld(), pair.Key, otherPartLoc, FColor::Orange, false, DeltaTime * 2, 16, SkeletonVisibilityValue * 10);
+				//DrawDebugLine(GetWorld(), otherPartLoc, otherPartLoc + ( otherPartLoc - pair.Key).GetSafeNormal() * 5, FColor::MakeRandomColor(), false, DeltaTime * 2, 22, 15);
+			}
+		}
+	}
+
+	if (MobileSkeletonVisibilityValue != 0) {
+		for (TPair<FVector, TArray<FVector>> pair : ParentChildHierachy) {
+			for (FVector Child : pair.Value) {
+				DrawDebugLine(GetWorld(), pair.Key, Child, FColor::Green, false, DeltaTime * 2, 16, MobileSkeletonVisibilityValue * 10);
+			}
+		}
+	}
+
+	if (RootsVisibilityValue != 0) {
+		for (TPair<FVector, FVector> pair : MovablePartToRoot)
+		{
+			DrawDebugLine(GetWorld(), pair.Key, pair.Value, FColor::Red, false, DeltaTime * 2, 16, RootsVisibilityValue * 10);
 		}
 	}
 	//for (TPair<FVector, FVector> pair : MovablePartToRoot) {
@@ -311,6 +328,7 @@ void UMenu::SetPartPlacementImage()
 	CanPlaceItem = false;
 	PendingMovablePartToRoot.Reset();
 	PendingWelds.Empty();
+	LikeSockets.Empty();
 
 	if (SelectedPart.GetDefaultObject()->Category == ESubCategory::Cockpits) { // if we are a cockpit...
 		IsPlacingCockpit = true;
@@ -454,6 +472,7 @@ void UMenu::SetPartPlacementImage()
 			if (PartSocket == OtherSocket) {
 				//PendingWelds.Add(PartSocket, OtherSocket);
 				//DrawDebugPoint(GetWorld(), PartSocket, 20, FColor::Green, false, 1, 10);
+				LikeSockets.Add(PartSocket);
 				FVector *FoundPart = SocketToPartLocation.Find(PartSocket);
 				if (FoundPart != nullptr && OtherPartLocations.Find(*FoundPart) == INDEX_NONE) {
 					OtherPartLocations.Add(*FoundPart);
@@ -478,6 +497,7 @@ void UMenu::SetPartPlacementImage()
 			bool IsConflicting;
 			if (*FoundRootOfMovable != IntendedPartLocation) { //If the part next to us is a movable and we are the root
 				IsConflicting = true;
+				PendingParent = InitialPart;
 			}
 			ConflictingMovables.Add(InitialPart, IsConflicting);
 		}
@@ -486,6 +506,7 @@ void UMenu::SetPartPlacementImage()
 		}
 		else { //Its a normal part, so add it to the scan buffer.
 			PartsToScan.Add(InitialPart);
+			DrawDebugPoint(GetWorld(), InitialPart, 30, FColor::Cyan, false, 2, 100);
 		}
 	}
 
@@ -502,36 +523,23 @@ void UMenu::SetPartPlacementImage()
 			for (FVector SurroundIndividualPart : SurroundingParts) {
 				RoundVector(SurroundIndividualPart);
 
-				if (ScannedParts.Find(SurroundIndividualPart) == INDEX_NONE) { //If the part around the scanning part hasn't been scanned already...
-					const FVector *FoundRootOfMovable = MovablePartToRoot.Find(SurroundIndividualPart);
-					if (FoundRootOfMovable != nullptr) {
-						bool IsConflicting;
-						if (*FoundRootOfMovable != ScanningPart) //Is the root of this movable the same as the one we're scanning?
-						{
-							IsConflicting = true;
-						}
+				const FVector *FoundRootOfMovable = MovablePartToRoot.Find(SurroundIndividualPart);
+				if (FoundRootOfMovable != nullptr) { //Have we found a movable part?
+					if (*FoundRootOfMovable != ScanningPart) //Is the root of this movable the same as the one we're scanning?
+					{
+						PendingParent = SurroundIndividualPart;
+						DrawDebugPoint(GetWorld(), SurroundIndividualPart, 60, FColor::Blue, false, 2, 6);
 
-						bool *FoundConflicting = ConflictingMovables.Find(SurroundIndividualPart);
-
-						if (FoundConflicting != nullptr) {
-							if (*FoundConflicting == false && IsConflicting == true) {
-								ConflictingMovables.Remove(SurroundIndividualPart);
-								ConflictingMovables.Add(SurroundIndividualPart, true);
-							}
-						}
-						else {
-							ConflictingMovables.Add(SurroundIndividualPart, IsConflicting);
-						}
-
-
+						ConflictingMovables.Add(SurroundIndividualPart, true);
 					}
-					else {
-						if (SurroundIndividualPart == CockpitLocation.GetValue()) {
-							CockpitFound = true;
-						}
+				}
+				else { //It isnt movable, so
+					if (SurroundIndividualPart == CockpitLocation.GetValue()) {
+						CockpitFound = true;
+					}
+					if (ScannedParts.Find(SurroundIndividualPart) == INDEX_NONE) { //If the part around the scanning part hasn't been scanned already...
 						PartsToScan.Add(SurroundIndividualPart);
 					}
-
 				}
 			}
 			PartsToScan.Remove(ScanningPart);
@@ -550,6 +558,12 @@ void UMenu::SetPartPlacementImage()
 	if (NumConflicts > 1) {
 		CanPlaceItem = false;
 	}
+	
+	if (FoundRoot.IsSet()) {
+		if (CockpitFound && CockpitLocation.IsSet()) {
+			PendingParent = CockpitLocation.GetValue();
+		}
+	}
 
 	if (IsPlacingCockpit) { // if we are a cockpit...
 		if (CockpitLocation.IsSet()) {
@@ -558,6 +572,10 @@ void UMenu::SetPartPlacementImage()
 	}
 	else if (OtherPartLocations.Num() == 0) {
 		CanPlaceItem = false;
+	}
+
+	if (CanPlaceItem) {
+		PlaySound(MoveImageSound);
 	}
 
 	BuilderPawn->CanPlace = CanPlaceItem;
@@ -758,6 +776,18 @@ void UMenu::PlaceItem()
 
 		if (PendingMovablePartToRoot.IsSet()) {
 			MovablePartToRoot.Append(PendingMovablePartToRoot.GetValue());
+			
+			TArray<FVector> *ExistingChildrenPtr = ParentChildHierachy.Find(PendingParent);
+			TArray<FVector> ExistingChildrenRef = ParentChildHierachy.FindRef(PendingParent);
+			ExistingChildrenRef.Add(IntendedPartLocation);
+
+			if (ExistingChildrenPtr != nullptr) {
+				ParentChildHierachy.Remove(PendingParent);
+				ParentChildHierachy.Add(PendingParent, ExistingChildrenRef);
+			}
+			else {
+				ParentChildHierachy.Add(PendingParent, ExistingChildrenRef);
+			}
 		}
 
 		for (FVector OtherPartLocation : PendingWelds.FindRef(IntendedPartLocation)) { // there is only one array
@@ -795,12 +825,15 @@ void UMenu::PlaceItem()
 			}*/
 		}
 		PreviousLocation = IntendedPartLocation;
+		PlaySound(PlaceSound);
 
 		CanPlaceItem = false;
+		
+		BuilderPawn->AttachSockets = LikeSockets;
+		BuilderPawn->PostPlaceItem(IntendedPartLocation);
 		SetPartPlacementImage();
 		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 0.5, FColor::Green, FString("Part Installed Successfully"));
 
-		BuilderPawn->PostPlaceItem();
 	}
 
 	

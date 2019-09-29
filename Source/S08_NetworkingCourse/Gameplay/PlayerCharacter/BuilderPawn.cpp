@@ -165,7 +165,7 @@ void ABuilderPawn::SetTool(ECurrentTool Tool)
 	}
 }
 
-void ABuilderPawn::PostPlaceItem_Implementation()
+void ABuilderPawn::PostPlaceItem_Implementation(FVector Part)
 {
 }
 

@@ -153,6 +153,18 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float IndicatorImageSize = 60;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float SkeletonVisibilityValue = 0;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float MobileSkeletonVisibilityValue = 0;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float RootsVisibilityValue = 0;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		USoundBase *MoveImageSound;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		USoundBase *PlaceSound;
+
 	FVector PreviousMouseLocation;
 	FVector IntendedPartLocation;
 	TOptional<FVector> CockpitLocation;
@@ -174,6 +186,10 @@ public:
 	TMap<FVector, FVector> MovablePartToRoot; //
 
 	TOptional<TMap<FVector, FVector>> PendingMovablePartToRoot;
+	FVector PendingParent;
 	TMap<FVector, TArray<FVector>> PendingWelds;
+
+	TArray<FVector> LikeSockets;
+
 
 };

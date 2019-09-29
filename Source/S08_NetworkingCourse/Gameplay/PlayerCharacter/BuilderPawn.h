@@ -84,8 +84,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool CanPlace;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		TArray<FVector> AttachSockets;
+
 	UFUNCTION(BlueprintNativeEvent)
-		void PostPlaceItem();
+		void PostPlaceItem(FVector Part);
 
 	void SetTool(ECurrentTool Tool);
 
