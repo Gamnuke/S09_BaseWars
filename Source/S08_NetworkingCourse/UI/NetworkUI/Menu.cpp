@@ -34,6 +34,10 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 			//DrawDebugLine(GetWorld(), otherPartLoc, otherPartLoc + ( otherPartLoc - pair.Key).GetSafeNormal() * 5, FColor::MakeRandomColor(), false, DeltaTime * 2, 22, 15);
 		}
 	}
+	//for (TPair<FVector, FVector> pair : MovablePartToRoot) {
+	//	DrawDebugPoint(GetWorld(), pair.Key, 30.0f, FColor::Yellow, false, DeltaTime*2, 100);
+	//	DrawDebugPoint(GetWorld(), pair.Value, 30.0f, FColor::Orange, false, DeltaTime * 2, 100);
+	//}
 
 	for (FVector DisconnectedPart : DisconnectedParts) {
 		DrawDebugPoint(GetWorld(), DisconnectedPart, 30.0f, FColor::Red, false, DeltaTime, 100);
@@ -302,7 +306,7 @@ void UMenu::SelectItem(FString ItemToPurchase) {
 
 void UMenu::SetPartPlacementImage()
 {
-	bool IsPlacingCockpit;
+	bool IsPlacingCockpit = false;
 	BuilderPawn->CanPlace = false;
 	CanPlaceItem = false;
 	PendingMovablePartToRoot.Reset();
@@ -415,7 +419,7 @@ void UMenu::SetPartPlacementImage()
 				TMap<FVector, FVector> P;
 				P.Add(IntendedPartLocation, FoundRoot.GetValue());
 				PendingMovablePartToRoot = P;
-				DrawDebugPoint(GetWorld(), FoundRoot.GetValue(), 10, FColor::Red, false, 0.5, 10);
+				DrawDebugPoint(GetWorld(), FoundRoot.GetValue(), 30, FColor::Red, false, 0.5, 40);
 			}
 		}
 	}
@@ -435,47 +439,12 @@ void UMenu::SetPartPlacementImage()
 		}
 	}
 
-	if (IsMovable && FoundRoot.IsSet() && PendingMovablePartToRoot.IsSet()) { //If we are placing a movable part...
-		TArray<FVector> PartsToScan;
-		TArray<FVector> ScannedParts;
-		PartsToScan.Add(FoundRoot.GetValue());
-		bool CockpitFound = false;
-
-		while (PartsToScan.Num() != 0) {
-			for (FVector ScanningPart : PartsToScan) {
-				ScannedParts.Add(ScanningPart);
-				RoundVector(ScanningPart);
-
-				TArray<FVector> SurroundingParts = WeldedParts.FindRef(ScanningPart);
-				//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(19, 1, FColor::Red, FString("Surrounding parts found: ") + FString::FromInt(i) + FString(" times"));
-
-				for (FVector SurroundIndividualPart : SurroundingParts) {
-					RoundVector(SurroundIndividualPart);
-
-					if (ScannedParts.Find(SurroundIndividualPart) == INDEX_NONE) { //If the part around the scanning part hasn't been scanned already...
-						if (SurroundIndividualPart == CockpitLocation.GetValue()) {
-							CockpitFound = true;
-						}
-						PartsToScan.Add(SurroundIndividualPart);
-					}
-				}
-
-				PartsToScan.Remove(ScanningPart);
-
-			}
-		}
-
-		if (!CockpitFound) { CanPlaceItem = false; }
-	}
-
-
 	for (UWidgetComponent *Comp : VehicleConstructor->SocketIndicators) {
 		Comp->DestroyComponent();
 	}
 	VehicleConstructor->SocketIndicators.Empty();
 
 	TArray<FVector> OtherPartLocations;
-
 	for (FVector PartSocket : CurrentPartSocketLocations) {
 		RoundVectorForSocket(PartSocket);
 
@@ -485,13 +454,101 @@ void UMenu::SetPartPlacementImage()
 			if (PartSocket == OtherSocket) {
 				//PendingWelds.Add(PartSocket, OtherSocket);
 				//DrawDebugPoint(GetWorld(), PartSocket, 20, FColor::Green, false, 1, 10);
-				FVector FoundPart = SocketToPartLocation.FindRef(PartSocket);
-				if (OtherPartLocations.Find(FoundPart) == INDEX_NONE && FoundPart != FVector()) {
-					OtherPartLocations.Add(FoundPart);
+				FVector *FoundPart = SocketToPartLocation.Find(PartSocket);
+				if (FoundPart != nullptr && OtherPartLocations.Find(*FoundPart) == INDEX_NONE) {
+					OtherPartLocations.Add(*FoundPart);
+					//DrawDebugPoint(GetWorld(), *FoundPart, 20, FColor::Magenta, false, 2, 6);
 				}
 				CreateIndicator(PartSocket);
 			}
 		}
+	}
+
+	TArray<FVector> PartsToScan;
+	TArray<FVector> ScannedParts;
+	TMap<FVector, bool> ConflictingMovables;
+	//PartsToScan = OtherPartLocations;
+	bool CockpitFound = false;
+
+	for (FVector InitialPart : OtherPartLocations) {
+		RoundVector(InitialPart);
+
+		const FVector *FoundRootOfMovable = MovablePartToRoot.Find(InitialPart);
+		if (FoundRootOfMovable != nullptr) {
+			bool IsConflicting;
+			if (*FoundRootOfMovable != IntendedPartLocation) { //If the part next to us is a movable and we are the root
+				IsConflicting = true;
+			}
+			ConflictingMovables.Add(InitialPart, IsConflicting);
+		}
+		else if (InitialPart == CockpitLocation) {
+			CockpitFound = true;
+		}
+		else { //Its a normal part, so add it to the scan buffer.
+			PartsToScan.Add(InitialPart);
+		}
+	}
+
+	while (PartsToScan.Num() != 0) {
+		for (FVector ScanningPart : PartsToScan) {
+			ScannedParts.Add(ScanningPart);
+			RoundVector(ScanningPart);
+			DrawDebugPoint(GetWorld(), ScanningPart, 20, FColor::Green, false, 2, 6);
+
+
+			TArray<FVector> SurroundingParts = WeldedParts.FindRef(ScanningPart);
+			//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(19, 1, FColor::Red, FString("Surrounding parts found: ") + FString::FromInt(i) + FString(" times"));
+
+			for (FVector SurroundIndividualPart : SurroundingParts) {
+				RoundVector(SurroundIndividualPart);
+
+				if (ScannedParts.Find(SurroundIndividualPart) == INDEX_NONE) { //If the part around the scanning part hasn't been scanned already...
+					const FVector *FoundRootOfMovable = MovablePartToRoot.Find(SurroundIndividualPart);
+					if (FoundRootOfMovable != nullptr) {
+						bool IsConflicting;
+						if (*FoundRootOfMovable != ScanningPart) //Is the root of this movable the same as the one we're scanning?
+						{
+							IsConflicting = true;
+						}
+
+						bool *FoundConflicting = ConflictingMovables.Find(SurroundIndividualPart);
+
+						if (FoundConflicting != nullptr) {
+							if (*FoundConflicting == false && IsConflicting == true) {
+								ConflictingMovables.Remove(SurroundIndividualPart);
+								ConflictingMovables.Add(SurroundIndividualPart, true);
+							}
+						}
+						else {
+							ConflictingMovables.Add(SurroundIndividualPart, IsConflicting);
+						}
+
+
+					}
+					else {
+						if (SurroundIndividualPart == CockpitLocation.GetValue()) {
+							CockpitFound = true;
+						}
+						PartsToScan.Add(SurroundIndividualPart);
+					}
+
+				}
+			}
+			PartsToScan.Remove(ScanningPart);
+		}
+	}
+
+	int32 NumConflicts = 0;
+	if (CockpitFound) { NumConflicts++; }
+	for (TPair<FVector, bool> Pair : ConflictingMovables) {
+		if (Pair.Value == true) {
+			DrawDebugPoint(GetWorld(), Pair.Key, 20, FColor::Purple, false, 2, 100);
+			NumConflicts++;
+		}
+	}
+
+	if (NumConflicts > 1) {
+		CanPlaceItem = false;
 	}
 
 	if (IsPlacingCockpit) { // if we are a cockpit...
@@ -699,6 +756,10 @@ void UMenu::PlaceItem()
 		FHitResult OutHit;
 		GetOwningPlayer()->DeprojectMousePositionToWorld(Location, Dir);
 
+		if (PendingMovablePartToRoot.IsSet()) {
+			MovablePartToRoot.Append(PendingMovablePartToRoot.GetValue());
+		}
+
 		for (FVector OtherPartLocation : PendingWelds.FindRef(IntendedPartLocation)) { // there is only one array
 			RoundVector(OtherPartLocation);
 			TArray<FVector> ChangedVec = WeldedParts.FindRef(OtherPartLocation);
@@ -742,6 +803,7 @@ void UMenu::PlaceItem()
 		BuilderPawn->PostPlaceItem();
 	}
 
+	
 	FilterFloatingParts(DisconnectedParts);
 
 	//RoundVector(IntendedPartTransform);
