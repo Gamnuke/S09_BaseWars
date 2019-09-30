@@ -35,5 +35,5 @@ void UVehicleTab::LoadVehicle()
 {
 	if (ParentMenu == nullptr) { return; }
 	FVehicleData Data;
-	ParentMenu->LoadVehicleData(FilePath, Data);
+	ParentMenu->LoadVehicleData(FilePath, Data, true);
 }

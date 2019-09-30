@@ -45,6 +45,7 @@ public:
 	class UMenu* MenuRef;
 	TMap<class UInstancedStaticMeshComponent*, TSubclassOf<class APart>> PartToMesh;
 
+	int32 MessageIndex = 70;
 	int order=0;
 public:
 	bool bSimulatingVehicle;
@@ -55,6 +56,8 @@ public:
 
 	UInstancedStaticMeshComponent *CreateMesh(TSubclassOf<class APart> SelectedPart);
 
+	void RemoveMeshes();
+
 	void CheckIfMeshIsEmpty(UInstancedStaticMeshComponent * MeshToCheck);
 
 	bool SetSimulation(bool bSimulateVehicle);
@@ -64,6 +67,8 @@ public:
 	FTransform FindTransformFromLocation(FVector Location, TArray<FTransform> Transforms);
 
 	FString GetPartNameFromLocation(FVector LocationToSearch, TMap<FString, TArray<FTransform>> PartForName, FTransform & FoundTransform);
+
+	void DebugMessage(FString Message);
 
 	void BuildSimulatedVehicle();
 

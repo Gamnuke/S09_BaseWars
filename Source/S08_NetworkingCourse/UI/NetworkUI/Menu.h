@@ -64,7 +64,7 @@ public:
 	UFUNCTION()
 	void PurchaseItem();
 
-	void LoadVehicleData(FString Path, FVehicleData Data);
+	void LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical);
 
 	void SaveLoadData(FArchive & Ar, FVehicleData & DataToSaveLoad);
 
@@ -118,6 +118,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void SetDetails(FString ItemNameToSelect);
+	UFUNCTION()
+		void SimulateVehicle();
 	UFUNCTION()
 		void CreateNewVehicle();
 	UFUNCTION()

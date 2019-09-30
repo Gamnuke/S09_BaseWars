@@ -57,20 +57,20 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 	//	DrawDebugPoint(GetWorld(), pair.Value, 30.0f, FColor::Orange, false, DeltaTime * 2, 100);
 	//}
 
-	for (FVector DisconnectedPart : DisconnectedParts) {
-		DrawDebugPoint(GetWorld(), DisconnectedPart, 30.0f, FColor::Red, false, DeltaTime, 100);
-	}
+	//for (FVector DisconnectedPart : DisconnectedParts) {
+	//	DrawDebugPoint(GetWorld(), DisconnectedPart, 30.0f, FColor::Red, false, DeltaTime, 100);
+	//}
 
-	int order = 1000;
-	for (TPair<FVector, TArray<FVector>> d : WeldedParts) {
-		//DrawDebugPoint(GetWorld(), d.Key, 10, FColor::Red, false, DeltaTime, 10);
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Red, d.Key.ToString());
-		order++;
-		for (FVector OtherPartVec : d.Value) {
-			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Orange, FString("                    ") + OtherPartVec.ToString());
-			order++;
-		}
-	}
+	//int order = 1000;
+	//for (TPair<FVector, TArray<FVector>> d : WeldedParts) {
+	//	//DrawDebugPoint(GetWorld(), d.Key, 10, FColor::Red, false, DeltaTime, 10);
+	//	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Red, d.Key.ToString());
+	//	order++;
+	//	for (FVector OtherPartVec : d.Value) {
+	//		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Orange, FString("                    ") + OtherPartVec.ToString());
+	//		order++;
+	//	}
+	//}
 
 	if (VehicleConstructor != nullptr) {
 		FVector Location;
@@ -178,8 +178,13 @@ bool UMenu::Initialize() {
 	LoadVehiclesButton->OnClicked.AddDynamic(this, &UMenu::RefreshVehicles);
 	OverrideSaveButton->OnClicked.AddDynamic(this, &UMenu::OnOverrideSave);
 	CreateNewVehicleButton->OnClicked.AddDynamic(this, &UMenu::CreateNewVehicle);
+	SimulateButton->OnClicked.AddDynamic(this, &UMenu::SimulateVehicle);
 
 	return true;
+}
+
+void UMenu::SimulateVehicle() {
+	VehicleConstructor->SetSimulation(!VehicleConstructor->bSimulatingVehicle);
 }
 
 void UMenu::CreateNewVehicle() {
@@ -193,7 +198,7 @@ void UMenu::CreateNewVehicle() {
 			FString FileContent = FString();
 			FFileHelper::SaveStringToFile(FileContent, *FileSearch, FFileHelper::EEncodingOptions::AutoDetect, &IFileManager::Get(), EFileWrite::FILEWRITE_None);
 			FVehicleData Data;
-			LoadVehicleData(FileSearch, Data);
+			LoadVehicleData(FileSearch, Data, true);
 			RefreshVehicles();
 			Found = true;
 			break;
@@ -465,7 +470,7 @@ void UMenu::SetPartPlacementImage()
 				TMap<FVector, FVector> P;
 				P.Add(IntendedPartLocation, FoundRoot.GetValue());
 				PendingMovablePartToRoot = P;
-				DrawDebugPoint(GetWorld(), FoundRoot.GetValue(), 30, FColor::Red, false, 0.5, 40);
+				//DrawDebugPoint(GetWorld(), FoundRoot.GetValue(), 30, FColor::Red, false, 0.5, 40);
 			}
 		}
 	}
@@ -534,7 +539,7 @@ void UMenu::SetPartPlacementImage()
 		}
 		else { //Its a normal part, so add it to the scan buffer.
 			PartsToScan.Add(InitialPart);
-			DrawDebugPoint(GetWorld(), InitialPart, 30, FColor::Cyan, false, 2, 100);
+			//DrawDebugPoint(GetWorld(), InitialPart, 30, FColor::Cyan, false, 2, 100);
 		}
 	}
 
@@ -542,7 +547,7 @@ void UMenu::SetPartPlacementImage()
 		for (FVector ScanningPart : PartsToScan) {
 			ScannedParts.Add(ScanningPart);
 			RoundVector(ScanningPart);
-			DrawDebugPoint(GetWorld(), ScanningPart, 20, FColor::Green, false, 2, 6);
+			//DrawDebugPoint(GetWorld(), ScanningPart, 20, FColor::Green, false, 2, 6);
 
 
 			TArray<FVector> SurroundingParts = WeldedParts.FindRef(ScanningPart);
@@ -556,7 +561,7 @@ void UMenu::SetPartPlacementImage()
 					if (*FoundRootOfMovable != ScanningPart) //Is the root of this movable the same as the one we're scanning?
 					{
 						PendingParent = SurroundIndividualPart;
-						DrawDebugPoint(GetWorld(), SurroundIndividualPart, 60, FColor::Blue, false, 2, 6);
+						//DrawDebugPoint(GetWorld(), SurroundIndividualPart, 60, FColor::Blue, false, 2, 6);
 
 						ConflictingMovables.Add(SurroundIndividualPart, true);
 					}
@@ -578,7 +583,7 @@ void UMenu::SetPartPlacementImage()
 	if (CockpitFound) { NumConflicts++; }
 	for (TPair<FVector, bool> Pair : ConflictingMovables) {
 		if (Pair.Value == true) {
-			DrawDebugPoint(GetWorld(), Pair.Key, 20, FColor::Purple, false, 2, 100);
+			//DrawDebugPoint(GetWorld(), Pair.Key, 20, FColor::Purple, false, 2, 100);
 			NumConflicts++;
 		}
 	}
@@ -624,7 +629,7 @@ void UMenu::HighlightPart()
 		int32 I = OutHit.Item;
 		FTransform ItemTrans;
 		if (FoundMesh->GetInstanceTransform(I, ItemTrans, false)) {
-			DrawDebugPoint(GetWorld(), ItemTrans.GetLocation(), 10, FColor::Cyan, false, 0.5, 10);
+			//DrawDebugPoint(GetWorld(), ItemTrans.GetLocation(), 10, FColor::Cyan, false, 0.5, 10);
 			HighlightedMesh = FoundMesh;
 			HighlightedItem = I;
 		}
@@ -659,6 +664,8 @@ void UMenu::DeleteItem() {
 	if (HighlightedMesh != nullptr) {
 		FTransform PartTrans;
 		HighlightedMesh->GetInstanceTransform(HighlightedItem, PartTrans, true);
+		TSubclassOf<APart> DeletingClass = VehicleConstructor->PartToMesh.FindRef(HighlightedMesh);
+		FString DeletingName = FormatPartName(DeletingClass);
 		FVector PartLoc = PartTrans.GetLocation();
 		RoundVector(PartLoc);
 
@@ -682,6 +689,16 @@ void UMenu::DeleteItem() {
 		}
 
 		TArray<FVector> OtherWeldedParts = WeldedParts.FindRef(PartLoc);
+
+		TArray<FTransform> Transforms = PartData.FindRef(DeletingName);
+		TArray<FTransform> NewTrans;
+		for (FTransform T : Transforms) {
+			if (T.GetLocation() != PartLoc) { //If the transform in the array is the same as the transform of the part we're deleting
+				NewTrans.Add(T);
+			}
+		}
+		PartData.Remove(DeletingName); //Remove the array of transforms in the PArtData variable for this part
+		PartData.Add(DeletingName, NewTrans);
 
 		for (FVector OtherPart : OtherWeldedParts) {
 			RoundVector(OtherPart);
@@ -906,6 +923,7 @@ void UMenu::FindVehicleConstructor()
 		TArray<AActor*> Actors;
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AVehicleConstructor::StaticClass(), Actors);
 		if (Actors.Num() != 0) { VehicleConstructor = Cast<AVehicleConstructor>(Actors[0]); }
+		VehicleConstructor->MenuRef = this;
 	}
 	if (BuilderPawn == nullptr && GetOwningPlayerPawn() != nullptr) {
 		BuilderPawn = Cast<ABuilderPawn>(GetOwningPlayerPawn());
@@ -927,7 +945,7 @@ void UMenu::GetStringFromEnum_Implementation(ESubCategory Enum, FString & String
 void UMenu::ConstructDataObject_Implementation(const FString &ItemName, bool Locked, UPlatformerGameInstance *GI, TSubclassOf<APart> AssignedPart, const class UMenu* ParentSelector){
 }
 
-void UMenu::LoadVehicleData(FString Path, FVehicleData Data) {
+void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical) {
 	LoadGameDataFromFile(Path, Data);
 	LoadedVehiclePath = Path;
 	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(15, 5, FColor::Yellow, FString("Loading Vehicle..."));
@@ -937,11 +955,8 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData Data) {
 	PartData = Data.PartData;
 	CockpitLocation = Data.CockpitLocation;
 
-	if (true) { //Make a bool variable to check if we want to actually load the vehicle physically.
-		for (UInstancedStaticMeshComponent *Mesh : VehicleConstructor->InstancedMeshes) {
-			Mesh->DestroyComponent();
-		}
-		VehicleConstructor->InstancedMeshes.Empty();
+	if (bLoadPhysical) { //Make a bool variable to check if we want to actually load the vehicle physically.
+		VehicleConstructor->RemoveMeshes();
 
 		for (TPair<FString, TArray<FTransform>> Pair : PartData) {
 			TSubclassOf<APart> *Part = GI->NameForPart.Find(Pair.Key);

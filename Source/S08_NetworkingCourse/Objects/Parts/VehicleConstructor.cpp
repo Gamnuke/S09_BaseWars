@@ -64,9 +64,11 @@ FTransform AVehicleConstructor::FindTransformFromLocation(FVector Location, TArr
 }
 
 FString AVehicleConstructor::GetPartNameFromLocation(FVector LocationToSearch, TMap<FString, TArray<FTransform>> PartForName, FTransform &FoundTransform) {
+	//DebugMessage(FString("Oh hey, just about to go to bed. I know we couldn't skype tonight, but, thats alright. Goodnight girl, i'll see you tomorrow"));
 	for (TPair<FString, TArray<FTransform>> Pair : PartForName) {
 		// Given the location of the part we want, we first find the entire transform of that part in FindTransformFromLocation, then we
 		// find the part name by the transform.
+
 		FTransform SearchTransform = FindTransformFromLocation(LocationToSearch, Pair.Value);
 		for (FTransform T : Pair.Value) {
 			if (T.GetLocation() == SearchTransform.GetLocation()) {
@@ -83,6 +85,11 @@ FString AVehicleConstructor::GetPartNameFromLocation(FVector LocationToSearch, T
 
 }
 
+void AVehicleConstructor::DebugMessage(FString Message) {
+	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(MessageIndex, 1000.0f, FColor::MakeRandomColor(), FString::FromInt(MessageIndex-70) + FString(" | ") + Message);
+	MessageIndex++;
+}
+
 
 void AVehicleConstructor::BuildSimulatedVehicle()
 {
@@ -95,7 +102,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 		}
 
 		FVehicleData LoadedData;
-		MenuRef->LoadVehicleData(MenuRef->LoadedVehiclePath, LoadedData); // TODO theres a bool here but idk what it did so it was removed;
+		MenuRef->LoadVehicleData(MenuRef->LoadedVehiclePath, LoadedData, false);
 		UPlatformerGameInstance *GI = MenuRef->GI;
 		if (GI == nullptr) { return; }
 		if (!MenuRef->CockpitLocation.IsSet()) { return; }
@@ -103,14 +110,14 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 		TMap<FVector, UInstancedStaticMeshComponent*> Meshes;
 
 		FVector CockpitLocation = MenuRef->CockpitLocation.GetValue();
+		TMap<FVector, TArray<FVector>> Hierachy = MenuRef->ParentChildHierachy;
 		//TODO Make a better system for detecting where the cockpit is through raw binary data.
 
 		int32 n_child = 0;
 		int32 n_parent = 0;
 		int32 n_collision = 0;
 
-		TMap<FVector, TArray<FVector>> Hierachy = MenuRef->ParentChildHierachy;
-		TArray<FVector> MovableParts;
+		TArray<FVector> MovableParts; //Gets an array of the location of only the movable parts.
 		for (TPair<FVector, TArray<FVector>> Pair : Hierachy) {
 			if (MovableParts.Find(Pair.Key) == INDEX_NONE) {
 				MovableParts.Add(Pair.Key);
@@ -123,10 +130,11 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 		}
 
 		TArray<FVector> InstantiatedMovableParts; //the movable parts that we already created the main structure for
-
+		int32 o = 0;
 		//--- Create the movable parts
 		for (TPair<FVector, TArray<FVector>> Pair : MenuRef->ParentChildHierachy) {
 			NewRandomColor = FColor::MakeRandomColor();
+			o++;
 			//Check if the parent exists
 			// If it doesn't, then create it.
 			// For each of its children,
@@ -136,6 +144,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 			//---Make Parent---//
 			FTransform PartTransform;
 			FString FoundPartName = GetPartNameFromLocation(Pair.Key, LoadedData.PartData, PartTransform);
+			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(o, 1000.0f, FColor::Cyan, FString(":::") + FoundPartName);
 			TSubclassOf<APart> *Part = GI->NameForPart.Find(FoundPartName);
 			UStaticMesh *MeshGeo = Part->GetDefaultObject()->Mesh->GetStaticMesh();
 
@@ -147,7 +156,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 				SimulatedMovables.Add(Parent);
 
 				FBox Extent = MeshGeo->GetBoundingBox();
-				CreateCollision(n_collision, MeshGeo, Parent, PartTransform.GetRotation().RotateVector(Extent.GetCenter()), TOptional<FRotator>());
+				//CreateCollision(n_collision, MeshGeo, Parent, PartTransform.GetRotation().RotateVector(Extent.GetCenter()), TOptional<FRotator>());
 				n_collision++;
 				WasParentNull = true;
 			}
@@ -194,7 +203,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 					Meshes.Add(ChildLoc, Child);
 					SimulatedMovables.Add(Child);
 					FBox Extent = MeshGeo->GetBoundingBox();
-					CreateCollision(n_collision, MeshGeo, Child, PartTransform.GetRotation().RotateVector(Extent.GetCenter()), TOptional<FRotator>());
+					//CreateCollision(n_collision, MeshGeo, Child, PartTransform.GetRotation().RotateVector(Extent.GetCenter()), TOptional<FRotator>());
 
 					WasChildNull = true;
 				}
@@ -285,7 +294,92 @@ void AVehicleConstructor::CreateCollision(int32 &n_collision, UStaticMesh *MeshG
 	n_collision++;
 }
 
+// Called when the game starts or when spawned
+void AVehicleConstructor::BeginPlay()
+{
+	Super::BeginPlay();
 
+}
+
+// Called every frame
+void AVehicleConstructor::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	//APlayerController *C = Cast<APlayerController>(Get);
+	//if (C == nullptr) { return; }
+	//FVector WorldLoc;
+	//FVector Dir;
+	//C->DeprojectMousePositionToWorld(WorldLoc, Dir);
+
+	//FHitResult Hit;
+	//GetWorld()->LineTraceSingleByChannel(Hit, WorldLoc, WorldLoc + Dir * 10000, ECollisionChannel::ECC_Visibility);
+
+	////if (Hit.bBlockingHit) {
+	//for (UInstancedStaticMeshComponent *Movable : SimulatedMovables) {
+	//	if (Movable->GetComponentLocation() != MenuRef->CockpitLocation) {
+	//		//Movable->AddLocalRotation(FRotator(0, DeltaTime * 200, 0));
+	//		/*FRotator InitialRotation = Movable->RelativeRotation;
+	//		FRotator LookatRotator = UKismetMathLibrary::FindLookAtRotation(Movable->GetComponentLocation(), Hit.ImpactPoint);
+
+	//		Movable->SetWorldRotation(LookatRotator);
+	//		Movable->SetRelativeRotation(FRotator(InitialRotation.Pitch, Movable->RelativeRotation.Yaw, InitialRotation.Roll));*/
+	//	}
+	//}
+	//}
+
+
+}
+
+UInstancedStaticMeshComponent *AVehicleConstructor::CreateMesh(TSubclassOf<APart> SelectedPart) {
+	UStaticMesh *MeshToCreate = SelectedPart.GetDefaultObject()->Mesh->GetStaticMesh();
+	TArray<FKBoxElem> BoxElements = MeshToCreate->BodySetup->AggGeom.BoxElems;
+	//InstancedMeshes[0]->GetStaticMesh()->
+	//UE_LOG(LogTemp, Warning, TEXT("Creating Mesh!!!"));
+	for (UInstancedStaticMeshComponent *ExistingMesh : InstancedMeshes) { // Check if an instanced mesh component of this part type exists, if so, return it to be accessed and populated by the menu.
+		if (ExistingMesh->GetStaticMesh() == MeshToCreate) {
+			return ExistingMesh;
+			break;
+		}
+	}
+	UInstancedStaticMeshComponent *NewMesh = NewObject<UInstancedStaticMeshComponent>(this, FName(*MeshToCreate->GetName())); // If existing mesh hasn't been found, create one.
+	UMaterialInterface * Material = SelectedPart.GetDefaultObject()->Mesh->GetMaterial(0);
+
+	NewMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	if (Material != nullptr) {
+		NewMesh->SetMaterial(0, Material);
+	}
+
+	//NewMesh->SetupAttachment(BoxComp);
+	NewMesh->AttachToComponent(BoxComp, FAttachmentTransformRules::KeepRelativeTransform);
+
+	NewMesh->SetStaticMesh(MeshToCreate);
+	NewMesh->RegisterComponent();
+
+	PartToMesh.Add(NewMesh, SelectedPart);
+	InstancedMeshes.Add(NewMesh);
+
+
+	return NewMesh;
+}
+
+void AVehicleConstructor::RemoveMeshes() {
+	for (UInstancedStaticMeshComponent *Mesh : InstancedMeshes) {
+		Mesh->DestroyComponent();
+	}
+	InstancedMeshes.Empty();
+	PartToMesh.Empty();
+}
+
+void AVehicleConstructor::CheckIfMeshIsEmpty(UInstancedStaticMeshComponent *MeshToCheck) {
+	if (MeshToCheck->GetInstanceCount() == 0) {
+		PartToMesh.Remove(MeshToCheck);
+		if (MeshToCheck != nullptr) {
+			InstancedMeshes.Remove(MeshToCheck);
+			MeshToCheck->DestroyComponent();
+		}
+	}
+}
 
 void AVehicleConstructor::CreateMainStructure(FVehicleData &LoadedData, FVector &ChildLoc, FOccluderVertexArray &MovableParts, UPlatformerGameInstance * GI, int32 &n_structure, UInstancedStaticMeshComponent * Child, int32 &n_collision)
 {
@@ -366,84 +460,3 @@ void AVehicleConstructor::CreateMainStructure(FVehicleData &LoadedData, FVector 
 		}
 	}
 }
-
-// Called when the game starts or when spawned
-void AVehicleConstructor::BeginPlay()
-{
-	Super::BeginPlay();
-
-}
-
-// Called every frame
-void AVehicleConstructor::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-	//APlayerController *C = Cast<APlayerController>(Get);
-	//if (C == nullptr) { return; }
-	//FVector WorldLoc;
-	//FVector Dir;
-	//C->DeprojectMousePositionToWorld(WorldLoc, Dir);
-
-	//FHitResult Hit;
-	//GetWorld()->LineTraceSingleByChannel(Hit, WorldLoc, WorldLoc + Dir * 10000, ECollisionChannel::ECC_Visibility);
-
-	////if (Hit.bBlockingHit) {
-	//for (UInstancedStaticMeshComponent *Movable : SimulatedMovables) {
-	//	if (Movable->GetComponentLocation() != MenuRef->CockpitLocation) {
-	//		//Movable->AddLocalRotation(FRotator(0, DeltaTime * 200, 0));
-	//		/*FRotator InitialRotation = Movable->RelativeRotation;
-	//		FRotator LookatRotator = UKismetMathLibrary::FindLookAtRotation(Movable->GetComponentLocation(), Hit.ImpactPoint);
-
-	//		Movable->SetWorldRotation(LookatRotator);
-	//		Movable->SetRelativeRotation(FRotator(InitialRotation.Pitch, Movable->RelativeRotation.Yaw, InitialRotation.Roll));*/
-	//	}
-	//}
-	//}
-
-
-}
-
-UInstancedStaticMeshComponent *AVehicleConstructor::CreateMesh(TSubclassOf<APart> SelectedPart) {
-	UStaticMesh *MeshToCreate = SelectedPart.GetDefaultObject()->Mesh->GetStaticMesh();
-	TArray<FKBoxElem> BoxElements = MeshToCreate->BodySetup->AggGeom.BoxElems;
-	//InstancedMeshes[0]->GetStaticMesh()->
-	//UE_LOG(LogTemp, Warning, TEXT("Creating Mesh!!!"));
-	for (UInstancedStaticMeshComponent *ExistingMesh : InstancedMeshes) { // Check if an instanced mesh component of this part type exists, if so, return it to be accessed and populated by the menu.
-		if (ExistingMesh->GetStaticMesh() == MeshToCreate) {
-			return ExistingMesh;
-			break;
-		}
-	}
-	UInstancedStaticMeshComponent *NewMesh = NewObject<UInstancedStaticMeshComponent>(this, FName(*MeshToCreate->GetName())); // If existing mesh hasn't been found, create one.
-	UMaterialInterface * Material = SelectedPart.GetDefaultObject()->Mesh->GetMaterial(0);
-
-	NewMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-	if (Material != nullptr) {
-		NewMesh->SetMaterial(0, Material);
-	}
-
-	//NewMesh->SetupAttachment(BoxComp);
-	NewMesh->AttachToComponent(BoxComp, FAttachmentTransformRules::KeepRelativeTransform);
-
-	NewMesh->SetStaticMesh(MeshToCreate);
-	NewMesh->RegisterComponent();
-
-	PartToMesh.Add(NewMesh, SelectedPart);
-	InstancedMeshes.Add(NewMesh);
-
-
-	return NewMesh;
-}
-
-void AVehicleConstructor::CheckIfMeshIsEmpty(UInstancedStaticMeshComponent *MeshToCheck) {
-	if (MeshToCheck->GetInstanceCount() == 0) {
-		PartToMesh.Remove(MeshToCheck);
-		if (MeshToCheck != nullptr) {
-			InstancedMeshes.Remove(MeshToCheck);
-			MeshToCheck->DestroyComponent();
-		}
-	}
-}
-
-
