@@ -15,6 +15,7 @@ struct FVehicleData {
 	TMap<FVector, TArray<FVector>> WeldedParts;
 	TMap<FVector, TArray<FVector>> ParentChildHierachy;
 	TMap<FVector, FVector> MovablePartToRoot;
+	TOptional<FVector> CockpitLocation;
 };
 
 UCLASS()

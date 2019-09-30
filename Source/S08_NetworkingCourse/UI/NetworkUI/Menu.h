@@ -119,9 +119,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetDetails(FString ItemNameToSelect);
 	UFUNCTION()
+		void CreateNewVehicle();
+	UFUNCTION()
 		void OnOverrideSave();
 
-		void SelectItem(FString ItemToPurchase);
+	void SelectItem(FString ItemToPurchase);
 
 	void OnLeftMouseClick();
 
@@ -130,6 +132,8 @@ public:
 	void FilterFloatingParts(TArray<FVector> &FloatingParts);
 
 	void PlaceItem();
+
+	FString FormatPartName(TSubclassOf<APart> PartClass);
 
 	void FindVehicleConstructor();
 
@@ -183,7 +187,8 @@ public:
 
 	TMap<FVector, TArray<FVector>> WeldedParts; // Location of first part and and the other parts that are welded to this part.
 	TMap<FVector, TArray<FVector>> ParentChildHierachy;
-	TMap<FVector, FVector> MovablePartToRoot; //
+	TMap<FVector, FVector> MovablePartToRoot; //Movable part : Root part that the movable is connected to.
+	TMap<FString, TArray<FTransform>> PartData; //Name of part : The transforms of each instance of the part.
 
 	TOptional<TMap<FVector, FVector>> PendingMovablePartToRoot;
 	FVector PendingParent;

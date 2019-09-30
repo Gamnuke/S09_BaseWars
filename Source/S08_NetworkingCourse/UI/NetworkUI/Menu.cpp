@@ -11,6 +11,7 @@
 #include "Components/TileView.h"
 #include "Components/Border.h"
 #include "Components/Button.h"
+#include "Components/EditableTextBox.h"
 #include "Components/VerticalBox.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/InstancedStaticMeshComponent.h"
@@ -176,15 +177,41 @@ bool UMenu::Initialize() {
 	ProceedButton->OnClicked.AddDynamic(this, &UMenu::PurchaseItem);
 	LoadVehiclesButton->OnClicked.AddDynamic(this, &UMenu::RefreshVehicles);
 	OverrideSaveButton->OnClicked.AddDynamic(this, &UMenu::OnOverrideSave);
+	CreateNewVehicleButton->OnClicked.AddDynamic(this, &UMenu::CreateNewVehicle);
 
 	return true;
+}
+
+void UMenu::CreateNewVehicle() {
+	bool Found = false;
+	int32 i = 0;
+	while (!Found)
+	{
+		FString FileSearch = FString(FPlatformProcess::UserDir()).LeftChop(10) + FString("Documents/My Games/Xordia/Vehicles/NewVehicle_") + FString::FromInt(i) + FString(".txt");
+		if (!FPaths::FileExists(FileSearch)) {
+			LoadedVehiclePath = FileSearch;
+			FString FileContent = FString();
+			FFileHelper::SaveStringToFile(FileContent, *FileSearch, FFileHelper::EEncodingOptions::AutoDetect, &IFileManager::Get(), EFileWrite::FILEWRITE_None);
+			FVehicleData Data;
+			LoadVehicleData(FileSearch, Data);
+			RefreshVehicles();
+			Found = true;
+			break;
+		}
+		i++;
+	}
 }
 
 void UMenu::OnOverrideSave() {
 	if (LoadedVehiclePath != FString()) {
 		FVehicleData Data;
 		Data.MovablePartToRoot = MovablePartToRoot;
-		//SaveGameDataToFile(LoadedVehiclePath, FBufferArchive())
+		Data.ParentChildHierachy = ParentChildHierachy;
+		Data.PartData = PartData;
+		Data.WeldedParts = WeldedParts;
+		Data.CockpitLocation = CockpitLocation;
+		FBufferArchive Ar;
+		SaveGameDataToFile(LoadedVehiclePath, Ar, Data);
 	}
 }
 
@@ -222,6 +249,7 @@ void UMenu::RefreshVehicles() {
 			VehiclesBox->AddChild(NewTab);
 			NewTab->ParentMenu = this;
 			NewTab->FilePath = FString(FPlatformProcess::UserDir()).LeftChop(10) + FString("Documents/My Games/Xordia/Vehicles/") + f;
+			NewTab->VehicleName->SetText(FText::FromString(f));
 		}
 	}
 }
@@ -810,13 +838,22 @@ void UMenu::PlaceItem()
 				//WeldedParts.Add(IntendedPartLocation, TArray<FVector>());
 			}
 		}
+		FTransform NewTransform = FTransform(IntendedPartRotation, IntendedPartLocation);
+		FString PartName = FormatPartName(SelectedPart);
+		TArray<FTransform> *ExistingArrayPtr = PartData.Find(PartName);
+		TArray<FTransform> ExistingArrayRef = PartData.FindRef(PartName);
+		ExistingArrayRef.Add(NewTransform);
 
-		
+		if (ExistingArrayPtr != nullptr) {
+			PartData.Remove(PartName);
+			PartData.Add(PartName, ExistingArrayRef);
+		}
+		else {
+			PartData.Add(PartName, ExistingArrayRef);
+		}
 
 		UInstancedStaticMeshComponent *InstancedComponent = VehicleConstructor->CreateMesh(SelectedPart);
-
 		if (&InstancedComponent != nullptr) {
-			FTransform NewTransform = FTransform(IntendedPartRotation, IntendedPartLocation);
 			InstancedComponent->AddInstance(NewTransform);
 			//WeldedSockets.Append(PendingWelds);
 			/*for (TPair<FVector, FVector> PendingWeld : PendingWelds)
@@ -856,6 +893,13 @@ void UMenu::PlaceItem()
 	//}
 }
 
+FString UMenu::FormatPartName(TSubclassOf<APart> PartClass) {
+	FString PartName = PartClass.GetDefaultObject()->GetName();
+	PartName.RemoveFromStart("Default__");
+	PartName.RemoveFromEnd("_C");
+	return PartName;
+}
+
 void UMenu::FindVehicleConstructor()
 {
 	if (VehicleConstructor == nullptr) {
@@ -890,6 +934,27 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData Data) {
 	WeldedParts = Data.WeldedParts;
 	MovablePartToRoot = Data.MovablePartToRoot;
 	ParentChildHierachy = Data.ParentChildHierachy;
+	PartData = Data.PartData;
+	CockpitLocation = Data.CockpitLocation;
+
+	if (true) { //Make a bool variable to check if we want to actually load the vehicle physically.
+		for (UInstancedStaticMeshComponent *Mesh : VehicleConstructor->InstancedMeshes) {
+			Mesh->DestroyComponent();
+		}
+		VehicleConstructor->InstancedMeshes.Empty();
+
+		for (TPair<FString, TArray<FTransform>> Pair : PartData) {
+			TSubclassOf<APart> *Part = GI->NameForPart.Find(Pair.Key);
+			if (Part != nullptr) {
+				UInstancedStaticMeshComponent *InstancedComponent = VehicleConstructor->CreateMesh(*Part);
+				if (&InstancedComponent != nullptr) {
+					for (FTransform T : Pair.Value) {
+						InstancedComponent->AddInstance(T);
+					}
+				}
+			}
+		}
+	}
 }
 
 //-----Data save and load functionality-----//
@@ -899,6 +964,7 @@ void UMenu::SaveLoadData(FArchive& Ar, FVehicleData& DataToSaveLoad)
 	Ar << DataToSaveLoad.PartData;
 	Ar << DataToSaveLoad.MovablePartToRoot;
 	Ar << DataToSaveLoad.ParentChildHierachy;
+	Ar << DataToSaveLoad.CockpitLocation;
 }
 
 bool UMenu::SaveGameDataToFile(const FString& FullFilePath, FBufferArchive& ToBinary, FVehicleData& DataToSaveLoad)
