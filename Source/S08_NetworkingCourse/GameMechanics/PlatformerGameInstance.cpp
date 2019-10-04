@@ -334,7 +334,7 @@ bool UPlatformerGameInstance::OnClientJoin_Validate(APlayerController *PC) { ret
 void UPlatformerGameInstance::OnClientJoin_Implementation(APlayerController *PC)
 {
 
-	GetEngine()->AddOnScreenDebugMessage(0, 10, FColor::Orange, FString("PLAYER JOINED!!!"));
+	//GetEngine()->AddOnScreenDebugMessage(0, 10, FColor::Orange, FString("PLAYER JOINED!!!"));
 	//UAdvancedSessionsLibrary::GetUniqueNetID(PC, BPNetID);
 	FString NetIDString;
 	//UAdvancedSessionsLibrary::UniqueNetIdToString(BPNetID, NetIDString);

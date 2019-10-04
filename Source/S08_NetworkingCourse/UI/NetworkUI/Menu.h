@@ -53,7 +53,6 @@ public:
 	UFUNCTION(BlueprintNativeEvent)
 	void CreateIndicator(FVector PartSocket);
 	//
-	FVector PreviousLocation;
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -198,5 +197,5 @@ public:
 
 	TArray<FVector> LikeSockets;
 
-
+	TOptional<FVector> PreviousLocation;
 };

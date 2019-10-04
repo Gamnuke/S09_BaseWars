@@ -31,9 +31,12 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 
 	if (SkeletonVisibilityValue != 0) {
 		for (TPair<FVector, TArray<FVector>> pair : WeldedParts) {
+
 			for (FVector otherPartLoc : pair.Value) {
-				DrawDebugLine(GetWorld(), pair.Key, otherPartLoc, FColor::Orange, false, DeltaTime * 2, 16, SkeletonVisibilityValue * 10);
-				//DrawDebugLine(GetWorld(), otherPartLoc, otherPartLoc + ( otherPartLoc - pair.Key).GetSafeNormal() * 5, FColor::MakeRandomColor(), false, DeltaTime * 2, 22, 15);
+				DrawDebugDirectionalArrow(GetWorld(), pair.Key, otherPartLoc, 300,FColor::Orange, false, DeltaTime * 2, 16, SkeletonVisibilityValue * 10);
+				//DrawDebugLine(GetWorld(), pair.Key, pair.Key+((otherPartLoc - pair.Key) / 5), FColor::Red, false, DeltaTime * 2, 17, SkeletonVisibilityValue * 10);
+				//DrawDebugPoint(GetWorld(), pair.Key, 10 * SkeletonVisibilityValue, FColor::Red, false, DeltaTime * 2, 18);
+				
 			}
 		}
 	}
@@ -41,7 +44,7 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 	if (MobileSkeletonVisibilityValue != 0) {
 		for (TPair<FVector, TArray<FVector>> pair : ParentChildHierachy) {
 			for (FVector Child : pair.Value) {
-				DrawDebugLine(GetWorld(), pair.Key, Child, FColor::Green, false, DeltaTime * 2, 16, MobileSkeletonVisibilityValue * 10);
+				DrawDebugDirectionalArrow(GetWorld(), pair.Key, Child, 300, FColor::Green, false, DeltaTime * 2, 16, MobileSkeletonVisibilityValue * 10);
 			}
 		}
 	}
@@ -52,6 +55,7 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 			DrawDebugLine(GetWorld(), pair.Key, pair.Value, FColor::Red, false, DeltaTime * 2, 16, RootsVisibilityValue * 10);
 		}
 	}
+
 	//for (TPair<FVector, FVector> pair : MovablePartToRoot) {
 	//	DrawDebugPoint(GetWorld(), pair.Key, 30.0f, FColor::Yellow, false, DeltaTime*2, 100);
 	//	DrawDebugPoint(GetWorld(), pair.Value, 30.0f, FColor::Orange, false, DeltaTime * 2, 100);
@@ -61,16 +65,21 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 	//	DrawDebugPoint(GetWorld(), DisconnectedPart, 30.0f, FColor::Red, false, DeltaTime, 100);
 	//}
 
-	//int order = 1000;
-	//for (TPair<FVector, TArray<FVector>> d : WeldedParts) {
-	//	//DrawDebugPoint(GetWorld(), d.Key, 10, FColor::Red, false, DeltaTime, 10);
-	//	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Red, d.Key.ToString());
-	//	order++;
-	//	for (FVector OtherPartVec : d.Value) {
-	//		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Orange, FString("                    ") + OtherPartVec.ToString());
-	//		order++;
-	//	}
-	//}
+	int order = 500;
+	for (TPair<FVector, TArray<FVector>> d : ParentChildHierachy) {
+		//DrawDebugPoint(GetWorld(), d.Key, 10, FColor::Red, false, DeltaTime, 10);
+		order++;
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Red, d.Key.ToString(), false);
+		for (FVector OtherPartVec : d.Value) {
+			order++;
+			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Orange, FString("                    ") + OtherPartVec.ToString(), false);
+		}
+	}
+
+	if (CurrentTool == ECurrentTool::PlaceTool) {
+		DrawDebugDirectionalArrow(GetWorld(), BuilderPawn->PartImage->GetComponentLocation(), BuilderPawn->PartImage->GetComponentLocation() + BuilderPawn->PartImage->GetForwardVector()* 100, 500, FColor::Green, false, DeltaTime * 2, 16, SkeletonVisibilityValue * 10);
+
+	}
 
 	if (VehicleConstructor != nullptr) {
 		FVector Location;
@@ -311,7 +320,7 @@ void UMenu::PopulateCategories_Implementation(ESubCategory Category) {
 				//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(i, 100, FColor::Red, *(GI->Items.Contains(PartName)?FString("Found!"):FString("Not found")));
 				
 				//if (GI->Items.Contains(PartName)) {
-				GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(13, 10, FColor::Orange, GI->Items.Contains(PartName)?FString("Found part!!/!?!/1/1"):FString("Couldnt find part123123"));
+				//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(13, 10, FColor::Orange, GI->Items.Contains(PartName)?FString("Found part!!/!?!/1/1"):FString("Couldnt find part123123"));
 
 					ConstructDataObject(PartName, GI->Items.FindRef(PartName), GI, pair.Key, this);
 				//}
@@ -423,6 +432,7 @@ void UMenu::SetPartPlacementImage()
 	TMultiMap<FVector, FVector> SocketToPartLocation; // Surrounding part socket locations : Location of the part the socket belongs to
 
 	for (UInstancedStaticMeshComponent *MeshComp : VehicleConstructor->InstancedMeshes) {
+		if (MeshComp == nullptr) { return; }
 		TArray<int32> CheckOverlap = MeshComp->GetInstancesOverlappingSphere(SphereCentre, Radius);
 		for (int32 Index : CheckOverlap)
 		{
@@ -567,8 +577,10 @@ void UMenu::SetPartPlacementImage()
 					}
 				}
 				else { //It isnt movable, so
-					if (SurroundIndividualPart == CockpitLocation.GetValue()) {
-						CockpitFound = true;
+					if (CockpitLocation.IsSet()) {
+						if (SurroundIndividualPart == CockpitLocation.GetValue()) {
+							CockpitFound = true;
+						}
 					}
 					if (ScannedParts.Find(SurroundIndividualPart) == INDEX_NONE) { //If the part around the scanning part hasn't been scanned already...
 						PartsToScan.Add(SurroundIndividualPart);
@@ -665,9 +677,12 @@ void UMenu::DeleteItem() {
 		FTransform PartTrans;
 		HighlightedMesh->GetInstanceTransform(HighlightedItem, PartTrans, true);
 		TSubclassOf<APart> DeletingClass = VehicleConstructor->PartToMesh.FindRef(HighlightedMesh);
+		if (*DeletingClass == nullptr) { return; }
 		FString DeletingName = FormatPartName(DeletingClass);
 		FVector PartLoc = PartTrans.GetLocation();
 		RoundVector(PartLoc);
+
+		if (ParentChildHierachy.Find(PartLoc) != nullptr) { return; } //TODO Add a message saying that every other movable part on that chain must be deleted before deleting this part.
 
 		if (CockpitLocation.IsSet() && CockpitLocation.GetValue() == PartLoc) {
 			for (FVector OtherPart : WeldedParts.FindRef(CockpitLocation.GetValue())) {
@@ -688,7 +703,6 @@ void UMenu::DeleteItem() {
 			CockpitLocation.Reset();
 		}
 
-		TArray<FVector> OtherWeldedParts = WeldedParts.FindRef(PartLoc);
 
 		TArray<FTransform> Transforms = PartData.FindRef(DeletingName);
 		TArray<FTransform> NewTrans;
@@ -700,6 +714,7 @@ void UMenu::DeleteItem() {
 		PartData.Remove(DeletingName); //Remove the array of transforms in the PArtData variable for this part
 		PartData.Add(DeletingName, NewTrans);
 
+		TArray<FVector> OtherWeldedParts = WeldedParts.FindRef(PartLoc);
 		for (FVector OtherPart : OtherWeldedParts) {
 			RoundVector(OtherPart);
 			/*if (!WeldedParts.Contains(OtherPart)) {
@@ -712,6 +727,17 @@ void UMenu::DeleteItem() {
 			WeldedParts.Add(OtherPart, PostChangeWelds);
 			//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(16,1,FColor::Green,FString(FString("Parts removed: ") + FString::FromInt( WeldedParts.FindRef(OtherPart).Remove(PartLoc))));
 		}
+
+		//TArray<FVector> *OtherMovablePartsPtr = ParentChildHierachy.Find(PartLoc);
+		for (TPair<FVector, TArray<FVector>> Pair : ParentChildHierachy) {
+			if (Pair.Value.Find(PartLoc) != INDEX_NONE) {
+				TArray<FVector> Children = Pair.Value;
+				Children.Remove(PartLoc);
+				ParentChildHierachy.Remove(Pair.Key);
+				ParentChildHierachy.Add(Pair.Key, Children);
+			}
+		}
+
 		WeldedParts.Remove(PartLoc);
 		HighlightedMesh->RemoveInstance(HighlightedItem);
 
@@ -872,13 +898,8 @@ void UMenu::PlaceItem()
 		UInstancedStaticMeshComponent *InstancedComponent = VehicleConstructor->CreateMesh(SelectedPart);
 		if (&InstancedComponent != nullptr) {
 			InstancedComponent->AddInstance(NewTransform);
-			//WeldedSockets.Append(PendingWelds);
-			/*for (TPair<FVector, FVector> PendingWeld : PendingWelds)
-			{
-				DrawDebugLine(GetWorld(), PendingWeld.Key, PendingWeld.Value, FColor::Green, false, 10000, 100, 10);
-			}*/
+			PreviousLocation = IntendedPartLocation;
 		}
-		PreviousLocation = IntendedPartLocation;
 		PlaySound(PlaceSound);
 
 		CanPlaceItem = false;

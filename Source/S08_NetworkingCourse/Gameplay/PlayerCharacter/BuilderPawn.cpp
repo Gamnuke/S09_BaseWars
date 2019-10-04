@@ -32,15 +32,6 @@ void ABuilderPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	TMap<int32, TArray<FString>> foo;
-	TArray<FString> Ye;
-	Ye.Add("Epic gamer moment");
-
-	foo.Add(0 , Ye);
-	foo.FindRef(0)[0].Append("AlsoGay");
-
-	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(123, 1000, FColor::Magenta, foo.FindRef(0)[0]);
-	
 }
 
 // Called every frame

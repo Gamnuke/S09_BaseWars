@@ -25,6 +25,8 @@ struct FPartStats {
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Speed) float Speed;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Speed) bool UseSpeed;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Mobility) bool IsMovable = true;
+
 	FString GetText() {
 		if (UseDamage) { DetailText += FString("Damage: ") + FString::FromInt(Damage) + FString("\n"); }
 		if (UseFireRate) { DetailText += FString("Fire Rate: ") + FString::SanitizeFloat(FireRate) + FString("\n"); }

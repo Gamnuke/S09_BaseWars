@@ -28,6 +28,8 @@ public:
 	AVehicleConstructor();
 
 public:
+	TOptional<FVector> TEST;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<class UInstancedStaticMeshComponent*> InstancedMeshes;
 
@@ -40,11 +42,12 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class ULineBatchComponent *LineComponent;
 
-	TArray<class UBoxComponent*> PartialBoxComps;
-	TArray<class UInstancedStaticMeshComponent*> SimulatedMovables;
+	TArray<class UBoxComponent*> SimulatedMovables;
 	class UMenu* MenuRef;
 	TMap<class UInstancedStaticMeshComponent*, TSubclassOf<class APart>> PartToMesh;
 
+	TArray<class UBoxComponent*> CreatedBoxes;
+	TArray<class UInstancedStaticMeshComponent*> CreatedMeshes;
 	int32 MessageIndex = 70;
 	int order=0;
 public:
@@ -72,13 +75,17 @@ public:
 
 	void BuildSimulatedVehicle();
 
-	void CreateCollision(int32 & n_collision, UStaticMesh * MeshGeo, UInstancedStaticMeshComponent * Parent, TOptional<FVector> PartLocation, TOptional<FRotator> PartRotation);
+	void RoundStruct(FBox & Extent, int32 RoundTo);
+
+	void RoundStruct(FTransform & Transform, int32 RoundTo);
+
+	void FormatBoxCollision(UBoxComponent & Box, bool bSimulatePhysics);
 
 	UFUNCTION(BlueprintNativeEvent)
 		void SetGates(bool bGateState);
 
 protected:
-	void CreateMainStructure(FVehicleData & LoadedData, FVector & ChildLoc, FOccluderVertexArray & MovableParts, class UPlatformerGameInstance * GI, int32 & n_structure, UInstancedStaticMeshComponent * Child, int32 & n_collision);
+	void CreateMainStructure(FVehicleData & LoadedData, FVector & ChildLoc, FOccluderVertexArray & MovableParts, class UPlatformerGameInstance * GI, int32 & n_structure, UBoxComponent * ParentBoxPtr, int32 & n_collision);
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
