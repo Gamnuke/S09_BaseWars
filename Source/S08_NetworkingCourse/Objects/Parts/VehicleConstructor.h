@@ -29,6 +29,10 @@ public:
 
 public:
 	TOptional<FVector> TEST;
+	TArray<class UPhysicsConstraintComponent*> HorConstraints;
+	TArray<class UPhysicsConstraintComponent*> VerConstraints;
+
+	class UBoxComponent *CockpitBox;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<class UInstancedStaticMeshComponent*> InstancedMeshes;
@@ -38,7 +42,10 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class UBoxComponent *BoxComp;
-
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		class USpringArmComponent *SpringArm; 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		class UCameraComponent *Camera;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class ULineBatchComponent *LineComponent;
 

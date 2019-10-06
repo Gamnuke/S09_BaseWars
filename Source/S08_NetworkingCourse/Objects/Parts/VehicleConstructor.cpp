@@ -6,6 +6,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/LineBatchComponent.h"
 #include "Components/BoxComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 #include "PhysicsEngine/PhysicsConstraintComponent.h"
 #include "Objects/Parts/Part.h"
 #include "Engine/StaticMesh.h"
@@ -29,8 +31,12 @@ AVehicleConstructor::AVehicleConstructor()
 
 	LineComponent = CreateDefaultSubobject<ULineBatchComponent>(FName("LineDrawComponent"));
 	LineComponent->SetupAttachment(BoxComp);
-
-
+	
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>(FName("SpringArm"));
+	SpringArm->SetupAttachment(BoxComp);
+	
+	Camera = CreateDefaultSubobject<UCameraComponent>(FName("Camera"));
+	Camera->SetupAttachment(SpringArm);
 }
 bool AVehicleConstructor::SetSimulation(bool bSimulateVehicle)
 {
@@ -40,9 +46,9 @@ bool AVehicleConstructor::SetSimulation(bool bSimulateVehicle)
 	return true;
 }
 void AVehicleConstructor::ReverseSimulation() {
-	BoxComp->SetSimulatePhysics(false);
+	/*BoxComp->SetSimulatePhysics(false);
 	BoxComp->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
-	BoxComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	BoxComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);*/
 	SetActorLocation(FVector::ZeroVector);
 	SetActorRotation(FRotator::ZeroRotator);
 
@@ -54,7 +60,19 @@ void AVehicleConstructor::ReverseSimulation() {
 		C->DestroyComponent();
 	}
 	CreatedMeshes.Empty();
-	FVehicleData Data;
+	for (UPhysicsConstraintComponent *C : HorConstraints) {
+		C->DestroyComponent();
+	}
+	HorConstraints.Empty();
+	for (UPhysicsConstraintComponent *C : VerConstraints) {
+		C->DestroyComponent();
+	}
+	VerConstraints.Empty();
+	if (CockpitBox != nullptr) {
+		CockpitBox->DestroyComponent();
+	}
+
+	FVehicleData Data = FVehicleData();
 	MenuRef->LoadVehicleData(MenuRef->LoadedVehiclePath, Data, true);
 }
 
@@ -192,6 +210,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 				ParentName = ParentBox->GetName();
 				if (Pair.Key == CockpitLocation) {
 					ParentBox->SetupAttachment(BoxComp);
+					CockpitBox = ParentBox;
 				}
 
 				if (WasParentNull && MeshGeo != nullptr) {
@@ -220,10 +239,10 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 				UInstancedStaticMeshComponent *ChildMesh = (Meshes.FindRef(ChildLoc));
 				bool WasChildNull = false;
 
-				FTransform PartTransform;
-				FString FoundPartName = GetPartNameFromLocation(ChildLoc, LoadedData.PartData, PartTransform);
+				FTransform ChildPartTransform;
+				FString FoundPartName = GetPartNameFromLocation(ChildLoc, LoadedData.PartData, ChildPartTransform);
 				FString ChildName;
-				RoundStruct(PartTransform, 50);
+				RoundStruct(ChildPartTransform, 50);
 
 				TSubclassOf<APart> *Part = GI->NameForPart.Find(FoundPartName);
 				if (Part == nullptr) {
@@ -260,8 +279,6 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 					RoundStruct(Extent, 50);
 					ChildBox->AddRelativeLocation(-(Extent.GetCenter()));
 					ChildBox->SetBoxExtent(Extent.GetExtent());
-					ChildBox->bHiddenInGame = false;
-					ChildBox->SetVisibility(true);
 					FormatBoxCollision(*ChildBox, true);
 
 					CreatedBoxes.Add(ChildBox);
@@ -282,7 +299,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 						ChildMesh->AddInstance(FTransform(FVector(0, 0, 0)));
 					}
 
-					ChildBox->SetWorldTransform(PartTransform);
+					ChildBox->SetWorldTransform(ChildPartTransform);
 					ChildBox->AttachToComponent(ParentBox, FAttachmentTransformRules::KeepWorldTransform);
 					//ChildBox->AddWorldOffset(PartTransform.GetRotation().RotateVector(Extent.GetCenter()));
 
@@ -293,9 +310,10 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 				}
 
 				//Create the constraints
+				//Check if the part should actually be movable
 				if (Part->GetDefaultObject()->Details.IsMovable) {
 					UPhysicsConstraintComponent *PhysCont = NewObject<UPhysicsConstraintComponent>(this, FName(*(FString("physConstraint_") + FString::FromInt(n_child))));
-					PhysCont->SetupAttachment(ParentBox);
+					PhysCont->SetupAttachment(ChildBox);
 					PhysCont->ComponentName1.ComponentName = FName(*ChildName);
 					PhysCont->ComponentName2.ComponentName = FName(*ParentName);
 					PhysCont->SetDisableCollision(true);
@@ -304,16 +322,28 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 					PhysCont->SetLinearZLimit(ELinearConstraintMotion::LCM_Locked, 0);
 
 
-					FRotator PR = PartTransform.GetRotation().Rotator();
-					FRotator DesiredRot = FRotator(0, PR.Yaw, 0);
-					PhysCont->SetRelativeRotation(FRotator(0, 0, -PR.Roll));
+					FRotator PR = ChildPartTransform.GetRotation().Rotator();
 
-					//if (PR.Vector() == FVector::UpVector) {
+					FVector UpVec = ChildPartTransform.GetRotation().GetUpVector();
+					if (UpVec == FVector::UpVector || UpVec == -FVector::UpVector) {
+						//PhysCont->SetRelativeRotation(FRotator(0, 90, 0));
 						PhysCont->SetAngularSwing1Limit(EAngularConstraintMotion::ACM_Free, 0);
 						PhysCont->SetAngularSwing2Limit(EAngularConstraintMotion::ACM_Locked, 0);
 						PhysCont->SetAngularTwistLimit(EAngularConstraintMotion::ACM_Locked, 0);
-						//}
-					PhysCont->SetWorldLocation(PartTransform.GetLocation());
+						HorConstraints.Add(PhysCont);
+					}
+					else {
+						PhysCont->SetRelativeRotation(FRotator(0, 0, 90));
+						PhysCont->SetAngularSwing1Limit(EAngularConstraintMotion::ACM_Locked, 0);
+						PhysCont->SetAngularSwing2Limit(EAngularConstraintMotion::ACM_Free, 0);
+						PhysCont->SetAngularTwistLimit(EAngularConstraintMotion::ACM_Locked, 0);
+						VerConstraints.Add(PhysCont);
+					}
+					PhysCont->SetAngularDriveMode(EAngularDriveMode::TwistAndSwing);
+					PhysCont->SetAngularVelocityDrive(true, true);
+					PhysCont->SetAngularOrientationDrive(true, true);
+					PhysCont->SetAngularDriveParams(50000.0f, 20000.0f, 0.0f);
+					PhysCont->SetWorldLocation(ChildPartTransform.GetLocation());
 
 					PhysCont->RegisterComponent();
 				}
@@ -322,9 +352,9 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 		}
 	}
 
-	BoxComp->SetSimulatePhysics(true);
+	/*BoxComp->SetSimulatePhysics(true);
 	BoxComp->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
-	BoxComp->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
+	BoxComp->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);*/
 	/*
 	for (TPair<FString, TArray<FTransform>> PartTrans : LoadedData.PartData) {
 
@@ -418,28 +448,39 @@ void AVehicleConstructor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	//APlayerController *C = Cast<APlayerController>(Get);
-	//if (C == nullptr) { return; }
-	//FVector WorldLoc;
-	//FVector Dir;
-	//C->DeprojectMousePositionToWorld(WorldLoc, Dir);
+	if (CockpitBox != nullptr) {
+		APlayerController *C = GetGameInstance()->GetFirstLocalPlayerController();
+		if (C == nullptr) { return; }
+		FVector WorldLoc;
+		FVector Dir;
+		C->DeprojectMousePositionToWorld(WorldLoc, Dir);
 
-	//FHitResult Hit;
-	//GetWorld()->LineTraceSingleByChannel(Hit, WorldLoc, WorldLoc + Dir * 10000, ECollisionChannel::ECC_Visibility);
+		FHitResult Hit;
+		GetWorld()->LineTraceSingleByChannel(Hit, WorldLoc, WorldLoc + Dir * 10000, ECollisionChannel::ECC_Visibility);
+		FRotator InvertedRot = CockpitBox->GetComponentRotation().GetInverse();
+		if (!Hit.bBlockingHit) { Hit.ImpactPoint = Hit.TraceEnd; }
+		FVector ImpactLoc = Hit.ImpactPoint;
 
-	////if (Hit.bBlockingHit) {
-	//for (UInstancedStaticMeshComponent *Movable : SimulatedMovables) {
-	//	if (Movable->GetComponentLocation() != MenuRef->CockpitLocation) {
-	//		//Movable->AddLocalRotation(FRotator(0, DeltaTime * 200, 0));
-	//		/*FRotator InitialRotation = Movable->RelativeRotation;
-	//		FRotator LookatRotator = UKismetMathLibrary::FindLookAtRotation(Movable->GetComponentLocation(), Hit.ImpactPoint);
+		for (UPhysicsConstraintComponent *HCont : HorConstraints) {
+			if (HCont != nullptr) {
+				FVector ContLoc = HCont->GetComponentLocation();
 
-	//		Movable->SetWorldRotation(LookatRotator);
-	//		Movable->SetRelativeRotation(FRotator(InitialRotation.Pitch, Movable->RelativeRotation.Yaw, InitialRotation.Roll));*/
-	//	}
-	//}
-	//}
+				FRotator T = UKismetMathLibrary::MakeRotFromX(ImpactLoc - ContLoc);
+				FRotator FinalRot = T - CockpitBox->GetComponentRotation();
+				DrawDebugLine(GetWorld(), CockpitBox->GetComponentLocation(), HCont->GetComponentLocation(), FColor::Blue, false, 0.1, 100, 10);
+				HCont->SetAngularOrientationTarget(FRotator(0, FinalRot.Yaw, 0));
+			}
+		}
+		for (UPhysicsConstraintComponent *VCont : VerConstraints) {
+			if (VCont != nullptr) {
+				FVector ContLoc = VCont->GetComponentLocation();
 
+				FRotator T = UKismetMathLibrary::MakeRotFromX(ImpactLoc - ContLoc);
+				FRotator FinalRot = T - CockpitBox->GetComponentRotation();
+				VCont->SetAngularOrientationTarget(FRotator(FinalRot.Pitch, 0, 0));
+			}
+		}
+	}
 
 }
 
@@ -523,7 +564,7 @@ void AVehicleConstructor::CreateMainStructure(FVehicleData &LoadedData, FVector 
 
 	while (PartsToScan.Num() > 0)
 	{
-
+		//TArray<FVector> PartsToScanTemp = PartsToScan;
 		for (FVector ScanningPart : PartsToScan) {
 			MenuRef->RoundVector(ScanningPart);
 			PartsToScan.Remove(ScanningPart); // not sure if this should be at the end
@@ -601,8 +642,7 @@ void AVehicleConstructor::CreateMainStructure(FVehicleData &LoadedData, FVector 
 				RoundStruct(Extent, 50);
 
 				UBoxComponent *BoxCol = NewObject<UBoxComponent>(this, FName(*(FString("structureCollision_") + FString::FromInt(n_collision))));
-				BoxCol->SetVisibility(true);
-				BoxCol->bHiddenInGame = false; BoxCol->SetBoxExtent(Extent.GetExtent());
+				BoxCol->SetBoxExtent(Extent.GetExtent());
 				BoxCol->AttachToComponent(ParentBoxPtr, FAttachmentTransformRules::KeepWorldTransform);
 				BoxCol->SetWorldTransform(PartTransform);
 				BoxCol->AddWorldOffset(PartTransform.GetRotation().RotateVector(Extent.GetCenter()));

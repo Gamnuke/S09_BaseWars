@@ -126,6 +126,8 @@ public:
 
 	void SelectItem(FString ItemToPurchase);
 
+	void DebugMessage(FString Message);
+	int32 MessageIndex = 0;
 	void OnLeftMouseClick();
 
 	void DeleteItem();

@@ -1821,545 +1821,518 @@
 "../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/PauseMenu_WBP.uasset" 1821
 "../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/VotekickMenu_WBP.uasset" 1822
 "../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Lobby/ServerStatus_WBP.uasset" 1823
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Mobility/Hover/ThrusterMK1.uasset" 1824
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Mobility/Hover/Thunsher.uasset" 1825
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Mobility/Hover/UWULauncher.uasset" 1826
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK1.uasset" 1827
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK1_2.uasset" 1828
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK1_3.uasset" 1829
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK1_4.uasset" 1830
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2.uasset" 1831
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_2.uasset" 1832
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_3.uasset" 1833
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_4.uasset" 1834
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_5.uasset" 1835
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_6.uasset" 1836
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_7.uasset" 1837
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/SuppressorMK2_8.uasset" 1838
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Light/LightCubeMK1.uasset" 1839
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Light/LightCubeMK2.uasset" 1840
-"C:/Users/glsha/AppData/Local/UnrealEngine/4.22/Saved/Config/Windows/SourceControlSettings.ini" 1841
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/Config/CoalescedSourceConfigs/SourceControlSettings.ini" 1842
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/Config/CoalescedSourceConfigs/Encryption.ini" 1843
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/Config/CoalescedSourceConfigs/Crypto.ini" 1844
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/Config/CoalescedSourceConfigs/UnitTestStats.ini" 1845
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/Config/CoalescedSourceConfigs/UnitTest.ini" 1846
-"../../../Engine/Content/EditorResources/S_Note.uasset" 1847
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/RiftHMD.uasset" 1848
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/GearVRController.uasset" 1849
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/GearVRControllerMaterial.uasset" 1850
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_AO.uasset" 1851
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Color.uasset" 1852
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Normal.uasset" 1853
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/LeftTouchController.uasset" 1854
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/touchController_mat.uasset" 1855
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/touchController_albedo.uasset" 1856
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/touchController_controlmap.uasset" 1857
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/RightTouchController.uasset" 1858
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/PokeAHoleMaterial.uasset" 1859
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Config/DefaultGameplayTags.ini" 1860
-"../../../Engine/Content/EngineMaterials/RemoveSurfaceMaterial.uasset" 1861
-"../../../Engine/Content/EngineDebugMaterials/DebugMeshMaterial.uasset" 1862
-"../../../Engine/Content/EngineMaterials/M_InvalidLightmapSettings.uasset" 1863
-"../../../Engine/Content/EngineMaterials/InvalidLightmapSettings.uasset" 1864
-"../../../Engine/Content/EditorMaterials/GizmoMaterial.uasset" 1865
-"../../../Engine/Content/EngineMaterials/PhAT_JointLimitMaterial.uasset" 1866
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/WorldPositionOffset/CameraOffset.uasset" 1867
-"../../../Engine/Content/EngineMaterials/Good64x64TilingNoiseHighFreq.uasset" 1868
-"../../../Engine/Content/EngineMaterials/DefaultBokeh.uasset" 1869
-"../../../Engine/Content/EngineMaterials/DefaultBloomKernel.uasset" 1870
-"../../../Engine/Content/EngineMaterials/PreintegratedSkinBRDF.uasset" 1871
-"../../../Engine/Content/EngineMaterials/MiniFont.uasset" 1872
-"../../../Engine/Content/EngineMaterials/WeightMapPlaceholderTexture.uasset" 1873
-"../../../Engine/Content/EngineMaterials/DefaultWhiteGrid.uasset" 1874
-"../../../Engine/Content/EngineMaterials/DefaultPhysicalMaterial.uasset" 1875
-"../../../Engine/Content/EngineFonts/RobotoTiny.uasset" 1876
-"../../../Engine/Content/EngineFonts/Faces/RobotoTiny.uasset" 1877
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/AssetRegistryCache/311563bb.bin" 1878
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/AssetRegistryCache/c90e3f55.bin" 1879
-"../../../Engine/Content/EditorResources/SequenceRecorder/Countdown.uasset" 1880
-"../../../Engine/Content/EditorResources/SequenceRecorder/RecordingIndicator.uasset" 1881
-"../../../Engine/Content/BasicShapes/Cube.uasset" 1882
-"../../../Engine/Content/BasicShapes/Sphere.uasset" 1883
-"../../../Engine/Content/BasicShapes/Cylinder.uasset" 1884
-"../../../Engine/Content/BasicShapes/Cone.uasset" 1885
-"../../../Engine/Content/BasicShapes/Plane.uasset" 1886
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_WhiteMaterial.uasset" 1887
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_ChromaKey.uasset" 1888
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat4Components.uasset" 1889
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/MakeFloat2.uasset" 1890
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/MakeFloat3.uasset" 1891
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_ChromaKey_Lit.uasset" 1892
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_OpaqueColoredMaterial.uasset" 1893
-"../../Plugins/Runtime/Oculus/OculusVR/Content/OculusMR_RenderTarget.uasset" 1894
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/AssetRegistryCache/70da4870.bin" 1895
-"../../../Engine/Config/HTML5/HTML5Engine.ini" 1896
-"../../../Engine/Content/MobileResources/HUD/DefaultVirtualJoysticks.uasset" 1897
-"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Background.uasset" 1898
-"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Thumb.uasset" 1899
-"../../../Engine/Content/Maps/Entry.umap" 1900
-"../../../Engine/Content/Maps/Entry_BuiltData.uasset" 1901
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/2/3/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___47871C3A06E908B76FF1E6CBB7EA4458589835B9.udd" 1902
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/8/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___3BFA729BB240D13B1898B4FC8E281B75CA599970.udd" 1903
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MainMenu.umap" 1904
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/MainMenuGamemode.uasset" 1905
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/GamePlayerController_BP.uasset" 1906
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Menu_WBP.uasset" 1907
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/ItemData_BP.uasset" 1908
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Selector/ItemTab_WBP.uasset" 1909
-"../../../Engine/Content/EditorBlueprintResources/StandardMacros.uasset" 1910
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Tab/GlitchParticle.uasset" 1911
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/RotatingCamera_BP.uasset" 1912
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MainMenu_BuiltData.uasset" 1913
-"../../../Engine/Content/BasicShapes/BasicShapeMaterial.uasset" 1914
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/9/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_92F9ED01403AAAE50D7E759E26B46__7977D9B66B520B0D62206B0B217C7A4AEAC97C98.udd" 1915
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5BAAD60F4317988F24BA0F9AD2171681__54E46C42119B5461064DEE2C49C7B09D0EDD01DA.udd" 1916
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_6E2885E440BCFB52C4978695381CF808_0__B38274EB5E19D1221673C2FD4DD96C4B4246575D.udd" 1917
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_92F9ED01403AAAE50D7E759E26B46__48BB3FEDABBEF17CC28A4F5240285833569927A1.udd" 1918
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_92F9ED01403AAAE50D7E759E26B46__58D9309D5464D0B6ED47122342DF2019EF533E55.udd" 1919
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/7/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_6C4BA45643B73C63DDDDD69BFA3BD__A003C5419E073660A3CBF4B3010DC243601B2ED4.udd" 1920
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5BAAD60F4317988F24BA0F9AD2171681__89844CCD5D9AA08C142909E120B4B0645ABD6CB4.udd" 1921
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_6E2885E440BCFB52C4978695381CF808_0__237BD545F73D8F240D61A11E56A3B13BAFFC755C.udd" 1922
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/5/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_6C4BA45643B73C63DDDDD69BFA3BD__96F187538296224C808C56CEB6E2C0735FFC3613.udd" 1923
-"../../../Engine/Content/EditorResources/EmptyActor.uasset" 1924
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/0/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_6E2885E440BCFB52C4978695381CF808_0__F138B849A246DF2F940D158FC215B62261F9AB01.udd" 1925
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/9/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_6C4BA45643B73C63DDDDD69BFA3BD__FA4E79B4B5F45759077069C6CE21706EDB04F435.udd" 1926
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/9/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_6E2885E440BCFB52C4978695381CF808_0__C04631C402C9032DE21FFE4BBF280F2BAA94AD52.udd" 1927
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/5/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_92F9ED01403AAAE50D7E759E26B46__1F60B0C0AC35AC8B0CE6CDAB5666873599F8106D.udd" 1928
-"../../../Engine/Content/EditorResources/LightIcons/S_LightError.uasset" 1929
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/6/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_6E2885E440BCFB52C4978695381CF808_0__5DEB467B68203FC80676EC9C1B2A5324BD02ED45.udd" 1930
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/3/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_6C4BA45643B73C63DDDDD69BFA3BD__11A48780C3C98EE92283723731CF391F4CD2AB76.udd" 1931
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/6/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5BAAD60F4317988F24BA0F9AD2171681__987564B3541EC2B3A235A9BB72E58BAFD092978C.udd" 1932
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5BAAD60F4317988F24BA0F9AD2171681__C9AACCCC3A83A555D7F39B896AA762F97A7DFD34.udd" 1933
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/3/9/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___8203B8A443B97C30A94B7AF513F30AD729E057CB.udd" 1934
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/7/3/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___1B3A5A117DD10774E025CA39BE8FD079DE0629B5.udd" 1935
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/9/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B7F752464E6AFAE2652168BF45D1D__14F3987A579902AAE1DA3B88109BB3BAFC0FB421.udd" 1936
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/0/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_AFC83567413395892418AFAF0FDCD__D80F06D86286EA7582D28DC371201489CE0BB13D.udd" 1937
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_430718BF4C245E1A4AADA8BE729F2CC__D4AA2379D6F7777785EDC4C6E2235C8642852BAD.udd" 1938
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/3/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_8DE110DD4AB0A89972BC789374245__439369B7302A1B231900D0E581C9446DDB18EE31.udd" 1939
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/XordiaGameInstance.uasset" 1940
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/TransitionMap.umap" 1941
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/TransitionMapGamemode.uasset" 1942
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level3.umap" 1943
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/ActiveGameMode_BP.uasset" 1944
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/ActiveGameState_BP.uasset" 1945
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level3_BuiltData.uasset" 1946
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/BlueprintMaterial_Inst.uasset" 1947
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/BlueprintMaterial.uasset" 1948
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/VectorLength.uasset" 1949
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/WorldPositionOffset/ObjectScale.uasset" 1950
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/BlueprintSeamless.uasset" 1951
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/0/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_B0F110E04230F245F36C168956C289D4__1_0_0_0_2_13315_0.udd" 1952
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/6/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_2747E0C64EA6F0BB302B68B800321225__1_0_0_0_2_13315_0.udd" 1953
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/3/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_DE0EAFA54BE9BFDEAF58AFB52C3419C0__1_0_0_0_3_13315_0.udd" 1954
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/5/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_138E921E4F1A696EE1A994933EBC07B9__1_0_0_0_3_13315_0.udd" 1955
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/0/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_EBD42F924A2399B7C211F4B872CF3FB4__1_0_0_0_3_13315_0.udd" 1956
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_46B052284FFA5BC438C49D8338E448BB__1_0_0_0_3_13315_0.udd" 1957
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/8/4/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_52DDCBA74D3BC7499DC634A9724DF3A0__1_0_0_0_3_13315_0.udd" 1958
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/8/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_B551E5424E1A3B1A9D8FA6B70F9FA5DA__1_0_0_0_3_13315_0.udd" 1959
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/2/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_C2A00EFD417F0A46E1F66D8124AA6D26__1_0_0_0_3_13315_0.udd" 1960
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/5/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_1C4F3846408A29FFF2D60389182E19A1__1_0_0_0_3_13315_0.udd" 1961
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/9/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_146860BC4DBCC9752214A1922251A03F__1_0_0_0_3_13315_0.udd" 1962
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/7/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D4E44EEC4B9386E68FA28BBB2DD80DFE__1_0_0_0_3_13315_0.udd" 1963
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/2/4/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_7B53166E4F57AA93ED996680014DE94D__1_0_0_0_3_13315_0.udd" 1964
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/6/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_3822D1BB4FE54AE5B3B7F0B836F8115A__1_0_0_0_3_13315_0.udd" 1965
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/1/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_FB5B4AF945659CE36796329829B3F720__1_0_0_0_3_13315_0.udd" 1966
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/6/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_4B587D69439FF0BDA56FB9B212461CD8__1_0_0_0_3_13315_0.udd" 1967
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/4/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_C372ECB345DA298510701CB472350742__1_0_0_0_3_13315_0.udd" 1968
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/7/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D10B8D5247290E5F68A128AABD019673__1_0_0_0_3_13315_0.udd" 1969
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_190C2D6040CF256E63860DA4373F72CC__1_0_0_0_3_13315_0.udd" 1970
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/5/0/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_0987BE4242B8E5FBCDCC56872998D11A__1_0_0_0_3_13315_0.udd" 1971
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/7/0/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D5CE40AC41FEAB71033BE18E44BD4A96__1_0_0_0_3_13315_0.udd" 1972
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/2/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_1D2873434ED7F0FED40FE6AD576FDC11__1_0_0_0_3_13315_0.udd" 1973
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/5/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_AADDBEAB444C55E3E5E6CE918D789727__1_0_0_0_3_13315_0.udd" 1974
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_45CC0BBF46875E10B8DCA495345A4C6A__1_0_0_0_3_13315_0.udd" 1975
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_DEF73A8043E9002ED2E5DB8B985D12AC__1_0_0_0_3_13315_0.udd" 1976
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_6FE630264FF2F9D3F07FB6A521D8D183__1_0_0_0_3_13315_0.udd" 1977
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/3/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_BDE057DB4F958537C631389649B7FDEC__1_0_0_0_3_13315_0.udd" 1978
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/3/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_45F2B23046E1CB49FC149DAEABADDAE8__1_0_0_0_2_13315_0.udd" 1979
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_39D02ABB4EDD0CC7E6F5609407F92E74__1_0_0_0_2_13315_0.udd" 1980
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_4943CFE1437C6AC83BAD56847DAF657C__1_0_0_0_2_13315_0.udd" 1981
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/6/6/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_E82F6C9144298CC0B22A388D59411905__1_0_0_0_2_13315_0.udd" 1982
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/4/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D2EE757E4EACAAD2B21A0194EE97D5E5__1_0_0_0_2_13315_0.udd" 1983
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/2/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_B84E3D7D43CF96FBCC716FB05FAE4FAB__1_0_0_0_2_13315_0.udd" 1984
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/4/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_5CDE4CF64895947C02EC5EBC475DF60A__1_0_0_0_2_13315_0.udd" 1985
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/7/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_6D2022FC4010C2D11696CA94FFC37__5855A94425209B68B40000BB3BE0BC663B2AB26F.udd" 1986
-"../../../Engine/Content/EngineMaterials/EditorBrushMaterial.uasset" 1987
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/2/8/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___2F65D450B5B4D0561E7F216E6ED0822F252E4F65.udd" 1988
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/1/7/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___9F80939C3518C3127547606C278E01F27D8E2A5F.udd" 1989
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/8/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_65FB078044FF41C3BE52FAB56311B__78915BAE29B079B6EAFD1837338CCDD33AD8A162.udd" 1990
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/6/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_07D5FE2840D700308C989CAB02070__B188FC574B77A59922714E6617C5B00231478223.udd" 1991
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/3/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5455C6F94B32596529D71086828E1DCD__8A8104B11A29B608E9011AC81780EF0992F000BB.udd" 1992
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/2/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_65FB078044FF41C3BE52FAB56311B__2D71CD099580B623F821371676F7EE8340B048F7.udd" 1993
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/1/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_9CB18F4444CB91AF5A9840ABEB3ECB46__99D9DFC46E6422B7811C61A156B10C760FA30FA6.udd" 1994
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_239F6B154CCBA0D09042DF9EC113E07__D11ED20B9E2ABF3A077150396F9D309E74914070.udd" 1995
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_339B1A7841407827ABEA4CA02422FA9__063E2A0A9AAF03F099042BE24395D10BB5BD73A8.udd" 1996
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/8/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5455C6F94B32596529D71086828E1DCD__C225F85D583274A3C22A7D3E12A5068949E90B03.udd" 1997
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/0/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_9CB18F4444CB91AF5A9840ABEB3ECB46__B1979768740385F19308A1B98C2301AB2355510F.udd" 1998
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/2/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_239F6B154CCBA0D09042DF9EC113E07__BF0761DA57F6F8D666003A5C52951E09183FE84C.udd" 1999
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/7/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_339B1A7841407827ABEA4CA02422FA9__135FC4C407097BFC104B53B6C9184929D4AB0C2B.udd" 2000
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/9/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_07D5FE2840D700308C989CAB02070__56DA5C1DF5C794EC52CAC1E2863B1992ABB0F6D0.udd" 2001
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/9/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_65FB078044FF41C3BE52FAB56311B__669C90ED665810BF261C5A793BB1A36A82DB2B2A.udd" 2002
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_65FB078044FF41C3BE52FAB56311B__8E1847E23A7B308649A79C6A1591BCC72689C571.udd" 2003
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_65FB078044FF41C3BE52FAB56311B__AE73C07840AD4677BD68FDAAFB94EB97AD2A6F37.udd" 2004
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/9/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5455C6F94B32596529D71086828E1DCD__D5EB7EA3103791BBE092C2672473D422BA232487.udd" 2005
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/0/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_07D5FE2840D700308C989CAB02070__3925DAE40047C17FF48E1F6C2E53ABB7293283B5.udd" 2006
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/9/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5455C6F94B32596529D71086828E1DCD__17998B2885B3705F62BD869CBE62218842CECD90.udd" 2007
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_339B1A7841407827ABEA4CA02422FA9__000830C353DB6A54CB7E6E5F6FB5FAFD14D3DB6E.udd" 2008
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/3/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_9CB18F4444CB91AF5A9840ABEB3ECB46__7DB78CABC0B8CA256C82901CF8D62E22BA5B64A3.udd" 2009
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/8/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_07D5FE2840D700308C989CAB02070__A672CE10DE7A3A2E31A012EAA90AAC894E392023.udd" 2010
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_87732A1849321418146EDBAD6F3C3__E0D67D01664283C58929DBFC311AD28B6504DA89.udd" 2011
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_339B1A7841407827ABEA4CA02422FA9__D2D81EB334F3F012C7BF1E816E436153796DEC19.udd" 2012
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/1/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_87732A1849321418146EDBAD6F3C3__B8FEE4111E05BACC0F76E19684B5C72BF0A51952.udd" 2013
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/5/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_9CB18F4444CB91AF5A9840ABEB3ECB46__F1D0CC7CCD681321C7884E59950132F402EA5A9D.udd" 2014
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_339B1A7841407827ABEA4CA02422FA9__E04278C103C5A7E223B341BEC93A2E6936B173EA.udd" 2015
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/8/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_9CB18F4444CB91AF5A9840ABEB3ECB46__C1612A604A8E90769ADAECFD7D5DFF5466D93BB3.udd" 2016
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/2/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B380E9A8439D2CCB5B876BAA061AC__79EDB3BAC585B3600F65EA6545013E4C19F28E6D.udd" 2017
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/3/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B380E9A8439D2CCB5B876BAA061AC__E49A88D13D53AE31380CF12C66F5192A45BE7F0C.udd" 2018
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/8/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_239F6B154CCBA0D09042DF9EC113E07__B575572D1DC568F32B8CB243432859A727D4BC21.udd" 2019
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/9/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_239F6B154CCBA0D09042DF9EC113E07__D5700E3CEFC13DBE2489A8F782A5DC4E740ADEC8.udd" 2020
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/5/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_87732A1849321418146EDBAD6F3C3__DC00444BBEBBA0B8857A349FACD31DAE036D1E83.udd" 2021
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/7/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_87732A1849321418146EDBAD6F3C3__62F40C38391A053B565994C9CE0C93F7FFB10838.udd" 2022
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_87732A1849321418146EDBAD6F3C3__CCEC046F53A3DEBC86E6CF8FCFDD5BAEABDB455D.udd" 2023
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/1/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B380E9A8439D2CCB5B876BAA061AC__90A7A348CED25F4459FD7628D9A0B1F6CB0CAB35.udd" 2024
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/1/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B380E9A8439D2CCB5B876BAA061AC__D2AF186922561CB6DAAE53A1FEB117CF3AEDA63E.udd" 2025
-"../../../Engine/Content/EditorMaterials/PreviewShadowIndicatorMaterial.uasset" 2026
-"../../../Engine/Content/EditorMaterials/PreviewShadowIndicator.uasset" 2027
-"../../../Engine/Content/EngineDebugMaterials/DebugEditorMaterial.uasset" 2028
-"../../../Engine/Content/EngineDebugMaterials/ClothMaterial_WF.uasset" 2029
-"../../../Engine/Content/EngineDebugMaterials/ClothMaterial.uasset" 2030
-"../../../Engine/Content/EngineDebugMaterials/BoneWeightMaterial.uasset" 2031
-"../../../Engine/Content/EngineDebugMaterials/HeatmapGradient.uasset" 2032
-"../../../Engine/Content/EngineDebugMaterials/GeomMaterial.uasset" 2033
-"../../../Engine/Content/EditorResources/BSPVertex.uasset" 2034
-"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickOutter.uasset" 2035
-"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickInner.uasset" 2036
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionStick.uasset" 2037
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad3.uasset" 2038
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad2.uasset" 2039
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad.uasset" 2040
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButtonFire.uasset" 2041
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton3.uasset" 2042
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_on.uasset" 2043
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_off.uasset" 2044
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_on.uasset" 2045
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_off.uasset" 2046
-"../../../Engine/Content/MobileResources/HUD/LeftVirtualJoystickOnly.uasset" 2047
-"../../../Engine/Content/MobileResources/HUD/AnalogHat.uasset" 2048
-"../../../Engine/Content/MobileResources/T_MobileMenu2.uasset" 2049
-"../../../Engine/Content/MobileResources/T_MobileControls_texture.uasset" 2050
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Selector/ListEntryWidget.uasset" 2051
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Lobby/LobbyHud_WBP.uasset" 2052
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/StatsMenuUI/StatsTab_WBP.uasset" 2053
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/StatsMenuUI/StatsMenu_WBP.uasset" 2054
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Splash.uasset" 2055
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_A6D29AE7489F3C9591A72790029095A__116A40EE5D007AFBB03D935C206011A5F2C8362E.udd" 2056
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Longer_Splash.uasset" 2057
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/1/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_119BFDF4418C3E91FC4781BE7DCAA15__108E049030AA41A72C3F13286C0C599A3E2562B1.udd" 2058
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/LoadingScreen_WBP.uasset" 2059
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/BahnschriftFont.uasset" 2060
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Quicksand-Bold.uasset" 2061
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level2.umap" 2062
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level2_BuiltData.uasset" 2063
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/Sand.uasset" 2064
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Standard_MasterMaterial.uasset" 2065
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Math/MultiplyAdd.uasset" 2066
-"../../../Engine/Content/Functions/Engine_MaterialFunctions03/Blends/Blend_Overlay.uasset" 2067
-"../../../Engine/Content/EngineMaterials/BlendFunc_DefBase.uasset" 2068
-"../../../Engine/Content/EngineMaterials/BlendFunc_DefBlend.uasset" 2069
-"../../../Engine/Content/EngineMaterials/DefaultNormal.uasset" 2070
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandAlbedo.uasset" 2071
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandDisplacement.uasset" 2072
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandNormal.uasset" 2073
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandRoughness.uasset" 2074
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/Slate.uasset" 2075
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateAlbeda.uasset" 2076
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateDisplacement.uasset" 2077
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateNormal.uasset" 2078
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateRoughness.uasset" 2079
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/1M_Cube.uasset" 2080
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/CubeMaterial.uasset" 2081
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/1M_Cube_Chamfer.uasset" 2082
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/Bump_StaticMesh.uasset" 2083
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/RampMaterial.uasset" 2084
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/LeftArm_StaticMesh.uasset" 2085
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/Linear_Stair_StaticMesh.uasset" 2086
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/Ramp_StaticMesh.uasset" 2087
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/RightArm_StaticMesh.uasset" 2088
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/3/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___473D346B3788D76A6D888A283F079CC799676D30.udd" 2089
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/8/3/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___9E13E9BBF1AB18783DB2AEC9E8D36635648078A7.udd" 2090
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/4/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__6AC6DAA5E6B5787063C5117FC72D9C83800A48EB.udd" 2091
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/3/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__8F3C98721F5E712FDD4645DF30E8E28C7266E9DA.udd" 2092
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__109A1496F0C05A732ECB2D161E460282DBF0E794.udd" 2093
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/9/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__C58898233213DB1071A140D923E931BB1163CEDB.udd" 2094
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/6/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__57C6AA449318E844425D63FCACD3F0036A4A5417.udd" 2095
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/5/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__59AEC06915A5DFC00DF7D659E3FBBAA1FBDCDB99.udd" 2096
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/6/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__56D111B37861C79AE8893D92CBABFDC713F7A2B7.udd" 2097
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/9/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__9CFF4822CDAD977521C0F1962FF075C90D49B032.udd" 2098
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/4/9/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___B17609B98B05605C879404710C6FC95AC2249555.udd" 2099
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/7/3/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___461ED5BDF8A56113A22E9A23B2034E5D050A2D19.udd" 2100
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/9/6/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___56D041A6A68D4EA48477A1F718DD45BFD9C1F419.udd" 2101
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/8/9/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___2D84D1C4590CC7F3DA5FEBCFC886F9017F6A9885.udd" 2102
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/2/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_4964967C4E0D2ABA441CAE8C34413__8E3914F9A4DB013676B177C4C014A1C483F28A2F.udd" 2103
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/8/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_4964967C4E0D2ABA441CAE8C34413__22F9CB95EBC3968B47AAB277247001D99C3F9F22.udd" 2104
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_4964967C4E0D2ABA441CAE8C34413__AC4021B8835780C4788F42526FAEC338AE4DD6A5.udd" 2105
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_4964967C4E0D2ABA441CAE8C34413__D2068A758C68DB2C7D3DA02108136C41AF13050D.udd" 2106
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/5/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_4964967C4E0D2ABA441CAE8C34413__56DF1182074BE745FF1F09753E4E59AB7FFE841B.udd" 2107
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/6/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_4964967C4E0D2ABA441CAE8C34413__406E226D1DCCACD2AA02E39DAED461644199516D.udd" 2108
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/4/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_4964967C4E0D2ABA441CAE8C34413__B4261791D90E77041D723BF443A2F58D3C613E18.udd" 2109
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/6/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_4964967C4E0D2ABA441CAE8C34413__048B0504B360531821F8D0CC1A0E778E93567841.udd" 2110
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/2/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___665525EEDCC1773A74A97D69633F22F5C9F79875.udd" 2111
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/2/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___4C0314F8187023EA14FE0008A2E8923D9F700C0C.udd" 2112
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/2/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_1C1A47464A1738E6ECC06180E843E__F5F4F3A8AA41912756E5665093A5CDA0462D8370.udd" 2113
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/3/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_447DC0DD4D8C53E3D13970AD5B869__9524DF16DAEF1E4A9327333134FE5C2D254E99D5.udd" 2114
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_DF01807944683251573EBC92D948080A___BD75DF8C774914BDE28C2593389A5A5EBB9E18A8.udd" 2115
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/7/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_DF01807944683251573EBC92D948080A___63269FEF5E84E9A0EFC2A9CA4D74D956B52603F3.udd" 2116
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/2/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_447DC0DD4D8C53E3D13970AD5B869__55D45C365AA0B6BF79D204395D81A7406F431BA7.udd" 2117
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_1C1A47464A1738E6ECC06180E843E__06C98005AA9F1DB3500029F5E47EF5448802DF03.udd" 2118
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/6/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___9B9CF550AE53EB738B2EC6579307027A846132D5.udd" 2119
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/7/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___8E8122D667455302ACCBE7B21DA3C6CB7D08DDB2.udd" 2120
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/6/9/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___D8CFC1FBA556AA4F93B278C19A871DEAFBD54150.udd" 2121
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/7/1/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___EB1DE03A06D16EF404244D2E02A78DF67DDED49F.udd" 2122
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/0/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___DB608C09FC89305B8D8D40AB0499694569EAAE3E.udd" 2123
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/3/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___0F144123B7A287BD4FFE618220ED5A726DB0CE95.udd" 2124
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/8/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___5A57EAB56E58CF35B032243126134FC4AE7A53C6.udd" 2125
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___262F7C4BDE495AFF152968CA96B6A016FFB14C0D.udd" 2126
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/2/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_1C1A47464A1738E6ECC06180E843E__EB898317A55077FAB6BD6F7B394F4199563328AC.udd" 2127
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/6/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_1C1A47464A1738E6ECC06180E843E__DA8644F2BCA896357097282910326A6AABF38E78.udd" 2128
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/9/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_1C1A47464A1738E6ECC06180E843E__482C6865540468D90BEB3FDADFC2D9FBC067C154.udd" 2129
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/1/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_1C1A47464A1738E6ECC06180E843E__FFD1BE50D9B32375F156096853582F8274562EA5.udd" 2130
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/2/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_1C1A47464A1738E6ECC06180E843E__2DBECC13995CA44EDB480C887C1B89006F2A17FC.udd" 2131
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/8/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_1C1A47464A1738E6ECC06180E843E__3E8D07336B05F916DCE1DB70B8A44AAEBC17881D.udd" 2132
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/2/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_DF01807944683251573EBC92D948080A___8055E9445D18742587A2C3044DC1E791A76D7757.udd" 2133
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/0/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_DF01807944683251573EBC92D948080A___9D9B27CD7C97674B0F5F36A550BF633365C58CDC.udd" 2134
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_DF01807944683251573EBC92D948080A___EB2315B5187C0EC1D57B46B9645F8F1C480D68A7.udd" 2135
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/3/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_DF01807944683251573EBC92D948080A___31B15FA994F998542D2987847CD95E7ED33B3C1A.udd" 2136
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/9/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_447DC0DD4D8C53E3D13970AD5B869__DAC601C6048C1D6464ED541329347F9F78378B4C.udd" 2137
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/6/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_DF01807944683251573EBC92D948080A___FFF4769EB4ADE0EBA1D188C95E9B790C82EFD098.udd" 2138
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/8/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_DF01807944683251573EBC92D948080A___49EB89FBF3C6DA6DAE79376442836FAA652E6324.udd" 2139
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/0/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_447DC0DD4D8C53E3D13970AD5B869__0468EC87E2A7DB6BE2436148B438E0376A1D1704.udd" 2140
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/0/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_447DC0DD4D8C53E3D13970AD5B869__BF5671C818EAFE1222F38EF88CE6F6C754211946.udd" 2141
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/3/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_447DC0DD4D8C53E3D13970AD5B869__13B772CEB219BC868709E747EE556AC79F1F49CE.udd" 2142
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/7/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5FB92D924D64A46DF570DBB623092__EF0F19BE42AB1E7293148CF10D701BF1DE5394D1.udd" 2143
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/8/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5FB92D924D64A46DF570DBB623092__61EA80BF9A0525255C1FAF059C1901E551F623EB.udd" 2144
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/4/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_447DC0DD4D8C53E3D13970AD5B869__8F37C30901B16B16CBA5E7478E3A7DC777F8C0C7.udd" 2145
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/8/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_447DC0DD4D8C53E3D13970AD5B869__419063BED4879DF95460D59470778C38CEE58125.udd" 2146
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5BDA5D884C18A29E7FD48087F7A91__03969B2D5779956B533CB2CCF9988005AC2E4D88.udd" 2147
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/7/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5BDA5D884C18A29E7FD48087F7A91__BBECEE5128E26FD04EEEE9551188FF0131B5A2B1.udd" 2148
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/7/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F36951C64AEDED2B95893FB74BE07__2AC7CB2A3B5D4B1FF3AB49CCF89C2C480110494B.udd" 2149
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/0/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F36951C64AEDED2B95893FB74BE07__08A2D71C521009C554AB6BDDEA1EE04E92E25BEF.udd" 2150
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/6/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_111E2DD148AEDA91FA42D0BC2A647__83ACCFC6320AB07A1947F3F407D9242FE1FFC935.udd" 2151
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/5/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_111E2DD148AEDA91FA42D0BC2A647__8E40E04D40A251A5D500F6868591F8D3F380B6E2.udd" 2152
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/5/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F36951C64AEDED2B95893FB74BE07__D47F822AC21AAC30F9276D1CAD3930C7FE7EB4A0.udd" 2153
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/5/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F36951C64AEDED2B95893FB74BE07__60598222CBC519675A63AAFD1BE28FB33D366339.udd" 2154
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/6/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_111E2DD148AEDA91FA42D0BC2A647__2A6B47CE42EB3EBB938EF086FEF41C202F3CDC50.udd" 2155
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/9/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F36951C64AEDED2B95893FB74BE07__CC2AF0C908E87C8CB6AEE33A780671AD3B358D37.udd" 2156
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/4/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_34076DB9485C57E64F7D6F853A78B89F__92F06657809A0D8B6576DFC1C8A2C3E1FF739C66.udd" 2157
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/4/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5BDA5D884C18A29E7FD48087F7A91__7842FD2326BEDF400823E459B710EDAD10D93230.udd" 2158
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/8/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_34076DB9485C57E64F7D6F853A78B89F__DF1C3DC8D097D449C64EF70D90C1F3B329DB6A7B.udd" 2159
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/7/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_111E2DD148AEDA91FA42D0BC2A647__11945C693660C445EE08B45BF9FA38D64B8A2658.udd" 2160
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_111E2DD148AEDA91FA42D0BC2A647__0EC560181AF7009C8855C1B0703EEC306FCE277C.udd" 2161
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/8/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_AFF228FA420D744299941382C1726E36__42E2623327B74CB6333B9950A3614CD6AF93D81A.udd" 2162
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/0/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_AFF228FA420D744299941382C1726E36__A576AAF46C52BDDAC05455DB9F45063BC3583497.udd" 2163
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_34076DB9485C57E64F7D6F853A78B89F__0BEC55F558BE5517DEADBA1C67FC4701EA2775E6.udd" 2164
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/2/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_34076DB9485C57E64F7D6F853A78B89F__92D574AB9B923D01A3CDACCEC3814977F1F8DB6F.udd" 2165
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/9/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_AFF228FA420D744299941382C1726E36__2D313CBB045FE003171452ED1AB121E4C509071F.udd" 2166
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/8/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_34076DB9485C57E64F7D6F853A78B89F__4115E360C22838745F97D3449998DCFAFBDFBCFE.udd" 2167
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/2/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_A63F9FD5413E246F3CB12D94AB1A7B67_0__19A925548E2E4B7F9CEC282E88CF5FAE83A6E0B9.udd" 2168
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/2/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_AFF228FA420D744299941382C1726E36__AA96B4D81B1B973FE48C7671DC120D1A3742F9C2.udd" 2169
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/5/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_A63F9FD5413E246F3CB12D94AB1A7B67_0__38C18485DC6D9E52E354392F9ADD9D10FB5270B1.udd" 2170
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/4/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_AFF228FA420D744299941382C1726E36__411EE9511B7C1938FDCEAB4F20DAEB5E5A3A3938.udd" 2171
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/4/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_3FED18FF45D63DE8BCEF18A6901C7__00578D8D021AA17626255F18D22409D3292D6588.udd" 2172
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/4/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_3FED18FF45D63DE8BCEF18A6901C7__1025B8A34B094365F96A2BB0AFEE2FE5688459AD.udd" 2173
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/2/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_3FED18FF45D63DE8BCEF18A6901C7__4B8172C8160EDA7DB451E0D6B297038DA2B5F640.udd" 2174
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/5/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_A63F9FD5413E246F3CB12D94AB1A7B67_0__A4C1355CB1ECF2D1E7D1004D0059924E4EF493A3.udd" 2175
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/9/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_3FED18FF45D63DE8BCEF18A6901C7__028388E66C78B905D7825786534AB27D788E863E.udd" 2176
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/9/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_3FED18FF45D63DE8BCEF18A6901C7__3D1E2ECF454AF89979D4A01ABCBDCC4F82F5AA5F.udd" 2177
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/9/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_A63F9FD5413E246F3CB12D94AB1A7B67_0__D82C91B41F89DCA2B8428546A7538B36503CA7E1.udd" 2178
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/0/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F6B785EF477E3E6EDB7D0ABC9014D__7D3513D7BFA0A6A43F30ACC92AABED7B7C3470E7.udd" 2179
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/6/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F6B785EF477E3E6EDB7D0ABC9014D__24117BE349D6847151155E9685B2B5AC85076AA1.udd" 2180
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/2/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_A63F9FD5413E246F3CB12D94AB1A7B67_0__E7A2CC7DF65F4B4EE709479A95B0A8CA8F5DA1D6.udd" 2181
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F6B785EF477E3E6EDB7D0ABC9014D__DB49723261008787B61DDAAE60554ACBEB11EC8D.udd" 2182
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F6B785EF477E3E6EDB7D0ABC9014D__FB6EDAFDA0216E16644F2EEE778D945FFCCD8461.udd" 2183
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/4/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F6B785EF477E3E6EDB7D0ABC9014D__E96F0B0AC43421470DF113996B636095BE394DCC.udd" 2184
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/8/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5FB92D924D64A46DF570DBB623092__C1D013403AEE19A39F6FA1AA966C5443849775B0.udd" 2185
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5FB92D924D64A46DF570DBB623092__82DDADBA07EC063E9BA32651EE51033E706D854A.udd" 2186
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/1/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5BDA5D884C18A29E7FD48087F7A91__DC4895185B9F5DAC005FAFFE278217E6C6A1A4FE.udd" 2187
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/0/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5FB92D924D64A46DF570DBB623092__CC9001332780AD528D36487763C5F44941A05C73.udd" 2188
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/2/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5FB92D924D64A46DF570DBB623092__CD02A3DBA306E1040C14D08E6E6360C985397E7E.udd" 2189
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/0/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5FB92D924D64A46DF570DBB623092__C13114B90692A1E2CB7755D35DACE032AFE77C3A.udd" 2190
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/7/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5FB92D924D64A46DF570DBB623092__37CA124B9C9A755806C18623C67C97405F07AC6E.udd" 2191
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/2/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5BDA5D884C18A29E7FD48087F7A91__1F07C0113EB4B0EBA5ACBACFE04AC726DA7B30A8.udd" 2192
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/4/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5BDA5D884C18A29E7FD48087F7A91__7DC3715AAE834348EDEE193A370BD362FBB45862.udd" 2193
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/2/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5BDA5D884C18A29E7FD48087F7A91__CC23E71144868611E6731CCF8CF38360A30727FB.udd" 2194
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/5/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5BDA5D884C18A29E7FD48087F7A91__8D4399324A0AE46C4B51E95CC5A211A27C662B89.udd" 2195
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level1.umap" 2196
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/Cube.uasset" 2197
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level1_BuiltData.uasset" 2198
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Orange.uasset" 2199
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Connector3.uasset" 2200
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/1/3/STATICMESH_9891BF2FF72141F6921E24E347DB73C1_228332BAE0224DD294E232B87D83948FQU__E8A684D590823F8039929CA5B2E1289CF4D58C29.udd" 2201
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/0/3/NAVCOLLISION_B89838347A4348138EE337A847529C5C_NAVCOLLISION_X_A8770A2D440756613__F7FD84D0E883B66663AFFC36210E2399BE43CC08.udd" 2202
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/6/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_A8770A2D4407566134E0B384B9CA712__862F5074D115D9F6A399D9B46C330B342094EFA0.udd" 2203
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/6/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_F3D333774F62649BC31F048390E2A29B__1_0_0_0_3_13315_0.udd" 2204
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/5/4/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_5C6C464A44C045C93BF220A74C1E9486__1_0_0_0_3_13315_0.udd" 2205
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_C44DB10B44EFE954CBC93BB8EF5F3CC7__1_0_0_0_3_13315_0.udd" 2206
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/7/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_4C99B0224456FEA14AE940B1B2570F85__1_0_0_0_3_13315_0.udd" 2207
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/4/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_B43AFC2D4F9BA3A1878511B04AC91FBD__1_0_0_0_3_13315_0.udd" 2208
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/6/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_097438C34C83F788734877AFDD651FCA__1_0_0_0_3_13315_0.udd" 2209
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/5/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_6F2438F84F6D8AB5DE1901BB507A3136__1_0_0_0_3_13315_0.udd" 2210
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/7/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D6F68962404A49B883991CA082AF7239__1_0_0_0_3_13315_0.udd" 2211
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/7/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_29C4CB704C886A2C4CD40FBA21BCEE55__1_0_0_0_2_13315_0.udd" 2212
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/2/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_684500974F05C763E35873A381D8D__CBD01B07689F5B99146AA53E2BE8815304B5364A.udd" 2213
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/0/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_CF743A4C4E408F35F96CCEB9B6D22__9A62B993CE64930232B512940078AA62ADDED19C.udd" 2214
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/5/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_DEC4A66A4A1EE087E59974B74371AD2D__F11A42021A04D7086DB6F9CF5C0467AA394BFFB4.udd" 2215
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/1/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_11D2AD4C4F52643F47648D8C7118146__7A96DB55000C05A2EE4722C78905B1C53CD36F8F.udd" 2216
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_CF743A4C4E408F35F96CCEB9B6D22__863639E630886FD25B41065D9AA6BA9AE256D491.udd" 2217
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/2/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_1BEAF32B4F08E62685F7439E68A1825E_0__D79F80CA9B687CA85127D31B3289248ADF9CC78D.udd" 2218
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/8/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_684500974F05C763E35873A381D8D__982DF21C1B9E8E9052C0DDDA0745985E0F66FE48.udd" 2219
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_D20D39E14E4658D793D4A79AD8E4C770__D3C06E442D44EAC6B2677A8714CCD0629E90C238.udd" 2220
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/0/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_1BEAF32B4F08E62685F7439E68A1825E_0__1FCA04C5B0A19C61794FC943D7DA0C4F11854103.udd" 2221
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/2/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_11D2AD4C4F52643F47648D8C7118146__EE6B0313F42B058235D362DCC8BE5E191C50454E.udd" 2222
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/6/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_684500974F05C763E35873A381D8D__93A1DD9301B88CFF856F8DBEB94B9EC7A0672D7A.udd" 2223
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/2/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_1BEAF32B4F08E62685F7439E68A1825E_0__6B036FD3F20ECDB13521BC4CC53863A9DCF3DBB4.udd" 2224
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/1/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_D20D39E14E4658D793D4A79AD8E4C770__6597DEE3B10C1727891C1F3CEFA08E45CC7FD6A4.udd" 2225
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/0/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_684500974F05C763E35873A381D8D__84F2BF9AC52482C2CAD1D467824D3F025E09AD3A.udd" 2226
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/8/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5DB9225841328C37B6AE98A98BE9E__EE7F8F967465D08197D76FE840D51B5611A196C9.udd" 2227
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/3/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_DEC4A66A4A1EE087E59974B74371AD2D__B3993B0FC24ECDBA7708F2999EAE34586FA89C4A.udd" 2228
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/1/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_D20D39E14E4658D793D4A79AD8E4C770__129C298D3513B6F030695AA232E319A0E5DB077F.udd" 2229
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/0/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_CF743A4C4E408F35F96CCEB9B6D22__2E4C99074FFB9FCB9F896F329D50F3A18787F85B.udd" 2230
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/6/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_684500974F05C763E35873A381D8D__5D774C63AEF1778102C09820EFCC8948013B01F5.udd" 2231
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/9/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_28FA6BC64FDCF4A9136CB0805028E__31505CE31BC2E1988F334A058BC2DA622BC2E06A.udd" 2232
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/6/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5DB9225841328C37B6AE98A98BE9E__63CDE69D14E78B07C37F316731AAF2AE71EE7D76.udd" 2233
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/9/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_28FA6BC64FDCF4A9136CB0805028E__4131A7926F16C61D6D2AF9205356200AD46E2CE6.udd" 2234
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/8/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_11D2AD4C4F52643F47648D8C7118146__E5122BD927DA570A891BA855BC806B30FF6EE463.udd" 2235
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_28FA6BC64FDCF4A9136CB0805028E__165CEA7423D946D5BABEC268C49039B307EC7A85.udd" 2236
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/5/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_11D2AD4C4F52643F47648D8C7118146__10FCA6D797996668D35D242BA4058C0FDE808B46.udd" 2237
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/1/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_DEC4A66A4A1EE087E59974B74371AD2D__68AFC98B17FFA3496780E1C2AB37411C625525AA.udd" 2238
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_DEC4A66A4A1EE087E59974B74371AD2D__BA527E6707D11F71C0E6FAC3BC6F7A624C16B652.udd" 2239
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/8/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_DEC4A66A4A1EE087E59974B74371AD2D__D229D8773F6809DBA3319C477933CC322CF02779.udd" 2240
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/7/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5DB9225841328C37B6AE98A98BE9E__928DDB0FC59E2D172BD346058B40F0EEB4EF203B.udd" 2241
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/0/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5DB9225841328C37B6AE98A98BE9E__32B62875A4BD2355AE488A6272FE7905A7B98FA0.udd" 2242
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5DB9225841328C37B6AE98A98BE9E__0D03B7A11907047FCE47B1F86F690F2EE00DF054.udd" 2243
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Lobby.umap" 2244
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/LobbyGameMode_BP.uasset" 2245
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/BuilderPawn_BP.uasset" 2246
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Lobby_BuiltData.uasset" 2247
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Cave.uasset" 2248
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/8/7/STATICMESH_9891BF2FF72141F6921E24E347DB73C1_228332BAE0224DD294E232B87D83948FQU__9D78EAB81B6858B8DD477DB7DFC20F7528AF0FE2.udd" 2249
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/2/5/NAVCOLLISION_B89838347A4348138EE337A847529C5C_NAVCOLLISION_X_633EA26A4B2ED0BC3__B900E9BBA992CC562596920828F7D1C3039ECCA2.udd" 2250
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/7/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_633EA26A4B2ED0BC35DE1A9027EB80E__18D12FAEB3031DDF72834BD4DAC37849C5297FFD.udd" 2251
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/7/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_6D55B5A74B3A977E4F135AB0D82296F5__1_0_0_0_3_13315_0.udd" 2252
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/2/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_9728054844561A67C1D6BD927F0AA6D3__1_0_0_0_3_13315_0.udd" 2253
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/1/0/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_E3ED958D44A5279777FF1FB0CB5D21D6__1_0_0_0_3_13315_0.udd" 2254
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/2/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_94F50AFE4E00F57A129F0EA513939287__1_0_0_0_3_13315_0.udd" 2255
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/4/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_C907551249EFB1121B098180F97DE241__1_0_0_0_3_13315_0.udd" 2256
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/8/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_32F9E66045038E21FEBAF489AE53908B__1_0_0_0_3_13315_0.udd" 2257
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/4/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_3238EE834D4FE0CDD6244F9D3969E4E1__1_0_0_0_2_13315_0.udd" 2258
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/5/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_1F0DD0AF4C14878A82706BB4199B1__E2FC853D40CC4DD1E53B50173705BFD76B0E4132.udd" 2259
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_CAB58C9E400C95E65AA0618BA87B8__EEF552AC15A7A275D0AF3B3275ED4E0FA21448D8.udd" 2260
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/2/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_7A6422F2405C7557FA373AB12FAA6831__9F6359798263A5057763DC0E0C5D9BE0840BA715.udd" 2261
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/6/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_AE600B974F9DDA1D646E25B068EA0276__14FD5049BD0C077616A388826D0B252FE69AC096.udd" 2262
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/4/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_1F0DD0AF4C14878A82706BB4199B1__0335427628DE47CF677969EC7C70B845A1E9FC3A.udd" 2263
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/0/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_557138B24DA81FA33FA582B49C5F60D5_0__E16E2FC7F426DD8BD5CADA02528FA74E0E062BE7.udd" 2264
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/7/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_7A6422F2405C7557FA373AB12FAA6831__CC149C46988E654B71C2AAF009A9928030E72984.udd" 2265
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/0/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_AE600B974F9DDA1D646E25B068EA0276__7F41012E16B60591CE0B75B3C73563592DA8D6F8.udd" 2266
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/1/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_CAB58C9E400C95E65AA0618BA87B8__D52417CA592018D501B0D5F6DD780345D06F492A.udd" 2267
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/1/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_2BF032B047EF1AF7C048C19B0F92C2EC_0__F7657152BA8D32437AF7464230A3511189DD0B7B.udd" 2268
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/6/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_557138B24DA81FA33FA582B49C5F60D5_0__BC8D12C3536FCACFF552577E9330AE79B2E932FA.udd" 2269
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/9/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B41AC3584088A04EDD8AE29A9BC98__F0C1DAA8FD075A0C3FC26E1938490329C8F4C44E.udd" 2270
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/1/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_43ACE51340776EC88A775DB7D85B2__283BB39FFC2ED93A4854D9903F6760CF0E70928B.udd" 2271
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/6/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_CAB58C9E400C95E65AA0618BA87B8__73E3E7183BFEF4AC2D5C02CFA13F2BDCA7C87C65.udd" 2272
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/5/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_CAB58C9E400C95E65AA0618BA87B8__DD1183A9AC3404BE90046A05D76471F655C59B0D.udd" 2273
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/8/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B41AC3584088A04EDD8AE29A9BC98__C26D231601DCBFE96B08734CA95B81B3F1C56FC0.udd" 2274
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/4/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_43ACE51340776EC88A775DB7D85B2__9C43E64F01A86945A9FA43E214D709710E144948.udd" 2275
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/2/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_557138B24DA81FA33FA582B49C5F60D5_0__31988C25EBA81E41076148D35419E43C31AE0508.udd" 2276
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/6/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_CAB58C9E400C95E65AA0618BA87B8__3D159A31A6C5EEE310B947101123BF6DB9356EDB.udd" 2277
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/8/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_557138B24DA81FA33FA582B49C5F60D5_0__6EA1447C1CD8012FBBC1D2B78C40C7BF2D95C412.udd" 2278
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_AE600B974F9DDA1D646E25B068EA0276__EFD34EC5053D11E7BFC02E6AE1E7A2A85D5A5A1E.udd" 2279
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/7/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_AE600B974F9DDA1D646E25B068EA0276__274A26D5503B9B5E908D362C4C3CFC7223681D3E.udd" 2280
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/4/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_AE600B974F9DDA1D646E25B068EA0276__237CD0A5D410E884161ED75461112392DD28E465.udd" 2281
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_43ACE51340776EC88A775DB7D85B2__2628172B8346C0D6A42B2A89F376FDC26EEBC2C0.udd" 2282
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/4/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_43ACE51340776EC88A775DB7D85B2__4BF01C0131FE72938BE018D550362A73635CF32A.udd" 2283
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/7/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_43ACE51340776EC88A775DB7D85B2__70AD4316AAECC3C5DD945E3E05B1FF581FADE903.udd" 2284
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/SurfaceBlend_MasterMaterial.uasset" 2285
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/AlphaBlend/WorldAlignedBlend.uasset" 2286
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Shading/FuzzyShading.uasset" 2287
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/noise_mask.uasset" 2288
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/noise_normal.uasset" 2289
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/6/7/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___1CDAA0A5C804E62E85DC0034956BC26A0F7FBD12.udd" 2290
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/8/8/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___4DFB9FCD667F35181521C536C0CCC091AD60FFCB.udd" 2291
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/0/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_8837A9F74BB956D8068DF6A923EA1__29BEA245C80D230F5BA303B53445DC09DAB19593.udd" 2292
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/1/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_8837A9F74BB956D8068DF6A923EA1__FC1203D5F024349405FF47AD29B813AD6E996EEB.udd" 2293
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_8837A9F74BB956D8068DF6A923EA1__896DFE7D81F88B88B0C101813BE75F0E4C61A0D2.udd" 2294
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/8/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_8837A9F74BB956D8068DF6A923EA1__408E1891E3F12D28E65C767226D065A65559112A.udd" 2295
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/3/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_8837A9F74BB956D8068DF6A923EA1__CB59C988C183C1AF545D8C40B196943B29927F08.udd" 2296
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/8/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_8837A9F74BB956D8068DF6A923EA1__50FC1305544522450D1957963849113A7EB809D0.udd" 2297
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/5/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_0FF1BBC54A1EC17C6CB0B5A2A6121C60___ADF22DE67695546287596FE15D72239E68858622.udd" 2298
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Imperfection_MasterMaterial.uasset" 2299
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_0FF1BBC54A1EC17C6CB0B5A2A6121C60___30F03C03D26148FC728D84EA5161563577400B4C.udd" 2300
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/6/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_0FF1BBC54A1EC17C6CB0B5A2A6121C60___A43588021CCF6FFE3E73C1A8B52D872DB1A70C3E.udd" 2301
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/SpeedTree/SpeedTreeColorVariation.uasset" 2302
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_0FF1BBC54A1EC17C6CB0B5A2A6121C60___8391D78002063F485BC5AF26B5B0E41C90289B74.udd" 2303
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/2/9/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___C68A37AE350A9D1B4B0F9BFACA55BDD7821AD476.udd" 2304
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/2/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_0FF1BBC54A1EC17C6CB0B5A2A6121C60___23D7F3445B53148D80BC4BBA5331F4DEC4C15C34.udd" 2305
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/8/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_0FF1BBC54A1EC17C6CB0B5A2A6121C60___51F68D7E4084A2363652412B9FD2FD67EDD9118F.udd" 2306
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/1/8/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___4D66F7282428CA1A803101980A96093EBF908D8A.udd" 2307
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Foliage_MasterMaterial.uasset" 2308
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/WorldPositionOffset/SimpleGrassWind.uasset" 2309
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/4/8/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___43C2EDE7ABB6D457032EF539F41ADD197A09856E.udd" 2310
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/1/0/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___E9143F15DEFA13DECF6ED14EA0A4582F58CB1203.udd" 2311
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Displacement_MasterMaterial.uasset" 2312
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/9/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___B1DE1FD86162099399ADC4C68BABE1F4F5F78727.udd" 2313
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/2/1/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___144363100FADB31534CE76766AEF919AD141F6A5.udd" 2314
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Decal_MasterMaterial.uasset" 2315
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/4/4/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___5AF7362E9AE7140E4C00C759D807F9EA34B5EE48.udd" 2316
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/6/3/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___C308C5FEC338B8459675AE7201AD38728638E16B.udd" 2317
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/ChannelPackingSample.uasset" 2318
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/0/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___8BBC0CC5F23B25B54D882284E720A5EA578C91A2.udd" 2319
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/4/8/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___FFCBA6900D5B74A9B79E810D72A5D07C81A94E89.udd" 2320
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/BrushDecal_MasterMaterial.uasset" 2321
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/2/5/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___54651C08F5B677C64BCF39C407DC21B0FF1AA163.udd" 2322
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/9/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___B6F35F467E0AC252C8FA94AB2B9F329A4ECB10E5.udd" 2323
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Atlas_MasterMaterial.uasset" 2324
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/4/2/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___EEB4165BEF64E8C66A4333C3DB1A3E1B3D5E83BC.udd" 2325
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/9/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___9F2E9942D8F7AB13F94847E7CBB8DBC00929B811.udd" 2326
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MapThumbnails/Level2.uasset" 2327
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/9/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_0FC03F804E7FCB754BC28ABD91153__D90DF7675B3E5A04C448C6A487806D187B948DF2.udd" 2328
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MapThumbnails/Level1.uasset" 2329
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/4/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_C18DD9244F64E861AB683FA0CD7E6__8CDBFC0B898962304C44BD5DF0E2F505D1374A46.udd" 2330
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/TemplateFloor.uasset" 2331
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Sphere.uasset" 2332
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/4/4/STATICMESH_9891BF2FF72141F6921E24E347DB73C1_228332BAE0224DD294E232B87D83948FQU__E8BF0A902A1D15437CE5A7F859F78671D07ED062.udd" 2333
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/3/8/NAVCOLLISION_B89838347A4348138EE337A847529C5C_NAVCOLLISION_X_4F393971462F37320__DA55CA0A0B60F07D0F40C607B684DAB20F35DF87.udd" 2334
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/4/0/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_4F393971462F37320FF0BE91029DA0C__7396BC378D238119DCDD63D86252A59F7ED64BBF.udd" 2335
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/PressurePlate_BP.uasset" 2336
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/MovingObject_BP.uasset" 2337
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Blueprint_Texture.uasset" 2338
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_97CB118349A3C41CFA74D5B9F5530__7E7E80B273A2CA05C8936E42A83440E78DFE1462.udd" 2339
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Rain_PS.uasset" 2340
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Mat_Rain.uasset" 2341
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Density/ExponentialDensity.uasset" 2342
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Gradient/RadialGradientExponential.uasset" 2343
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/6/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_A2A31DEA443D01D0265BD59BDE037D43__20D2B712C5FA2ADF2F9179F30A71B3F933CB8F52.udd" 2344
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/4/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_A2A31DEA443D01D0265BD59BDE037D43__422CE88430B3F1CADA62A3EFCCEEFA1D5E4E5542.udd" 2345
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_A2A31DEA443D01D0265BD59BDE037D43__F28251A4E857AFD7EB10ACCDEB303D87DF1AD752.udd" 2346
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_A2A31DEA443D01D0265BD59BDE037D43__B3678C1431572040376317DD61C5F3D5359E0E6D.udd" 2347
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/0/7/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___48F007FC23975E4C04BED1E56A873F35DB8A9F69.udd" 2348
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/0/1/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___27A6A8CEF4A00599F3AD4FC5FE9C6D831B8A7573.udd" 2349
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MapSelection_WBP.uasset" 2350
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/SF_Archery_Black.uasset" 2351
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Quicksand-Light.uasset" 2352
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/JosefinSans-Light.uasset" 2353
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/JosefinSans-Bold.uasset" 2354
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Font.uasset" 2355
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/After_Shok.uasset" 2356
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Capture_it.uasset" 2357
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/BAHNSCHRIFT_Font.uasset" 2358
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/BAHNSCHRIFT.uasset" 2359
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Archivo-Medium.uasset" 2360
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/NewPoseAsset.uasset" 2361
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Material_001.uasset" 2362
-"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Eye_Color.uasset" 2363
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/9/6/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___A36D5B7858533DCD8813F85D031C36FCED9A5D73.udd" 2364
-"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/5/3/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___274E552D657D0D7BBBBA57724EAD4C9F9600B65C.udd" 2365
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Components/Cockpits/Cockpit.uasset" 1824
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/Cockpits/Cockpit_M.uasset" 1825
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/BasicPartMaterial.uasset" 1826
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/Cockpits/CockpitMatte.uasset" 1827
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/Cockpits/Neon.uasset" 1828
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/Cockpits/Cockpit.uasset" 1829
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Components/Rotary/TurretBase.uasset" 1830
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/TurretBases/3x3TurretBase_M.uasset" 1831
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/TurretBases/3x3TurretMatte.uasset" 1832
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/TurretBases/3x3TurretNeon.uasset" 1833
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/TurretBases/RotatoryDisc.uasset" 1834
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Mobility/Hover/ThrusterMK1.uasset" 1835
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Mobility/Hover/Thunsher.uasset" 1836
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Mobility/Hover/UWULauncher.uasset" 1837
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/1x1ArmouredCube.uasset" 1838
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/Cube.uasset" 1839
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/1x1ArmouredWedge.uasset" 1840
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/Wedge.uasset" 1841
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/1x2ArmouredCube.uasset" 1842
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/Box_Brush2_StaticMesh.uasset" 1843
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/1x5ArmouredCube.uasset" 1844
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/1x5Cube.uasset" 1845
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/2x5ArmouredCube.uasset" 1846
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/2x5Cube.uasset" 1847
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Armoured/5x5ArmouredCube.uasset" 1848
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/5x5Cube.uasset" 1849
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Light/LightCubeMK1.uasset" 1850
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Items/Structure/Light/LightCubeMK2.uasset" 1851
+"C:/Users/glsha/AppData/Local/UnrealEngine/4.22/Saved/Config/Windows/SourceControlSettings.ini" 1852
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/Config/CoalescedSourceConfigs/SourceControlSettings.ini" 1853
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/Config/CoalescedSourceConfigs/Encryption.ini" 1854
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/Config/CoalescedSourceConfigs/Crypto.ini" 1855
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/Config/CoalescedSourceConfigs/UnitTestStats.ini" 1856
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/Config/CoalescedSourceConfigs/UnitTest.ini" 1857
+"../../../Engine/Content/EditorResources/S_Note.uasset" 1858
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/RiftHMD.uasset" 1859
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/GearVRController.uasset" 1860
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/GearVRControllerMaterial.uasset" 1861
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_AO.uasset" 1862
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Color.uasset" 1863
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Normal.uasset" 1864
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/LeftTouchController.uasset" 1865
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/touchController_mat.uasset" 1866
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/touchController_albedo.uasset" 1867
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Textures/touchController_controlmap.uasset" 1868
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Meshes/RightTouchController.uasset" 1869
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/PokeAHoleMaterial.uasset" 1870
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Config/DefaultGameplayTags.ini" 1871
+"../../../Engine/Content/EngineMaterials/RemoveSurfaceMaterial.uasset" 1872
+"../../../Engine/Content/EngineDebugMaterials/DebugMeshMaterial.uasset" 1873
+"../../../Engine/Content/EngineMaterials/M_InvalidLightmapSettings.uasset" 1874
+"../../../Engine/Content/EngineMaterials/InvalidLightmapSettings.uasset" 1875
+"../../../Engine/Content/EditorMaterials/GizmoMaterial.uasset" 1876
+"../../../Engine/Content/EngineMaterials/PhAT_JointLimitMaterial.uasset" 1877
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/WorldPositionOffset/CameraOffset.uasset" 1878
+"../../../Engine/Content/EngineMaterials/Good64x64TilingNoiseHighFreq.uasset" 1879
+"../../../Engine/Content/EngineMaterials/DefaultBokeh.uasset" 1880
+"../../../Engine/Content/EngineMaterials/DefaultBloomKernel.uasset" 1881
+"../../../Engine/Content/EngineMaterials/PreintegratedSkinBRDF.uasset" 1882
+"../../../Engine/Content/EngineMaterials/MiniFont.uasset" 1883
+"../../../Engine/Content/EngineMaterials/WeightMapPlaceholderTexture.uasset" 1884
+"../../../Engine/Content/EngineMaterials/DefaultWhiteGrid.uasset" 1885
+"../../../Engine/Content/EngineMaterials/DefaultPhysicalMaterial.uasset" 1886
+"../../../Engine/Content/EngineFonts/RobotoTiny.uasset" 1887
+"../../../Engine/Content/EngineFonts/Faces/RobotoTiny.uasset" 1888
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/AssetRegistryCache/311563bb.bin" 1889
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/AssetRegistryCache/c90e3f55.bin" 1890
+"../../../Engine/Content/EditorResources/SequenceRecorder/Countdown.uasset" 1891
+"../../../Engine/Content/EditorResources/SequenceRecorder/RecordingIndicator.uasset" 1892
+"../../../Engine/Content/BasicShapes/Cube.uasset" 1893
+"../../../Engine/Content/BasicShapes/Sphere.uasset" 1894
+"../../../Engine/Content/BasicShapes/Cylinder.uasset" 1895
+"../../../Engine/Content/BasicShapes/Cone.uasset" 1896
+"../../../Engine/Content/BasicShapes/Plane.uasset" 1897
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_WhiteMaterial.uasset" 1898
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_ChromaKey.uasset" 1899
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat4Components.uasset" 1900
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/MakeFloat2.uasset" 1901
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/MakeFloat3.uasset" 1902
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_ChromaKey_Lit.uasset" 1903
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_OpaqueColoredMaterial.uasset" 1904
+"../../Plugins/Runtime/Oculus/OculusVR/Content/OculusMR_RenderTarget.uasset" 1905
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Intermediate/AssetRegistryCache/70da4870.bin" 1906
+"../../../Engine/Config/HTML5/HTML5Engine.ini" 1907
+"../../../Engine/Content/MobileResources/HUD/DefaultVirtualJoysticks.uasset" 1908
+"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Background.uasset" 1909
+"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Thumb.uasset" 1910
+"../../../Engine/Content/Maps/Entry.umap" 1911
+"../../../Engine/Content/Maps/Entry_BuiltData.uasset" 1912
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/2/3/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___47871C3A06E908B76FF1E6CBB7EA4458589835B9.udd" 1913
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/8/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___3BFA729BB240D13B1898B4FC8E281B75CA599970.udd" 1914
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MainMenu.umap" 1915
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/MainMenuGamemode.uasset" 1916
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/GamePlayerController_BP.uasset" 1917
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Menu_WBP.uasset" 1918
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/Vehicle_BP.uasset" 1919
+"../../../Engine/Content/EditorBlueprintResources/StandardMacros.uasset" 1920
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/MassiveDoor/MassiveDoor_BP.uasset" 1921
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/MassiveDoor/MassiveDoor_Anim_Armature_DoorOpening.uasset" 1922
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/MassiveDoor/MassiveDoor_Skeleton.uasset" 1923
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/MassiveDoor/MassiveDoor.uasset" 1924
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/MassiveDoor/MassiveDoorMaterial.uasset" 1925
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/MassiveDoor/MassiveDoorBaseColor.uasset" 1926
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/MassiveDoor/MassiveDoorNeon.uasset" 1927
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/MassiveDoor/MassiveDoor_PhysicsAsset.uasset" 1928
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Other/SocketParticle.uasset" 1929
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Other/ReticleSharp.uasset" 1930
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/DebugSlider_WBP.uasset" 1931
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Other/ReticleBlurred.uasset" 1932
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/ItemData_BP.uasset" 1933
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/MouseCursor.uasset" 1934
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandRoughness.uasset" 1935
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Sounds/PlacingPart/Button.uasset" 1936
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Sounds/PlacingPart/Click.uasset" 1937
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Selector/ItemTab_WBP.uasset" 1938
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Tab/GlitchParticle.uasset" 1939
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Selector/VehicleTab_BP.uasset" 1940
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/RotatingCamera_BP.uasset" 1941
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/MainMenu_BuiltData.uasset" 1942
+"../../../Engine/Content/BasicShapes/BasicShapeMaterial.uasset" 1943
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/2/4/SKELETALMESH_62632E8FC541408082BCF5CDBF0F301A_286C8DF042F3566DD81E4FA1AB96A6350000000000000000000000000000000000.udd" 1944
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/3/3/ANIMSEQ_4C392450C4D7407A90CC2B2BE9813EEA_1_0_0_0_134B09EE40E3E2FEF4B1389024B66__FDFB9FE019FCEED7C4A8B1A4F5AAD49F54A8ACB8.udd" 1945
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/7/9/AUDIO_0005_0000_OGG_0002_4E9F71E0442097C048466683E0B8AAE7.udd" 1946
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/5/AUDIO_0005_0000_OGG_0002_A1EAF675460993DFBC053285E67667E6.udd" 1947
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/9/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_92F9ED01403AAAE50D7E759E26B46__7977D9B66B520B0D62206B0B217C7A4AEAC97C98.udd" 1948
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5BAAD60F4317988F24BA0F9AD2171681__54E46C42119B5461064DEE2C49C7B09D0EDD01DA.udd" 1949
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_6E2885E440BCFB52C4978695381CF808_0__B38274EB5E19D1221673C2FD4DD96C4B4246575D.udd" 1950
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/7/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_6C4BA45643B73C63DDDDD69BFA3BD__A003C5419E073660A3CBF4B3010DC243601B2ED4.udd" 1951
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_6E2885E440BCFB52C4978695381CF808_0__237BD545F73D8F240D61A11E56A3B13BAFFC755C.udd" 1952
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5BAAD60F4317988F24BA0F9AD2171681__C9AACCCC3A83A555D7F39B896AA762F97A7DFD34.udd" 1953
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_92F9ED01403AAAE50D7E759E26B46__58D9309D5464D0B6ED47122342DF2019EF533E55.udd" 1954
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5BAAD60F4317988F24BA0F9AD2171681__89844CCD5D9AA08C142909E120B4B0645ABD6CB4.udd" 1955
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/6/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5BAAD60F4317988F24BA0F9AD2171681__987564B3541EC2B3A235A9BB72E58BAFD092978C.udd" 1956
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/5/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_6C4BA45643B73C63DDDDD69BFA3BD__96F187538296224C808C56CEB6E2C0735FFC3613.udd" 1957
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/0/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_6E2885E440BCFB52C4978695381CF808_0__F138B849A246DF2F940D158FC215B62261F9AB01.udd" 1958
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/5/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_92F9ED01403AAAE50D7E759E26B46__1F60B0C0AC35AC8B0CE6CDAB5666873599F8106D.udd" 1959
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_92F9ED01403AAAE50D7E759E26B46__48BB3FEDABBEF17CC28A4F5240285833569927A1.udd" 1960
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/9/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_6E2885E440BCFB52C4978695381CF808_0__C04631C402C9032DE21FFE4BBF280F2BAA94AD52.udd" 1961
+"../../../Engine/Content/EditorResources/EmptyActor.uasset" 1962
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/9/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_6C4BA45643B73C63DDDDD69BFA3BD__FA4E79B4B5F45759077069C6CE21706EDB04F435.udd" 1963
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/6/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_G8_6E2885E440BCFB52C4978695381CF808_0__5DEB467B68203FC80676EC9C1B2A5324BD02ED45.udd" 1964
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/3/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_6C4BA45643B73C63DDDDD69BFA3BD__11A48780C3C98EE92283723731CF391F4CD2AB76.udd" 1965
+"../../../Engine/Content/EditorResources/LightIcons/S_LightError.uasset" 1966
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/4/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__6AC6DAA5E6B5787063C5117FC72D9C83800A48EB.udd" 1967
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/6/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__57C6AA449318E844425D63FCACD3F0036A4A5417.udd" 1968
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__109A1496F0C05A732ECB2D161E460282DBF0E794.udd" 1969
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/9/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__C58898233213DB1071A140D923E931BB1163CEDB.udd" 1970
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/3/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__8F3C98721F5E712FDD4645DF30E8E28C7266E9DA.udd" 1971
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/0/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_3DB9C3FF41931A1864DD0BAB28127__6989E24DC4605D787B00BA256FD49CA60D83CF30.udd" 1972
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/5/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__59AEC06915A5DFC00DF7D659E3FBBAA1FBDCDB99.udd" 1973
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/6/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__56D111B37861C79AE8893D92CBABFDC713F7A2B7.udd" 1974
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/9/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_F06A078247614FE55AAC16A828A91__9CFF4822CDAD977521C0F1962FF075C90D49B032.udd" 1975
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/4/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_225F87054BBF39ECC95D7EA0DD36D__33EE376ED09AB6BC4DF1BB515447246C831F388D.udd" 1976
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/8/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_896098F14C89D5E1DA20558AFA297__01D66A2AB02AD0C4427F109E2C45A56F0B98C969.udd" 1977
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/8/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_896098F14C89D5E1DA20558AFA297__1105025B45082ABECF1DE3071A99DEDBF28CE95B.udd" 1978
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/6/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_896098F14C89D5E1DA20558AFA297__BC36EC7AE7B449558C48CCE5AFC78995CCC0B823.udd" 1979
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/8/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_896098F14C89D5E1DA20558AFA297__7DE4BF011A4172DC1ABE8D62AC3D0DDF10849A82.udd" 1980
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/4/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_896098F14C89D5E1DA20558AFA297__E69A4B053FAD6393A25C8BB9E0FF6571987DD53B.udd" 1981
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/1/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_ACDDDC4C4FD983DAFAAC35836B64B__02638EB49884214791D0AF56E77B985147EE3F64.udd" 1982
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/7/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_ACDDDC4C4FD983DAFAAC35836B64B__93C85E1C674F1043845673F2D8DBAE2D0F9EBAE4.udd" 1983
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/9/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_ACDDDC4C4FD983DAFAAC35836B64B__F04BC904D72E502B3361CA3674F9D88043D5154A.udd" 1984
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_ACDDDC4C4FD983DAFAAC35836B64B__A9B073D2A9393FB5408E20243A37F66A29860F89.udd" 1985
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_ACDDDC4C4FD983DAFAAC35836B64B__F0CD9FAA4AB2AA70E2190E64189F328E97834738.udd" 1986
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/3/9/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___8203B8A443B97C30A94B7AF513F30AD729E057CB.udd" 1987
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/7/3/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___1B3A5A117DD10774E025CA39BE8FD079DE0629B5.udd" 1988
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/9/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B7F752464E6AFAE2652168BF45D1D__14F3987A579902AAE1DA3B88109BB3BAFC0FB421.udd" 1989
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/0/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_AFC83567413395892418AFAF0FDCD__D80F06D86286EA7582D28DC371201489CE0BB13D.udd" 1990
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_430718BF4C245E1A4AADA8BE729F2CC__D4AA2379D6F7777785EDC4C6E2235C8642852BAD.udd" 1991
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/3/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_8DE110DD4AB0A89972BC789374245__439369B7302A1B231900D0E581C9446DDB18EE31.udd" 1992
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/7/7/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___E19D5F661F0CBBB38C36FE9F87A2273E2BD41417.udd" 1993
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/1/0/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___1570D1CAF91ADC6A41B5B0B75A868BE730E0D8FE.udd" 1994
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/5/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_D54DF9134A65C1123D6706B2E84F8__DE698560CDDA66BAB8805A26E68EADF1178FDABD.udd" 1995
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/4/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_D54DF9134A65C1123D6706B2E84F8__C0432F979F25C03F68B986CA844DCCC8AFA08D79.udd" 1996
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/4/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_D54DF9134A65C1123D6706B2E84F8__0846B5E3FDB4700ACAE0DA86F5C1F6EFF0D57111.udd" 1997
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/5/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_D54DF9134A65C1123D6706B2E84F8__D3697E787FDB47E8C6712E6F808F37E12B3CBE5B.udd" 1998
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_D54DF9134A65C1123D6706B2E84F8__BA79330D24B02461EBD50A74AA698599ADD1E4A7.udd" 1999
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/4/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_91FF83604E386A623F3D969E50A6B__B449652DF0AB713476E398F4D36AD83482463583.udd" 2000
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/4/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_91FF83604E386A623F3D969E50A6B__446CBBBB087F806FF0D17684FAA62E9F7A113CE2.udd" 2001
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/2/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_91FF83604E386A623F3D969E50A6B__16F0D5DBCD0E970BCC28724DE98361E602C1B445.udd" 2002
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/9/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_91FF83604E386A623F3D969E50A6B__09F5FB8D32EBC8618187F3682915754E417BA2EA.udd" 2003
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_91FF83604E386A623F3D969E50A6B__DE959E7CF4562717666B0E6751228061FA9DE18D.udd" 2004
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/4/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_1700AEA64421E3D5585449AF532099D__5D0644A4B6815C96B361752E95F508F49A6F6A4D.udd" 2005
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/XordiaGameInstance.uasset" 2006
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_146644B44A989C3E93B40489898CE__CDE0C3143AA011B04916F319B76F76282BE6E04C.udd" 2007
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/7/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_146644B44A989C3E93B40489898CE__2BDD5C31675C2DA5E7E11DDAEA04FD13F27D2438.udd" 2008
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/8/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_146644B44A989C3E93B40489898CE__C69894CEC2D18EB9E4F501DE6151FFE7739C2794.udd" 2009
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/9/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_146644B44A989C3E93B40489898CE__8A0A933060334E05287175C206C9B2FA593205BF.udd" 2010
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/8/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_146644B44A989C3E93B40489898CE__E5DF2C44101C0338050F1231BABF9C1D8D74A4FD.udd" 2011
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/7/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5F976BEE49B97CAC6AFFED9D8F0A2__00D425A17A513BF996BDC3498E76496A140D118D.udd" 2012
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/0/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5F976BEE49B97CAC6AFFED9D8F0A2__AC0654689662A948E529879A6534BA1C4AD8B6E0.udd" 2013
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/8/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5F976BEE49B97CAC6AFFED9D8F0A2__8183F76E445F293F006A43BC6A2D9DDB59692AB6.udd" 2014
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/5/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5F976BEE49B97CAC6AFFED9D8F0A2__55C71133F907C2AC63EE7C8B2C8F102FBF5884EE.udd" 2015
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/7/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_3756BE5B46C74FA23F0E04937129270__2B6CF77F955305B03375656C360D2EFFAEE45CE5.udd" 2016
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/2/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_5F976BEE49B97CAC6AFFED9D8F0A2__3BE4586761BC023E509D0995FD430872AA6AB829.udd" 2017
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/1/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_9A4EF31A4B34872AC7BE7B82F657A2A__43F018911A1F9733D06A42871E669C50A135C834.udd" 2018
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_E885688C47651E0F3929E29F7950B84__B6069B049318CDCB818FB50F556F53049B5A27DA.udd" 2019
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/6/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_4925FE524BDB48DA97D100A9458EA6B__EE104FA4FCC98D8594864E2E49A54EDBE2A57114.udd" 2020
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/0/6/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_9C7B434A447EA2EA4FF7B7A188F7858__17CA3A33D70257BD966483072EB14E4FAEDF0D43.udd" 2021
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_39AB2AFB440B999B70D5D3B9FBF498D__BACBB9391C321351352E3F0F57E1DF8BA956DDBF.udd" 2022
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/0/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_DBE6830046C81D5D794998A175E9F51__6E5A554AC8598AD3377BFAD42190CA01D75C73FF.udd" 2023
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/TransitionMap.umap" 2024
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/TransitionMapGamemode.uasset" 2025
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Lobby.umap" 2026
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/LobbyGameMode_BP.uasset" 2027
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/BuilderPawn_BP.uasset" 2028
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ImageMaterialInst.uasset" 2029
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ImageMaterial.uasset" 2030
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/1M_Cube.uasset" 2031
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/CubeMaterial.uasset" 2032
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ParticleSystems/ProjectileDroidImpact_PS1.uasset" 2033
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ParticleSystems/Mat_ProjectileTrail.uasset" 2034
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Density/ExponentialDensity.uasset" 2035
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Gradient/RadialGradientExponential.uasset" 2036
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/FloodLight.uasset" 2037
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/FloodLightMat.uasset" 2038
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/physicsnewApproach.uasset" 2039
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Lobby_BuiltData.uasset" 2040
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/BasicPartMaterial_Inst.uasset" 2041
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/BlueprintMaterial_Inst.uasset" 2042
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/BlueprintMaterial.uasset" 2043
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/VectorLength.uasset" 2044
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/WorldPositionOffset/ObjectScale.uasset" 2045
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/BlueprintSeamless.uasset" 2046
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/BasePlate.uasset" 2047
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/ItemAssets/Shell.uasset" 2048
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/6/1/STATICMESH_9891BF2FF72141F6921E24E347DB73C1_228332BAE0224DD294E232B87D83948FQU__E53CBCB474DE14C6D5E22A949ADC17D5593ABEA7.udd" 2049
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/8/NAVCOLLISION_B89838347A4348138EE337A847529C5C_NAVCOLLISION_X_48D3A5AE4AE8AC894__E0109E7B45F7DC6B7E3E8B6C65CB1BA708C09DBD.udd" 2050
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/0/0/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_48D3A5AE4AE8AC894B50C0962CC4C37__F9DC09BBBAD681AF5B71645F2D07854D2DB71A17.udd" 2051
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/2/0/STATICMESH_9891BF2FF72141F6921E24E347DB73C1_228332BAE0224DD294E232B87D83948FQU__743A0543BE2A6C421E23CAAB27B9F7D44DE3B033.udd" 2052
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/4/8/NAVCOLLISION_B89838347A4348138EE337A847529C5C_NAVCOLLISION_X_DD1060B442C3704D7__99709B924DF1437D0FA29B4EDB4C6384566F767D.udd" 2053
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/5/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_DD1060B442C3704D7B793F889FA625F__35E1C4E2549C971E7161FBDA1A4B68DA2C7EC20D.udd" 2054
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/3/4/STATICMESH_9891BF2FF72141F6921E24E347DB73C1_228332BAE0224DD294E232B87D83948FQU__D622FC999B2971AD293F110A35D5D6431BF1BB4A.udd" 2055
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/4/4/NAVCOLLISION_B89838347A4348138EE337A847529C5C_NAVCOLLISION_X_F424FB7641F9E81DB__7CAEF32BCC1D923B07CE6BBC63F97F744C5179AE.udd" 2056
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/4/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_F424FB7641F9E81DB5A6BE9DFCC8F73__EC04FF8F9CBE639B6DF5AC5C3771CDB697AF3CE9.udd" 2057
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/2/2/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_DF0CFACB4041E240BBD112BD5792E91A__1_0_0_0_3_13315_0.udd" 2058
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/1/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_30D3DB0B4CC58CDEE83E9CA8F12E10A5__1_0_0_0_3_13315_0.udd" 2059
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/2/4/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_62BF768C491045E202BAD38A884E910B__1_0_0_0_3_13315_0.udd" 2060
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/0/6/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_5719DAF842424E7D2AEE9FAE1BD1F95F__1_0_0_0_3_13315_0.udd" 2061
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/6/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D9C971BB4F6E6AC54A7AC8914ED97E5E__1_0_0_0_3_13315_0.udd" 2062
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/0/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_14EC324345012984F1865D8EDCF241C0__1_0_0_0_3_13315_0.udd" 2063
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/2/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_16B0019F476BDBEAA6F4C096D8C21B7E__1_0_0_0_3_13315_0.udd" 2064
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/8/0/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D13A899E42F0CB36DB4E62BDCE5F85FD__1_0_0_0_3_13315_0.udd" 2065
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/0/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_1C4735864A002F3669E12A935BEE1F33__1_0_0_0_3_13315_0.udd" 2066
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/0/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_EBA9619743269B0E0686418A4CD1DB35__1_0_0_0_3_13315_0.udd" 2067
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/3/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_84D3DAB54FE9617351B4E69178D19BDE__1_0_0_0_3_13315_0.udd" 2068
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/9/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_6D542A784D8C026A199E0EB014475F72__1_0_0_0_3_13315_0.udd" 2069
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/8/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_7C5418C74CBC5830966407B7CA887D3E__1_0_0_0_3_13315_0.udd" 2070
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/5/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_1D2631AA46514BD0AF01C18C2622063A__1_0_0_0_3_13315_0.udd" 2071
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/2/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_F0C6FD7043D23FCFC344B989175A7C49__1_0_0_0_3_13315_0.udd" 2072
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/7/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_22B10DDD405CDCBC8FCE6F830052E6DE__1_0_0_0_3_13315_0.udd" 2073
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/7/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_4F12E5C340718F49C315B69BCA2F3931__1_0_0_0_3_13315_0.udd" 2074
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/5/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D626E5964CEA0A2625CCE88E26E3522C__1_0_0_0_3_13315_0.udd" 2075
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/3/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_82696F09450575FDACB84BB9147EFBA8__1_0_0_0_3_13315_0.udd" 2076
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/8/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_69E5382E4152E5BB64A7E6857969B50C__1_0_0_0_3_13315_0.udd" 2077
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_800E1E834A10CEC9DDCA7985BE96CB36__1_0_0_0_3_13315_0.udd" 2078
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/6/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_CA6F67B3400AE2881EF22DB6172E260F__1_0_0_0_2_13315_0.udd" 2079
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/7/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_6D2022FC4010C2D11696CA94FFC37__5855A94425209B68B40000BB3BE0BC663B2AB26F.udd" 2080
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/2/7/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___5874C48780EB2376BCD37015E8F86D709C67214B.udd" 2081
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/0/1/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___C48F0C23FF15D9BB4945190302E51E57DC2B957B.udd" 2082
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/0/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_BCC6A2A943504F1E8236748DCFC99__CDE116D0D84D821CC0CFDAE3CCE2B715EF53F5E1.udd" 2083
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/1/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_71724F20444E824BA2EA5EB3A4049__ECFD34074044A33979579EF82805962FFCBE46D9.udd" 2084
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/9/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_17DFEEB84AA5DE323583F49DD70AE__8D54C9EBCB22224E8B3E655E1059FE2F2FFBA01D.udd" 2085
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/5/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_929C75E3412F58E8385843BD4EE5B__0226BF610863B3C9EA741AF12BE929351B963B4D.udd" 2086
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/6/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_654FA94B4985A272AB6310826A5C3__56CE00A62F101DF5922FD4B700BB64D2332DC62B.udd" 2087
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/9/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_DAEDD0814A79DCFBE8C824A4AA03F__5FD548ECBFEF9F569AD539DBCBBD19FBB08B4F3B.udd" 2088
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/4/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_71724F20444E824BA2EA5EB3A4049__C4EC13768878028B780242ED66ACD6526A4E6637.udd" 2089
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/2/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_17DFEEB84AA5DE323583F49DD70AE__5ED4D6BB0F20C777ECBD74C989F4130F9E895E8E.udd" 2090
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/7/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_BCC6A2A943504F1E8236748DCFC99__E0EA4CE6F16A147F52CABC8200EEEEDB80C906C1.udd" 2091
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/8/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_17DFEEB84AA5DE323583F49DD70AE__4E7628C4719491253AF132CBB2C73A96FE28FCBE.udd" 2092
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/2/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_DAEDD0814A79DCFBE8C824A4AA03F__F4C02E22D37C10FAB47B5F0EE2A7C695D22A56A2.udd" 2093
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/2/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_71724F20444E824BA2EA5EB3A4049__945FE159B8C60D6DD05988C9B635DAA143006F0C.udd" 2094
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/3/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_17DFEEB84AA5DE323583F49DD70AE__11FC51527559E70A58DDA311DD05E95DB7AE539F.udd" 2095
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/3/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_17DFEEB84AA5DE323583F49DD70AE__A28C5982863D146C0E5EBB39E4DAAD9FD04F4019.udd" 2096
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/7/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_BCC6A2A943504F1E8236748DCFC99__E261E9BC214AA652B1A8FD3ECD263396636C019E.udd" 2097
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_71724F20444E824BA2EA5EB3A4049__4413A971C2A789C8C0C1CAAAD0676DD2C4A629F0.udd" 2098
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/4/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_654FA94B4985A272AB6310826A5C3__3983B55639ABE40087E1611D7986C487550D5196.udd" 2099
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/4/7/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___D36BE71F2F26139721FC150441893490EBB5AB1F.udd" 2100
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/1/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_929C75E3412F58E8385843BD4EE5B__93EA0831B5EC1122CB2CEDA453018160CCB2FDA1.udd" 2101
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_BCC6A2A943504F1E8236748DCFC99__EC8DAB995026BC36F6171BEAF0DB902A81B9A0C9.udd" 2102
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_BCC6A2A943504F1E8236748DCFC99__3FDC3AB126E34DD28B3AF8CEAB563F11003DE09A.udd" 2103
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/2/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_DAEDD0814A79DCFBE8C824A4AA03F__C760EBD2D19B2B4D3CBFFB7C2195696EF2FCEB81.udd" 2104
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/4/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_DAEDD0814A79DCFBE8C824A4AA03F__5D64973AAA5ECF368A7B4C34FD4B88272ECE15D9.udd" 2105
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/3/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_DAEDD0814A79DCFBE8C824A4AA03F__5CC8ADFC424DE8DF3869362478D9E10AC2B4116A.udd" 2106
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/6/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_ACF93BF1413B244250BFE9B4EF9A5607__7D8A342F7B08D4A242C1345D2B8C511ECA2C33C9.udd" 2107
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/7/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_ACF93BF1413B244250BFE9B4EF9A5607__D9C1A7E57CD06BC1EADB7AE93ECF51DAF14C235E.udd" 2108
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/3/5/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___BF63354042F32D10F2593D58424DF7F4EA271E73.udd" 2109
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_929C75E3412F58E8385843BD4EE5B__2CC2816B65A2FD318E4DCC337E5C621C38E93D27.udd" 2110
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/4/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_654FA94B4985A272AB6310826A5C3__64400FE0069D5F04ED1294AA4A67E8D4A0F4DC8F.udd" 2111
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/3/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_929C75E3412F58E8385843BD4EE5B__322F0DC0800C2DDD7362A91A88F2292566BC6931.udd" 2112
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_654FA94B4985A272AB6310826A5C3__66DCEE6BBF1703326EE52A08885626517191F060.udd" 2113
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/4/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_71724F20444E824BA2EA5EB3A4049__2345EF09E4801099D85BE7C6497814841349020F.udd" 2114
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_ACF93BF1413B244250BFE9B4EF9A5607__1707B436C938C4B8FE93E13D9823907452CDDF93.udd" 2115
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/4/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_929C75E3412F58E8385843BD4EE5B__659CD3D6ED27D77C54E1D6C56537A5FF9423D59B.udd" 2116
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/3/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_B422008A4BADF24D4A95FC814D624E50__735325D5DD0E2F919A928A1222E0163297DA7BD3.udd" 2117
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/2/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_3B4851AE49265939520A5F842B6A1665__E9DD45E282837BF15513F9254E30482300DA7337.udd" 2118
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/3/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_654FA94B4985A272AB6310826A5C3__8A8CBF91042FEACBFB169A79E84B63215F6EAB51.udd" 2119
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/6/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_ACF93BF1413B244250BFE9B4EF9A5607__17424815DB228A4245396E2D00D07AA6DB5D9D15.udd" 2120
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/5/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_3B4851AE49265939520A5F842B6A1665__AFE2435D32CD959B012FADF3BB161A3FE1873D45.udd" 2121
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_B422008A4BADF24D4A95FC814D624E50__3D131326C6A381CE85BD95DF41732BEAE2D0BF66.udd" 2122
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/8/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_ACF93BF1413B244250BFE9B4EF9A5607__E7519F2C36D9D7E0EF289C60E8BCF1F166310B78.udd" 2123
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/2/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_7868D78F4E0A2511C38EC5A378538466__8EC0EBF077570AD7952615D77612417D3B19689C.udd" 2124
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/7/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_7868D78F4E0A2511C38EC5A378538466__F0D5CA81D32ADD616DB42F09438125A1EAAC56E5.udd" 2125
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/8/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_3A35F42E4F864E680A31B08043B2BF88__1E1D9D39DBB1CA2358BBF05BED9329CC3F1184B2.udd" 2126
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/0/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_3A35F42E4F864E680A31B08043B2BF88__8AE6220A5DAEBE03DE07A046E639C2AA74CD4A30.udd" 2127
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_3B4851AE49265939520A5F842B6A1665__F077B5348A97CEA48C120CFB2ED420927BDA7553.udd" 2128
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/5/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_B422008A4BADF24D4A95FC814D624E50__1D8ECF123CB08A05DC97A5FE3C03F517F7C67991.udd" 2129
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/7/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_7868D78F4E0A2511C38EC5A378538466__94BC197EF2037C731477BBD63EDA105734D5524F.udd" 2130
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_3B4851AE49265939520A5F842B6A1665__037E0C97A43AFC50FF89E53648A1F2BDA1B921D9.udd" 2131
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/4/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_B422008A4BADF24D4A95FC814D624E50__6069DF8D535FCDD9F42B42C109C46F53B1BE7C4E.udd" 2132
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/0/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_3A35F42E4F864E680A31B08043B2BF88__34CF6CBE3354ED0F55BC8F8957700B0BC7544116.udd" 2133
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/3/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_3B4851AE49265939520A5F842B6A1665__4966F413AB6B508CC1B2A68F5A01DC00DDF29A57.udd" 2134
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/1/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_B422008A4BADF24D4A95FC814D624E50__2F1C9FAD230206E6DC47F7375E8DD55D0920761D.udd" 2135
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/3/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_7868D78F4E0A2511C38EC5A378538466__E83B637B30BF4A20E95446F9255C0CC8172DEDBF.udd" 2136
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/7/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_E86B53FE47516A27931DB2967357EBAA__53F707B0F7ED458AFF5D0A7A019299E024DF151D.udd" 2137
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/4/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_0C0C68BE47CB8695D5F3B7A9E54C71D__2724975ECF79CEB5BD2DBAD29FDDD4E890581BCF.udd" 2138
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/4/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_7868D78F4E0A2511C38EC5A378538466__BF1EFC893972F4CD08F6E16D2CB41173D3601FDE.udd" 2139
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/5/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_3A35F42E4F864E680A31B08043B2BF88__770BB7678695D9C78059EDF45FFB546FF7E5A71F.udd" 2140
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/8/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_E86B53FE47516A27931DB2967357EBAA__8FD27601E44C595168F57937149A4BEBBAAC654A.udd" 2141
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/1/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_0C0C68BE47CB8695D5F3B7A9E54C71D__D3141441A56D9ED7C744890A490D0CC5EFF0F0A0.udd" 2142
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/2/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_3A35F42E4F864E680A31B08043B2BF88__721B93AA5E2DD5BEEA4E9BCD3DCDD59395F9F838.udd" 2143
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/1/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_498E5FFE4A07838B541C1C9E53AE9__3A470A89B2DAE7A1FFAD45D0F15B08E3710F9822.udd" 2144
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/3/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_97459B7340557400730E28ADC7F7F__760BF97393C6882C514029190FB229E17CD76668.udd" 2145
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/1/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_498E5FFE4A07838B541C1C9E53AE9__92F5D7DB67C5E36FE97C08CE0B06655864615B0E.udd" 2146
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/2/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_97459B7340557400730E28ADC7F7F__79CE16ECD420378E066C5D52403518E860758E56.udd" 2147
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/1/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_816304EE40308D0DB45F5CACD7D61__17D4268F378F70F11EFBACD649E68D329A62E93E.udd" 2148
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/9/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_0C0C68BE47CB8695D5F3B7A9E54C71D__B2F46A28FCAAA2E45758A0D6527DE3DCE4CFE1EE.udd" 2149
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/9/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_E86B53FE47516A27931DB2967357EBAA__CBF308B759FD6AAFCA91BF72C37319623929E05E.udd" 2150
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/2/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_816304EE40308D0DB45F5CACD7D61__8C8D991AF22963E977A152D096B4826D0660816B.udd" 2151
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/5/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_0C0C68BE47CB8695D5F3B7A9E54C71D__8C919635FECEB82A4904A6D9E8E40865BE5B27FE.udd" 2152
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/3/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_E86B53FE47516A27931DB2967357EBAA__0A40B09166EE5E9349EF812A76BD90EC90CA80B3.udd" 2153
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/0/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_31BA31E14FDFE5D78E54A8BDBA211__9D6DA3749A6B073238188F5CF3174619DB7F3884.udd" 2154
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/6/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_498E5FFE4A07838B541C1C9E53AE9__EB66570DCC971703A77C8073D31FA9F50A832FAD.udd" 2155
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/1/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_E86B53FE47516A27931DB2967357EBAA__FC385207A4425F3C2D37213BBA89588AD0E96EDE.udd" 2156
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/9/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_31BA31E14FDFE5D78E54A8BDBA211__81A2BC7AF103C5201A85F6A705909C69093D1AB1.udd" 2157
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/9/6/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___56D041A6A68D4EA48477A1F718DD45BFD9C1F419.udd" 2158
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/8/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_97459B7340557400730E28ADC7F7F__AA42A1171D8FAB51661654C628F72F031ACE978D.udd" 2159
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/0/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_38D70A2744BF43115657E99DC40F5__418C9E9664E0EEBDF44058FCE7790FD8C0892FBD.udd" 2160
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/0/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_498E5FFE4A07838B541C1C9E53AE9__BB70496970A7344D23A87024D57B87F7A176E4FD.udd" 2161
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_38D70A2744BF43115657E99DC40F5__1470FC5FEAF62E348DBF911B885AAED8876B36A7.udd" 2162
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_816304EE40308D0DB45F5CACD7D61__549EFB12B8E324A931F219BC8370CEFC21394FDE.udd" 2163
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/6/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_498E5FFE4A07838B541C1C9E53AE9__C69FF788E7004BCBE93F280DA9777F26503FC93A.udd" 2164
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_97459B7340557400730E28ADC7F7F__E8FE47D0BABB6AB5FA28E8EF0AB1554121AE3337.udd" 2165
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/7/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_36B629D74BC7F1CBB25D0F994B27C__2E2496DC70A16A8D27FEE0B2284E1F41D2307438.udd" 2166
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/7/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_97459B7340557400730E28ADC7F7F__409494F040B2ADBDFCD79949398577E55DD5C34F.udd" 2167
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/1/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_816304EE40308D0DB45F5CACD7D61__51796C936C5F982E8310245240130B601B90BFBD.udd" 2168
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_36B629D74BC7F1CBB25D0F994B27C__38770B8E0E83CACCEE62871D3FBFEE23B5147231.udd" 2169
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/3/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_226BCAE840B1746A14A9A9AE57DB55C7__A1EDFECBC1F5B4BE9B543939A7B956E6D2A630F5.udd" 2170
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/1/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_816304EE40308D0DB45F5CACD7D61__1C98E4AB523FAF18EC39DAA938617890E124F5E7.udd" 2171
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/7/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_31BA31E14FDFE5D78E54A8BDBA211__C5D0E2B34651C574A8606546575F422CA01E626F.udd" 2172
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/1/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_226BCAE840B1746A14A9A9AE57DB55C7__BDBA692E21843B1F5C1FBC8A4D8B718FD2590DD2.udd" 2173
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/3/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_31BA31E14FDFE5D78E54A8BDBA211__EF1C99C7972258FF7BA6F5FFE193AA405E3AC656.udd" 2174
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/5/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_226BCAE840B1746A14A9A9AE57DB55C7__56EA37340018BAA76A5DF8019883CE1A6D904F06.udd" 2175
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_31BA31E14FDFE5D78E54A8BDBA211__533BF039FBF9C427ABC4259E234B78B16A764B10.udd" 2176
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/7/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_38D70A2744BF43115657E99DC40F5__55659025190BFB4EA1B1B9DAE62E1C294045EC08.udd" 2177
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/3/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_226BCAE840B1746A14A9A9AE57DB55C7__33D92C493C008B12B2FF14C250825EDE10772DCD.udd" 2178
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/5/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_36B629D74BC7F1CBB25D0F994B27C__D6BE56354C49DCB0E0BCDC88C69A698771B11DEC.udd" 2179
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/8/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_38D70A2744BF43115657E99DC40F5__775EED36C25CB4182364DD2B2B3386B6E3B116F8.udd" 2180
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/1/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_36B629D74BC7F1CBB25D0F994B27C__1053725019045A2293FBE9D744C032CCAC9F800A.udd" 2181
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_38D70A2744BF43115657E99DC40F5__75F2B11032032C9B2D19B9A4838B6CDE6803C7AA.udd" 2182
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/7/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_36B629D74BC7F1CBB25D0F994B27C__5DD0EC47BD12E6C9147D1DB26A78DAD6A7E82E35.udd" 2183
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/8/9/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___2D84D1C4590CC7F3DA5FEBCFC886F9017F6A9885.udd" 2184
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/3/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___BDBDBBFABC0738542DF812410BD0933D5F07A3D5.udd" 2185
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/8/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM4_8__BC5N_NOCCBN_NOIRIS_DEV_SL___46B3CC632C8D4DFB2298B488F5A06B47D1F29134.udd" 2186
+"../../../Engine/Content/EngineMaterials/EditorBrushMaterial.uasset" 2187
+"../../../Engine/Content/EditorMaterials/PreviewShadowIndicatorMaterial.uasset" 2188
+"../../../Engine/Content/EditorMaterials/PreviewShadowIndicator.uasset" 2189
+"../../../Engine/Content/EngineDebugMaterials/DebugEditorMaterial.uasset" 2190
+"../../../Engine/Content/EngineDebugMaterials/ClothMaterial_WF.uasset" 2191
+"../../../Engine/Content/EngineDebugMaterials/ClothMaterial.uasset" 2192
+"../../../Engine/Content/EngineDebugMaterials/BoneWeightMaterial.uasset" 2193
+"../../../Engine/Content/EngineDebugMaterials/HeatmapGradient.uasset" 2194
+"../../../Engine/Content/EngineDebugMaterials/GeomMaterial.uasset" 2195
+"../../../Engine/Content/EditorResources/BSPVertex.uasset" 2196
+"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickOutter.uasset" 2197
+"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickInner.uasset" 2198
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionStick.uasset" 2199
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad3.uasset" 2200
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad2.uasset" 2201
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad.uasset" 2202
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButtonFire.uasset" 2203
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton3.uasset" 2204
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_on.uasset" 2205
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_off.uasset" 2206
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_on.uasset" 2207
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_off.uasset" 2208
+"../../../Engine/Content/MobileResources/HUD/LeftVirtualJoystickOnly.uasset" 2209
+"../../../Engine/Content/MobileResources/HUD/AnalogHat.uasset" 2210
+"../../../Engine/Content/MobileResources/T_MobileMenu2.uasset" 2211
+"../../../Engine/Content/MobileResources/T_MobileControls_texture.uasset" 2212
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Selector/ListEntryWidget.uasset" 2213
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Other/Untitled.uasset" 2214
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/5/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_F8F4D3064D29BBF5AABD7B9A31E2690__2D89C253BCEF68A9864F833AD56A0B15526BDE68.udd" 2215
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Other/logo-51.uasset" 2216
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Other/2.uasset" 2217
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/6/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_AC10072D4CC02FA2C4FA6188C0FE11D__3BDE63CF4BA12AECE7546C9F577D60D2B91A42F5.udd" 2218
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_A01452D04644A00609F82BA4621BC1B__F10210F242BC8537D9748F610809B7EFEB4145E3.udd" 2219
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Lobby/LobbyHud_WBP.uasset" 2220
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/StatsMenuUI/StatsTab_WBP.uasset" 2221
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/InGame/StatsMenuUI/StatsMenu_WBP.uasset" 2222
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/ToolImage_WBP.uasset" 2223
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Splash.uasset" 2224
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_A6D29AE7489F3C9591A72790029095A__116A40EE5D007AFBB03D935C206011A5F2C8362E.udd" 2225
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Reticle.uasset" 2226
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/Longer_Splash.uasset" 2227
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/1/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_119BFDF4418C3E91FC4781BE7DCAA15__108E049030AA41A72C3F13286C0C599A3E2562B1.udd" 2228
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/LoadingScreen_WBP.uasset" 2229
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/UI/BahnschriftFont.uasset" 2230
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Fonts/Quicksand-Bold.uasset" 2231
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level3.umap" 2232
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/ActiveGameMode_BP.uasset" 2233
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Blueprints/ActiveGameState_BP.uasset" 2234
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level3_BuiltData.uasset" 2235
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/0/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_B0F110E04230F245F36C168956C289D4__1_0_0_0_2_13315_0.udd" 2236
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/6/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_2747E0C64EA6F0BB302B68B800321225__1_0_0_0_2_13315_0.udd" 2237
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/3/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_DE0EAFA54BE9BFDEAF58AFB52C3419C0__1_0_0_0_3_13315_0.udd" 2238
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/5/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_138E921E4F1A696EE1A994933EBC07B9__1_0_0_0_3_13315_0.udd" 2239
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/0/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_EBD42F924A2399B7C211F4B872CF3FB4__1_0_0_0_3_13315_0.udd" 2240
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_46B052284FFA5BC438C49D8338E448BB__1_0_0_0_3_13315_0.udd" 2241
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/8/4/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_52DDCBA74D3BC7499DC634A9724DF3A0__1_0_0_0_3_13315_0.udd" 2242
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/8/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_B551E5424E1A3B1A9D8FA6B70F9FA5DA__1_0_0_0_3_13315_0.udd" 2243
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/2/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_C2A00EFD417F0A46E1F66D8124AA6D26__1_0_0_0_3_13315_0.udd" 2244
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/5/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_1C4F3846408A29FFF2D60389182E19A1__1_0_0_0_3_13315_0.udd" 2245
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/9/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_146860BC4DBCC9752214A1922251A03F__1_0_0_0_3_13315_0.udd" 2246
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/7/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D4E44EEC4B9386E68FA28BBB2DD80DFE__1_0_0_0_3_13315_0.udd" 2247
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/2/4/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_7B53166E4F57AA93ED996680014DE94D__1_0_0_0_3_13315_0.udd" 2248
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/6/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_3822D1BB4FE54AE5B3B7F0B836F8115A__1_0_0_0_3_13315_0.udd" 2249
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/1/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_FB5B4AF945659CE36796329829B3F720__1_0_0_0_3_13315_0.udd" 2250
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/5/6/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_4B587D69439FF0BDA56FB9B212461CD8__1_0_0_0_3_13315_0.udd" 2251
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/4/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_C372ECB345DA298510701CB472350742__1_0_0_0_3_13315_0.udd" 2252
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/7/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D10B8D5247290E5F68A128AABD019673__1_0_0_0_3_13315_0.udd" 2253
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_190C2D6040CF256E63860DA4373F72CC__1_0_0_0_3_13315_0.udd" 2254
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/5/0/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_0987BE4242B8E5FBCDCC56872998D11A__1_0_0_0_3_13315_0.udd" 2255
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/7/0/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D5CE40AC41FEAB71033BE18E44BD4A96__1_0_0_0_3_13315_0.udd" 2256
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/2/3/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_1D2873434ED7F0FED40FE6AD576FDC11__1_0_0_0_3_13315_0.udd" 2257
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/5/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_AADDBEAB444C55E3E5E6CE918D789727__1_0_0_0_3_13315_0.udd" 2258
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/1/7/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_45CC0BBF46875E10B8DCA495345A4C6A__1_0_0_0_3_13315_0.udd" 2259
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_DEF73A8043E9002ED2E5DB8B985D12AC__1_0_0_0_3_13315_0.udd" 2260
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_6FE630264FF2F9D3F07FB6A521D8D183__1_0_0_0_3_13315_0.udd" 2261
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/3/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_BDE057DB4F958537C631389649B7FDEC__1_0_0_0_3_13315_0.udd" 2262
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/3/1/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_45F2B23046E1CB49FC149DAEABADDAE8__1_0_0_0_2_13315_0.udd" 2263
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/6/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_39D02ABB4EDD0CC7E6F5609407F92E74__1_0_0_0_2_13315_0.udd" 2264
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_4943CFE1437C6AC83BAD56847DAF657C__1_0_0_0_2_13315_0.udd" 2265
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/6/6/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_E82F6C9144298CC0B22A388D59411905__1_0_0_0_2_13315_0.udd" 2266
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/4/8/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_D2EE757E4EACAAD2B21A0194EE97D5E5__1_0_0_0_2_13315_0.udd" 2267
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/2/9/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_B84E3D7D43CF96FBCC716FB05FAE4FAB__1_0_0_0_2_13315_0.udd" 2268
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/4/5/PHYSX_A08609EF508D460CBB6710540B03AACF_PHYSXPC_5CDE4CF64895947C02EC5EBC475DF60A__1_0_0_0_2_13315_0.udd" 2269
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/8/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_65FB078044FF41C3BE52FAB56311B__78915BAE29B079B6EAFD1837338CCDD33AD8A162.udd" 2270
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/6/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_07D5FE2840D700308C989CAB02070__B188FC574B77A59922714E6617C5B00231478223.udd" 2271
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/1/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_9CB18F4444CB91AF5A9840ABEB3ECB46__99D9DFC46E6422B7811C61A156B10C760FA30FA6.udd" 2272
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/3/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5455C6F94B32596529D71086828E1DCD__8A8104B11A29B608E9011AC81780EF0992F000BB.udd" 2273
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_239F6B154CCBA0D09042DF9EC113E07__D11ED20B9E2ABF3A077150396F9D309E74914070.udd" 2274
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/9/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_65FB078044FF41C3BE52FAB56311B__669C90ED665810BF261C5A793BB1A36A82DB2B2A.udd" 2275
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/0/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_9CB18F4444CB91AF5A9840ABEB3ECB46__B1979768740385F19308A1B98C2301AB2355510F.udd" 2276
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/9/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_339B1A7841407827ABEA4CA02422FA9__063E2A0A9AAF03F099042BE24395D10BB5BD73A8.udd" 2277
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/8/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5455C6F94B32596529D71086828E1DCD__C225F85D583274A3C22A7D3E12A5068949E90B03.udd" 2278
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/2/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_239F6B154CCBA0D09042DF9EC113E07__BF0761DA57F6F8D666003A5C52951E09183FE84C.udd" 2279
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/7/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_339B1A7841407827ABEA4CA02422FA9__135FC4C407097BFC104B53B6C9184929D4AB0C2B.udd" 2280
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_65FB078044FF41C3BE52FAB56311B__AE73C07840AD4677BD68FDAAFB94EB97AD2A6F37.udd" 2281
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/9/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_07D5FE2840D700308C989CAB02070__56DA5C1DF5C794EC52CAC1E2863B1992ABB0F6D0.udd" 2282
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/9/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5455C6F94B32596529D71086828E1DCD__D5EB7EA3103791BBE092C2672473D422BA232487.udd" 2283
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/8/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_07D5FE2840D700308C989CAB02070__A672CE10DE7A3A2E31A012EAA90AAC894E392023.udd" 2284
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/1/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_65FB078044FF41C3BE52FAB56311B__8E1847E23A7B308649A79C6A1591BCC72689C571.udd" 2285
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/9/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_5455C6F94B32596529D71086828E1DCD__17998B2885B3705F62BD869CBE62218842CECD90.udd" 2286
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/7/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_339B1A7841407827ABEA4CA02422FA9__000830C353DB6A54CB7E6E5F6FB5FAFD14D3DB6E.udd" 2287
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/3/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_9CB18F4444CB91AF5A9840ABEB3ECB46__7DB78CABC0B8CA256C82901CF8D62E22BA5B64A3.udd" 2288
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/5/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_87732A1849321418146EDBAD6F3C3__E0D67D01664283C58929DBFC311AD28B6504DA89.udd" 2289
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_339B1A7841407827ABEA4CA02422FA9__D2D81EB334F3F012C7BF1E816E436153796DEC19.udd" 2290
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/2/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_65FB078044FF41C3BE52FAB56311B__2D71CD099580B623F821371676F7EE8340B048F7.udd" 2291
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/1/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_87732A1849321418146EDBAD6F3C3__B8FEE4111E05BACC0F76E19684B5C72BF0A51952.udd" 2292
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/4/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_339B1A7841407827ABEA4CA02422FA9__E04278C103C5A7E223B341BEC93A2E6936B173EA.udd" 2293
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/2/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B380E9A8439D2CCB5B876BAA061AC__79EDB3BAC585B3600F65EA6545013E4C19F28E6D.udd" 2294
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/8/5/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_9CB18F4444CB91AF5A9840ABEB3ECB46__F1D0CC7CCD681321C7884E59950132F402EA5A9D.udd" 2295
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/3/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B380E9A8439D2CCB5B876BAA061AC__E49A88D13D53AE31380CF12C66F5192A45BE7F0C.udd" 2296
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/1/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B380E9A8439D2CCB5B876BAA061AC__90A7A348CED25F4459FD7628D9A0B1F6CB0CAB35.udd" 2297
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/1/4/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_B380E9A8439D2CCB5B876BAA061AC__D2AF186922561CB6DAAE53A1FEB117CF3AEDA63E.udd" 2298
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/8/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_DXT1_9CB18F4444CB91AF5A9840ABEB3ECB46__C1612A604A8E90769ADAECFD7D5DFF5466D93BB3.udd" 2299
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/8/1/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_239F6B154CCBA0D09042DF9EC113E07__B575572D1DC568F32B8CB243432859A727D4BC21.udd" 2300
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/4/5/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_87732A1849321418146EDBAD6F3C3__DC00444BBEBBA0B8857A349FACD31DAE036D1E83.udd" 2301
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/9/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BGRA8_239F6B154CCBA0D09042DF9EC113E07__D5700E3CEFC13DBE2489A8F782A5DC4E740ADEC8.udd" 2302
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/7/7/6/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_87732A1849321418146EDBAD6F3C3__62F40C38391A053B565994C9CE0C93F7FFB10838.udd" 2303
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/3/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_87732A1849321418146EDBAD6F3C3__CCEC046F53A3DEBC86E6CF8FCFDD5BAEABDB455D.udd" 2304
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/0/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_AUTODXT_07D5FE2840D700308C989CAB02070__3925DAE40047C17FF48E1F6C2E53ABB7293283B5.udd" 2305
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level2.umap" 2306
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Maps/Level2_BuiltData.uasset" 2307
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/Sand.uasset" 2308
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Master_Materials/Standard_MasterMaterial.uasset" 2309
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Math/MultiplyAdd.uasset" 2310
+"../../../Engine/Content/Functions/Engine_MaterialFunctions03/Blends/Blend_Overlay.uasset" 2311
+"../../../Engine/Content/EngineMaterials/BlendFunc_DefBase.uasset" 2312
+"../../../Engine/Content/EngineMaterials/BlendFunc_DefBlend.uasset" 2313
+"../../../Engine/Content/EngineMaterials/DefaultNormal.uasset" 2314
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandAlbedo.uasset" 2315
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandDisplacement.uasset" 2316
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Sand/SandNormal.uasset" 2317
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/Slate.uasset" 2318
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateAlbeda.uasset" 2319
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateDisplacement.uasset" 2320
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateNormal.uasset" 2321
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Megascans/Surface/Slate/SlateRoughness.uasset" 2322
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/1M_Cube_Chamfer.uasset" 2323
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/Bump_StaticMesh.uasset" 2324
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/RampMaterial.uasset" 2325
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/LeftArm_StaticMesh.uasset" 2326
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/Linear_Stair_StaticMesh.uasset" 2327
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/Ramp_StaticMesh.uasset" 2328
+"../../../../../../Users/glsha/Desktop/Unreal Engine/Repositories/S13_Xordia/Content/Levels/Geometry/Meshes/RightArm_StaticMesh.uasset" 2329
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/0/9/6/MATSM_AD9DE195370D4C7DB112DF9967877D21_PCD3D_SM5_8__BC5N_NOCCBN_NOIRIS_DEV_SL___67DE2F3BA66349D8EC62D8F75D8BB78E5A931CC8.udd" 2330
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/2/0/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___665525EEDCC1773A74A97D69633F22F5C9F79875.udd" 2331
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/6/6/7/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___9B9CF550AE53EB738B2EC6579307027A846132D5.udd" 2332
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/1/7/8/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___8E8122D667455302ACCBE7B21DA3C6CB7D08DDB2.udd" 2333
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/3/2/3/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___4C0314F8187023EA14FE0008A2E8923D9F700C0C.udd" 2334
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/5/3/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___0F144123B7A287BD4FFE618220ED5A726DB0CE95.udd" 2335
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/8/5/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___5A57EAB56E58CF35B032243126134FC4AE7A53C6.udd" 2336
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/9/0/2/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___DB608C09FC89305B8D8D40AB0499694569EAAE3E.udd" 2337
+"C:/Users/glsha/AppData/Local/UnrealEngine/Common/DerivedDataCache/2/7/9/TEXTURE_68A083899C6F4316B8CE0E2958EDE2C2_BC5_51F03A0F49286AEC468F3CA80F7A044E___262F7C4BDE495AFF152968CA96B6A016FFB14C0D.udd" 2338
