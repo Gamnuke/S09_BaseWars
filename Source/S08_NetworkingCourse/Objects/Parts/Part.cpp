@@ -3,6 +3,7 @@
 
 #include "Part.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "Components/SceneComponent.h"
 
 // Sets default values
@@ -14,6 +15,9 @@ APart::APart()
 	Scene = CreateDefaultSubobject<USceneComponent>(FName("Scene"));
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("Mesh"));
 	Mesh->SetupAttachment(Scene);
+
+	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(FName("SkeleMesh"));
+	SkeletalMesh->SetupAttachment(Scene);
 }
 
 // Called when the game starts or when spawned

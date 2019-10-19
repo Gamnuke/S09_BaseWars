@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "UI/NetworkUI/Menu.h"
 #include "Public/Misc/Optional.h"
+#include "Components/MeshComponent.h"
 #include "Part.generated.h"
 
 USTRUCT(Blueprintable)
@@ -46,6 +47,8 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class UStaticMeshComponent *Mesh;
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+		class USkeletalMeshComponent *SkeletalMesh;
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class USceneComponent *Scene;
 

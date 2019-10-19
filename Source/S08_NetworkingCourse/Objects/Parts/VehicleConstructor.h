@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SceneManagement.h"
+#include "WheeledVehicle.h"
+#include "WheeledVehicleTest.h"
 #include "VehicleConstructor.generated.h"
 
 USTRUCT()
@@ -19,15 +21,26 @@ struct FVehicleData {
 };
 
 UCLASS()
-class S08_NETWORKINGCOURSE_API AVehicleConstructor : public AActor
+class S08_NETWORKINGCOURSE_API AVehicleConstructor : public APawn
 {
 	GENERATED_BODY()
 	
-public:	
-	// Sets default values for this actor's properties
-	AVehicleConstructor();
+AVehicleConstructor(const FObjectInitializer& ObjectInitializer);
 
 public:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		TSubclassOf<class UVehicleWheel> WheelData;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		TSubclassOf<class ASimulatedVehicle> VehicleClass;
+
+		virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintNativeEvent)
+		void SpawnVehicle();
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		ASimulatedVehicle *SpawnedVehicle;
+
 	TOptional<FVector> TEST;
 	TArray<class UPhysicsConstraintComponent*> HorConstraints;
 	TArray<class UPhysicsConstraintComponent*> VerConstraints;
@@ -40,13 +53,13 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		TArray<class UWidgetComponent *> SocketIndicators;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class UBoxComponent *BoxComp;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class USpringArmComponent *SpringArm; 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class UCameraComponent *Camera;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class ULineBatchComponent *LineComponent;
 
 	TArray<class UBoxComponent*> SimulatedMovables;
@@ -54,9 +67,10 @@ public:
 	TMap<class UInstancedStaticMeshComponent*, TSubclassOf<class APart>> PartToMesh;
 
 	TArray<class UBoxComponent*> CreatedBoxes;
-	TArray<class UInstancedStaticMeshComponent*> CreatedMeshes;
+	TArray<class UMeshComponent*> CreatedMeshes;
 	int32 MessageIndex = 70;
 	int order=0;
+
 public:
 	bool bSimulatingVehicle;
 
@@ -92,7 +106,7 @@ public:
 		void SetGates(bool bGateState);
 
 protected:
-	void CreateMainStructure(FVehicleData & LoadedData, FVector & ChildLoc, FOccluderVertexArray & MovableParts, class UPlatformerGameInstance * GI, int32 & n_structure, UBoxComponent * ParentBoxPtr, int32 & n_collision);
+	void CreateMainStructure(class ASimulatedVehicle *NewVehicle, FVehicleData & LoadedData, FVector & ChildLoc, FOccluderVertexArray & MovableParts, class UPlatformerGameInstance * GI, int32 & n_structure, UBoxComponent * ParentBoxPtr, int32 & n_collision);
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 

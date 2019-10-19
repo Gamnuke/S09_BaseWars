@@ -13,7 +13,8 @@
 				"UMG",
 				"AIModule",
 				"MediaAssets",
-				"CoreUObject"
+				"CoreUObject",
+				"PhysXVehicles"
 			]
 		}
 	],
