@@ -1,0 +1,301 @@
+Weapon Modules:
+	• Cannon Base Module
+		? 150% damage
+		? 50% fire rate
+		? 90% accuracy
+	• Rail base module
+		? 200% damage
+		? 10% fire rate
+		? 95% accuracy
+	• Ripper base module (minigun)
+		? 40% damage
+		? 150% fire rate
+	• Each has an interface to configure each ejector module
+
+Weapon module enhancer
+	• Modules that consume a large amount of energy
+	
+
+Ejector modules(Modules that shoot projectiles):
+	• HE missile ejector
+	• EMP missile ejector
+	• Grenade ejector
+	• 50. caliber ejector
+	• Rail ejector
+	
+
+Recoil absorption module:
+	• Increases reticle stability
+	• Comes in small, medium and large
+
+Barrels:
+	• Increased reticule stability
+	• Heavy
+
+Other modules:
+	• Rotary module - Can be used on weapon base modules to create rotary weapons(miniguns, etc)
+
+VHS theme/RBG split when spectating
+
+Multiplayer interaction:
+	• Load vehicle and use loop to check collision of each part when player joins a server
+
+Tips:
+
+Startup: 
+	• Player opens application, with a menu screen + loading indicator
+	• If the player is new, create a file called "PlayerData" and "Vehicles"
+		? PlayerData stores level, experience, credits, items bought
+		? Vehicles stores the data for each vehicle + values for each component
+	• Find a session called "Building"
+
+Gamemode system:
+	- Basic team deathmatch where there are two bases
+	- 3 points will need to be held to fully charge up the respective base's cannon
+		a. Cannon at bases should be visible
+		b. Points A,B and C could take the concept of a mining drill. Animation could show elements from the mine being delivered to the captured base via a beam.
+		
+		
+Gameplay:
+	- Players will have a fixed energy capacity
+		? Can be increased by placing respective parts that increase capacity.
+		? Energy will be depleted at a rate according to the weapon emitter component
+		? Energy regenerates slowly
+			§ Energy can be "donated" by another vehicle with the EnergyTransmitterComponent
+		? Health doesn't regenerate, except on possible potential gamemodes. 
+			§ Allies can heal teammates with the HealthTransmitterComponent which consume energy
+
+Modules management:
+	- Big question: How will the functionality of all the parts be organised?
+		? Could make a component for each part
+	- Pawn: SimulatedVehicle
+
+New Class: UFunctionalComponent
+	- Contains the reference to the simulated vehicle
+		? Simulated vehicle will have the data for the vehicle, eg:
+			§ Parts that are referenced through:
+				? The belonging instanced mesh component/skeletal mesh
+				? If it is an instanced mesh component, have an mesh index variable
+			§ 
+
+Multiplayer:
+	- Constant photon engine room will be created to save player data
+
+Tab on the top pops up if there are unconnected parts
+
+For every part, create an instanced static mesh and populate it
+When a part is deleted, check if it's the last part in the static mesh component. If it is, then delete the static mesh component.
+
+If a part is deleted and is disconnected from the pilot chain of blocks, then make it appear red.
+Bonds: Using a TMap<UStaticMesh, FVector> to identify the location of the object that is bonded.
+Tmap<UInstancedMeshComponent, <TArray<TMap<UStaticMesh, FVector>>>
+
+More weight = less movement
+
+When deleting, cast the line trace actor to an instancedMeshComponent
+Get the location of the item of the hit
+	- Find the type of mesh in the loop
+For(Tmap<UInstancedMeshComponent>:)
+
+for (TPair<UInstancedMeshComponent, <TArray<TMap<UStaticMesh, FVector>>>> pair : PlacedParts){
+	If(){
+	
+	}
+}
+
+For a turret, check if the blocks after the module are connected to the body of the vehicle, ie all other parts that are connected to the pilot seat. If so, then give a warning and make the turret immobile.
+
+	- Create a save and load system for the crafts created
+	- Setup a status indicator for the creation. When a part is placed/deleted/modified, the status should say "invalidated", when the player clicks on validate, it will undergo the process of step 2, which will allow the bot to be brought into combat.
+	- Make a system that validates the bot such as:
+		? Making sure there aren't floating parts
+		? Parts don't overlap
+		? Parts that are on the bot are parts that the player actually bought
+		? Not being able to validate the bot pops up with a textbox underneath it that shows why the bot is invalidated. Eg: The bot includes unbought items.
+
+When a moving part is placed, 
+
+When a turret base is placed, connect all blocks connecting to it as normal. The player needs to use the weld tool, select the turret and then select any block around it, to bind that part to the turret so the chain of blocks connected to the selected part moves with the turret. Check if the selected part's chain of blocks connect upto the cockpit or another  and if the selected part shares bonds with the turret base. AND perform a chain reaction scan for the selected part and remove the turret base from being scanned.
+
+Tmap<Fvector, FVector> TurretWelds; = (Location of the base of the turret),(Location of the first part of the chain of the weapon)
+To add to the delete function: When deleting a part, search if its in TurretWelds, if it is, then
+
+All movable parts should be instances of one InstancedMeshComponent, but when deployed, first construct all the static parts, ignoring the movable parts and ignoring all the parts that are in the TurretWelds variable. Then separately for the moving parts, make a NEW InstancedMeshComponent for every moving part. Get the  When constructing the vehicle upon deployment, go through all th
+
+Configure tool:
+	- Lets you configure a turret for horizontal or vertical control
+
+Turret base:
+	- When placed,
+
+Another part: Turret elevation motor
+
+Tools:
+	- Placement tool
+		? Places blocks --DONE
+	- Delete tool
+		? Deletes blocks --DONE
+	- Weld tool
+		? Creates welds to another part if there is at least one socket in the same location as the other part. Can also delete welds.
+		? When selected, hovering over a part shows the welds.
+	- Configuration tool - Optional
+	- Statistic tool
+		? Shows the stats of a molecular structure, eg: hovering over parts that are connected to a turret base shows how much damage one weapon does, firerate, etc.
+
+Ways that blocks can be connected:
+	- Moving parts, eg: Turret Bases:
+		? When a vehicle is deployed into play, use a different hierarchical system, where  
+	- 
+
+When the turret base is placed, for this part, scan If it is connected to the cockpit, then classify itself as a non-turret mobile part, if it isnt connected to the cockpit, and is connected to a turret base, then scan that turret base to see if that is connected to the cockpit.
+
+When we want to place a turret base, 
+
+When wanting a turret base, we need to check if the cockpit exists, and the orange socket attaches to a part that connects upto the cockpit. If it isn't, then stop the player from placing that part and add a note. In the case where the player has deleted this base, and decides to place it again, we need to get the parts that are meant to be connected to the turret. So, at the same time of checking if the orange socket attaches to anything, we check if any of the green sockets share the same location of another part. This can be detected with the same mechanic we used to detect any surrounding parts in SetPartPlacementImage(). 
+
+When wanting to place a turret base, we look at the parts that share the same sockets as the orange socket.
+	- If no parts connect to that orange socket, we cant place the part.
+
+Tmap<Fvector, bool> IsTurretConflicting //The turret location, if this turret is conflicting
+Tmap<Fvector, FVector> MovablePartToRoot //The location of the turret, the location of the part that is connected to the turret's orange socket. This is to get whether a part is the one that is connected to the root of the turret.
+Tarray<FVector> MissingChildren //The location of the children that have no parent
+Tmap<Fvector, Tarray<FVector>> ParentChildHierachy // Location of the parent and location(s) of the child(ren).
+
+Bool HasFoundCockpit;
+
+If there is a part, add that part to a scan buffer and scan all the parts that are connected to that particular part.
+In the case where another turret is detected, we dont add that part to the scan buffer. Instead, we check to see if the location of the turret is in the IsTurretConflicting variable. If isn't, then add it. Then check if the current scanned part is connected to the turret base's orange socket. If this is the case, then assign that value to be false. If this isn't the case, then set the value to be true. Create or append the map if there isn't or is one respectively.
+
+How to detect if the part being scanned is the same as the turret's orange socket:
+	- FindRef(Location of the turret) to return its root part location.
+	- Check if the detected part is the same as the root part.
+
+Use a for loop to loop through the IsTurretConflicting variable, and increment an integer variable for every true value. If the integer is greater than 2, then stop the player from placing the part.
+
+While we detect all the parts, we set the variable if the cockpit has been placed.
+
+Cockpit + Any turret detected: Cant place
+	- This includes if a part was connected to a turret base, and is trying to also connect with the cockpit.
+Cockpit Only: Can place.
+One turret detected: Can place.
+More than one turret detected: Cant place.
+	- This is if a player tried to connect two turrets with one part, which is illegal.
+	- This is also to avoid there being two parents for one part, which gets very messy.
+
+If all goes well, then we start to look for our parent
+	- If we have found a cockpit, use the cockpit as our parent
+	- Else look for a TRUE value in our IsTurretConflicting variable and use that as our parent.
+
+Before a parent is deleted, we find the location of that from the ParentChildHierachy and add the array to the MissingChildren variable. Then we remove that parent from the ParentChildHierachy variable.
+
+When we place the part, we loop through all the MissingChildren locations and do the process of getting the orange socket and going down through all the parts connected and search for a parent, whether it is a cockpit or turret.
+
+This variable defines the Parent part and the parts that are connected to that part.
+
+Use Tarray<FVector> ParentsToScan
+Use Tarray<Fvector> PartsToScan
+Use Tarray<InstancedStaticMeshComponent>
+When building the vehicle at runtime, we add the cockpit to the ParentsToScan variable. In a while loop, we go through all the ParentsToScan elements and get the children that connects upto the each parent(this example, the cockpit). 
+
+Then, do a detection of all the surround parts of the cockpit, loop through all the parts that connect upto those connected parts like we did with the delete tool. Add these parts to a Tarray<FVector> DetectedParts variable. 
+
+BUT, every time we scan a part, we check if it exists in this ParentChildHierachy variable, if it does, then dont add that part to the buffer. In this way, for example, we will get the cubes that make up the body of the vehicle(parts that aren't movable).
+ Instead, we add that part to ParentsToScan.
+Essentially, we'll have two while loops, one for the Parents and one for the scanning of every part. 
+
+For every parent we loop through, every part scanned after that should create a new instancedstaticmeshcomponent and then parent that to the Parent component.
+
+C++:
+Parts->Components folder:
+	- (Parented for the following below)
+		? Damage functionality
+			§ Responsible for handling damage, deletion of parts at runtime and the update of collision.
+		? Mech leg functionality
+			
+		? Weapon functionality
+			§ Responsible for deciding what structure group is considered as a weapon, eg: the barrel parts connecting to it should indicate the accuracy it has.
+			§ On the occasion where the barrel is shot off,  the comp should know that the accuracy is decreased. 
+			§ A function will be implemented that recalculates the surrounding parts that contribute to the weapon's stats, eg: the barrel parts affecting accuracy.
+			§ This function will be called by the damage component whenever any or a respective part for the weapon is destroyed (further detail could include changing the weapon stats depending on the damage the part has received).
+		? Wheel functionality
+			§ Responsible for getting the distance to the floor and letting the animation instance know about it
+
+Longer barrel = better accuracy + range + bullet velocity, but can contribute to mass and affect the turn rate of the turret.
+
+Go through every parent, eg starting from TB3
+Start from TB4, check if TB3 has been created
+If hasnt, go through the map again and search for a parent that has it as a child.
+If that 
+
+===============25/10/19================
+Building phase -> Vehicle construction phase -> Vehicle simulation phase
+Simulated vehicle will include all the functionality of all parts? Or could use components
+Building phase:
+-When placing a functional part, instantly calculate the surrounding parts that contrubute to its stats.
+-This can be done by deriving more classes from APart, such as:
+	-AEjectorComponent
+		-FEjectorComponentData{ TArray<FVector> EjectorBarrels; TArray<FVector> EjectorModifiers; }
+	-AWheelComponent
+
+APart will now expand and dissipate its FPartStats variable, to a more hierachically iterated structure.
+It will start from APart, including simple variables that are common to all decendants.
+When trying to access its descendants, proceed through the Cast<>() function to check if the respective part is actually the class you're looking for.
+//APart: (float Health, int32 Cost, TEnumAsByte<ESubCategory> Category, bool DefaultLocked = true)
+	>AWheelPart
+	>AEjectorPart
+	>AMechLegPart
+	>AHoverPart
+	>ABarrelPart
+	>AEjectorModifiers : Have a function that is called as to when the Ejector fires. Can be overrided by its subclasses.
+		>AFirerateModifier
+		>ADamageModifier (UNDECIDED DUE TO BALANCE CONCERNS)
+		>ALifeStealModifier
+		>AExplosiveModfier
+		>AVelocityModifier
+
+///CONSIDERATION: Make all the functional parts a UActorComponent, instead of a USkeletalMeshComponent. In this way, we can enable players to customize the part directly
+by clicking on it (TODO). This will also make it wayyyyy easier to save the data for that part since we can save the whole component.
+
+These subclasses can then be subclassed further through blueprint parenting, to the point where only variables need to be changed.
+Now to what these parts have more than just variables:
+
+Since we want the functional parts in the simulation phase to function with the stats that are gained from surrounding parts, we should
+group the function of the part with its variables. So, we will now have APart derive from USceneComponent, which will be perfect as
+it doesn't render anything.
+
+I am still tied between saving whole APart components or just the data. The data will be difficult as we will need to replicate the data.
+
+- When placing an ejector component(weapon), instantly calculate the surrounding parts that contribute to the stats, eg: Barrel parts for accuracy, booster modules that increase   firerate/damage.
+- Store this in an TMap<FVector, FEjectorComponentData>  with:
+	-TArray<FVector> EjectorBarrels
+	-TArray<FVector> EjectorModifiers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -100,7 +100,7 @@ public:
 
 	void RoundStruct(FTransform & Transform, int32 RoundTo);
 
-	void FormatBoxCollision(UBoxComponent & Box, bool bSimulatePhysics);
+	void FormatBoxCollision(UBoxComponent & Box, bool bSimulatePhysics, class ASimulatedVehicle *NewVehicle);
 
 	UFUNCTION(BlueprintNativeEvent)
 		void SetGates(bool bGateState);

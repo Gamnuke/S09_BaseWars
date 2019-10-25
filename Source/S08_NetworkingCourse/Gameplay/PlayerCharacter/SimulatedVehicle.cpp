@@ -8,7 +8,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "SimpleWheeledVehicleMovementComponent.h"
-
+#include "DrawDebugHelpers.h"
 
 ASimulatedVehicle::ASimulatedVehicle(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -69,5 +69,9 @@ void ASimulatedVehicle::Tick(float DeltaTime) {
 	if (CockpitBox != nullptr) {
 		SpringArm->SetWorldLocation(CockpitBox->GetComponentLocation());
 		SpringArm->SetupAttachment(CockpitBox);
+	}
+
+	for (UVehicleWheel *Wheel : MovementComp->Wheels) {
+		DrawDebugPoint(GetWorld(), Wheel->Location, 20, FColor::Cyan, false, DeltaTime * 2, 1000);
 	}
 }

@@ -26,7 +26,8 @@ struct FPartStats {
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Speed) float Speed;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Speed) bool UseSpeed;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Mobility) bool IsMovable = true;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Mobility) bool IsMovable = true; //TODO rename this to "bGenerateOwnBranch" because really the part should be considered either to be generated as an instancedmesh or not.
+
 
 	FString GetText() {
 		if (UseDamage) { DetailText += FString("Damage: ") + FString::FromInt(Damage) + FString("\n"); }

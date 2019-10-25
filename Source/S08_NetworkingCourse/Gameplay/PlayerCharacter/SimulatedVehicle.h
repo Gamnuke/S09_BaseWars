@@ -40,4 +40,6 @@ public:
 	class UBoxComponent* CockpitBox;
 
 	virtual void Tick(float DeltaTime) override;
+
+	TMap<>
 };

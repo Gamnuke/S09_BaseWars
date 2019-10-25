@@ -261,7 +261,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 				CreatedMeshes.Add(ParentMesh);
 
 				if (Part->GetDefaultObject()->Details.IsMovable) {
-					FormatBoxCollision(*ParentBox, true);
+					FormatBoxCollision(*ParentBox, true, NewVehicle);
 				}
 				CreatedBoxes.Add(ParentBox);
 				BoxCollisions.Add(Pair.Key, ParentBox);
@@ -279,6 +279,9 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 					CockpitBox = ParentBox;
 					NewVehicle->MovementComp->UpdatedPrimitive = ParentBox;
 					NewVehicle->CockpitBox = ParentBox;
+					NewVehicle->SpringArm->SetupAttachment(CockpitBox);
+					NewVehicle->SpringArm->SetRelativeLocation(FVector());
+
 				}
 
 				if (SkeleMeshGeo != nullptr) {
@@ -288,12 +291,24 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 
 						if (WasParentNull) {
 							if (Part->GetDefaultObject()->Category == ESubCategory::Wheeled) {
-								FWheelSetup NewSetup = FWheelSetup();
+								/*FWheelSetup NewSetup = FWheelSetup();
 								NewSetup.BoneName = *(FString("Wheel_") + FString::FromInt(n_wheel));
 								NewSetup.AdditionalOffset = PartTransform.GetLocation();
 								NewSetup.WheelClass = WheelData;
 								WheelSetups.Add(NewSetup);
-								n_wheel++;
+								n_wheel++;*/
+
+								/*FWheelSetup NewSetup = FWheelSetup();
+								FVector WheelSocketLoc = ParentMesh->GetSocketLocation(FName(("WheelCentre")));
+								WheelSocketLoc = PartTransform.GetRotation().RotateVector(WheelSocketLoc);
+								DrawDebugPoint(GetWorld(), WheelSocketLoc, 20, FColor::Orange, false, 1000, 100);
+								DebugMessage(WheelSocketLoc.ToString());
+
+								NewSetup.BoneName = *(FString("Wheel_") + FString::FromInt(n_wheel));
+								NewSetup.AdditionalOffset = PartTransform.GetLocation() - CockpitLocation - ParentMeshGeo->GetBoundingBox().GetCenter() + WheelSocketLoc;
+								NewSetup.WheelClass = WheelData;
+								WheelSetups.Add(NewSetup);
+								n_wheel++;*/
 							}
 						}
 					}
@@ -392,7 +407,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 					ChildBox->SetBoxExtent(Extent.GetExtent());
 
 					if (Part->GetDefaultObject()->Details.IsMovable) {
-						FormatBoxCollision(*ChildBox, true);
+						FormatBoxCollision(*ChildBox, true, NewVehicle);
 					}
 
 					CreatedBoxes.Add(ChildBox);
@@ -417,13 +432,15 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 						}
 						if (Part->GetDefaultObject()->Category == ESubCategory::Wheeled) {
 							FWheelSetup NewSetup = FWheelSetup();
-							FVector WheelSocketLoc = ChildMesh->GetSocketLocation(FName(("WheelCentre")));
+							FVector Correction = ChildMesh->GetSocketLocation(FName());
+							FVector WheelSocketLoc = ChildMesh->GetSocketLocation(FName(*FString("WheelCentre"))) - Correction;
 							WheelSocketLoc = ChildPartTransform.GetRotation().RotateVector(WheelSocketLoc);
 							DrawDebugPoint(GetWorld(), WheelSocketLoc, 20, FColor::Orange, false, 1000, 100);
-							DebugMessage(WheelSocketLoc.ToString());
+							DebugMessage(Correction.ToString());
+							//DebugMessage(CS->SkeletalMesh->GetBounds().GetBox().GetCenter().ToString());
 
 							NewSetup.BoneName = *(FString("Wheel_") + FString::FromInt(n_wheel));
-							NewSetup.AdditionalOffset = ChildPartTransform.GetLocation() -  CockpitLocation - ParentMeshGeo->GetBoundingBox().GetCenter() + WheelSocketLoc;
+							NewSetup.AdditionalOffset = ChildPartTransform.GetLocation() - CockpitLocation - ParentMeshGeo->GetBoundingBox().GetCenter() + WheelSocketLoc;
 							NewSetup.WheelClass = WheelData;
 							WheelSetups.Add(NewSetup);
 							n_wheel++;
@@ -477,7 +494,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 					PhysCont->SetAngularOrientationDrive(true, true);
 					PhysCont->SetAngularDriveParams(50000.0f, 20000.0f, 0.0f);
 					PhysCont->SetWorldLocation(ChildPartTransform.GetLocation());
-
+					PhysCont->ConstraintInstance.EnableParentDominates();
 					PhysCont->RegisterComponent();
 				}
 				n_child++;
@@ -520,13 +537,15 @@ void AVehicleConstructor::RoundStruct(FTransform &Transform, int32 RoundTo) {
 	Transform = FTransform(C, E);
 }
 
-void AVehicleConstructor::FormatBoxCollision(UBoxComponent &Box, bool bSimulatePhysics) {
+void AVehicleConstructor::FormatBoxCollision(UBoxComponent &Box, bool bSimulatePhysics, ASimulatedVehicle *NewVehicle) {
 	Box.SetSimulatePhysics(bSimulatePhysics);
 	Box.SetVisibility(true);
 	Box.bHiddenInGame = false;
 	Box.SetCollisionObjectType(ECollisionChannel::ECC_Vehicle);
 	Box.SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	Box.SetCollisionProfileName("BlockAll");
+
+	//Box.IgnoreComponentWhenMoving()
 }
 
 // Called when the game starts or when spawned
@@ -741,7 +760,11 @@ void AVehicleConstructor::CreateMainStructure(ASimulatedVehicle *NewVehicle, FVe
 				BoxCol->AddWorldOffset(PartTransform.GetRotation().RotateVector(Extent.GetCenter()));
 				BoxCol->SetMassOverrideInKg(NAME_None, 100, true);
 				CreatedBoxes.Add(BoxCol);
-				FormatBoxCollision(*BoxCol, false);
+				FormatBoxCollision(*BoxCol, false, NewVehicle);
+
+				TArray<AActor*> ActorsToIgnore;
+				ActorsToIgnore.Add(NewVehicle);
+				BoxCol->MoveIgnoreActors = ActorsToIgnore;
 				BoxCol->RegisterComponent();
 				//CreateCollision(n_collision, MeshGeo, Child, PartTransform.GetLocation() + PartTransform.GetRotation().RotateVector(Extent.GetCenter()), PartTransform.GetRotation().Rotator());
 				n_collision++;
