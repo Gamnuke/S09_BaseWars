@@ -31,6 +31,7 @@
 #include "AdvancedSessions/Classes/AdvancedSessionsLibrary.h"
 #include "Paths.h"
 #include "Objects/Parts/Part.h"
+#include "Objects/Parts/SkeletalPart.h"
 #include "HAL/FileManagerGeneric.h"
 
 const static FName BUILD_SESSION_NAME = NAME_GameSession;
@@ -91,39 +92,51 @@ void UPlatformerGameInstance::ValidateItems()
 
 		//UE_LOG(LogTemp, Warning, TEXT("PENDING SEARCH: %s"), *(FString("/Game") + SearchDir));
 
-		ConstructorHelpers::FClassFinder<APart> Part(*(FString("/Game") + SearchDir));
-		if (Part.Class != NULL)
+		ConstructorHelpers::FClassFinder<UPart> FoundStaticPart(*(FString("/Game") + SearchDir));
+		if (FoundStaticPart.Class != NULL)
 		{
 			//UE_LOG(LogTemp, Warning, TEXT("FOUND %s"), *FPaths::GetBaseFilename(Dir));
 			//UE_LOG(LogTemp, Warning, TEXT("Pended path %s"), *(FString("/Game") + SearchDir));
 			Files += FPaths::GetBaseFilename(Dir) + FString(", ");
 
-			FString PartName = Part.Class.GetDefaultObject()->GetName();
+			FString PartName = FoundStaticPart.Class.GetDefaultObject()->GetName();
 
 			PartName.RemoveFromStart("Default__");
 			PartName.RemoveFromEnd("_C");
 
-			//Items.Add(PartName, Part.Class.GetDefaultObject()->DefaultLocked);
-			//Parts.Add(Part.Class, );
 			TArray<FString> Files;
 
-			PartsInCategory.Add(Part.Class, Part.Class.GetDefaultObject()->Category);
-			NameForPart.Add(PartName, Part.Class);
-			Items.Add(PartName, Part.Class.GetDefaultObject()->DefaultLocked);
+			CategoryOfStaticPart.Add(FoundStaticPart.Class, FoundStaticPart.Class.GetDefaultObject()->PartSettings.Category);
+			NameForStaticPart.Add(PartName, FoundStaticPart.Class);
+			Items.Add(PartName, FoundStaticPart.Class.GetDefaultObject()->PartSettings.bLockedByDefault);
 
-			//FString FinalPath = (FPaths::ConvertRelativePathToFull(FPaths::GameContentDir()).LeftChop(1) + SearchDir);
-			//FinalPath.RemoveFromEnd(*FPaths::GetBaseFilename(Dir));
-
-			//FFileManagerGeneric::Get().FindFiles(Files, *FinalPath);
-			////UE_LOG(LogTemp, Warning, TEXT("Found File: %s"), *Part.Class.GetDefaultObject()->GetName());
-			//FString GlobalFilesFound;
-			//for (FString FileName : Files) {
-			//	GlobalFilesFound += FileName + FString(", ");
-			//}
 			FString Ref;
-			GetStringFromEnum(Part.Class.GetDefaultObject()->Category, Ref);
-			UE_LOG(LogTemp, Warning, TEXT("Part: %s, Category: %s, Status: %s"), *Part.Class.GetDefaultObject()->GetName(), *Ref, *(Part.Class.GetDefaultObject()->DefaultLocked?FString("Locked"): FString("Unlocked")));
+			GetStringFromEnum(FoundStaticPart.Class.GetDefaultObject()->PartSettings.Category, Ref);
+			UE_LOG(LogTemp, Warning, TEXT("Part: %s, Category: %s, Status: %s"), *FoundStaticPart.Class.GetDefaultObject()->GetName(), *Ref, *(FoundStaticPart.Class.GetDefaultObject()->PartSettings.bLockedByDefault?FString("Locked"): FString("Unlocked")));
 			
+		}
+		ConstructorHelpers::FClassFinder<USkeletalPart> FoundSkeletalPart(*(FString("/Game") + SearchDir));
+		if (FoundSkeletalPart.Class != NULL)
+		{
+			//UE_LOG(LogTemp, Warning, TEXT("FOUND %s"), *FPaths::GetBaseFilename(Dir));
+			//UE_LOG(LogTemp, Warning, TEXT("Pended path %s"), *(FString("/Game") + SearchDir));
+			Files += FPaths::GetBaseFilename(Dir) + FString(", ");
+
+			FString PartName = FoundSkeletalPart.Class.GetDefaultObject()->GetName();
+
+			PartName.RemoveFromStart("Default__");
+			PartName.RemoveFromEnd("_C");
+
+			TArray<FString> Files;
+
+			CategoryOfSkeletalPart.Add(FoundSkeletalPart.Class, FoundSkeletalPart.Class.GetDefaultObject()->Category);
+			NameForSkeletalPart.Add(PartName, FoundSkeletalPart.Class);
+			Items.Add(PartName, FoundSkeletalPart.Class.GetDefaultObject()->bLockedByDefault);
+
+			FString Ref;
+			GetStringFromEnum(FoundSkeletalPart.Class.GetDefaultObject()->Category, Ref);
+			UE_LOG(LogTemp, Warning, TEXT("Part: %s, Category: %s, Status: %s"), *FoundSkeletalPart.Class.GetDefaultObject()->GetName(), *Ref, *(FoundSkeletalPart.Class.GetDefaultObject()->bLockedByDefault ? FString("Locked") : FString("Unlocked")));
+
 		}
 	}
 }
@@ -406,15 +419,15 @@ void UPlatformerGameInstance::UnlockPart_Implementation(const FString &PartToUnl
 		if (LoadGameDataFromFile(FileSearch, LoadedData)) {
 			// On client:
 			//LoadedData.Items
-			TSubclassOf<APart> FoundPart = NameForPart.FindRef(PartToUnlock);
+			TSubclassOf<UPart> FoundPart = NameForStaticPart.FindRef(PartToUnlock);
 			bool ItemLocked = LoadedData.Items.FindRef(PartToUnlock);
 
 			if (FoundPart != nullptr && ItemLocked) {
 
-				FPartStats Stats = FoundPart.GetDefaultObject()->Details;
-				if (Stats.Cost <= LoadedData.GB) {
+				UPart *PartBaseClass = FoundPart.GetDefaultObject();
+				if (PartBaseClass->PartSettings.Cost <= LoadedData.GB) {
 					LoadedData.Items.Emplace(PartToUnlock, false);
-					LoadedData.GB = LoadedData.GB - Stats.Cost;
+					LoadedData.GB = LoadedData.GB - PartBaseClass->PartSettings.Cost;
 
 					GetEngine()->AddOnScreenDebugMessage(7, 100, FColor::Green, *(LoadedData.Items.Contains(PartToUnlock) ? FString("Found!") : FString("Not found")));
 

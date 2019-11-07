@@ -23,8 +23,8 @@ ABuilderPawn::ABuilderPawn()
 	Camera = CreateDefaultSubobject<UCameraComponent>(FName("Camera"));
 	Camera->SetupAttachment(SpringArm);
 
-	PartImage = CreateDefaultSubobject<UStaticMeshComponent>(FName("PartImage"));
-	PartImage->SetupAttachment(GetRootComponent());
+	StaticPartImage = CreateDefaultSubobject<UStaticMeshComponent>(FName("PartImage"));
+	StaticPartImage->SetupAttachment(GetRootComponent());
 }
 
 // Called when the game starts or when spawned

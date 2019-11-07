@@ -6,29 +6,12 @@
 #include "Blueprint/UserWidget.h"
 #include "Gameplay/PlayerCharacter/BuilderPawn.h"
 #include "Objects/Parts/VehicleConstructor.h"
+#include "BasicTypes.h"
 #include "Menu.generated.h"
 
 /**
  * 
  */
-
-UENUM(BlueprintType)
-enum ESubCategory {
-	// Components:
-	Rotary, Cockpits,
-
-	//Cosmetics:
-	Lights,
-
-	//Mobility:
-	Arachnids, Hover, Pedal, Wheeled,
-
-	// Structure:
-	Armoured, Light, Medium, Shielded,
-
-	// Weaponry:
-	Barrels, Enhancers, Muzzles, WModules
-};
 
 UCLASS()
 class S08_NETWORKINGCOURSE_API UMenu : public UUserWidget
@@ -78,7 +61,7 @@ public:
 		void GetStringFromEnum(ESubCategory Enum, FString &StringRef);
 
 	UFUNCTION(BlueprintNativeEvent)
-		void ConstructDataObject(const FString &ItemName, bool Locked, UPlatformerGameInstance *GI, TSubclassOf<APart> AssignedPart, const class UMenu *ParentSelector);
+		void ConstructDataObject(const FString &ItemName, bool Locked, UPlatformerGameInstance *GI, TSubclassOf<UPart> AssignedPart, const class UMenu *ParentSelector);
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		TSubclassOf<class USelectorTab> ItemTab;
@@ -136,7 +119,7 @@ public:
 
 	void PlaceItem();
 
-	FString FormatPartName(TSubclassOf<APart> PartClass);
+	FString FormatPartName(TSubclassOf<UPart> PartClass);
 
 	void FindVehicleConstructor();
 
@@ -146,7 +129,7 @@ public:
 
 	UPlatformerGameInstance *GI;
 
-	TSubclassOf<APart> SelectedPart;
+	TSubclassOf<UPart> SelectedPart;
 	
 	FString SelectedPartName;
 	FString LoadedVehiclePath;
@@ -188,14 +171,31 @@ public:
 
 	int32 HighlightedItem;
 
+	//Variables that are to be saved and loaded//
 	TMap<FVector, TArray<FVector>> WeldedParts; // Location of first part and and the other parts that are welded to this part.
 	TMap<FVector, TArray<FVector>> ParentChildHierachy;
 	TMap<FVector, FVector> MovablePartToRoot; //Movable part : Root part that the movable is connected to.
 	TMap<FString, TArray<FTransform>> PartData; //Name of part : The transforms of each instance of the part.
 
+	TMap<FVector, FPartStats> FunctionalPartSettings; // The part setting for each part. If the part is in the structural category or if the part at the location
+	TMap<FVector, class USkeletalMeshComponent*> BuiltSkeletalMeshes;
+	TMap<FVector, class UStaticMeshComponent*> BuiltStaticMeshes;
+	//we're looking for isnt in this variable, then take the default settings for the part.
+
+	//TODO TMap<UInstancedStaticMeshComponent, FPartStats> //In the future we should group blocks during building phase to allow instanced blocks to be modified, EG: Color.
+
+	//When we select a part to place, determine if it should be instanciated as a UStaticComponent, USkeletalComponent or be an instance of a UInstancedStaticMeshComponent
+	//Parts that are editable should be either a StaticComponent or SkeletalComponent
+
+	//-----------------------//
+
+	//Temporary variables//
 	TOptional<TMap<FVector, FVector>> PendingMovablePartToRoot;
 	FVector PendingParent;
 	TMap<FVector, TArray<FVector>> PendingWelds;
+
+
+	//-----------------------//
 
 	TArray<FVector> LikeSockets;
 

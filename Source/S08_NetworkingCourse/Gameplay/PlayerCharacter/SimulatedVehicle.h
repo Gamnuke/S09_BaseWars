@@ -41,5 +41,4 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
-	TMap<>
 };

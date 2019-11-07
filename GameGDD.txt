@@ -240,9 +240,10 @@ Building phase:
 APart will now expand and dissipate its FPartStats variable, to a more hierachically iterated structure.
 It will start from APart, including simple variables that are common to all decendants.
 When trying to access its descendants, proceed through the Cast<>() function to check if the respective part is actually the class you're looking for.
-//APart: (float Health, int32 Cost, TEnumAsByte<ESubCategory> Category, bool DefaultLocked = true)
-	>AWheelPart
-	>AEjectorPart
+//APart: (float Health, int32 Cost, TEnumAsByte<ESubCategory> Category, bool DefaultLocked = true, bool Modifiable, bool UsesPhysics) //If it uses physics, then we dont let this become a parent.
+	>AWheelPart: (float Traction, float Speed)
+		>ASteerWheelPart: (float TurnAngle)
+	>AEjectorPart: (float BulletVelocity, float FireRate)
 	>AMechLegPart
 	>AHoverPart
 	>ABarrelPart
@@ -270,8 +271,48 @@ I am still tied between saving whole APart components or just the data. The data
 	-TArray<FVector> EjectorBarrels
 	-TArray<FVector> EjectorModifiers
 
+===============25/10/19================
+Right now, we have a loading system where it saves:
+TMap<FVector, TArray<FVector>> WeldedParts //Location of key part, array of locations of other parts this part is welded to as a value.
+TMap<FString, TArray<FTransform>> PartData //Name of the part, transform of the parts that are of that name.
+TMap<FVector, FVector> MovablePartToRoot //Name of the functional part, the location of the part that is that part's root
+TOptional<FVector> CockpitLocation //The location of the cockpit.
 
+We wanna be able to save data for functional parts that consist of the variables the player has changed.
+For example, a turret base, we want the player to be able to change the speed of that turret base.
 
+-----In the case where a player clicks on a functional part to change its variables:
+- In APart, we will have a function that is called when a player clicks this part.
+- This function: void OnSelect() will be overrided and called from its decendants.
+- We will have another function called void AllowVariableEdit(float/int32/FString &Variable, FString NameOfVariable);
+
+Each subclass derived from APart will have its own variables as listed above.
+We will also need to override the OnSelect() function so that when the subclass is selected, it will call AllowVariableEdit for every single variable we have.
+When for example, an AWheelPart part is selected, since this is derived from APart, we will call the AllowVariableEdit function for every variable in this subclass.
+
+This function will then instanciate a slider that will set the variable through a reference.
+
+---changing the save and load functionality---
+So, we have a conflict between parts that move, and those that can be edited. We need to make a system where Parts can be edited or not, and movable or not and being able to store
+those edits of variables.
+
+TMap<FString, TArray<FVector>> StructuralParts; // When building simulated, we use this variable to generate parts in an instancedStaticMeshComponent. 
+TMap<FVector, TSubclassOf<APart>> FunctionalParts; // Parts that have functionality, even if they aren't editable or doesnt use physics, it still has functionality.
+TMap<FVector>
+
+When building the main structure during simulated phase:
+- In the PartsToScan variable, we omit the functional parts. Since the functionalParts variable doesn't have an Array<FVector>, we need to loop through every Map key, add it to an FVector array, then set the PartsToScan variable to it. Just so it doesn't create it.
+- Build the structuralparts first as normal by going through the parts only in that array
+- Build the functional parts with its parent as normal.
+
+===============26/10/19================
+So it came to the realization that UactorComponents or UPrimitiveComponent doesn't have rendering functionalities. 
+Because of this, we will have to let UPart to inherit from UStaticMeshComponent
+We'll also make another class name USkeletalPart which inherits from USkeletalMeshComponent
+
+TMap<FVector, TSubclassOf<APart>> SingularStatics
+TMap<FVector, TSubclassOf<APart>> InModifiableStatics
+TMap<FVector, TSubclassOf<ASkeletalPart>> SingularSkeletals
 
 
 

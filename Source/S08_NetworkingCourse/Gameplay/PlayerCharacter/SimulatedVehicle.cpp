@@ -72,6 +72,6 @@ void ASimulatedVehicle::Tick(float DeltaTime) {
 	}
 
 	for (UVehicleWheel *Wheel : MovementComp->Wheels) {
-		DrawDebugPoint(GetWorld(), Wheel->Location, 20, FColor::Cyan, false, DeltaTime * 2, 1000);
+		//DrawDebugPoint(GetWorld(), Wheel->Location, 20, FColor::Cyan, false, DeltaTime * 2, 1000);
 	}
 }

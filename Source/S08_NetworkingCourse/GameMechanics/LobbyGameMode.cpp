@@ -23,7 +23,7 @@ void ALobbyGameMode::BeginPlay(){
 	Super::BeginPlay();
 	
 	/*FString Files;
-	for (TSubclassOf<APart> Part : Parts) {
+	for (TSubclassOf<UPart> Part : Parts) {
 		Files += Part.GetDefaultObject()->PartName + FString(", ");
 	}
 	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 1000, FColor::Green, FString("Asset files found: ") + Files);*/

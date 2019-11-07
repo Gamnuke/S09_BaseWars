@@ -232,11 +232,11 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 			RoundStruct(PartTransform, 50);
 
 			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(o, 1000.0f, FColor::Cyan, FString(":::") + FoundPartName);
-			TSubclassOf<APart> *Part = GI->NameForPart.Find(FoundPartName);
-			UStaticMesh *ParentMeshGeo = Part->GetDefaultObject()->Mesh->GetStaticMesh();
+			TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(FoundPartName);
+			UStaticMesh *ParentMeshGeo = Part->GetDefaultObject()->PartStaticMesh->GetStaticMesh();
 			USkeletalMesh *SkeleMeshGeo = nullptr;
-			if (Part->GetDefaultObject()->SkeletalMesh != nullptr) {
-				SkeleMeshGeo = Part->GetDefaultObject()->SkeletalMesh->SkeletalMesh;
+			if (Part->GetDefaultObject()->PartSkeletalMesh != nullptr) {
+				SkeleMeshGeo = Part->GetDefaultObject()->PartSkeletalMesh->SkeletalMesh;
 			}
 			FBox Extent = ParentMeshGeo->GetBoundingBox();
 			RoundStruct(Extent, 50);
@@ -260,7 +260,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 				ParentMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 				CreatedMeshes.Add(ParentMesh);
 
-				if (Part->GetDefaultObject()->Details.IsMovable) {
+				if (Part->GetDefaultObject()->PartSettings.bUsesPhysics) {
 					FormatBoxCollision(*ParentBox, true, NewVehicle);
 				}
 				CreatedBoxes.Add(ParentBox);
@@ -290,7 +290,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 						C->SetSkeletalMesh(SkeleMeshGeo);
 
 						if (WasParentNull) {
-							if (Part->GetDefaultObject()->Category == ESubCategory::Wheeled) {
+							if (Part->GetDefaultObject()->PartSettings.Category == ESubCategory::Wheeled) {
 								/*FWheelSetup NewSetup = FWheelSetup();
 								NewSetup.BoneName = *(FString("Wheel_") + FString::FromInt(n_wheel));
 								NewSetup.AdditionalOffset = PartTransform.GetLocation();
@@ -349,7 +349,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 				FString ChildName;
 				RoundStruct(ChildPartTransform, 50);
 
-				TSubclassOf<APart> *Part = GI->NameForPart.Find(FoundPartName);
+				TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(FoundPartName);
 				if (Part == nullptr) {
 					DebugMessage(FString("Part is null!"));
 					return;
@@ -358,17 +358,17 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 					DebugMessage(FString("Default object is null!"));
 					return;
 				}
-				else if (Part->GetDefaultObject()->Mesh == nullptr) {
+				else if (Part->GetDefaultObject()->PartStaticMesh == nullptr) {
 					DebugMessage(FString("Mesh component is null!"));
 					return;
 				}
-				else if (Part->GetDefaultObject()->Mesh->GetStaticMesh() == nullptr) {
+				else if (Part->GetDefaultObject()->PartStaticMesh->GetStaticMesh() == nullptr) {
 					DebugMessage(FString("Static Mesh is null!"));
 					return;
 
 				}
-				UStaticMesh *MeshGeo = Part->GetDefaultObject()->Mesh->GetStaticMesh();
-				USkeletalMesh *SkeleMeshGeo = Part->GetDefaultObject()->SkeletalMesh->SkeletalMesh;
+				UStaticMesh *MeshGeo = Part->GetDefaultObject()->PartStaticMesh->GetStaticMesh();
+				USkeletalMesh *SkeleMeshGeo = Part->GetDefaultObject()->PartSkeletalMesh->SkeletalMesh;
 
 				if (ChildBox == nullptr) {
 					ChildBox = NewObject<UBoxComponent>(NewVehicle, FName(*(FString("childBox_") + FString::FromInt(n_child))));
@@ -406,7 +406,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 					ChildBox->AddRelativeLocation(-(Extent.GetCenter()));
 					ChildBox->SetBoxExtent(Extent.GetExtent());
 
-					if (Part->GetDefaultObject()->Details.IsMovable) {
+					if (Part->GetDefaultObject()->PartSettings.bUsesPhysics) {
 						FormatBoxCollision(*ChildBox, true, NewVehicle);
 					}
 
@@ -430,7 +430,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 						if (C != nullptr) {
 							C->AddInstance(FTransform(FVector(0, 0, 0)));
 						}
-						if (Part->GetDefaultObject()->Category == ESubCategory::Wheeled) {
+						if (Part->GetDefaultObject()->PartSettings.Category == ESubCategory::Wheeled) {
 							FWheelSetup NewSetup = FWheelSetup();
 							FVector Correction = ChildMesh->GetSocketLocation(FName());
 							FVector WheelSocketLoc = ChildMesh->GetSocketLocation(FName(*FString("WheelCentre"))) - Correction;
@@ -461,7 +461,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 
 				//Create the constraints
 				//Check if the part should actually be movable
-				if (Part->GetDefaultObject()->Details.IsMovable) {
+				if (Part->GetDefaultObject()->PartSettings.bUsesPhysics) {
 					UPhysicsConstraintComponent *PhysCont = NewObject<UPhysicsConstraintComponent>(NewVehicle, FName(*(FString("physConstraint_") + FString::FromInt(n_child))));
 					PhysCont->SetupAttachment(ChildBox);
 					PhysCont->ComponentName1.ComponentName = FName(*ChildName);
@@ -596,8 +596,8 @@ void AVehicleConstructor::Tick(float DeltaTime)
 
 }
 
-UInstancedStaticMeshComponent *AVehicleConstructor::CreateMesh(TSubclassOf<APart> SelectedPart) {
-	UStaticMesh *MeshToCreate = SelectedPart.GetDefaultObject()->Mesh->GetStaticMesh();
+UInstancedStaticMeshComponent *AVehicleConstructor::CreateMesh(TSubclassOf<UPart> SelectedPart) {
+	UStaticMesh *MeshToCreate = SelectedPart.GetDefaultObject()->PartStaticMesh->GetStaticMesh();
 	TArray<FKBoxElem> BoxElements = MeshToCreate->BodySetup->AggGeom.BoxElems;
 	//InstancedMeshes[0]->GetStaticMesh()->
 	//UE_LOG(LogTemp, Warning, TEXT("Creating Mesh!!!"));
@@ -608,7 +608,7 @@ UInstancedStaticMeshComponent *AVehicleConstructor::CreateMesh(TSubclassOf<APart
 		}
 	}
 	UInstancedStaticMeshComponent *NewMesh = NewObject<UInstancedStaticMeshComponent>(this, FName(*MeshToCreate->GetName())); // If existing mesh hasn't been found, create one.
-	UMaterialInterface * Material = SelectedPart.GetDefaultObject()->Mesh->GetMaterial(0);
+	UMaterialInterface * Material = SelectedPart.GetDefaultObject()->PartStaticMesh->GetMaterial(0);
 
 	NewMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	if (Material != nullptr) {
@@ -711,7 +711,7 @@ void AVehicleConstructor::CreateMainStructure(ASimulatedVehicle *NewVehicle, FVe
 			FString FoundPartName = GetPartNameFromLocation(ScanningPart, LoadedData.PartData, PartTransform);
 			RoundStruct(PartTransform, 50);
 
-			TSubclassOf<APart> *Part = GI->NameForPart.Find(FoundPartName);
+			TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(FoundPartName);
 			//if (Part == nullptr) { DebugMessage(FString("Couldnt find structural part: ") + FString(FoundPartName) + FString(" with transform: ") + ScanningPart.ToString()); return; }
 			if (Part != nullptr) {
 
@@ -719,16 +719,16 @@ void AVehicleConstructor::CreateMainStructure(ASimulatedVehicle *NewVehicle, FVe
 					DebugMessage(FString("Default object is null!"));
 					return;
 				}
-				else if (Part->GetDefaultObject()->Mesh == nullptr) {
+				else if (Part->GetDefaultObject()->PartStaticMesh == nullptr) {
 					DebugMessage(FString("Mesh component is null!"));
 					return;
 				}
-				else if (Part->GetDefaultObject()->Mesh->GetStaticMesh() == nullptr) {
+				else if (Part->GetDefaultObject()->PartStaticMesh->GetStaticMesh() == nullptr) {
 					DebugMessage(FString("Static Mesh is null!"));
 					return;
 
 				}
-				UStaticMesh *MeshGeo = Part->GetDefaultObject()->Mesh->GetStaticMesh();
+				UStaticMesh *MeshGeo = Part->GetDefaultObject()->PartStaticMesh->GetStaticMesh();
 
 				//Check if there is already a instancedmeshcomponent that exists.
 				UInstancedStaticMeshComponent *ExistingMesh = nullptr;

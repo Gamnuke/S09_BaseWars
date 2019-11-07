@@ -18,6 +18,8 @@ struct FVehicleData {
 	TMap<FVector, TArray<FVector>> ParentChildHierachy;
 	TMap<FVector, FVector> MovablePartToRoot;
 	TOptional<FVector> CockpitLocation;
+
+	TArray<TSubclassOf<class UPart*>> Parts;
 };
 
 UCLASS()
@@ -64,7 +66,7 @@ public:
 
 	TArray<class UBoxComponent*> SimulatedMovables;
 	class UMenu* MenuRef;
-	TMap<class UInstancedStaticMeshComponent*, TSubclassOf<class APart>> PartToMesh;
+	TMap<class UInstancedStaticMeshComponent*, TSubclassOf<class UPart>> PartToMesh;
 
 	TArray<class UBoxComponent*> CreatedBoxes;
 	TArray<class UMeshComponent*> CreatedMeshes;
@@ -78,7 +80,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UInstancedStaticMeshComponent *CreateMesh(TSubclassOf<class APart> SelectedPart);
+	UInstancedStaticMeshComponent *CreateMesh(TSubclassOf<class UPart> SelectedPart);
 
 	void RemoveMeshes();
 

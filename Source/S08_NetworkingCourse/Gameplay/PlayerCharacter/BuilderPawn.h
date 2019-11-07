@@ -79,7 +79,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UCameraComponent* Camera;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		class UStaticMeshComponent *PartImage;
+		class UStaticMeshComponent *StaticPartImage;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool CanPlace;

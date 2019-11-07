@@ -6,50 +6,23 @@
 #include "GameFramework/Actor.h"
 #include "UI/NetworkUI/Menu.h"
 #include "Public/Misc/Optional.h"
-#include "Components/MeshComponent.h"
+#include "Components/SceneComponent.h"
+#include "BasicTypes.h"
 #include "Part.generated.h"
 
-USTRUCT(Blueprintable)
-struct FPartStats {
-	GENERATED_USTRUCT_BODY();
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		FString DetailText;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Speed) int32 Cost;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Damage) int32 Damage;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Damage) bool UseDamage;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = FireRate) float FireRate;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = FireRate) bool UseFireRate;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Speed) float Speed;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Speed) bool UseSpeed;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Mobility) bool IsMovable = true; //TODO rename this to "bGenerateOwnBranch" because really the part should be considered either to be generated as an instancedmesh or not.
-
-
-	FString GetText() {
-		if (UseDamage) { DetailText += FString("Damage: ") + FString::FromInt(Damage) + FString("\n"); }
-		if (UseFireRate) { DetailText += FString("Fire Rate: ") + FString::SanitizeFloat(FireRate) + FString("\n"); }
-		if (UseSpeed) { DetailText += FString("Speed: ") + FString::SanitizeFloat(Speed) + FString("\n"); }
-		return DetailText;
-	}
-};
-
-UCLASS()
-class S08_NETWORKINGCOURSE_API APart : public AActor
+UCLASS(Blueprintable, BlueprintType)
+class S08_NETWORKINGCOURSE_API UPart : public USceneComponent
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	APart();
+	UPart();
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-		class UStaticMeshComponent *Mesh;
+		class UStaticMeshComponent *PartStaticMesh;
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-		class USkeletalMeshComponent *SkeletalMesh;
+		class USkeletalMeshComponent *PartSkeletalMesh;
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class USceneComponent *Scene;
 
@@ -59,17 +32,17 @@ protected:
 
 public:	
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction) override;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		FString PartName = FString("DefaultPart");
+	//UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	//	FPartStats Details = FPartStats();
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		TEnumAsByte<ESubCategory> Category;
+public:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Settings) FPartStats PartSettings = FPartStats();
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		bool DefaultLocked = true;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		FPartStats Details = FPartStats();
+	//Functions
+	virtual void OnSelected();
+	virtual void AllowVariableEdit(float &VariableToEdit, FVector2D Limits);
+	virtual void AllowVariableEdit(int32 &VariableToEdit, FVector2D Limits);
+	virtual void AllowVariableEdit(FString &VariableToEdit, int32 Limits);
 };

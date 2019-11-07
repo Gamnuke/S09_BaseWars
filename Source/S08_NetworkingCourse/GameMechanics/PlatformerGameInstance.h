@@ -118,8 +118,10 @@ public:
 
 	//For server only
 	TMap<FString, bool> Items;
-	TMap<TSubclassOf<APart>, ESubCategory> PartsInCategory;
-	TMap<FString, TSubclassOf<APart>> NameForPart;
+	TMap<TSubclassOf<class UPart>, ESubCategory> CategoryOfStaticPart;
+	TMap<TSubclassOf<class USkeletalPart>, ESubCategory> CategoryOfSkeletalPart;
+	TMap<FString, TSubclassOf<class UPart>> NameForStaticPart;
+	TMap<FString, TSubclassOf<class USkeletalPart>> NameForSkeletalPart;
 
 	FPlayerData OwningPlayerData;
 	

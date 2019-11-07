@@ -3,8 +3,9 @@
 
 #include "Menu.h"
 #include "GameMechanics/PlatformerGameInstance.h"
-#include "Objects/Parts/Part.h"
+#include "Objects/Parts/SkeletalPart.h"
 #include "Objects/Parts/VehicleConstructor.h"
+#include "Objects/Parts/Part.h"
 #include "UI/SelectorTab.h"
 #include "Components/ScrollBox.h"
 #include "Components/TextBlock.h"
@@ -58,15 +59,6 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 		}
 	}
 
-	//for (TPair<FVector, FVector> pair : MovablePartToRoot) {
-	//	DrawDebugPoint(GetWorld(), pair.Key, 30.0f, FColor::Yellow, false, DeltaTime*2, 100);
-	//	DrawDebugPoint(GetWorld(), pair.Value, 30.0f, FColor::Orange, false, DeltaTime * 2, 100);
-	//}
-
-	//for (FVector DisconnectedPart : DisconnectedParts) {
-	//	DrawDebugPoint(GetWorld(), DisconnectedPart, 30.0f, FColor::Red, false, DeltaTime, 100);
-	//}
-
 	int order = 500;
 	for (TPair<FVector, TArray<FVector>> d : ParentChildHierachy) {
 		//DrawDebugPoint(GetWorld(), d.Key, 10, FColor::Red, false, DeltaTime, 10);
@@ -78,8 +70,8 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 		}
 	}
 
-	if (CurrentTool == ECurrentTool::PlaceTool && BuilderPawn != nullptr && BuilderPawn->PartImage != nullptr) {
-		DrawDebugDirectionalArrow(GetWorld(), BuilderPawn->PartImage->GetComponentLocation(), BuilderPawn->PartImage->GetComponentLocation() + BuilderPawn->PartImage->GetForwardVector()* 100, 500, FColor::Red, false, DeltaTime * 2, 16, SkeletonVisibilityValue * 10);
+	if (CurrentTool == ECurrentTool::PlaceTool && BuilderPawn != nullptr && BuilderPawn->StaticPartImage != nullptr) {
+		DrawDebugDirectionalArrow(GetWorld(), BuilderPawn->StaticPartImage->GetComponentLocation(), BuilderPawn->StaticPartImage->GetComponentLocation() + BuilderPawn->StaticPartImage->GetForwardVector()* 100, 500, FColor::Red, false, DeltaTime * 2, 16, SkeletonVisibilityValue * 10);
 
 	}
 
@@ -107,28 +99,28 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 					if (SelectedPart != nullptr) {
 						SetPartPlacementImage();
 					}
-					if (BuilderPawn != nullptr && BuilderPawn->PartImage != nullptr) {
-						BuilderPawn->PartImage->SetVisibility(true);
+					if (BuilderPawn != nullptr && BuilderPawn->StaticPartImage != nullptr) {
+						BuilderPawn->StaticPartImage->SetVisibility(true);
 					}
 
 					break;
 				case DeleteTool:
 					GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Delete Tool"));
-					BuilderPawn->PartImage->SetVisibility(false);
+					BuilderPawn->StaticPartImage->SetVisibility(false);
 
 					HighlightPart();
 
 					break;
 				case ConfigureTool:
 					GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Configure Tool"));
-					BuilderPawn->PartImage->SetVisibility(false);
+					BuilderPawn->StaticPartImage->SetVisibility(false);
 
 					HighlightPart();
 
 					break;
 				case PaintTool:
 					GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Paint Tool"));
-					BuilderPawn->PartImage->SetVisibility(false);
+					BuilderPawn->StaticPartImage->SetVisibility(false);
 					
 					HighlightPart();
 
@@ -140,7 +132,7 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 
 		}
 		if (BuilderPawn == nullptr) { return; }
-		UStaticMeshComponent *M = BuilderPawn->PartImage;
+		UStaticMeshComponent *M = BuilderPawn->StaticPartImage;
 
 		FQuat CR = M->GetComponentRotation().Quaternion();
 		FQuat OR = IntendedPartRotation.Quaternion();
@@ -148,8 +140,8 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 		FRotator SmoothedRot = FMath::QInterpTo(CR, OR, DeltaTime, 1).Rotator();
 		FVector SmoothVec = FMath::VInterpTo(M->GetComponentLocation(), IntendedPartLocation, DeltaTime, 40);
 		//FTransform(FMath::RInterpTo())
-		BuilderPawn->PartImage->SetWorldLocation(SmoothVec);
-		BuilderPawn->PartImage->SetWorldRotation(SmoothedRot);
+		BuilderPawn->StaticPartImage->SetWorldLocation(SmoothVec);
+		BuilderPawn->StaticPartImage->SetWorldRotation(SmoothedRot);
 
 	}
 
@@ -227,30 +219,13 @@ void UMenu::OnOverrideSave() {
 		Data.PartData = PartData;
 		Data.WeldedParts = WeldedParts;
 		Data.CockpitLocation = CockpitLocation;
+
 		FBufferArchive Ar;
 		SaveGameDataToFile(LoadedVehiclePath, Ar, Data);
 	}
 }
 
 void UMenu::RefreshVehicles() {
-	//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(643, 100, FColor::Red, FPaths::AutomationDir());
-	//UE_LOG(LogTemp, Warning, TEXT("%s"), FPlatformProcess::UserSettingsDir());
-
-	//FString FileSearch = FString(FPlatformProcess::UserDir()).LeftChop(10) + FString("Documents/My Games/Xordia/Vehicles/_Hello_There_") + FString(".txt");
-	////if (!FPaths::FileExists(FileSearch)) {
-	//FString FileContent = FString();
-	//FFileHelper::SaveStringToFile(FileContent, *FileSearch, FFileHelper::EEncodingOptions::AutoDetect, &IFileManager::Get(), EFileWrite::FILEWRITE_None);
-
-		//FBufferArchive BufferArchive;
-		//FPlayerData newPlayerData = FPlayerData();
-		//newPlayerData.Items = Items;
-		//SaveGameDataToFile(FileSearch, BufferArchive, newPlayerData);
-	/*FindFiles
-	(
-		TArray< FString >& FoundFiles,
-		const TCHAR* Directory,
-		const TCHAR* FileExtension
-	)*/
 	TArray<FString> FoundFiles;
 	IFileManager *F = &IFileManager::Get();
 	F->FindFiles(FoundFiles, *(FString(FPlatformProcess::UserDir()).LeftChop(10) + FString("Documents/My Games/Xordia/Vehicles")), *FString(".txt"));
@@ -274,36 +249,6 @@ void UMenu::RefreshVehicles() {
 void UMenu::PopulateCategories_Implementation(ESubCategory Category) {
 	ItemList->ClearListItems();
 	CurrentCategory = Category;
-	//if (GetGameInstance() != nullptr) {
-	//	UPlatformerGameInstance *GI = Cast<UPlatformerGameInstance>(GetGameInstance());
-	//	if (GI == nullptr) { return; }
-	//	// Get string from enum
-	//	// Get folder directory to that folder names this string
-	//	// Get assets in that folder
-	//	// Check if the assets are locked or unlocked.
-	//	FString CategoryString;
-	//	GetStringFrom6(Category, CategoryString);
-	//	TArray<FString> FileDirs;
-	//	IFileManager::Get().FindFilesRecursive(FileDirs, *(FPaths::ProjectContentDir() + FString("Items/")), TEXT("*.uasset"), true, false, false);
-	//	FString Files;
-	//	for (FString Dir : FileDirs) {
-	//		//Files += FPaths::GetBaseFilename(Dir) + FString(", ");
-	//		////FPaths::GetBaseFilename(Dir, false);
-	//		FString SearchDir = Dir;
-	//		SearchDir.RemoveFromStart(FPaths::GetPath(FPaths::ProjectContentDir()));
-	//		SearchDir.RemoveFromEnd(FString(".uasset"));
-	//		//UE_LOG(LogTemp, Warning, TEXT("PENDING SEARCH: %s"), *(FString("/Game") + SearchDir));
-	//		ConstructorHelpers::FClassFinder<APart> Part(*(FString("/Game") + SearchDir));
-	//		if (Part.Class != NULL)
-	//		{
-	//			//UE_LOG(LogTemp, Warning, TEXT("FOUND %s"), *FPaths::GetBaseFilename(Dir));
-	//			//UE_LOG(LogTemp, Warning, TEXT("Pended path %s"), *(FString("/Game") + SearchDir));
-	//			Files += FPaths::GetBaseFilename(Dir) + FString(", ");
-	//			Items.Add(*Part.Class.GetDefaultObject()->GetName(), true);
-	//			UE_LOG(LogTemp, Warning, TEXT("Found File: %s"), *Part.Class.GetDefaultObject()->GetName());
-	//		}
-	//	}
-	//}
 
 	if (GetGameInstance() != nullptr) {
 		GI = Cast<UPlatformerGameInstance>(GetGameInstance());
@@ -311,57 +256,49 @@ void UMenu::PopulateCategories_Implementation(ESubCategory Category) {
 
 		int i = 0;
 
-		for (TPair<TSubclassOf<APart>, ESubCategory> pair : GI->PartsInCategory)
+		for (TPair<TSubclassOf<UPart>, ESubCategory> pair : GI->CategoryOfStaticPart)
 		{
 			if (pair.Value == Category) {
 				FString PartName = pair.Key.GetDefaultObject()->GetName();
 
 				PartName.RemoveFromStart("Default__");
 				PartName.RemoveFromEnd("_C");
-				//Tab->NameBlock->SetText(FText::FromString(PartName));
-				
-				//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(i, 100, FColor::Red, *(GI->Items.Contains(PartName)?FString("Found!"):FString("Not found")));
-				
-				//if (GI->Items.Contains(PartName)) {
-				//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(13, 10, FColor::Orange, GI->Items.Contains(PartName)?FString("Found part!!/!?!/1/1"):FString("Couldnt find part123123"));
+				ConstructDataObject(PartName, GI->Items.FindRef(PartName), GI, pair.Key, this);
 
-					ConstructDataObject(PartName, GI->Items.FindRef(PartName), GI, pair.Key, this);
-				//}
-				//ItemList->AddItem(Tab);
 			}
 			i++;
 		}
-		/*for (TSubclassOf<APart> Part : G)) {
-
-		}*/
 	}
 }
 
 void UMenu::SetDetails(FString ItemNameToSelect)
 {
 	if (GI == nullptr) { return; }
-	TSubclassOf<APart> FoundPart = GI->NameForPart.FindRef(ItemNameToSelect);
+	TSubclassOf<UPart> FoundPart = GI->NameForStaticPart.FindRef(ItemNameToSelect);
 	if (FoundPart != nullptr) {
-		FPartStats Stats = FoundPart.GetDefaultObject()->Details;
-		DetailsBox->SetText(FText::FromString(Stats.GetText()));
+		UPart *BasePart = FoundPart.GetDefaultObject();
+		//DetailsBox->SetText(FText::FromString(Stats.GetText()));
 		ItemNameBlock->SetText(FText::FromString(ItemNameToSelect));
-		DetailsCostBox->SetText(FText::FromString(FString("[") + FString::FromInt(Stats.Cost) + FString(" GB") + FString("]")));
+		DetailsCostBox->SetText(FText::FromString(FString("[") + FString::FromInt(BasePart->PartSettings.Cost) + FString(" GB") + FString("]")));
 	}
 }
 
 void UMenu::SelectItem(FString ItemToPurchase) {
 	SelectedPartName = ItemToPurchase;
-	TSubclassOf<APart> FoundPart = GI->NameForPart.FindRef(ItemToPurchase);
 	bool Locked = GI->Items.FindRef(ItemToPurchase);
+
+	TSubclassOf<UPart> FoundPart = GI->NameForStaticPart.FindRef(ItemToPurchase);
 	if (FoundPart != nullptr) {
 		if (Locked) {
-			FPartStats Stats = FoundPart.GetDefaultObject()->Details;
+			UPart *BasePart = FoundPart.GetDefaultObject();
 			PurchaseConfirmationBox->SetVisibility(ESlateVisibility::Visible);
 			ItemToPurchaseBox->SetText(FText::FromString(ItemToPurchase));
-			ItemCostDisplay->SetText(FText::FromString(FString::FromInt(Stats.Cost)));
+			ItemCostDisplay->SetText(FText::FromString(FString::FromInt(BasePart->PartSettings.Cost)));
 		}
 		else {
+			// Determine the mesh to be instanciated as
 			SelectedPart = FoundPart;
+
 		}
 	}
 }
@@ -379,16 +316,16 @@ void UMenu::SetPartPlacementImage()
 	PendingWelds.Empty();
 	LikeSockets.Empty();
 
-	if (SelectedPart.GetDefaultObject()->Category == ESubCategory::Cockpits) { // if we are a cockpit...
+	if (SelectedPart.GetDefaultObject()->PartSettings.Category == ESubCategory::Cockpits) { // if we are a cockpit...
 		IsPlacingCockpit = true;
 	}
 
 	if (CurrentTool != ECurrentTool::PlaceTool) {
-		BuilderPawn->PartImage->SetVisibility(false);
+		BuilderPawn->StaticPartImage->SetVisibility(false);
 		return;
 	}
 	else {
-		BuilderPawn->PartImage->SetVisibility(true);
+		BuilderPawn->StaticPartImage->SetVisibility(true);
 	}
 
 	FVector SnappedLoc; // Rounded Location
@@ -400,10 +337,10 @@ void UMenu::SetPartPlacementImage()
 	}
 	RoundVector(SnappedLoc);
 
-	BuilderPawn->PartImage->SetStaticMesh(SelectedPart.GetDefaultObject()->Mesh->GetStaticMesh());
+	BuilderPawn->StaticPartImage->SetStaticMesh(SelectedPart.GetDefaultObject()->PartStaticMesh->GetStaticMesh());
 
 	//IntendedPartTransform.SetLocation(RL);
-	FVector InitialLocation = BuilderPawn->PartImage->GetComponentLocation();
+	FVector InitialLocation = BuilderPawn->StaticPartImage->GetComponentLocation();
 
 	for (int32 i = 0; i < 5; i++)
 	{
@@ -411,15 +348,15 @@ void UMenu::SetPartPlacementImage()
 
 		RoundVector(CheckCollision);
 
-		BuilderPawn->PartImage->SetWorldLocation(CheckCollision);
-		BuilderPawn->PartImage->SetWorldRotation(IntendedRotation);
+		BuilderPawn->StaticPartImage->SetWorldLocation(CheckCollision);
+		BuilderPawn->StaticPartImage->SetWorldRotation(IntendedRotation);
 
 		TArray<UPrimitiveComponent*> Actors;
-		BuilderPawn->PartImage->GetOverlappingComponents(Actors);
+		BuilderPawn->StaticPartImage->GetOverlappingComponents(Actors);
 
 		if (Actors.Num() == 0) {
 			//IntendedPartTransform.SetLocation(OtherSocket);
-			BuilderPawn->PartImage->SetWorldLocation(InitialLocation);
+			BuilderPawn->StaticPartImage->SetWorldLocation(InitialLocation);
 			IntendedPartLocation = (CheckCollision);
 			CanPlaceItem = true;
 			break;
@@ -430,7 +367,7 @@ void UMenu::SetPartPlacementImage()
 		return; 
 	} //If the part isn't overlapping with anything then it can continue.
 
-	BuilderPawn->PartImage->SetWorldLocation(InitialLocation);
+	BuilderPawn->StaticPartImage->SetWorldLocation(InitialLocation);
 
 
 	//Check how many sockets the placing part is joined to
@@ -468,7 +405,7 @@ void UMenu::SetPartPlacementImage()
 		}
 	}
 
-	TArray<FName> SocketNames = SelectedPart.GetDefaultObject()->Mesh->GetAllSocketNames(); //Gets all the socket names for the sockets in the part that we are placing.
+	TArray<FName> SocketNames = SelectedPart.GetDefaultObject()->PartStaticMesh->GetAllSocketNames(); //Gets all the socket names for the sockets in the part that we are placing.
 	TArray<FVector> CurrentPartSocketLocations; //The locations of these sockets of the part we're placing.
 
 	TOptional <FVector> FoundRoot;
@@ -476,7 +413,7 @@ void UMenu::SetPartPlacementImage()
 	bool IsMovable = false;
 
 	for (FName SocketName : SocketNames) {
-		FVector SocketLocation = SelectedPart.GetDefaultObject()->Mesh->GetSocketLocation(SocketName);
+		FVector SocketLocation = SelectedPart.GetDefaultObject()->PartStaticMesh->GetSocketLocation(SocketName);
 		SocketLocation = IntendedPartRotation.RotateVector(SocketLocation);
 		SocketLocation += IntendedPartLocation;
 		RoundVectorForSocket(SocketLocation);
@@ -693,7 +630,7 @@ void UMenu::DeleteItem() {
 	if (HighlightedMesh != nullptr) {
 		FTransform PartTrans;
 		HighlightedMesh->GetInstanceTransform(HighlightedItem, PartTrans, true);
-		TSubclassOf<APart> DeletingClass = VehicleConstructor->PartToMesh.FindRef(HighlightedMesh);
+		TSubclassOf<UPart> DeletingClass = VehicleConstructor->PartToMesh.FindRef(HighlightedMesh);
 		if (*DeletingClass == nullptr) { return; }
 		FString DeletingName = FormatPartName(DeletingClass);
 		FVector PartLoc = PartTrans.GetLocation();
@@ -899,7 +836,7 @@ void UMenu::PlaceItem()
 
 		WeldedParts.Append(PendingWelds);
 
-		if (SelectedPart.GetDefaultObject()->Category == ESubCategory::Cockpits) {
+		if (SelectedPart.GetDefaultObject()->PartSettings.Category == ESubCategory::Cockpits) {
 			if (CockpitLocation.IsSet()) {
 				return;
 			}
@@ -958,7 +895,7 @@ void UMenu::PlaceItem()
 	//}
 }
 
-FString UMenu::FormatPartName(TSubclassOf<APart> PartClass) {
+FString UMenu::FormatPartName(TSubclassOf<UPart> PartClass) {
 	FString PartName = PartClass.GetDefaultObject()->GetName();
 	PartName.RemoveFromStart("Default__");
 	PartName.RemoveFromEnd("_C");
@@ -990,11 +927,19 @@ void UMenu::PurchaseItem() {
 void UMenu::GetStringFromEnum_Implementation(ESubCategory Enum, FString & StringRef){
 }
 
-void UMenu::ConstructDataObject_Implementation(const FString &ItemName, bool Locked, UPlatformerGameInstance *GI, TSubclassOf<APart> AssignedPart, const class UMenu* ParentSelector){
+void UMenu::ConstructDataObject_Implementation(const FString &ItemName, bool Locked, UPlatformerGameInstance *GI, TSubclassOf<UPart> AssignedPart, const class UMenu* ParentSelector){
 }
 
 void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical) {
 	LoadGameDataFromFile(Path, Data);
+
+	/*int yeet = 40;
+	for (TSubclassOf<UPart> *T : Data.Parts) {
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(yeet, 5, FColor::Orange, T->GetDefaultObject()->BuildTransform.ToString());
+		yeet++;
+
+	}*/
+
 	LoadedVehiclePath = Path;
 	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(15, 5, FColor::Yellow, FString("Loading Vehicle..."));
 	WeldedParts = Data.WeldedParts;
@@ -1007,7 +952,7 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical
 		VehicleConstructor->RemoveMeshes();
 
 		for (TPair<FString, TArray<FTransform>> Pair : PartData) {
-			TSubclassOf<APart> *Part = GI->NameForPart.Find(Pair.Key);
+			TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(Pair.Key);
 			if (Part != nullptr) {
 				UInstancedStaticMeshComponent *InstancedComponent = VehicleConstructor->CreateMesh(*Part);
 				if (&InstancedComponent != nullptr) {
@@ -1028,6 +973,13 @@ void UMenu::SaveLoadData(FArchive& Ar, FVehicleData& DataToSaveLoad)
 	Ar << DataToSaveLoad.MovablePartToRoot;
 	Ar << DataToSaveLoad.ParentChildHierachy;
 	Ar << DataToSaveLoad.CockpitLocation;
+	Ar << DataToSaveLoad.Parts;
+
+	
+	//TMap<TSubclassOf<UPart>, TArray<FTransform>> test;
+	//Ar << test;
+	////New variables to be implemented:
+	
 }
 
 bool UMenu::SaveGameDataToFile(const FString& FullFilePath, FBufferArchive& ToBinary, FVehicleData& DataToSaveLoad)
@@ -1066,10 +1018,7 @@ bool UMenu::SaveGameDataToFile(const FString& FullFilePath, FBufferArchive& ToBi
 	return false;
 }
 
-bool UMenu::LoadGameDataFromFile(
-	const FString& FullFilePath,
-	FVehicleData& DataToSaveLoad
-) {
+bool UMenu::LoadGameDataFromFile(const FString& FullFilePath, FVehicleData& DataToSaveLoad) {
 	//Load the data array,
 	// 	you do not need to pre-initialize this array,
 	//		UE4 C++ is awesome and fills it 

@@ -28,7 +28,7 @@ public:
 	int32 MaxPlayers = 3;
 	void Validate();
 
-	TArray<TSubclassOf<class APart>> Parts;
+	TArray<TSubclassOf<class UPart>> Parts;
 
 	TSubclassOf<class UUserWidget> MenuUIClass;
 };

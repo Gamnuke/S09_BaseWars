@@ -22,7 +22,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class UPlatformerGameInstance *GI;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		TSubclassOf<class APart> AssignedPart;
+		TSubclassOf<class UPart> AssignedPart;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class UMenu *ParentSelector;
 };
