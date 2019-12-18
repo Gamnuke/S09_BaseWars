@@ -116,28 +116,28 @@ void UPlatformerGameInstance::ValidateItems()
 			
 		}
 		ConstructorHelpers::FClassFinder<USkeletalPart> FoundSkeletalPart(*(FString("/Game") + SearchDir));
-		if (FoundSkeletalPart.Class != NULL)
-		{
-			//UE_LOG(LogTemp, Warning, TEXT("FOUND %s"), *FPaths::GetBaseFilename(Dir));
-			//UE_LOG(LogTemp, Warning, TEXT("Pended path %s"), *(FString("/Game") + SearchDir));
-			Files += FPaths::GetBaseFilename(Dir) + FString(", ");
+		//if (FoundSkeletalPart.Class != NULL)
+		//{
+		//	//UE_LOG(LogTemp, Warning, TEXT("FOUND %s"), *FPaths::GetBaseFilename(Dir));
+		//	//UE_LOG(LogTemp, Warning, TEXT("Pended path %s"), *(FString("/Game") + SearchDir));
+		//	Files += FPaths::GetBaseFilename(Dir) + FString(", ");
 
-			FString PartName = FoundSkeletalPart.Class.GetDefaultObject()->GetName();
+		//	FString PartName = FoundSkeletalPart.Class.GetDefaultObject()->GetName();
 
-			PartName.RemoveFromStart("Default__");
-			PartName.RemoveFromEnd("_C");
+		//	PartName.RemoveFromStart("Default__");
+		//	PartName.RemoveFromEnd("_C");
 
-			TArray<FString> Files;
+		//	TArray<FString> Files;
 
-			CategoryOfSkeletalPart.Add(FoundSkeletalPart.Class, FoundSkeletalPart.Class.GetDefaultObject()->Category);
-			NameForSkeletalPart.Add(PartName, FoundSkeletalPart.Class);
-			Items.Add(PartName, FoundSkeletalPart.Class.GetDefaultObject()->bLockedByDefault);
+		//	CategoryOfSkeletalPart.Add(FoundSkeletalPart.Class, FoundSkeletalPart.Class.GetDefaultObject()->Category);
+		//	NameForSkeletalPart.Add(PartName, FoundSkeletalPart.Class);
+		//	Items.Add(PartName, FoundSkeletalPart.Class.GetDefaultObject()->bLockedByDefault);
 
-			FString Ref;
-			GetStringFromEnum(FoundSkeletalPart.Class.GetDefaultObject()->Category, Ref);
-			UE_LOG(LogTemp, Warning, TEXT("Part: %s, Category: %s, Status: %s"), *FoundSkeletalPart.Class.GetDefaultObject()->GetName(), *Ref, *(FoundSkeletalPart.Class.GetDefaultObject()->bLockedByDefault ? FString("Locked") : FString("Unlocked")));
+		//	FString Ref;
+		//	GetStringFromEnum(FoundSkeletalPart.Class.GetDefaultObject()->Category, Ref);
+		//	UE_LOG(LogTemp, Warning, TEXT("Part: %s, Category: %s, Status: %s"), *FoundSkeletalPart.Class.GetDefaultObject()->GetName(), *Ref, *(FoundSkeletalPart.Class.GetDefaultObject()->bLockedByDefault ? FString("Locked") : FString("Unlocked")));
 
-		}
+		//}
 	}
 }
 void UPlatformerGameInstance::GetStringFromEnum_Implementation(ESubCategory Enum, FString & StringRef) {}

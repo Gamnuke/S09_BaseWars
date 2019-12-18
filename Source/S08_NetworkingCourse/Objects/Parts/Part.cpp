@@ -5,6 +5,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/SceneComponent.h"
+#include "DrawDebugHelpers.h"
 
 // Sets default values
 UPart::UPart()
@@ -26,6 +27,7 @@ void UPart::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	DrawDebugPoint(GetWorld(), GetComponentLocation(), 20, FColor::Green, false, 100, 100);
 }
 
 // Called every frame

@@ -78,8 +78,13 @@ public:
 		class USpringArmComponent* SpringArm;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UCameraComponent* Camera;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		class USceneComponent *PartImageHolder;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UStaticMeshComponent *StaticPartImage;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		class USkeletalMeshComponent *SkeletalPartImage;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool CanPlace;

@@ -9,6 +9,7 @@
 #include "GameMechanics/PlatformerGameInstance.h"
 #include "GameMechanics/GamePlayerController.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "Engine/Engine.h"
 
 // Sets default values
@@ -23,8 +24,14 @@ ABuilderPawn::ABuilderPawn()
 	Camera = CreateDefaultSubobject<UCameraComponent>(FName("Camera"));
 	Camera->SetupAttachment(SpringArm);
 
-	StaticPartImage = CreateDefaultSubobject<UStaticMeshComponent>(FName("PartImage"));
-	StaticPartImage->SetupAttachment(GetRootComponent());
+	PartImageHolder = CreateDefaultSubobject<USceneComponent>(FName("PartImageHolder"));
+	PartImageHolder->SetupAttachment(GetRootComponent());
+
+	StaticPartImage = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticPartImage"));
+	StaticPartImage->SetupAttachment(PartImageHolder);
+
+	SkeletalPartImage = CreateDefaultSubobject<USkeletalMeshComponent>(FName("SkeletalPartImage"));
+	SkeletalPartImage->SetupAttachment(PartImageHolder);
 }
 
 // Called when the game starts or when spawned

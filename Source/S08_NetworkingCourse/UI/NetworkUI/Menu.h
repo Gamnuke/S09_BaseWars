@@ -12,7 +12,13 @@
 /**
  * 
  */
-
+USTRUCT(Blueprintable)
+struct FStructTest {
+	GENERATED_USTRUCT_BODY();
+	//Wheel
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) float Speed;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FVector something;
+};
 UCLASS()
 class S08_NETWORKINGCOURSE_API UMenu : public UUserWidget
 {
@@ -175,11 +181,10 @@ public:
 	TMap<FVector, TArray<FVector>> WeldedParts; // Location of first part and and the other parts that are welded to this part.
 	TMap<FVector, TArray<FVector>> ParentChildHierachy;
 	TMap<FVector, FVector> MovablePartToRoot; //Movable part : Root part that the movable is connected to.
-	TMap<FString, TArray<FTransform>> PartData; //Name of part : The transforms of each instance of the part.
+	TMap<FString, TArray<FTransform>> NonModifiablePartData; //Name of part : The transforms of each instance of the part.
+	TMap < FString, TArray<FPartStats> > ModifiablePartStats;
+	//TMap<FVector, FPartStats> FunctionalPartSettings; // The part setting for each part. If the part is in the structural category or if the part at the location
 
-	TMap<FVector, FPartStats> FunctionalPartSettings; // The part setting for each part. If the part is in the structural category or if the part at the location
-	TMap<FVector, class USkeletalMeshComponent*> BuiltSkeletalMeshes;
-	TMap<FVector, class UStaticMeshComponent*> BuiltStaticMeshes;
 	//we're looking for isnt in this variable, then take the default settings for the part.
 
 	//TODO TMap<UInstancedStaticMeshComponent, FPartStats> //In the future we should group blocks during building phase to allow instanced blocks to be modified, EG: Color.
@@ -189,15 +194,15 @@ public:
 
 	//-----------------------//
 
-	//Temporary variables//
+	//Location of movable part : Location of root
 	TOptional<TMap<FVector, FVector>> PendingMovablePartToRoot;
 	FVector PendingParent;
 	TMap<FVector, TArray<FVector>> PendingWelds;
-
-
 	//-----------------------//
 
 	TArray<FVector> LikeSockets;
 
 	TOptional<FVector> PreviousLocation;
+
 };
+

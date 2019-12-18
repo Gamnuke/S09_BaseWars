@@ -7,17 +7,20 @@
 #include "SceneManagement.h"
 #include "WheeledVehicle.h"
 #include "WheeledVehicleTest.h"
+#include "BasicTypes.h"
 #include "VehicleConstructor.generated.h"
 
 USTRUCT()
 struct FVehicleData {
 	GENERATED_USTRUCT_BODY();
 
-	TMap<FString, TArray<FTransform>> PartData;
+	TMap<FString, TArray<FTransform>> NonModifiablePartData;
 	TMap<FVector, TArray<FVector>> WeldedParts;
 	TMap<FVector, TArray<FVector>> ParentChildHierachy;
 	TMap<FVector, FVector> MovablePartToRoot;
 	TOptional<FVector> CockpitLocation;
+	TMap < FString, TArray<FPartStats>> ModifiablePartStats;
+	FPartStats Yeet;
 
 	TArray<TSubclassOf<class UPart*>> Parts;
 };
@@ -51,6 +54,8 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<class UInstancedStaticMeshComponent*> InstancedMeshes;
+	TMap<TSubclassOf<class UPart>*, FTransform> BuiltFunctionalParts;
+	TArray<TSubclassOf<class UPart>*> BuiltFunctionalPartMeshes;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		TArray<class UWidgetComponent *> SocketIndicators;

@@ -228,7 +228,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 
 			//---Make Parent---//
 			FTransform PartTransform;
-			FString FoundPartName = GetPartNameFromLocation(Pair.Key, LoadedData.PartData, PartTransform);
+			FString FoundPartName = GetPartNameFromLocation(Pair.Key, LoadedData.NonModifiablePartData, PartTransform);
 			RoundStruct(PartTransform, 50);
 
 			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(o, 1000.0f, FColor::Cyan, FString(":::") + FoundPartName);
@@ -345,7 +345,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 				bool WasChildNull = false;
 
 				FTransform ChildPartTransform;
-				FString FoundPartName = GetPartNameFromLocation(ChildLoc, LoadedData.PartData, ChildPartTransform);
+				FString FoundPartName = GetPartNameFromLocation(ChildLoc, LoadedData.NonModifiablePartData, ChildPartTransform);
 				FString ChildName;
 				RoundStruct(ChildPartTransform, 50);
 
@@ -597,7 +597,8 @@ void AVehicleConstructor::Tick(float DeltaTime)
 }
 
 UInstancedStaticMeshComponent *AVehicleConstructor::CreateMesh(TSubclassOf<UPart> SelectedPart) {
-	UStaticMesh *MeshToCreate = SelectedPart.GetDefaultObject()->PartStaticMesh->GetStaticMesh();
+	UStaticMesh *MeshToCreate = SelectedPart.GetDefaultObject()->PartSettings.StaticMesh;
+	if (MeshToCreate == nullptr) { return nullptr; }
 	TArray<FKBoxElem> BoxElements = MeshToCreate->BodySetup->AggGeom.BoxElems;
 	//InstancedMeshes[0]->GetStaticMesh()->
 	//UE_LOG(LogTemp, Warning, TEXT("Creating Mesh!!!"));
@@ -608,7 +609,7 @@ UInstancedStaticMeshComponent *AVehicleConstructor::CreateMesh(TSubclassOf<UPart
 		}
 	}
 	UInstancedStaticMeshComponent *NewMesh = NewObject<UInstancedStaticMeshComponent>(this, FName(*MeshToCreate->GetName())); // If existing mesh hasn't been found, create one.
-	UMaterialInterface * Material = SelectedPart.GetDefaultObject()->PartStaticMesh->GetMaterial(0);
+	UMaterialInterface * Material = SelectedPart.GetDefaultObject()->PartSettings.StaticMesh->GetMaterial(0);
 
 	NewMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	if (Material != nullptr) {
@@ -708,7 +709,7 @@ void AVehicleConstructor::CreateMainStructure(ASimulatedVehicle *NewVehicle, FVe
 
 
 			FTransform PartTransform;
-			FString FoundPartName = GetPartNameFromLocation(ScanningPart, LoadedData.PartData, PartTransform);
+			FString FoundPartName = GetPartNameFromLocation(ScanningPart, LoadedData.NonModifiablePartData, PartTransform);
 			RoundStruct(PartTransform, 50);
 
 			TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(FoundPartName);

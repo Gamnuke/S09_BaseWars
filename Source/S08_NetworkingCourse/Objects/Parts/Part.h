@@ -26,10 +26,12 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class USceneComponent *Scene;
 
+	class UStaticPartMesh *StaticMeshRef;
+	class USkeletalPartMesh *SkeletalMeshRef;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction) override;
