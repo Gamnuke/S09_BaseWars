@@ -7,7 +7,6 @@
 #include "UI/NetworkUI/Menu.h"
 #include "Public/Misc/Optional.h"
 #include "Components/SceneComponent.h"
-#include "BasicTypes.h"
 #include "Part.generated.h"
 
 UCLASS(Blueprintable, BlueprintType)
@@ -26,8 +25,12 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class USceneComponent *Scene;
 
-	class UStaticPartMesh *StaticMeshRef;
-	class USkeletalPartMesh *SkeletalMeshRef;
+	UPROPERTY()
+		class UMenu *MenuRef;
+	UPROPERTY()
+		class UStaticPartMesh *StaticMeshRef;
+	UPROPERTY()
+		class USkeletalPartMesh *SkeletalMeshRef;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -40,11 +43,11 @@ public:
 	//	FPartStats Details = FPartStats();
 
 public:
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Settings) FPartStats PartSettings = FPartStats();
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Settings) struct FPartStats PartSettings;
 
 	//Functions
 	virtual void OnSelected();
-	virtual void AllowVariableEdit(float &VariableToEdit, FVector2D Limits);
-	virtual void AllowVariableEdit(int32 &VariableToEdit, FVector2D Limits);
-	virtual void AllowVariableEdit(FString &VariableToEdit, int32 Limits);
+	virtual void AllowVariableEdit(FComplexFloat &VariableToEdit);
+	virtual void AllowVariableEdit(FComplexInt32 &VariableToEdit);
+	virtual void AllowVariableEdit(FComplexString &VariableToEdit);
 };

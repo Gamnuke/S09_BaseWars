@@ -7,5 +7,6 @@ void UTurretBasePart::OnSelected()
 {
 	Super::OnSelected();
 
-	//AllowVariableEdit(TurnSpeed);
+	AllowVariableEdit(PartSettings.ModifiableVariables.RotationSpeed);
+
 }

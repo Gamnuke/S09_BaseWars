@@ -4,9 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "BasicTypes.h"
 #include "Gameplay/PlayerCharacter/BuilderPawn.h"
 #include "Objects/Parts/VehicleConstructor.h"
-#include "BasicTypes.h"
 #include "Menu.generated.h"
 
 /**
@@ -30,6 +30,7 @@ protected:
 public:
 	UFUNCTION(BlueprintCallable)
 	void BlueprintTick(FGeometry Geometry, float DeltaTime);
+	void ApplyNewTool();
 	void RoundVector(FVector &RL);
 	void RoundVectorForSocket(FVector & RL);
 	void RotateItem(FRotator DeltaRot);
@@ -85,6 +86,9 @@ public:
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere)
 		class UTextBlock *GBDisplay;
 
+	UPROPERTY()
+	TArray<class UComplexFloatSetting*> SettingTabs;
+
 	// Confirmation box widgets
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UBorder *PurchaseConfirmationBox;
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UWidgetSwitcher *ConfirmationBoxSwitcher;
@@ -104,6 +108,19 @@ public:
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UButton *OverrideSaveButton;
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UScrollBox *VehiclesBox;
 
+	// Tool indicators
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UUserWidget *PlaceToolW;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UUserWidget *DeleteToolW;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UUserWidget *ConfigureToolW;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UWidget *ToolSelection;
+
+	//Part setting menu
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite, EditAnywhere) class UPartSettingMenu *PartSettingMenu;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere) TSubclassOf<class UUserWidget> ComplexFloatTab;
+
+
+	class UUserWidget *ToolToSelect;
+
 	UFUNCTION(BlueprintCallable)
 		void SetDetails(FString ItemNameToSelect);
 	UFUNCTION()
@@ -119,6 +136,8 @@ public:
 	int32 MessageIndex = 0;
 	void OnLeftMouseClick();
 
+	void ConfigureItem();
+
 	void DeleteItem();
 
 	void FilterFloatingParts(TArray<FVector> &FloatingParts);
@@ -128,7 +147,6 @@ public:
 	FString FormatPartName(TSubclassOf<UPart> PartClass);
 
 	void FindVehicleConstructor();
-
 
 public:
 	ESubCategory CurrentCategory;
@@ -183,6 +201,9 @@ public:
 	TMap<FVector, FVector> MovablePartToRoot; //Movable part : Root part that the movable is connected to.
 	TMap<FString, TArray<FTransform>> NonModifiablePartData; //Name of part : The transforms of each instance of the part.
 	TMap < FString, TArray<FPartStats> > ModifiablePartStats;
+
+	//Physical refernces/variables
+	TArray<UPart*> ExistingModifiableParts;
 	//TMap<FVector, FPartStats> FunctionalPartSettings; // The part setting for each part. If the part is in the structural category or if the part at the location
 
 	//we're looking for isnt in this variable, then take the default settings for the part.

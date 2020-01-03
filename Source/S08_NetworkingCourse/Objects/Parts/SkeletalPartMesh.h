@@ -15,5 +15,6 @@ class S08_NETWORKINGCOURSE_API USkeletalPartMesh : public USkeletalMeshComponent
 	GENERATED_BODY()
 	
 public:
-	class UPart *PartRef;
+	UPROPERTY()
+		class UPart *PartRef;
 };

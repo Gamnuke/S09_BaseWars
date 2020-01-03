@@ -15,5 +15,6 @@ class S08_NETWORKINGCOURSE_API UStaticPartMesh : public UStaticMeshComponent
 	GENERATED_BODY()
 
 public:
-	class UPart *PartRef;
+	UPROPERTY()
+		class UPart *PartRef;
 };

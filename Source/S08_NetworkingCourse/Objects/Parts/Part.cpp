@@ -5,7 +5,12 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/SceneComponent.h"
+#include "Components/VerticalBox.h"
+#include "Components/VerticalBoxSlot.h"
+#include "UI/BuildModeUI/PartSettingUI/ComplexFloatSetting.h"
 #include "DrawDebugHelpers.h"
+#include "BasicTypes.h"
+#include "UI/BuildModeUI/PartSettingUI/PartSettingMenu.h"
 
 // Sets default values
 UPart::UPart()
@@ -41,17 +46,26 @@ void UPart::OnSelected()
 {
 }
 
-void UPart::AllowVariableEdit(float & VariableToEdit, FVector2D Limits)
+void UPart::AllowVariableEdit(FComplexFloat &VariableToEdit)
 {
 	// Create a slider to edit a variable on the Part.
+	//UUserWidget *NewWidget = CreateWidget(MenuRef, MenuRef->ComplexFloatTab, MakeUniqueObjectName(MenuRef, MenuRef->ComplexFloatTab, FName("ComplexFloatTab")));
+	//MenuRef->PartSettingMenu->DetailContainer->AddChild(NewWidget);
 }
 
-void UPart::AllowVariableEdit(int32 & VariableToEdit, FVector2D Limits)
+void UPart::AllowVariableEdit(FComplexInt32 &VariableToEdit)
 {
 	// Create a slider to edit a variable on the Part.
+	UComplexFloatSetting *NewWidget = CreateWidget<UComplexFloatSetting>(MenuRef, MenuRef->ComplexFloatTab, MakeUniqueObjectName(MenuRef, MenuRef->ComplexFloatTab, FName("ComplexFloatTab")));
+	MenuRef->SettingTabs.Add(NewWidget);
+	MenuRef->PartSettingMenu->DetailContainer->AddChild(NewWidget);
+	FSlateChildSize Size = FSlateChildSize();
+	Size.SizeRule = ESlateSizeRule::Fill;
+	Cast<UVerticalBoxSlot>(NewWidget->Slot)->SetSize(Size);
+	NewWidget->SetupSetting(&VariableToEdit);
 }
 
-void UPart::AllowVariableEdit(FString & VariableToEdit, int32 CharacterLimit)
+void UPart::AllowVariableEdit(FComplexString &VariableToEdit)
 {
 	// Create a slider to edit a variable on the Part.
 }

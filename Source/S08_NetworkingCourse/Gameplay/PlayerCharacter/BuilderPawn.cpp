@@ -160,6 +160,7 @@ void ABuilderPawn::SetTool(ECurrentTool Tool)
 	CurrentTool = Tool;
 	if (MenuWidgetRef != nullptr) {
 		MenuWidgetRef->CurrentTool = Tool;
+		MenuWidgetRef->ApplyNewTool();
 	}
 }
 

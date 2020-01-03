@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Serialization/Archive.h"
+
 #include "BasicTypes.generated.h"
 
 UENUM(BlueprintType)
@@ -25,73 +26,79 @@ USTRUCT(Blueprintable)
 struct FComplexInt32 {
 	GENERATED_USTRUCT_BODY();
 	//Basic
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FString VariableName;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) int32 Value;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FVector2D Limit = FVector2D(0, 100);
-	
-	void SaveLoadValue(FArchive& Ar) {
-		Ar << Value;
+
+	FComplexInt32(){}
+	FComplexInt32(const FString &NewName, const int32 &NewValue , const FVector2D &NewLimit) : VariableName(NewName), Value(NewValue), Limit(NewLimit) {
+		
+	}
+
+	void ChangeValue(int32 NewValue) {
+		Value = FMath::Clamp(NewValue, FMath::RoundToInt(Limit.X), FMath::RoundToInt(Limit.Y));
+		
 	}
 };
 USTRUCT(Blueprintable)
 struct FComplexFloat {
 	GENERATED_USTRUCT_BODY();
 	//Basic
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FString VariableName;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) float Value;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FVector2D Limit = FVector2D(0.0f, 100.0f);
-	void SaveLoadValue(FArchive& Ar) {
-		Ar << Value;
+	FComplexFloat() {}
+	FComplexFloat(const FString &NewName, const float &NewValue, const FVector2D &NewLimit) : VariableName(NewName), Value(NewValue), Limit(NewLimit) {
+
 	}
+
 };
 USTRUCT(Blueprintable)
 struct FComplexString {
 	GENERATED_USTRUCT_BODY();
 	//Basic
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FString VariableName;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FString Value;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) int32 CharacterLimit = 100;
-	void SaveLoadValue(FArchive& Ar) {
-		Ar << Value;
+	FComplexString() {}
+	FComplexString(const FString &NewName, const FString &NewValue, const int32 &NewLimit) : VariableName(NewName), Value(NewValue), CharacterLimit(NewLimit) {
+
 	}
+
+	
+
 };
 
 USTRUCT(Blueprintable)
 struct FUnmodifiableVariables {
 	GENERATED_USTRUCT_BODY();
 	//Basic
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Health;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Mass;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Health = FComplexInt32("Health", 20, FVector2D::ZeroVector);
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Mass = FComplexInt32("Mass", 20, FVector2D::ZeroVector);
 
 	//Wheel
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Traction;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Radius;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Traction = FComplexInt32("Traction", 20, FVector2D::ZeroVector);
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Radius = FComplexInt32("Radius", 20, FVector2D::ZeroVector);
 
-	void SaveLoadVariables(FArchive& Ar) {
-		Health.SaveLoadValue(Ar);
-		Mass.SaveLoadValue(Ar);
-		Traction.SaveLoadValue(Ar);
-		Radius.SaveLoadValue(Ar);
-	}
+	FUnmodifiableVariables() {};
+
 };
 
 USTRUCT(Blueprintable)
 struct FModifiableVariables {
 	GENERATED_USTRUCT_BODY();
 	//Wheel
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Speed;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Acceleration;
-
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Speed = FComplexInt32("Speed", 20, FVector2D::ZeroVector);
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Acceleration = FComplexInt32("Acceleration", 20, FVector2D::ZeroVector);
+	
 	//Rotary Module
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 RotationSpeed;
-
-	void SaveLoadVariables(FArchive& Ar) {
-		Speed.SaveLoadValue(Ar);
-		Acceleration.SaveLoadValue(Ar);
-		RotationSpeed.SaveLoadValue(Ar);
-	}
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 RotationSpeed = FComplexInt32("RotationSpeed", 20, FVector2D::ZeroVector);
+	FModifiableVariables() {};
 };
 
-FORCEINLINE FArchive& operator<<(FArchive &Ar, FComplexInt32 &SaveStatsData) { Ar << SaveStatsData.Value; return Ar; }
-FORCEINLINE FArchive& operator<<(FArchive &Ar, FComplexFloat &SaveStatsData) { Ar << SaveStatsData.Value; return Ar; }
-FORCEINLINE FArchive& operator<<(FArchive &Ar, FComplexString &SaveStatsData) { Ar << SaveStatsData.Value; return Ar; }
+FORCEINLINE FArchive& operator<<(FArchive &Ar, FComplexInt32 &SaveStatsData) { Ar << SaveStatsData.Value; Ar << SaveStatsData.Limit; return Ar; }
+FORCEINLINE FArchive& operator<<(FArchive &Ar, FComplexFloat &SaveStatsData) { Ar << SaveStatsData.Value; Ar << SaveStatsData.Limit; return Ar; }
+FORCEINLINE FArchive& operator<<(FArchive &Ar, FComplexString &SaveStatsData) { Ar << SaveStatsData.Value; Ar << SaveStatsData.CharacterLimit; return Ar; }
 FORCEINLINE FArchive& operator<<(FArchive &Ar, FModifiableVariables &SaveStatsData) {
 	Ar << SaveStatsData.Speed;
 	Ar << SaveStatsData.Acceleration;

@@ -2,9 +2,7 @@
 
 
 #include "Menu.h"
-#include "BasicTypes.h"
 #include "GameMechanics/PlatformerGameInstance.h"
-#include "Objects/Parts/SkeletalPart.h"
 #include "Objects/Parts/VehicleConstructor.h"
 #include "Objects/Parts/Part.h"
 #include "UI/SelectorTab.h"
@@ -32,10 +30,33 @@
 #include "Objects/Parts/StaticPartMesh.h"
 #include "Engine/StaticMeshSocket.h"
 #include "Engine/SkeletalMeshSocket.h"
+#include "Blueprint/SlateBlueprintLibrary.h"
+#include "Objects/Parts/Movement/Wheel.h"
+#include "Objects/Parts/Weaponry/TurretBasePart.h"
+#include "UI/BuildModeUI/PartSettingUI/PartSettingMenu.h"
+#include "UI/BuildModeUI/PartSettingUI/ComplexFloatSetting.h"
 
 void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 {
 	FindVehicleConstructor();
+
+	FVector2D selectionViewportLoc;
+	FVector2D selectionPixelPos;
+
+	if (ToolToSelect != nullptr) {
+		USlateBlueprintLibrary::LocalToViewport(GetWorld(), ToolToSelect->GetCachedGeometry(), FVector2D(0, 0), selectionPixelPos, selectionViewportLoc);
+		ToolSelection->SetRenderTranslation(
+			FMath::Vector2DInterpTo(
+				ToolSelection->RenderTransform.Translation,
+				selectionViewportLoc,
+				DeltaTime,
+				30
+			)
+		);
+	}
+
+	float throbVal = 1 + FMath::Sin(GetWorld()->GetTimeSeconds() * 5) * 0.05;
+	ToolSelection->SetRenderScale(FVector2D(throbVal,throbVal));
 
 	if (SkeletonVisibilityValue != 0) {
 		for (TPair<FVector, TArray<FVector>> pair : WeldedParts) {
@@ -103,46 +124,7 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 
 			if (PreviousMouseLocation != RL) {
 				PreviousMouseLocation = RL;
-				switch (CurrentTool)
-				{
-				case PlaceTool:
-					GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Place Tool"));
-					if (SelectedPart != nullptr) {
-						SetPartPlacementImage();
-					}
-					/*if (BuilderPawn != nullptr && BuilderPawn->PartImageHolder != nullptr) {
-						BuilderPawn->StaticPartImage->SetVisibility(true);
-						BuilderPawn->SkeletalPartImage->SetVisibility(true);
-					}*/
-
-					break;
-				case DeleteTool:
-					GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Delete Tool"));
-					BuilderPawn->StaticPartImage->SetVisibility(false);
-					BuilderPawn->SkeletalPartImage->SetVisibility(false);
-
-					HighlightPart();
-
-					break;
-				case ConfigureTool:
-					GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Configure Tool"));
-					BuilderPawn->StaticPartImage->SetVisibility(false);
-					BuilderPawn->SkeletalPartImage->SetVisibility(false);
-
-					HighlightPart();
-
-					break;
-				case PaintTool:
-					GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Paint Tool"));
-					BuilderPawn->StaticPartImage->SetVisibility(false);
-					BuilderPawn->SkeletalPartImage->SetVisibility(false);
-					
-					HighlightPart();
-
-					break;
-				default:
-					break;
-				}
+				ApplyNewTool();
 			}
 
 		}
@@ -163,6 +145,52 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 
 	}
 
+}
+void UMenu::ApplyNewTool()
+{
+	switch (CurrentTool)
+	{
+	case PlaceTool:
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Place Tool"));
+		if (SelectedPart != nullptr) {
+			SetPartPlacementImage();
+		}
+		ToolToSelect = PlaceToolW;
+		/*if (BuilderPawn != nullptr && BuilderPawn->PartImageHolder != nullptr) {
+		BuilderPawn->StaticPartImage->SetVisibility(true);
+		BuilderPawn->SkeletalPartImage->SetVisibility(true);
+		}*/
+
+		break;
+	case DeleteTool:
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Delete Tool"));
+		BuilderPawn->StaticPartImage->SetVisibility(false);
+		BuilderPawn->SkeletalPartImage->SetVisibility(false);
+
+		HighlightPart();
+		ToolToSelect = DeleteToolW;
+
+		break;
+	case ConfigureTool:
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Configure Tool"));
+		BuilderPawn->StaticPartImage->SetVisibility(false);
+		BuilderPawn->SkeletalPartImage->SetVisibility(false);
+
+		HighlightPart();
+		ToolToSelect = ConfigureToolW;
+
+		break;
+	case PaintTool:
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Paint Tool"));
+		BuilderPawn->StaticPartImage->SetVisibility(false);
+		BuilderPawn->SkeletalPartImage->SetVisibility(false);
+
+		HighlightPart();
+
+		break;
+	default:
+		break;
+	}
 }
 void UMenu::RoundVector(FVector &RL)
 {
@@ -235,9 +263,29 @@ void UMenu::OnOverrideSave() {
 		Data.MovablePartToRoot = MovablePartToRoot;
 		Data.ParentChildHierachy = ParentChildHierachy;
 		Data.NonModifiablePartData = NonModifiablePartData;
-		Data.ModifiablePartStats = ModifiablePartStats;
 		Data.WeldedParts = WeldedParts;
 		Data.CockpitLocation = CockpitLocation;
+
+		for (UPart *PartToSave : ExistingModifiableParts) {
+			FString PartName = PartToSave->GetClass()->GetName();
+			PartName.RemoveFromStart("Default__");
+			PartName.RemoveFromEnd("_C");
+			VehicleConstructor->DebugMessage(PartToSave->PartSettings.PartLocation.ToString());
+			TArray<FPartStats> *ExistingArray = Data.ModifiablePartStats.Find(PartName);
+			if (ExistingArray == nullptr) {
+				TArray<FPartStats> NewStats;
+				NewStats.Add(PartToSave->PartSettings);
+				Data.ModifiablePartStats.Add(PartName, NewStats);
+			}
+			else {
+				TArray<FPartStats> NewStats = *ExistingArray;
+				NewStats.Add(PartToSave->PartSettings);
+				Data.ModifiablePartStats.Remove(PartName);
+				Data.ModifiablePartStats.Add(PartName, NewStats);
+			}
+		}
+		//Data.ModifiablePartStats = ModifiablePartStats;
+
 		
 		FPartStats NewStatsTest = FPartStats();
 		NewStatsTest.NameTest = "YEEEEEEET";
@@ -718,9 +766,7 @@ void UMenu::HighlightPart()
 	}
 }
 
-void UMenu::CreateIndicator_Implementation(FVector PartSocket)
-{
-}
+void UMenu::CreateIndicator_Implementation(FVector PartSocket){}
 
 void UMenu::OnLeftMouseClick() {
 	switch (CurrentTool)
@@ -732,7 +778,7 @@ void UMenu::OnLeftMouseClick() {
 		DeleteItem();
 		break;
 	case ConfigureTool:
-		//ConfigureItem();
+		ConfigureItem();
 		break;
 	case PaintTool:
 		//PaintItem();
@@ -741,6 +787,43 @@ void UMenu::OnLeftMouseClick() {
 		break;
 	}
 }
+
+void UMenu::ConfigureItem() {
+	if (OutHit.GetComponent() != nullptr) {
+		USkeletalPartMesh *FoundSkeleMesh = Cast<USkeletalPartMesh>(OutHit.GetComponent());
+		UStaticPartMesh *FoundStaticMesh = Cast<UStaticPartMesh>(OutHit.GetComponent());
+		UPart *PartRef;
+		if (FoundSkeleMesh != nullptr) {
+			PartRef = FoundSkeleMesh->PartRef;
+			/*PartSettingMenu->DetailContainer->ClearChildren();
+			PartRef->MenuRef = this; 
+			PartRef->OnSelected();*/
+		}
+		else if (FoundStaticMesh != nullptr) {
+			PartRef = FoundStaticMesh->PartRef;
+			/*PartSettingMenu->DetailContainer->ClearChildren();
+			PartRef->MenuRef = this; 
+			PartRef->OnSelected();*/
+		}
+		else {
+			return;
+		}
+		if (PartRef == nullptr) { return; }
+		//VehicleConstructor->DebugMessage(PartRef->GetClass()->GetFullName());
+		
+		/*if (Cast<UWheel>(PartRef) != nullptr) { Cast<UWheel>(PartRef)->OnSelected(); }
+		else { VehicleConstructor->DebugMessage("RIP"); }
+		if (Cast<class UTurretBasePart>(PartRef) != nullptr) { Cast<class UTurretBasePart>(PartRef)->OnSelected(); }*/
+		for (UComplexFloatSetting *S : SettingTabs) {
+			S->Destruct();
+		}
+		SettingTabs.Empty();
+		PartSettingMenu->DetailContainer->ClearChildren(); 
+		PartRef->MenuRef = this;
+		PartRef->OnSelected();
+	}
+}
+
 
 void UMenu::DeleteItem() {
 	if (HighlightedMesh != nullptr) {
@@ -979,14 +1062,16 @@ void UMenu::PlaceItem()
 		// If the part is either of these, make a separate UPart component, make the respective mesh and parent it to the mesh.
 		if (PlacingPartSettings.bModifiable || PlacingPartSettings.bUsesPhysics || PlacingPartSettings.SkeletalMesh != nullptr) {
 			//Make the Part scene component
-			class UPart *NewPart = NewObject<UPart>(SelectedPart.GetDefaultObject(), MakeUniqueObjectName(VehicleConstructor, UPart::StaticClass(), FName(*FString("Part"))));
+			class UPart *NewPart = (NewObject<UPart>(this, *SelectedPart, MakeUniqueObjectName(VehicleConstructor, UPart::StaticClass(), FName(*FString("Part")))));
 			NewPart->RegisterComponent();
 
-			FPartStats DefaultStats = FPartStats();
+			FPartStats DefaultStats = PlacingPartSettings;
 			FTransform NewTransform = FTransform(IntendedPartRotation, IntendedPartLocation);
 			DefaultStats.PartLocation = IntendedPartLocation;
 			DefaultStats.PartRotation = IntendedPartRotation;
 			DefaultStats.NameTest = FString("Yeet");
+			NewPart->PartSettings = DefaultStats;
+			ExistingModifiableParts.Add(NewPart);
 
 			FString PartName = FormatPartName(SelectedPart);
 			TArray<FPartStats> *ExistingArrayPtr = ModifiablePartStats.Find(PartName);
@@ -1012,6 +1097,8 @@ void UMenu::PlaceItem()
 				NewPartMesh->SetSkeletalMesh(PlacingPartSettings.SkeletalMesh);
 				NewPartMesh->PartRef = NewPart;
 				NewPartMesh->RegisterComponent();
+				NewPartMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+				NewPartMesh->SetCollisionObjectType(ECollisionChannel::ECC_Visibility);
 			}
 			else if (PlacingPartSettings.StaticMesh != nullptr) {
 				//Make the part's StaticMesh
@@ -1024,6 +1111,8 @@ void UMenu::PlaceItem()
 				NewPartMesh->SetStaticMesh(PlacingPartSettings.StaticMesh);
 				NewPartMesh->PartRef = NewPart;
 				NewPartMesh->RegisterComponent();
+				NewPartMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+				NewPartMesh->SetCollisionObjectType(ECollisionChannel::ECC_Visibility);
 			}
 		}
 		else {
@@ -1123,6 +1212,12 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical
 
 	if (bLoadPhysical) { //Make a bool variable to check if we want to actually load the vehicle physically.
 		VehicleConstructor->RemoveMeshes();
+		for (UPart *PartToDelete : ExistingModifiableParts) {
+			if (PartToDelete->SkeletalMeshRef != nullptr) { PartToDelete->SkeletalMeshRef->DestroyComponent(); }
+			if (PartToDelete->StaticMeshRef != nullptr) { PartToDelete->StaticMeshRef->DestroyComponent(); }
+			PartToDelete->DestroyComponent(true);
+			ExistingModifiableParts.Empty();
+		}
 
 		for (TPair<FString, TArray<FTransform>> Pair : NonModifiablePartData) {
 			TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(Pair.Key);
@@ -1140,7 +1235,10 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical
 			TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(Pair.Key);
 			if (Part != nullptr) {
 				for (FPartStats Stat : Pair.Value) {
-					class UPart *NewPart = NewObject<UPart>(*Part, MakeUniqueObjectName(VehicleConstructor, UPart::StaticClass(), FName(*FString("Part"))));
+					UPart *NewPart = (NewObject<UPart>(this, *Part, MakeUniqueObjectName(VehicleConstructor, UPart::StaticClass(), FName(*FString("Part")))));
+					NewPart->PartSettings = Stat;
+					ExistingModifiableParts.Add(NewPart);
+
 					NewPart->RegisterComponent();
 					FTransform NewTransform = FTransform(Stat.PartRotation, Stat.PartLocation);
 
@@ -1155,6 +1253,8 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical
 						NewPartMesh->SetSkeletalMesh(Part->GetDefaultObject()->PartSettings.SkeletalMesh);
 						NewPartMesh->PartRef = NewPart;
 						NewPartMesh->RegisterComponent();
+						NewPartMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+						NewPartMesh->SetCollisionObjectType(ECollisionChannel::ECC_Visibility);
 					}
 					else if (Part->GetDefaultObject()->PartSettings.StaticMesh != nullptr) {
 						//Make the part's StaticMesh
@@ -1167,6 +1267,8 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical
 						NewPartMesh->SetStaticMesh(Part->GetDefaultObject()->PartSettings.StaticMesh);
 						NewPartMesh->PartRef = NewPart;
 						NewPartMesh->RegisterComponent();
+						NewPartMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+						NewPartMesh->SetCollisionObjectType(ECollisionChannel::ECC_Visibility);
 					}
 				}
 			}

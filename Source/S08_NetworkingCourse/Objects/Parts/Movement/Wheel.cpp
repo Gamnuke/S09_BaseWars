@@ -6,7 +6,6 @@
 void UWheel::OnSelected()
 {
 	Super::OnSelected();
-
-	//AllowVariableEdit(PartSettings.Acceleration, PartSettings.AccelerationMinMax);
-	//AllowVariableEdit(PartSettings.Traction, PartSettings.AccelerationMinMax);
+	AllowVariableEdit(PartSettings.ModifiableVariables.Acceleration);
+	AllowVariableEdit(PartSettings.ModifiableVariables.Speed);
 }
