@@ -18,10 +18,10 @@ public:
 	// Sets default values for this actor's properties
 	UPart();
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-		class UStaticMeshComponent *PartStaticMesh;
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-		class USkeletalMeshComponent *PartSkeletalMesh;
+	//UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+		//class UStaticMeshComponent *PartStaticMesh;
+	//UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+		//class USkeletalMeshComponent *PartSkeletalMesh;
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		class USceneComponent *Scene;
 

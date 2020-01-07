@@ -404,11 +404,11 @@ void UMenu::SetPartPlacementImage()
 	bool bIsPlacingCockpit = false;
 
 	FPartStats PlacingPartSettings = SelectedPart.GetDefaultObject()->PartSettings;
-	if (PlacingPartSettings.SkeletalMesh != nullptr) {
+	if (PlacingPartSettings.TheSkeletalMesh != nullptr) {
 		//Part image as USkeletalMeshComponent
 		//Build as USkeletalMeshComponent
 		bPlacingAsSkeletal = true;
-		BuilderPawn->SkeletalPartImage->SetSkeletalMesh(SelectedPart.GetDefaultObject()->PartSettings.SkeletalMesh);
+		BuilderPawn->SkeletalPartImage->SetSkeletalMesh(SelectedPart.GetDefaultObject()->PartSettings.TheSkeletalMesh);
 		BuilderPawn->StaticPartImage->SetVisibility(false);
 		BuilderPawn->SkeletalPartImage->SetVisibility(true);
 
@@ -570,27 +570,32 @@ void UMenu::SetPartPlacementImage()
 	//Gets all the socket names for the sockets in the part that we are placing.
 	BuilderPawn->PartImageHolder->SetWorldTransform(FTransform(IntendedPartRotation, IntendedPartLocation));
 	for (FName SocketName : SocketNames) {
+		FVector SocketLocation = bPlacingAsSkeletal ?
+			BuilderPawn->SkeletalPartImage->GetSocketLocation(SocketName):
+			BuilderPawn->StaticPartImage->GetSocketLocation(SocketName); 
+
+		RoundVectorForSocket(SocketLocation);
+
 		if (SocketName.ToString().Find(FString("Socket")) != INDEX_NONE) {
-			FVector SocketLocation = bPlacingAsSkeletal ?
-				BuilderPawn->SkeletalPartImage->GetSocketLocation(SocketName) :
-				BuilderPawn->StaticPartImage->GetSocketLocation(SocketName);
+			
 
 			//SocketLocation = IntendedPartRotation.RotateVector(SocketLocation);
 			//SocketLocation += IntendedPartLocation;
-			RoundVectorForSocket(SocketLocation);
 			CurrentPartSocketLocations.Add(SocketLocation);
 			DrawDebugPoint(GetWorld(), SocketLocation, 5, FColor::Orange, false, 0.5, 40);
+		}
 
-			if (SocketName.ToString() == FString("Root")) {
-				IsMovable = true;
-				FVector *Root = SocketToPartLocation.Find(SocketLocation);
-				if (Root != nullptr) {
-					FoundRoot = *Root;
-					TMap<FVector, FVector> P;
-					P.Add(IntendedPartLocation, FoundRoot.GetValue());
-					PendingMovablePartToRoot = P;
-					//DrawDebugPoint(GetWorld(), FoundRoot.GetValue(), 30, FColor::Red, false, 0.5, 40);
-				}
+		if (SocketName.ToString() == FString("RootWeld")) {
+			CurrentPartSocketLocations.Add(SocketLocation);
+			IsMovable = true;
+			FVector *Root = SocketToPartLocation.Find(SocketLocation);
+			DrawDebugPoint(GetWorld(), SocketLocation, 30, FColor::Purple, false, 0.5, 40);
+			if (Root != nullptr) {
+				FoundRoot = *Root;
+				TMap<FVector, FVector> P;
+				P.Add(IntendedPartLocation, FoundRoot.GetValue());
+				PendingMovablePartToRoot = P;
+				//DrawDebugPoint(GetWorld(), FoundRoot.GetValue(), 30, FColor::Purple, false, 0.5, 40);
 			}
 		}
 	}
@@ -649,7 +654,7 @@ void UMenu::SetPartPlacementImage()
 	for (FVector InitialPart : OtherPartLocations) {
 		RoundVector(InitialPart);
 
-		const FVector *FoundRootOfMovable = MovablePartToRoot.Find(InitialPart);
+		const FVector *FoundRootOfMovable = MovablePartToRoot.Find(InitialPart); //We are checking of the part we're bonded to is a movable.
 		if (FoundRootOfMovable != nullptr) {
 			bool IsConflicting;
 			if (*FoundRootOfMovable != IntendedPartLocation) { //If the part next to us is a movable and we are the root
@@ -658,7 +663,7 @@ void UMenu::SetPartPlacementImage()
 			}
 			ConflictingMovables.Add(InitialPart, IsConflicting);
 		}
-		else if (InitialPart == CockpitLocation) {
+		else if (InitialPart == CockpitLocation.GetValue()) {
 			CockpitFound = true;
 		}
 		else { //Its a normal part, so add it to the scan buffer.
@@ -693,9 +698,17 @@ void UMenu::SetPartPlacementImage()
 				}
 				else { //It isnt movable, so
 					if (CockpitLocation.IsSet()) {
+						GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(94, 1, FColor::Green, FString("COCKPIT IS SET"));
+
+
 						if (SurroundIndividualPart == CockpitLocation.GetValue()) {
+							GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(95, 1, FColor::Green, FString("COCKPIT IS SET"));
+
 							CockpitFound = true;
 						}
+					}
+					else {
+						GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(94, 1, FColor::Green, FString("COCKPIT IS NOT SET"));
 					}
 					if (ScannedParts.Find(SurroundIndividualPart) == INDEX_NONE) { //If the part around the scanning part hasn't been scanned already...
 						PartsToScan.Add(SurroundIndividualPart);
@@ -708,6 +721,13 @@ void UMenu::SetPartPlacementImage()
 
 	int32 NumConflicts = 0;
 	if (CockpitFound) { NumConflicts++; }
+	/*else {
+		if (!bIsPlacingCockpit) {
+			CanPlaceItem = false;
+			DebugMessage(FString("Cockpit not found in chain"));
+		}
+	}*/
+
 	for (TPair<FVector, bool> Pair : ConflictingMovables) {
 		if (Pair.Value == true) {
 			DrawDebugPoint(GetWorld(), Pair.Key, 20, FColor::Purple, false, 2, 100);
@@ -719,9 +739,10 @@ void UMenu::SetPartPlacementImage()
 		DebugMessage(FString("More than 1 conflicting part found"));
 		CanPlaceItem = false;
 	}
-	
+
 	if (FoundRoot.IsSet()) {
 		if (CockpitFound && CockpitLocation.IsSet()) {
+			DebugMessage(FString("USING COCKPIT AS PARENT"));
 			PendingParent = CockpitLocation.GetValue();
 		}
 	}
@@ -733,8 +754,10 @@ void UMenu::SetPartPlacementImage()
 		}
 	}
 	else if (OtherPartLocations.Num() == 0) {
-		DebugMessage(FString("You are trying to place a part that doesn't have other parts connected to it"));
-		CanPlaceItem = false;
+		if (!IsMovable && !FoundRoot.IsSet()) {
+			DebugMessage(FString("You are trying to place a part that doesn't have other parts connected to it"));
+			CanPlaceItem = false;
+		}
 	}
 
 	if (CanPlaceItem) {
@@ -1009,7 +1032,8 @@ void UMenu::PlaceItem()
 		GetOwningPlayer()->DeprojectMousePositionToWorld(Location, Dir);
 		FPartStats PlacingPartSettings = SelectedPart.GetDefaultObject()->PartSettings;
 
-		if (PlacingPartSettings.bUsesPhysics && PendingMovablePartToRoot.IsSet()) {
+		if ((PlacingPartSettings.bUsesPhysics || PlacingPartSettings.bModifiable || PlacingPartSettings.Category == ESubCategory::Cockpits) && PendingMovablePartToRoot.IsSet()) {
+			VehicleConstructor->DebugMessage("YEET");
 			MovablePartToRoot.Append(PendingMovablePartToRoot.GetValue());
 			
 			TArray<FVector> *ExistingChildrenPtr = ParentChildHierachy.Find(PendingParent);
@@ -1041,8 +1065,9 @@ void UMenu::PlaceItem()
 				return;
 			}
 			else {
+				ParentChildHierachy.Add(IntendedPartLocation, TArray<FVector>());
 				CockpitLocation = IntendedPartLocation;
-				//WeldedParts.Add(IntendedPartLocation, TArray<FVector>());
+				WeldedParts.Add(IntendedPartLocation, TArray<FVector>());
 			}
 		}
 		FTransform NewTransform = FTransform(IntendedPartRotation, IntendedPartLocation);
@@ -1060,10 +1085,11 @@ void UMenu::PlaceItem()
 		}
 
 		// If the part is either of these, make a separate UPart component, make the respective mesh and parent it to the mesh.
-		if (PlacingPartSettings.bModifiable || PlacingPartSettings.bUsesPhysics || PlacingPartSettings.SkeletalMesh != nullptr) {
+		if (PlacingPartSettings.bModifiable || PlacingPartSettings.bUsesPhysics || PlacingPartSettings.TheSkeletalMesh != nullptr) {
 			//Make the Part scene component
 			class UPart *NewPart = (NewObject<UPart>(this, *SelectedPart, MakeUniqueObjectName(VehicleConstructor, UPart::StaticClass(), FName(*FString("Part")))));
 			NewPart->RegisterComponent();
+			NewPart->MenuRef = this;
 
 			FPartStats DefaultStats = PlacingPartSettings;
 			FTransform NewTransform = FTransform(IntendedPartRotation, IntendedPartLocation);
@@ -1086,7 +1112,7 @@ void UMenu::PlaceItem()
 				ModifiablePartStats.Add(PartName, ExistingArrayRef);
 			}
 
-			if (PlacingPartSettings.SkeletalMesh != nullptr) {
+			if (PlacingPartSettings.TheSkeletalMesh != nullptr) {
 				//Make the part's skeletalMesh
 				//Parent this to the part
 				class USkeletalPartMesh *NewPartMesh = NewObject<USkeletalPartMesh>(VehicleConstructor, USkeletalPartMesh::StaticClass(), MakeUniqueObjectName(VehicleConstructor, USkeletalPartMesh::StaticClass(), FName(*FString("PartStaticMesh"))));
@@ -1094,7 +1120,7 @@ void UMenu::PlaceItem()
 				NewPart->SetupAttachment(NewPartMesh);
 				NewPart->SkeletalMeshRef = NewPartMesh;
 				NewPartMesh->SetRelativeTransform(FTransform(IntendedPartRotation, IntendedPartLocation));
-				NewPartMesh->SetSkeletalMesh(PlacingPartSettings.SkeletalMesh);
+				NewPartMesh->SetSkeletalMesh(PlacingPartSettings.TheSkeletalMesh);
 				NewPartMesh->PartRef = NewPart;
 				NewPartMesh->RegisterComponent();
 				NewPartMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
@@ -1212,12 +1238,7 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical
 
 	if (bLoadPhysical) { //Make a bool variable to check if we want to actually load the vehicle physically.
 		VehicleConstructor->RemoveMeshes();
-		for (UPart *PartToDelete : ExistingModifiableParts) {
-			if (PartToDelete->SkeletalMeshRef != nullptr) { PartToDelete->SkeletalMeshRef->DestroyComponent(); }
-			if (PartToDelete->StaticMeshRef != nullptr) { PartToDelete->StaticMeshRef->DestroyComponent(); }
-			PartToDelete->DestroyComponent(true);
-			ExistingModifiableParts.Empty();
-		}
+		
 
 		for (TPair<FString, TArray<FTransform>> Pair : NonModifiablePartData) {
 			TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(Pair.Key);
@@ -1234,37 +1255,41 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical
 		for (TPair<FString, TArray<FPartStats>> Pair : ModifiablePartStats) {
 			TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(Pair.Key);
 			if (Part != nullptr) {
+				FPartStats NewSettings = Part->GetDefaultObject()->PartSettings;
 				for (FPartStats Stat : Pair.Value) {
 					UPart *NewPart = (NewObject<UPart>(this, *Part, MakeUniqueObjectName(VehicleConstructor, UPart::StaticClass(), FName(*FString("Part")))));
 					NewPart->PartSettings = Stat;
+					NewPart->MenuRef = this;
 					ExistingModifiableParts.Add(NewPart);
 
 					NewPart->RegisterComponent();
 					FTransform NewTransform = FTransform(Stat.PartRotation, Stat.PartLocation);
 
-					if (Part->GetDefaultObject()->PartSettings.SkeletalMesh != nullptr) {
+					if (NewSettings.TheSkeletalMesh != nullptr) {
 						//Make the part's skeletalMesh
 						//Parent this to the part
 						class USkeletalPartMesh *NewPartMesh = NewObject<USkeletalPartMesh>(VehicleConstructor, USkeletalPartMesh::StaticClass(), MakeUniqueObjectName(VehicleConstructor, USkeletalPartMesh::StaticClass(), FName(*FString("PartStaticMesh"))));
 						NewPartMesh->SetupAttachment(VehicleConstructor->GetRootComponent());
 						NewPart->SetupAttachment(NewPartMesh);
 						NewPart->SkeletalMeshRef = NewPartMesh;
+						ExistingSkeletals.Add(NewPartMesh);
 						NewPartMesh->SetRelativeTransform(NewTransform);
-						NewPartMesh->SetSkeletalMesh(Part->GetDefaultObject()->PartSettings.SkeletalMesh);
+						NewPartMesh->SetSkeletalMesh(NewSettings.TheSkeletalMesh);
 						NewPartMesh->PartRef = NewPart;
 						NewPartMesh->RegisterComponent();
 						NewPartMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 						NewPartMesh->SetCollisionObjectType(ECollisionChannel::ECC_Visibility);
 					}
-					else if (Part->GetDefaultObject()->PartSettings.StaticMesh != nullptr) {
+					else if (NewSettings.StaticMesh != nullptr) {
 						//Make the part's StaticMesh
 						//Parent this to the part
 						class UStaticPartMesh *NewPartMesh = NewObject<UStaticPartMesh>(VehicleConstructor, UStaticPartMesh::StaticClass(), MakeUniqueObjectName(VehicleConstructor, UStaticPartMesh::StaticClass(), FName(*FString("PartSkeletalMesh"))));
 						NewPartMesh->SetupAttachment(VehicleConstructor->GetRootComponent());
 						NewPart->SetupAttachment(NewPartMesh);
 						NewPart->StaticMeshRef = NewPartMesh;
+						ExistingStatics.Add(NewPartMesh);
 						NewPartMesh->SetRelativeTransform(NewTransform);
-						NewPartMesh->SetStaticMesh(Part->GetDefaultObject()->PartSettings.StaticMesh);
+						NewPartMesh->SetStaticMesh(NewSettings.StaticMesh);
 						NewPartMesh->PartRef = NewPart;
 						NewPartMesh->RegisterComponent();
 						NewPartMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);

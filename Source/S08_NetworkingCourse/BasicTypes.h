@@ -122,8 +122,9 @@ struct FPartStats {
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) bool bLockedByDefault = true;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) bool bModifiable;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) bool bUsesPhysics;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) class USkeletalMesh * SkeletalMesh;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) class UStaticMesh * StaticMesh;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) class USkeletalMesh * TheSkeletalMesh = nullptr;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) class UStaticMesh * StaticMesh = nullptr;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) TSubclassOf<class UAnimInstance> AnimInstance = nullptr;
 
 	//Note: Anything that uses physics will need a root part.
 	///Unmodifiable variables
@@ -134,8 +135,11 @@ struct FPartStats {
 		//Basic
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = ModifiableSettings)
 		FModifiableVariables ModifiableVariables = FModifiableVariables();
-	FVector PartLocation;
-	FRotator PartRotation;
+	
+	UPROPERTY()
+		FVector PartLocation;
+	UPROPERTY()
+		FRotator PartRotation;
 
 	FString NameTest = "Not Overrided";
 	//UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) struct FModifiableVariables ModifiableVariables = FModifiableVariables();

@@ -203,7 +203,12 @@ public:
 	TMap < FString, TArray<FPartStats> > ModifiablePartStats;
 
 	//Physical refernces/variables
-	TArray<UPart*> ExistingModifiableParts;
+	UPROPERTY()
+		TArray<class UPart*> ExistingModifiableParts;
+	UPROPERTY()
+		TArray<class USkeletalPartMesh*> ExistingSkeletals;
+	UPROPERTY()
+		TArray<class UStaticPartMesh*> ExistingStatics;
 	//TMap<FVector, FPartStats> FunctionalPartSettings; // The part setting for each part. If the part is in the structural category or if the part at the location
 
 	//we're looking for isnt in this variable, then take the default settings for the part.

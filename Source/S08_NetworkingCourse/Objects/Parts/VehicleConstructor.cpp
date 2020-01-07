@@ -21,7 +21,8 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Gameplay/PlayerCharacter/SimulatedVehicle.h"
 #include "ConstructorHelpers.h"
-
+#include "Objects/Parts/SkeletalPartMesh.h"
+#include "Objects/Parts/StaticPartMesh.h"
 
 // Sets default values
 AVehicleConstructor::AVehicleConstructor(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -172,6 +173,8 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 		DebugMessage(FString("STATIC MESH COMPONENT TO MESH COMPONENT CAST FAILED"));
 	}*/
 
+	RemoveMeshes();
+
 	int y = 0;
 	FColor NewRandomColor;
 	if (MenuRef != nullptr && MenuRef->LoadedVehiclePath != FString()) {
@@ -233,11 +236,8 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 
 			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(o, 1000.0f, FColor::Cyan, FString(":::") + FoundPartName);
 			TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(FoundPartName);
-			UStaticMesh *ParentMeshGeo = Part->GetDefaultObject()->PartStaticMesh->GetStaticMesh();
-			USkeletalMesh *SkeleMeshGeo = nullptr;
-			if (Part->GetDefaultObject()->PartSkeletalMesh != nullptr) {
-				SkeleMeshGeo = Part->GetDefaultObject()->PartSkeletalMesh->SkeletalMesh;
-			}
+			UStaticMesh *ParentMeshGeo = Part->GetDefaultObject()->PartSettings.StaticMesh;
+			USkeletalMesh *SkeleMeshGeo = Part->GetDefaultObject()->PartSettings.TheSkeletalMesh;
 			FBox Extent = ParentMeshGeo->GetBoundingBox();
 			RoundStruct(Extent, 50);
 			
@@ -358,26 +358,31 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 					DebugMessage(FString("Default object is null!"));
 					return;
 				}
-				else if (Part->GetDefaultObject()->PartStaticMesh == nullptr) {
-					DebugMessage(FString("Mesh component is null!"));
-					return;
-				}
-				else if (Part->GetDefaultObject()->PartStaticMesh->GetStaticMesh() == nullptr) {
-					DebugMessage(FString("Static Mesh is null!"));
-					return;
+				UStaticMesh *MeshGeo = Part->GetDefaultObject()->PartSettings.StaticMesh;
+				USkeletalMesh *SkeleMeshGeo = Part->GetDefaultObject()->PartSettings.TheSkeletalMesh;
 
+				if (MeshGeo == nullptr && SkeleMeshGeo == nullptr) {
+					DebugMessage(Part->GetDefaultObject()->GetName() + FString(" has no mesh!"));
 				}
-				UStaticMesh *MeshGeo = Part->GetDefaultObject()->PartStaticMesh->GetStaticMesh();
-				USkeletalMesh *SkeleMeshGeo = Part->GetDefaultObject()->PartSkeletalMesh->SkeletalMesh;
 
 				if (ChildBox == nullptr) {
 					ChildBox = NewObject<UBoxComponent>(NewVehicle, FName(*(FString("childBox_") + FString::FromInt(n_child))));
+					
+					FBox Extent;
 
 					if (SkeleMeshGeo != nullptr) {
-						ChildMesh = Cast<UMeshComponent>(NewObject<USkeletalMeshComponent>(NewVehicle, FName(*(FString("childSkeletalMesh_") + FString::FromInt(n_child)))));
+						USkeletalMeshComponent *NewSkele = NewObject<USkeletalMeshComponent>(NewVehicle, FName(*(FString("childSkeletalMesh_") + FString::FromInt(n_child))));
+						ChildMesh = Cast<UMeshComponent>(NewSkele);
+						Extent = SkeleMeshGeo->GetBounds().GetBox();
+
+						if (Part->GetDefaultObject()->PartSettings.AnimInstance != nullptr) {
+							//NewSkele->AnimScriptInstance = Part->GetDefaultObject()->PartSettings.AnimInstance.GetDefaultObject();
+							NewSkele->SetAnimInstanceClass(Part->GetDefaultObject()->PartSettings.AnimInstance.Get());
+						}
 					}
 					else if(MeshGeo!=nullptr) {
 						ChildMesh = Cast<UMeshComponent>(NewObject<UInstancedStaticMeshComponent>(NewVehicle, FName(*(FString("childStaticMesh_") + FString::FromInt(n_child)))));
+						Extent = MeshGeo->GetBoundingBox();
 					}
 
 					ChildMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
@@ -390,7 +395,6 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 						if (C != nullptr) {
 							C->SetSkeletalMesh(SkeleMeshGeo);
 						}
-
 					}
 					else if (MeshGeo != nullptr) {
 						UInstancedStaticMeshComponent *C = Cast<UInstancedStaticMeshComponent>(ChildMesh);
@@ -401,7 +405,6 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 						}
 					}
 
-					FBox Extent = MeshGeo->GetBoundingBox();
 					RoundStruct(Extent, 50);
 					ChildBox->AddRelativeLocation(-(Extent.GetCenter()));
 					ChildBox->SetBoxExtent(Extent.GetExtent());
@@ -426,14 +429,16 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 					if (WasChildNull) {
 						ChildBox->RegisterComponent();
 						
-						UInstancedStaticMeshComponent *C = Cast<UInstancedStaticMeshComponent>(ChildMesh);
+						/*UInstancedStaticMeshComponent *C = Cast<UInstancedStaticMeshComponent>(ChildMesh);
 						if (C != nullptr) {
 							C->AddInstance(FTransform(FVector(0, 0, 0)));
-						}
+						}*/
 						if (Part->GetDefaultObject()->PartSettings.Category == ESubCategory::Wheeled) {
+							USkeletalMeshComponent *SkeletalChildMesh = Cast<USkeletalMeshComponent>(ChildMesh);
+							DebugMessage("MAKING WHEEL");
 							FWheelSetup NewSetup = FWheelSetup();
-							FVector Correction = ChildMesh->GetSocketLocation(FName());
-							FVector WheelSocketLoc = ChildMesh->GetSocketLocation(FName(*FString("WheelCentre"))) - Correction;
+							FVector Correction = SkeletalChildMesh->GetSocketLocation(FName());
+							FVector WheelSocketLoc = SkeletalChildMesh->GetSocketLocation(FName(*FString("WheelCentre"))) - Correction;
 							WheelSocketLoc = ChildPartTransform.GetRotation().RotateVector(WheelSocketLoc);
 							DrawDebugPoint(GetWorld(), WheelSocketLoc, 20, FColor::Orange, false, 1000, 100);
 							DebugMessage(Correction.ToString());
@@ -501,6 +506,7 @@ void AVehicleConstructor::BuildSimulatedVehicle()
 			}
 		}
 
+		FormatBoxCollision(*CockpitBox, true, NewVehicle);
 		NewVehicle->MovementComp->WheelSetups = WheelSetups;
 		NewVehicle->MovementComp->CreateVehicle();
 		NewVehicle->MovementComp->RecreatePhysicsState();
@@ -637,6 +643,23 @@ void AVehicleConstructor::RemoveMeshes() {
 	}
 	InstancedMeshes.Empty();
 	PartToMesh.Empty();
+
+	for (UPart *PartToDelete : MenuRef->ExistingModifiableParts) {
+		if (PartToDelete != nullptr) {
+			if (PartToDelete->SkeletalMeshRef != nullptr) { PartToDelete->SkeletalMeshRef->DestroyComponent(); }
+			if (PartToDelete->StaticMeshRef != nullptr) { PartToDelete->StaticMeshRef->DestroyComponent(); }
+			PartToDelete->DestroyComponent(true);
+		}
+		MenuRef->ExistingModifiableParts.Empty();
+	}
+	for (USkeletalPartMesh *PartToDelete : MenuRef->ExistingSkeletals) {
+		PartToDelete->DestroyComponent(true);
+		MenuRef->ExistingModifiableParts.Empty();
+	}
+	for (UStaticPartMesh *PartToDelete : MenuRef->ExistingStatics) {
+		PartToDelete->DestroyComponent(true);
+		MenuRef->ExistingModifiableParts.Empty();
+	}
 }
 
 void AVehicleConstructor::CheckIfMeshIsEmpty(UInstancedStaticMeshComponent *MeshToCheck) {
@@ -720,16 +743,12 @@ void AVehicleConstructor::CreateMainStructure(ASimulatedVehicle *NewVehicle, FVe
 					DebugMessage(FString("Default object is null!"));
 					return;
 				}
-				else if (Part->GetDefaultObject()->PartStaticMesh == nullptr) {
-					DebugMessage(FString("Mesh component is null!"));
-					return;
-				}
-				else if (Part->GetDefaultObject()->PartStaticMesh->GetStaticMesh() == nullptr) {
+				else if (Part->GetDefaultObject()->PartSettings.StaticMesh == nullptr) {
 					DebugMessage(FString("Static Mesh is null!"));
 					return;
 
 				}
-				UStaticMesh *MeshGeo = Part->GetDefaultObject()->PartStaticMesh->GetStaticMesh();
+				UStaticMesh *MeshGeo = Part->GetDefaultObject()->PartSettings.StaticMesh;
 
 				//Check if there is already a instancedmeshcomponent that exists.
 				UInstancedStaticMeshComponent *ExistingMesh = nullptr;
