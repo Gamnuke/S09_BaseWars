@@ -161,7 +161,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere) class AVehicleConstructor *VehicleConstructor;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere) class TSubclassOf<class UUserWidget> IndicatorImage;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere) class TSubclassOf<class UUserWidget> VehicleTabClass;
-	class UInstancedStaticMeshComponent *HighlightedMesh;
+	class UMeshComponent *HighlightedMesh;
 	class ABuilderPawn *BuilderPawn;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -199,7 +199,7 @@ public:
 	TMap<FVector, TArray<FVector>> WeldedParts; // Location of first part and and the other parts that are welded to this part.
 	TMap<FVector, TArray<FVector>> ParentChildHierachy;
 	TMap<FVector, FVector> MovablePartToRoot; //Movable part : Root part that the movable is connected to.
-	TMap<FString, TArray<FTransform>> NonModifiablePartData; //Name of part : The transforms of each instance of the part.
+	TMap<FString, TArray<FTransform>> NonModifiablePartTransforms; //Name of part : The transforms of each instance of the part.
 	TMap < FString, TArray<FPartStats> > ModifiablePartStats;
 
 	//Physical refernces/variables

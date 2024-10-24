@@ -8,4 +8,7 @@ void UWheel::OnSelected()
 	Super::OnSelected();
 	AllowVariableEdit(PartSettings.ModifiableVariables.Acceleration);
 	AllowVariableEdit(PartSettings.ModifiableVariables.Speed);
+	AllowVariableEdit(PartSettings.ModifiableVariables.SteeringAngle);
+	//e
 }
+

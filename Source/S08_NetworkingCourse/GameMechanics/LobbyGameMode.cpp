@@ -37,7 +37,6 @@ void ALobbyGameMode::PostLogin(APlayerController * NewPlayer)
 	NumOfPlayers += 1;
 	Validate();
 	bUseSeamlessTravel = true;
-	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(0, 2, FColor::Orange, FString("A player has joined the lobby"));
 	//if (GetNetOwningPlayer()->PlayerController->NetPlayerIndex == 0) {
 	if (GetGameInstance() == nullptr) { return; }
 	UPlatformerGameInstance *GameInstance = Cast<UPlatformerGameInstance>(GetGameInstance());

@@ -114,6 +114,7 @@ public:
 
 protected:
 	void CreateMainStructure(class ASimulatedVehicle *NewVehicle, FVehicleData & LoadedData, FVector & ChildLoc, FOccluderVertexArray & MovableParts, class UPlatformerGameInstance * GI, int32 & n_structure, UBoxComponent * ParentBoxPtr, int32 & n_collision);
+	FPartStats GetPartStatFromLocation(FVector PartLocation);
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 

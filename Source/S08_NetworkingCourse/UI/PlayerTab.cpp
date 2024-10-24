@@ -18,14 +18,11 @@ void UPlayerTab::UpdateName(FString Name) {
 }
 
 void UPlayerTab::SelectIndex() {
-	if (ParentVotekickMenu != nullptr) {
-		ParentVotekickMenu->SetSelectedPlayerIndex(ThisIndex, this);
-	}
-	if (AssignedPlayerState == nullptr) { return; }
+	/*if (AssignedPlayerState == nullptr) { return; }
 	if (AssignedPlayerState->GetNetOwningPlayer() == nullptr) { return; }
 	APlayerController *PlayerController = AssignedPlayerState->GetNetOwningPlayer()->PlayerController;
 	if (PlayerController == nullptr) { return; }
-	PlayerController->ClientTravel("/Game/Levels/MainMenu", ETravelType::TRAVEL_Absolute);
+	PlayerController->ClientTravel("/Game/Levels/MainMenu", ETravelType::TRAVEL_Absolute);*/
 
 
 }

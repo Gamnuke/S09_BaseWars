@@ -13,9 +13,6 @@ UCLASS()
 class S08_NETWORKINGCOURSE_API UWheel : public UPart
 {
 	GENERATED_BODY()
-	
 public:
 	virtual void OnSelected() override;
-
-
 };

@@ -5,19 +5,7 @@
 #include "GameMechanics/PlatformerGameInstance.h"
 #include "Engine/Engine.h"
 #include "UI/PlayerTab.h"
-#include "UI/NetworkUI/VotekickMenu.h"
 
-
-UServerStatus::UServerStatus(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
-{
-	static ConstructorHelpers::FClassFinder<UUserWidget> PlayerTab(TEXT("/Game/UI/PlayerTab_WBP"));
-	if (PlayerTab.Class != NULL)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Found %s"), *PlayerTab.Class->GetName());
-		PlayerTabClass = PlayerTab.Class;
-	}
-
-}
 
 bool UServerStatus::Initialize() {
 	bool Success = Super::Initialize();
@@ -35,9 +23,6 @@ void UServerStatus::Setup() {
 	PlayerController->SetInputMode(InputMode);
 	PlayerController->bShowMouseCursor = true;
 	this->SetVisibility(ESlateVisibility::Visible);
-	if (VotekickMenu != nullptr) {
-		VotekickMenu->UpdatePlayerTabs();
-	}
 }
 
 void UServerStatus::TearDown() {

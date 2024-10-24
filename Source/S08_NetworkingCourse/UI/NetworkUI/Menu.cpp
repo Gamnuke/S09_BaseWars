@@ -35,6 +35,7 @@
 #include "Objects/Parts/Weaponry/TurretBasePart.h"
 #include "UI/BuildModeUI/PartSettingUI/PartSettingMenu.h"
 #include "UI/BuildModeUI/PartSettingUI/ComplexFloatSetting.h"
+#include "Serialization/BufferArchive.h"
 
 void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 {
@@ -91,10 +92,10 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 	for (TPair<FVector, TArray<FVector>> d : ParentChildHierachy) {
 		//DrawDebugPoint(GetWorld(), d.Key, 10, FColor::Red, false, DeltaTime, 10);
 		order++;
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Red, d.Key.ToString(), false);
+		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::White, d.Key.ToCompactString(), false);
 		for (FVector OtherPartVec : d.Value) {
 			order++;
-			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Orange, FString("                    ") + OtherPartVec.ToString(), false);
+			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(order, DeltaTime, FColor::Silver, FString("                    ") + OtherPartVec.ToCompactString(), false);
 		}
 	}
 
@@ -141,7 +142,6 @@ void UMenu::BlueprintTick(FGeometry Geometry, float DeltaTime)
 		PartHolder->SetWorldRotation(SmoothedRot);
 		BuilderPawn->StaticPartImage->SetRelativeTransform(FTransform());
 		BuilderPawn->SkeletalPartImage->SetRelativeTransform(FTransform());
-		//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, IntendedPartLocation.ToString());
 
 	}
 
@@ -151,7 +151,6 @@ void UMenu::ApplyNewTool()
 	switch (CurrentTool)
 	{
 	case PlaceTool:
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Place Tool"));
 		if (SelectedPart != nullptr) {
 			SetPartPlacementImage();
 		}
@@ -163,7 +162,6 @@ void UMenu::ApplyNewTool()
 
 		break;
 	case DeleteTool:
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Delete Tool"));
 		BuilderPawn->StaticPartImage->SetVisibility(false);
 		BuilderPawn->SkeletalPartImage->SetVisibility(false);
 
@@ -172,7 +170,6 @@ void UMenu::ApplyNewTool()
 
 		break;
 	case ConfigureTool:
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Configure Tool"));
 		BuilderPawn->StaticPartImage->SetVisibility(false);
 		BuilderPawn->SkeletalPartImage->SetVisibility(false);
 
@@ -181,7 +178,6 @@ void UMenu::ApplyNewTool()
 
 		break;
 	case PaintTool:
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(17, 1, FColor::Black, FString("Paint Tool"));
 		BuilderPawn->StaticPartImage->SetVisibility(false);
 		BuilderPawn->SkeletalPartImage->SetVisibility(false);
 
@@ -262,26 +258,29 @@ void UMenu::OnOverrideSave() {
 		FVehicleData Data;
 		Data.MovablePartToRoot = MovablePartToRoot;
 		Data.ParentChildHierachy = ParentChildHierachy;
-		Data.NonModifiablePartData = NonModifiablePartData;
+		Data.NonModifiablePartData = NonModifiablePartTransforms;
+		//Data.ModifiablePartStats = ModifiablePartStats;
 		Data.WeldedParts = WeldedParts;
 		Data.CockpitLocation = CockpitLocation;
 
 		for (UPart *PartToSave : ExistingModifiableParts) {
-			FString PartName = PartToSave->GetClass()->GetName();
-			PartName.RemoveFromStart("Default__");
-			PartName.RemoveFromEnd("_C");
-			VehicleConstructor->DebugMessage(PartToSave->PartSettings.PartLocation.ToString());
-			TArray<FPartStats> *ExistingArray = Data.ModifiablePartStats.Find(PartName);
-			if (ExistingArray == nullptr) {
-				TArray<FPartStats> NewStats;
-				NewStats.Add(PartToSave->PartSettings);
-				Data.ModifiablePartStats.Add(PartName, NewStats);
-			}
-			else {
-				TArray<FPartStats> NewStats = *ExistingArray;
-				NewStats.Add(PartToSave->PartSettings);
-				Data.ModifiablePartStats.Remove(PartName);
-				Data.ModifiablePartStats.Add(PartName, NewStats);
+			if (PartToSave != nullptr) {
+				FString PartName = PartToSave->GetClass()->GetName();
+				PartName.RemoveFromStart("Default__");
+				PartName.RemoveFromEnd("_C");
+				//VehicleConstructor->DebugMessage(PartToSave->PartSettings.PartLocation.ToString());
+				TArray<FPartStats> *ExistingArray = Data.ModifiablePartStats.Find(PartName); //Find the existing part setting array for the part class
+				if (ExistingArray == nullptr) {
+					TArray<FPartStats> NewStats;
+					NewStats.Add(PartToSave->PartSettings);
+					Data.ModifiablePartStats.Add(PartName, NewStats);
+				}
+				else {
+					TArray<FPartStats> NewStats = *ExistingArray;
+					NewStats.Add(PartToSave->PartSettings);
+					Data.ModifiablePartStats.Remove(PartName);
+					Data.ModifiablePartStats.Add(PartName, NewStats);
+				}
 			}
 		}
 		//Data.ModifiablePartStats = ModifiablePartStats;
@@ -306,7 +305,6 @@ void UMenu::RefreshVehicles() {
 	if (VehicleTabClass != nullptr) {
 		for (FString f : FoundFiles) {
 			l++;
-			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(l, 100, FColor::Green, f);
 			UVehicleTab *NewTab = CreateWidget<UVehicleTab>(this, VehicleTabClass, *FString::FromInt(l));
 			NewTab->AddToViewport();
 			VehiclesBox->AddChild(NewTab);
@@ -776,16 +774,18 @@ void UMenu::SetPlacability(bool &CanPlace, bool bNewPlacability) {
 void UMenu::HighlightPart()
 {
 	if (OutHit.GetComponent() != nullptr) {
-		UInstancedStaticMeshComponent *FoundMesh = Cast<UInstancedStaticMeshComponent>(OutHit.GetComponent());
+		UMeshComponent *FoundMesh = Cast<UMeshComponent>(OutHit.GetComponent());
+		UInstancedStaticMeshComponent *FoundInstancedMesh = Cast<UInstancedStaticMeshComponent>(OutHit.GetComponent());
 		if (FoundMesh == nullptr) { return; }
-
-		int32 I = OutHit.Item;
-		FTransform ItemTrans;
-		if (FoundMesh->GetInstanceTransform(I, ItemTrans, false)) {
-			//DrawDebugPoint(GetWorld(), ItemTrans.GetLocation(), 10, FColor::Cyan, false, 0.5, 10);
-			HighlightedMesh = FoundMesh;
-			HighlightedItem = I;
+		
+		if (FoundInstancedMesh != nullptr) {
+			int32 I = OutHit.Item;
+			FTransform ItemTrans;
+			if (FoundInstancedMesh->GetInstanceTransform(I, ItemTrans, false)) {
+				HighlightedItem = I;
+			}
 		}
+		HighlightedMesh = FoundMesh;
 	}
 }
 
@@ -850,68 +850,83 @@ void UMenu::ConfigureItem() {
 
 void UMenu::DeleteItem() {
 	if (HighlightedMesh != nullptr) {
+		UInstancedStaticMeshComponent *FoundInstancedMesh = Cast<UInstancedStaticMeshComponent>(HighlightedMesh);
+		UStaticPartMesh *FoundStaticMesh = Cast<UStaticPartMesh>(HighlightedMesh);
+		USkeletalPartMesh *FoundSkeletalMesh = Cast<USkeletalPartMesh>(HighlightedMesh);
+
 		FTransform PartTrans;
-		HighlightedMesh->GetInstanceTransform(HighlightedItem, PartTrans, true);
-		TSubclassOf<UPart> DeletingClass = VehicleConstructor->PartToMesh.FindRef(HighlightedMesh);
-		if (*DeletingClass == nullptr) { return; }
-		FString DeletingName = FormatPartName(DeletingClass);
+		FString DeletingName;
+		UPart *PartRef = nullptr;
+
+		
+
+		if (FoundInstancedMesh != nullptr) {
+			FoundInstancedMesh->GetInstanceTransform(HighlightedItem, PartTrans, true);
+			TSubclassOf<UPart> DeletingClass = VehicleConstructor->PartToMesh.FindRef(FoundInstancedMesh);
+			if (DeletingClass != nullptr) {
+				DeletingName = DeletingClass.GetDefaultObject()->GetName();
+			}
+		}
+		else {
+			if (FoundSkeletalMesh != nullptr) {
+				PartRef = FoundSkeletalMesh->PartRef;
+			}
+			else if (FoundStaticMesh != nullptr) {
+				PartRef = FoundStaticMesh->PartRef;
+			}
+
+			if (PartRef != nullptr) {
+				DeletingName = PartRef->GetClass()->GetName();
+				PartTrans = FTransform(PartRef->PartSettings.PartRotation, PartRef->PartSettings.PartLocation);
+			}
+		}
+
+		DeletingName.RemoveFromStart("Default__");
+		DeletingName.RemoveFromEnd("_C");
+
 		FVector PartLoc = PartTrans.GetLocation();
 		RoundVector(PartLoc);
 
 		//If this part is a parent...
 		if (ParentChildHierachy.Find(PartLoc) != nullptr && ParentChildHierachy.Find(PartLoc)->Num() != 0) { return; } //TODO Add a message saying that every other movable part on that chain must be deleted before deleting this part.
+		TArray<FVector> OtherWeldedParts = WeldedParts.FindRef(PartLoc);
 
+		//If we are deleting the cockpit..
 		if (CockpitLocation.IsSet() && CockpitLocation.GetValue() == PartLoc) {
-			for (FVector OtherPart : WeldedParts.FindRef(CockpitLocation.GetValue())) {
-				RoundVector(OtherPart);
-				/*if (!WeldedParts.Contains(OtherPart)) {
-					GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(18, 1, FColor::Red, FString("Couldnt find PARTOATTAPRAT"));
-
-				}*/
-				TArray<FVector> PostChangeWelds = WeldedParts.FindRef(OtherPart);
-				PostChangeWelds.Remove(PartLoc);
-				WeldedParts.Remove(OtherPart);
-				WeldedParts.Add(OtherPart, PostChangeWelds);
-				//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(16,1,FColor::Green,FString(FString("Parts removed: ") + FString::FromInt( WeldedParts.FindRef(OtherPart).Remove(PartLoc))));
-			}
-			WeldedParts.Remove(CockpitLocation.GetValue());
-			HighlightedMesh->RemoveInstance(HighlightedItem);
-
 			CockpitLocation.Reset();
 		}
 
-
-		TArray<FTransform> Transforms = NonModifiablePartData.FindRef(DeletingName);
+		//Remake the transform array for this part type without the deleting part transform.
+		TArray<FTransform> Transforms = NonModifiablePartTransforms.FindRef(DeletingName);
 		TArray<FTransform> NewTrans;
 		for (FTransform T : Transforms) {
-			if (T.GetLocation() != PartLoc) { //If the transform in the array is the same as the transform of the part we're deleting
+			FVector RoundedV = T.GetLocation();
+			RoundVector(RoundedV);
+			if (RoundedV != PartLoc) { //If the transform in the array is the same as the transform of the part we're deleting
+				GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(1, 50, FColor::Orange, FString("Found part in NonModifiablePartTransform array, deleting part transform."));
 				NewTrans.Add(T);
 			}
 		}
-		NonModifiablePartData.Remove(DeletingName); //Remove the array of transforms in the PArtData variable for this part
-		NonModifiablePartData.Add(DeletingName, NewTrans);
+		NonModifiablePartTransforms.Remove(DeletingName); //Remove the array of transforms in the PArtData variable for this part
+		NonModifiablePartTransforms.Add(DeletingName, NewTrans);
 
-		TArray<FVector> OtherWeldedParts = WeldedParts.FindRef(PartLoc);
 		for (FVector OtherPart : OtherWeldedParts) {
 			RoundVector(OtherPart);
-			/*if (!WeldedParts.Contains(OtherPart)) {
-				GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(18, 1, FColor::Red, FString("Couldnt find PARTOATTAPRAT"));
-
-			}*/
 			TArray<FVector> PostChangeWelds = WeldedParts.FindRef(OtherPart);
 			PostChangeWelds.Remove(PartLoc);
 			WeldedParts.Remove(OtherPart);
 			WeldedParts.Add(OtherPart, PostChangeWelds);
-			//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(16,1,FColor::Green,FString(FString("Parts removed: ") + FString::FromInt( WeldedParts.FindRef(OtherPart).Remove(PartLoc))));
 		}
+		WeldedParts.Remove(PartLoc);
 
 		// Sort out parent child hierachy variable, delete a parent if it has no children.
 		TMap<FVector, TArray<FVector>> ParentChildHierachyTemp = ParentChildHierachy;
 		for (TPair<FVector, TArray<FVector>> Pair : ParentChildHierachyTemp) {
-			if (Pair.Value.Find(PartLoc) != INDEX_NONE) {
+			if (Pair.Value.Find(PartLoc) != INDEX_NONE) { //Is the part we are deleting a child?
+				GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(1, 50, FColor::Orange, FString("This part is a child of a parent"));
 				TArray<FVector> Children = Pair.Value;
 				Children.Remove(PartLoc);
-				if (Children.Num() == 0) {
+				if (Children.Num() == 0 && Pair.Key != CockpitLocation.GetValue()) {
 					ParentChildHierachy.Remove(Pair.Key);
 				}
 				else {
@@ -921,12 +936,46 @@ void UMenu::DeleteItem() {
 			}
 		}
 
+		//Sort out the part settings variable (Remove the setting from the array that belongs to the part that was deleted.)
+		TArray<FPartStats> *stats = ModifiablePartStats.Find(DeletingName);
+		TArray<FPartStats> statsRef = ModifiablePartStats.FindRef(DeletingName);
+		if (stats != nullptr) {
+			GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(2, 50, FColor::Orange, FString("Found modifiable part in variable: ") + DeletingName);
+			TArray<FPartStats> statsCopy;
+
+			for (FPartStats Stat : statsRef) {
+				FVector ComparingVec = Stat.PartLocation;
+				RoundVector(ComparingVec);
+				if (ComparingVec != PartLoc) {
+					statsCopy.Add(Stat);
+				}
+				else {
+					GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(3, 50, FColor::Orange, FString("We found the part setting variable that matches with this part, we are now deleting it from the array."));
+				}
+			}
+			ModifiablePartStats.Remove(DeletingName);
+			ModifiablePartStats.Add(DeletingName, statsCopy);
+		}
+
 		MovablePartToRoot.Remove(PartLoc);
-
-		WeldedParts.Remove(PartLoc);
-		HighlightedMesh->RemoveInstance(HighlightedItem);
-
 		FilterFloatingParts(DisconnectedParts);
+
+		if (FoundInstancedMesh != nullptr) {
+			FoundInstancedMesh->RemoveInstance(HighlightedItem);
+		}
+		else {
+			HighlightedMesh->DestroyComponent(true);
+		}
+
+		if (PartRef != nullptr) {
+			//if (ExistingModifiableParts.Find(PartRef) != INDEX_NONE) {
+			if (ExistingModifiableParts.Find(PartRef) != INDEX_NONE) {
+				ExistingModifiableParts.Remove(PartRef);
+				GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(4,50, FColor::Orange, FString("Found part in the ExistingModifiableParts variable, now deleting."));
+			}
+			//}
+			PartRef->DestroyComponent();
+		}
 
 		/// DONT DELETE THIS WE NEED IT
 		//if (DisconnectedParts.Num() > 0) {
@@ -1072,16 +1121,16 @@ void UMenu::PlaceItem()
 		}
 		FTransform NewTransform = FTransform(IntendedPartRotation, IntendedPartLocation);
 		FString PartName = FormatPartName(SelectedPart);
-		TArray<FTransform> *ExistingArrayPtr = NonModifiablePartData.Find(PartName);
-		TArray<FTransform> ExistingArrayRef = NonModifiablePartData.FindRef(PartName);
+		TArray<FTransform> *ExistingArrayPtr = NonModifiablePartTransforms.Find(PartName);
+		TArray<FTransform> ExistingArrayRef = NonModifiablePartTransforms.FindRef(PartName);
 		ExistingArrayRef.Add(NewTransform);
 
 		if (ExistingArrayPtr != nullptr) {
-			NonModifiablePartData.Remove(PartName);
-			NonModifiablePartData.Add(PartName, ExistingArrayRef);
+			NonModifiablePartTransforms.Remove(PartName);
+			NonModifiablePartTransforms.Add(PartName, ExistingArrayRef);
 		}
 		else {
-			NonModifiablePartData.Add(PartName, ExistingArrayRef);
+			NonModifiablePartTransforms.Add(PartName, ExistingArrayRef);
 		}
 
 		// If the part is either of these, make a separate UPart component, make the respective mesh and parent it to the mesh.
@@ -1226,11 +1275,10 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical
 	}*/
 
 	LoadedVehiclePath = Path;
-	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(15, 5, FColor::Yellow, FString("Loading Vehicle..."));
 	WeldedParts = Data.WeldedParts;
 	MovablePartToRoot = Data.MovablePartToRoot;
 	ParentChildHierachy = Data.ParentChildHierachy;
-	NonModifiablePartData = Data.NonModifiablePartData;
+	NonModifiablePartTransforms = Data.NonModifiablePartData;
 	ModifiablePartStats = Data.ModifiablePartStats;
 	CockpitLocation = Data.CockpitLocation;
 
@@ -1240,7 +1288,7 @@ void UMenu::LoadVehicleData(FString Path, FVehicleData &Data, bool bLoadPhysical
 		VehicleConstructor->RemoveMeshes();
 		
 
-		for (TPair<FString, TArray<FTransform>> Pair : NonModifiablePartData) {
+		for (TPair<FString, TArray<FTransform>> Pair : NonModifiablePartTransforms) {
 			TSubclassOf<UPart> *Part = GI->NameForStaticPart.Find(Pair.Key);
 			if (Part != nullptr && !Part->GetDefaultObject()->PartSettings.bModifiable) {
 				UInstancedStaticMeshComponent *InstancedComponent = VehicleConstructor->CreateMesh(*Part);

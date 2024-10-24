@@ -10,15 +10,12 @@
 #include "Interfaces/OnlineSessionInterface.h"
 #include "OnlineSessionSettings.h"
 
-#include "GameMechanics/PlayingGameMode.h"
 #include "UI/NetworkUI/Menu.h"
 #include "PlatformerGameInstance.generated.h"
 
 class UMainMenu;
 class UServerStatus;
 class USessionTab;
-class UPauseMenu;
-class UInGameHUD;
 class UMenu;
 /**
  * 
@@ -76,9 +73,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void LoadMenuWidget();
 
-	UFUNCTION(BlueprintCallable)
-		void OpenPauseMenu();
-
 	UFUNCTION()
 		void StartGame();
 
@@ -93,11 +87,7 @@ public:
 	UPROPERTY()
 		UMainMenu *MenuWidget;
 	UPROPERTY()
-		UPauseMenu *PauseMenuWidget;
-	UPROPERTY()
 		UServerStatus *ServerStatusWidget;
-	UPROPERTY()
-		UInGameHUD *InGameHUDWidget;
 
 	UFUNCTION(BlueprintCallable)
 	void SetupGame();

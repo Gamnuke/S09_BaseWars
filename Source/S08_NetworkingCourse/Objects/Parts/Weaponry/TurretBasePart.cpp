@@ -7,6 +7,8 @@ void UTurretBasePart::OnSelected()
 {
 	Super::OnSelected();
 
-	AllowVariableEdit(PartSettings.ModifiableVariables.RotationSpeed);
+	AllowVariableEdit(PartSettings.ModifiableVariables.PositionStrength);
+	AllowVariableEdit(PartSettings.ModifiableVariables.VelocityStrength);
+	AllowVariableEdit(PartSettings.ModifiableVariables.MaxForce);
 
 }

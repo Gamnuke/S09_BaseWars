@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "GameMechanics/PlayingGameMode.h"
 #include "GameMechanics/LobbyGameMode.h"
 #include "UI/NetworkUI/MainMenu.h"
 #include "GameMechanics/PlatformerGameInstance.h"
@@ -12,7 +11,6 @@
 /**
  * 
  */
-class UInGameHUD;
 class UKickedNote;
 class UPlatformerGameInstance;
 
@@ -34,26 +32,15 @@ public:
 
 	UFUNCTION(Client, Reliable, BlueprintCallable)
 	void Setup_Client();
-	UFUNCTION(Client, Reliable, BlueprintCallable)
-		void Print(bool Found);
-
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-	UInGameHUD *InGameHUDReference;
 
 	void AddWidgetToViewport(UKickedNote *WidgetToAdd);
-
-	UPROPERTY(Replicated)
-	FRoundData RoundData;
-
-	UFUNCTION(NetMulticast, unreliable)
-		void SetRoundData(class AGamePlayerController *PC, FRoundData DataToSet);
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	class UMenu *Menu;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TSubclassOf<class UMenu> MenuClass;
-	UFUNCTION(Client, reliable)
+	//UFUNCTION(Client, reliable)
 		void SetPlayerDataClient(FPlayerData LoadedData);
 
 	float TimeInitiated;

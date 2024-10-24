@@ -7,11 +7,9 @@
 #include "UObject/ConstructorHelpers.h"
 
 #include "UI/NetworkUI/MainMenu.h"
-#include "UI/InGameUI/PauseMenu.h"
 #include "UI/NetworkUI/SessionTab.h"
 #include "UI/NetworkUI/ServerStatus.h"
 #include "UI/NetworkUI/Menu.h"
-#include "UI/InGameUI/HUD/InGameHUD.h"
 
 #include "Public/OnlineSubsystem.h"
 #include "Interfaces/OnlineSessionInterface.h"
@@ -176,10 +174,6 @@ void UPlatformerGameInstance::SetupGame() {
 	if (MenuWidget != nullptr) {
 		MenuWidget->TearDown(nullptr);
 	}
-
-	if (PauseMenuWidget != nullptr) {
-		PauseMenuWidget->Teardown();
-	}
 }
 
 //-----------|Join Server Functionality|-----------//
@@ -310,27 +304,10 @@ void UPlatformerGameInstance::OnFindBuildSessionComplete(bool Success) {
 	}
 }
 
-// Opens the pause game menu
-void UPlatformerGameInstance::OpenPauseMenu() {
-	if (PauseMenuWidget == nullptr && PauseMenuClass != nullptr) {
-		PauseMenuWidget = CreateWidget<UPauseMenu>(this, PauseMenuClass, FName("Pause Menu Widget"));
-	}
-	if (PauseMenuWidget != nullptr) {
-		//PauseMenuWidget->SetMenuInterface(this);
-		PauseMenuWidget->Setup();
-		if (MenuWidget != nullptr) {
-			PauseMenuWidget->IsHost = MenuWidget->PlayerIsHost;
-		}
-	}
-}
-
 // Travels the client to the main menu level (Literally exiting the game)
 void UPlatformerGameInstance::OpenMainMenu() {
 	APlayerController *PlayerController = GetFirstLocalPlayerController();
 	if (PlayerController != nullptr) {
-		if (PauseMenuWidget != nullptr) {
-			PauseMenuWidget->Teardown();
-		}
 		PlayerController->ClientTravel("/Game/Levels/MainMenu", ETravelType::TRAVEL_Absolute, false);
 	}
 }
@@ -413,8 +390,6 @@ void UPlatformerGameInstance::UnlockPart_Implementation(const FString &PartToUnl
 
 	FString FileSearch = FString(FPlatformProcess::UserDir()).LeftChop(10) + FString("Documents/ServerData/") + NetIDString + FString(".txt");
 	if (FPaths::FileExists(FileSearch)) {
-		Cast<AGamePlayerController>(PC)->Print(true);
-
 		FPlayerData LoadedData;
 		if (LoadGameDataFromFile(FileSearch, LoadedData)) {
 			// On client:

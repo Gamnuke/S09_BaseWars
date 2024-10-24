@@ -6,8 +6,6 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
 #include "Components/Button.h"
-#include "UI/InGameUI/PauseMenu.h"
-#include "UI/NetworkUI/VotekickMenu.h"
 #include "PlayerTab.generated.h"
 
 /**
@@ -34,8 +32,6 @@ public:
 	void UpdateName(FString Name);
 
 	int32 ThisIndex;
-
-	UVotekickMenu *ParentVotekickMenu;
 
 	APlayerState* AssignedPlayerState;
 

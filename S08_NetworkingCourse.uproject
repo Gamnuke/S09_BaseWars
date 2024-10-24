@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.22",
+	"EngineAssociation": "4.27",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -37,6 +37,14 @@
 		},
 		{
 			"Name": "SoundUtilities",
+			"Enabled": true
+		},
+		{
+			"Name": "AdvancedSessions",
+			"Enabled": true
+		},
+		{
+			"Name": "AdvancedSteamSessions",
 			"Enabled": true
 		}
 	]

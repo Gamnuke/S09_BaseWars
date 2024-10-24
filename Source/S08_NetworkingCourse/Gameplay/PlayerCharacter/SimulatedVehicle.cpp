@@ -9,6 +9,7 @@
 #include "Camera/CameraComponent.h"
 #include "SimpleWheeledVehicleMovementComponent.h"
 #include "DrawDebugHelpers.h"
+#include "Engine/Engine.h"
 
 ASimulatedVehicle::ASimulatedVehicle(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -62,6 +63,20 @@ void ASimulatedVehicle::MoveRight(float Input) {
 		}
 		i++;
 	}
+}
+
+void ASimulatedVehicle::OnCompHit(UPrimitiveComponent * HitComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, FVector NormalImpulse, const FHitResult & Hit)
+{
+	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(61, 1, FColor::White, FString("Collided with ")+OtherComp->GetFullName());
+	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(62, 1, FColor::White, FString::SanitizeFloat(HitComp->GetComponentVelocity().SizeSquared()));
+
+	if (HitComp->GetComponentVelocity().SizeSquared() > FMath::Pow(500,2)) {
+		DrawDebugPoint(GetWorld(), Hit.ImpactPoint, 30, FColor::Red, false, 1, 100);
+	}
+	else {
+		DrawDebugPoint(GetWorld(), Hit.ImpactPoint, 30, FColor::White, false, 1, 100);
+	}
+	//HitComp->DestroyComponent(true);
 }
 
 void ASimulatedVehicle::Tick(float DeltaTime) {

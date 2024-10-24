@@ -14,7 +14,6 @@
 /**
  * 
  */
-class UVotekickMenu;
 
 UCLASS()
 class S08_NETWORKINGCOURSE_API UServerStatus : public UUserWidget
@@ -24,7 +23,6 @@ class S08_NETWORKINGCOURSE_API UServerStatus : public UUserWidget
 
 protected:
 	virtual bool Initialize();
-	UServerStatus(const FObjectInitializer& ObjectInitializer);
 
 public:
 	void Setup();
@@ -44,8 +42,5 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 		class UButton *ShutdownServerButton;
-
-	UPROPERTY(meta = (BindWidget))
-		UVotekickMenu *VotekickMenu;
 
 };

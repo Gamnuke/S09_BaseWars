@@ -90,9 +90,12 @@ struct FModifiableVariables {
 	//Wheel
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Speed = FComplexInt32("Speed", 20, FVector2D::ZeroVector);
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 Acceleration = FComplexInt32("Acceleration", 20, FVector2D::ZeroVector);
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 SteeringAngle = FComplexInt32("Steering Angle", 30, FVector2D(0,50));
 	
 	//Rotary Module
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 RotationSpeed = FComplexInt32("RotationSpeed", 20, FVector2D::ZeroVector);
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 PositionStrength = FComplexInt32("Position Strength", 50000, FVector2D(0,200000));
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 VelocityStrength = FComplexInt32("Velocity Strength", 20000, FVector2D(0, 200000));
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, category = Main) FComplexInt32 MaxForce = FComplexInt32("Max Force", 20, FVector2D(0, 999999999));
 	FModifiableVariables() {};
 };
 
@@ -102,7 +105,9 @@ FORCEINLINE FArchive& operator<<(FArchive &Ar, FComplexString &SaveStatsData) { 
 FORCEINLINE FArchive& operator<<(FArchive &Ar, FModifiableVariables &SaveStatsData) {
 	Ar << SaveStatsData.Speed;
 	Ar << SaveStatsData.Acceleration;
-	Ar << SaveStatsData.RotationSpeed;
+	Ar << SaveStatsData.PositionStrength;
+	Ar << SaveStatsData.VelocityStrength;
+	Ar << SaveStatsData.MaxForce;
 	return Ar;
 }
 FORCEINLINE FArchive& operator<<(FArchive &Ar, FUnmodifiableVariables &SaveStatsData) {

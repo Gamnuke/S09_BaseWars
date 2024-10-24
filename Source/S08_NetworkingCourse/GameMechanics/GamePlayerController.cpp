@@ -8,8 +8,6 @@
 #include "UnrealNetwork.h"
 #include "Engine/World.h"
 #include "GameFramework/GameState.h"
-#include "UI/InGameUI/HUD/InGameHUD.h"
-#include "GameMechanics/ActiveGameState.h"
 #include "Engine/GameInstance.h"
 #include "Engine/Engine.h"
 
@@ -28,18 +26,10 @@ AGamePlayerController::AGamePlayerController(const FObjectInitializer& ObjectIni
 void AGamePlayerController::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME(AGamePlayerController, RoundData);
 }
 
 void AGamePlayerController::Setup_Client_Implementation() {
 	bShowMouseCursor = true;
-
-	/*if (Menu == nullptr) {
-		Menu = CreateWidget<UMenu>(this, MenuClass, FName("MenuUI"));
-	}
-	Menu->AddToPlayerScreen();
-	Cast<UPlatformerGameInstance>(GetGameInstance())->LoadTimeInitiated = GetWorld()->GetTimeSeconds();
-	TimeInitiated = GetWorld()->GetTimeSeconds();*/
 }
 
 void AGamePlayerController::Tick(float DeltaTime) {
@@ -70,19 +60,12 @@ void AGamePlayerController::BeginPlay() {
 	//GI->OnClientJoin(this);
 
 
-void AGamePlayerController::SetRoundData_Implementation(AGamePlayerController *PC, FRoundData DataToSet) {
-	RoundData = DataToSet;
-}
-
-void AGamePlayerController::SetPlayerDataClient_Implementation(FPlayerData LoadedData) {
+void AGamePlayerController::SetPlayerDataClient(FPlayerData LoadedData) {
 	//OwningPlayerData = LoadedData;
 	if (GI != nullptr) {
 
 		GI->OwningPlayerData = LoadedData;
 		GI->Items = LoadedData.Items;
-	}
-	else {
-		GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(13, 1, FColor::Red, FString("GAME INSTANCE IS NULL"));
 	}
 
 	if (Menu == nullptr) {
@@ -95,12 +78,4 @@ void AGamePlayerController::SetPlayerDataClient_Implementation(FPlayerData Loade
 		Menu->GBDisplay->SetText(FText::FromString(FString::FromInt(LoadedData.GB)));
 	}
 	HasLoadedData = true;
-	//GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(10, 100, FColor::Green, FString("Time took to load:") + FString::SanitizeFloat(GetWorld()->GetTimeSeconds() - TimeInitiated));
-	//Menu->RemoveFromViewport();
-	//Cast<AGamePlayerController>(GetFirstLocalPlayerController(GetWorld()))->Menu->RemoveFromViewport();
-}
-
-void AGamePlayerController::Print_Implementation(bool Found) {
-	GetGameInstance()->GetEngine()->AddOnScreenDebugMessage(10, 100, FColor::Green, Found?FString("HOLY SHIT I FOUND IT"):FString("Fuck I didnt find it :c"));
-
 }
