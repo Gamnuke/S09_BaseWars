@@ -2,8 +2,6 @@
 
 This is a project I've started during highschool at age 17 in 2019, and discontinued in 2021. 
 
-It's based off of and inspired by Robocraft - an old online multiplayer videogame released in 2014, where the player could build their own vehicle to fight other players.
-
 This project along many others, was simply a proof of concept and an experimentation of the capabilities of myself and the Unreal Engine, therefore certain aspects of the project were rushed without future design considerations.
 
 The algorithms for assembling the vehicle involved using several in-built classes from UE4, such as the BoxColliderComponent and VehicleComponent, which also offered vehicle physics and part physics for simulation. 
